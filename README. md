@@ -1,3 +1,4 @@
 # Аренда метро
 Скачать себе
 - git clone https://github.com/DJWOMS/metro.git
+pip install -r req.txt
