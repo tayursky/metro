@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'serch',
 ]
 
 MIDDLEWARE = [
@@ -78,7 +79,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'metro',
         'USER': 'root',
-        'PASSWORD': 'Djwoms18',
+        'PASSWORD': 'korolishyt',
         'HOST': 'localhost',
     }
 }
