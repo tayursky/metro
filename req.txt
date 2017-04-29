@@ -1,3 +1,5 @@
 django==11.1
 Pillow
+django-bootstrap3
+django-allauth
 mysqlclient

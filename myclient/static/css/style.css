@@ -1,0 +1,128 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+body{
+	margin: 0 auto;
+    /*width: 1000px;*/
+    margin-bottom: 60px;
+}
+h1, h2, h3, h4, h5{
+	text-align: center;
+}
+
+/*Меню*/
+.main-menu {
+    background: #FAA53A;
+    /* height: 20px; */
+    margin: 0 0 10px 0;
+    box-shadow: 0 1px 5px 0 #555;
+}
+.nav>li>a:focus, .nav>li>a:hover, .nav>li>a:active{
+	background: #D48624 !important;
+}
+.main-menu li a{
+	color: #000;
+}
+
+/* Контент */
+.main-login {
+    width: 400px;
+    margin: 50px auto;
+    padding: 15px;
+    box-shadow: 0px 2px 20px 8px #ccc;
+}
+.main {
+    width: 57%;
+    float: left;
+    margin: 0 10px 10px 10px;
+    box-shadow: 0 0 10px 0 #ccc;
+    padding: 10px;
+	background: #fff;
+}
+.title-post {
+    text-align: center;
+    margin-top: -25px;
+    font-size: 15px;
+}
+/*Правый сайдбар*/
+.right-side{
+	width: 20%;
+	float: right;
+	background-color: #fff;
+}
+.profil{
+    padding: 10px;
+}
+.rek-schet {
+    text-align: center;
+    background-color: #71B7FD;
+    font-size: 16px;
+    color: #fff;
+    box-shadow: 0 2px 4px 1px #9d9d9d;
+    padding-bottom: 5px;
+}
+.form-otv-pismo{
+	text-align: center;
+}
+.url-otv-pismo{
+	text-align: center;
+	color: #89A688;
+}
+/*Футер*/
+.footer {
+    margin: 25px 25px 0 25px;
+    height: 50px;
+    background-color: #71B7FD;
+    padding: 15px;
+    /*position: absolute;*/
+    bottom: 0;
+    width: 97%;
+}
+
+.right-footer{
+	float: right;
+	color: #fff;
+}
+.a-footer{
+	color: #fff;
+}
+
+/*Медиа*/
+@media (max-width: 992px){
+.left-side, .right-side {
+    width: 100%;
+    float: left;
+    margin: 0 5px 10px 0;
+}
+
+.main {
+    width: 98%;
+	margin: 0;
+}
+
+.logo {
+    margin: 20px 0 20px 0;
+    float: left;
+}
+
+.stat-header {
+    width: 100%;
+    float: left;
+    /* margin: 10px 25px 0 0; */
+}
+
+
+
+.footer {
+    margin: 25px 0 0 0;
+    width: 100%;
+}
+}
+
+@media (max-width: 750){
+	.nav-justified>li {
+    float: left !important;
+}
+
+}
