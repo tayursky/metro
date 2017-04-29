@@ -20,8 +20,12 @@
 </head>
 
 <body>
-
 	<div class="page">
+		<div class="header">
+			<h4>
+				Административная панель
+			</h4>
+		</div>
 		<div class="main">
 			<header class="title-post">
 				<h2>{% block content-title %}Заголовок страницы{% endblock %}</h2>
@@ -32,23 +36,28 @@
 		</div>
 		{% if user.is_active %}
 		<aside class="right-side">
-				<header class="header-side">
-					Меню
-				</header>
 				<div class="profi">
-					<a href="" class="list-group-item menu-left">Купить переходы</a>
-					<a href="" class="list-group-item menu-left">Оплачиваемые задания</a>
+					<a href="" class="list-group-item menu-left">Мои клиенты</a>
+					<a href="" class="list-group-item menu-left">Мои объекты</a>
 					<a href="{% url 'my_task' %}" class="list-group-item menu-left">Мои задачи</a>
-					<a href="" class="list-group-item menu-left">Оплачиваемые тесты</a>
-					<a href="" class="list-group-item menu-left">Оплачиваемые письма</a>
-					<a href="" class="list-group-item menu-left">Псевдо ссылки</a>
-					<a href="" class="list-group-item menu-left">Контекстная реклама</a>
-					<a href="" class="list-group-item menu-left">Облако сайтов</a>
+					<a href="" class="list-group-item menu-left">Заявки</a>
+					<a href="" class="list-group-item menu-left">Фотобаза</a>
+					<a href="" class="list-group-item menu-left">Чёрный список</a>
+					<a href="" class="list-group-item menu-left">Добавить клиента</a>
+					<a href="" class="list-group-item menu-left">Добавить объект</a>
+					<a href="" class="list-group-item menu-left">Новая задача</a>
+					<a href="" class="list-group-item menu-left">Приоритеты</a>
 					<a href="/accounts/logout" class="list-group-item menu-left">Выход</a>
 				</div>
 		</aside>
+	<footer>
+		<div class="footer">
+			Все права защищены &copy; 2017. Омельченко Михаил
+		</div>
+	</footer>
 	</div>
 	{% endif %}
+
 </body>
 
 </html>
