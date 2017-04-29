@@ -18,7 +18,7 @@ class Client(models.Model):
     manager = models.ForeignKey('auth.User')
     name = models.CharField("Имя", max_length=30)
     tel = models.CharField("Телефон", max_length=30)
-    email = models.EmailField()
+    email = models.EmailField("Email", max_length=30)
     hide = models.CharField("Скрыт", max_length=30, choices=HIDE, default="Выбор")
     naznach_one = models.CharField("Назначение №1", max_length=30)
     naznach_two = models.CharField("Назначение №2", max_length=30)
@@ -26,3 +26,4 @@ class Client(models.Model):
     area_do = models.IntegerField("Площадь до", default=0)
     price_obsh = models.IntegerField("Цена до", default=0)
     price_m = models.IntegerField("Цена до за м2", default=0)
+    dop_kont = models.TextField("Дополнительные контакты", max_length=1000, blank=True)
