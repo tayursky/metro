@@ -22,3 +22,7 @@ class Client(models.Model):
     hide = models.CharField("Скрыт", max_length=30, choices=HIDE, default="Выбор")
     naznach_one = models.CharField("Назначение №1", max_length=30)
     naznach_two = models.CharField("Назначение №2", max_length=30)
+    area_ot = models.IntegerField("Площадь от", default=0)
+    area_do = models.IntegerField("Площадь до", default=0)
+    price_obsh = models.IntegerField("Цена до", default=0)
+    price_m = models.IntegerField("Цена до за м2", default=0)
