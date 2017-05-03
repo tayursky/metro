@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import ClientForm
-
+from .models import Client
 # Добавления клиента
 
 
@@ -12,7 +12,7 @@ def add_client(request):
         if form.is_valid():
             # Сахроняю форму
             post = form.save(commit=False)
-            post.manager = request.user
+            post.my_manager = request.user
             post.save()
             return redirect('my_client')
     else:
@@ -24,4 +24,5 @@ def add_client(request):
 
 @login_required
 def my_client(request):
-    return render(request, 'myclient/my-client.html')
+    myclient = Client.objects.filter(my_manager_id=request.user.id)
+    return render(request, 'myclient/my-client.html', {"clients": myclient})

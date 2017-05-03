@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'bootstrap3',
     'serch',
     'myclient',
+    'myobject',
+    'mytask',
 ]
 
 MIDDLEWARE = [

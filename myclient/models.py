@@ -1,6 +1,28 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+# Модель выбора округа
+
+
+class Okrug(models.Model):
+    class Meta():
+        db_table = "okrug"
+        verbose_name = "Округ"
+        verbose_name_plural = "Округа"
+
+    OKRUG_OPTIONS = (
+        ('Центр', 'Центр'),
+        ('Север', 'Север'),
+        ('Юг', 'Юг'),
+        ('Восток', 'Восток'),
+        ('Запад', 'Запад'),
+        ('Область', 'Область'),
+    )
+
+    options = models.CharField(max_length=100, blank=True, choices=OKRUG_OPTIONS)
+
+    def __str__(self):
+        return self.options
 # Таблица клиентов
 
 
@@ -11,19 +33,41 @@ class Client(models.Model):
         verbose_name_plural = "Клиенты"
 
     HIDE = (
-        ('yes', 'Скрыт'),
-        ('no', 'Не скрыт')
+        ('no', 'Не скрыт'),
+        ('yes', 'Скрыт')
     )
 
-    manager = models.ForeignKey('auth.User')
+    OKRUG_OPTIONS = (
+        (1, 'Центр'),
+        (2, 'Север'),
+        (3, 'Юг'),
+        (4, 'Восток'),
+        (5, 'Запад'),
+        (6, 'Область'),
+    )
+
+    TYPE_OBJ = (
+        ('undeg', 'Подземка'),
+        ('street', 'Улица'),
+        ('tc', 'Отдел\ТЦ')
+    )
+    my_manager = models.ForeignKey(User)
     name = models.CharField("Имя", max_length=30)
-    tel = models.CharField("Телефон", max_length=30)
-    email = models.EmailField("Email", max_length=30)
-    hide = models.CharField("Скрыт", max_length=30, choices=HIDE, default="Выбор")
+    tel = models.CharField("Телефон", max_length=30, blank=True)
+    email = models.EmailField("Email", max_length=30, blank=True)
+    hide = models.CharField("Скрыт", max_length=30, choices=HIDE, default="F", blank=True)
     naznach_one = models.CharField("Назначение №1", max_length=30)
-    naznach_two = models.CharField("Назначение №2", max_length=30)
-    area_ot = models.IntegerField("Площадь от", default=0)
-    area_do = models.IntegerField("Площадь до", default=0)
-    price_obsh = models.IntegerField("Цена до", default=0)
-    price_m = models.IntegerField("Цена до за м2", default=0)
+    naznach_two = models.CharField("Назначение №2", max_length=30, blank=True)
+    area_ot = models.IntegerField("Площадь от", default=0, blank=True)
+    area_do = models.IntegerField("Площадь до", default=0, blank=True)
+    price_obsh = models.IntegerField("Цена до", default=0, blank=True)
+    price_m = models.IntegerField("Цена до за м2", default=0, blank=True)
     dop_kont = models.TextField("Дополнительные контакты", max_length=1000, blank=True)
+    metro = models.BooleanField("У метро", max_length=30, blank=True)
+    adres = models.BooleanField("С адресом", max_length=100, blank=True)
+    komisiya = models.BooleanField("Без комиссии", max_length=30, blank=True)
+    etaj = models.BooleanField("1 этаж", max_length=30, blank=True)
+    podborka = models.BooleanField("Отправить подборку", max_length=30, blank=True)
+    okrug = models.ManyToManyField(Okrug, blank=True)
+    #okrug = models.CharField("Округ", max_length=30, choices=OKRUG_OPTIONS, default="F")
+    type_obj = models.CharField("Тип объекта", max_length=30, choices=TYPE_OBJ, default="F")

@@ -8,5 +8,67 @@
 {% endblock %}
 
 {% block content %}
+<table class="table table-bordered table-hover">
+    <th class="active">
+    Имя
+</th>
+<th class="active">
+    Менеджер
+</th>
+<th class="span-task active">
+    Скрыт
+</th>
+<th class="span-task active">
+    Назначение
+</th>
+<th class="span-task active">
+    Телефон
+</th>
+<th class="span-task active">
+    Метраж
+</th>
+<th class="span-task active price-table">
+    Цена до (общая)
+</th>
+<th class="span-task active price-table">
+    Цена до (за м2)
+</th>
+<th class="span-task active">
+    Email
+</th>
+{% for client in clients %}
+<tr>
+    <td>
+        {{client.name}}
+    </td>
+    <td>
+        {{client.my_manager}}
+    </td>
+    <td>
+        {{client.hide}}
+    </td>
+    <td>
+        {{client.naznach_one}}<br />
+        {{client.naznach_two}}
+    </td>
+    <td>
+        {{client.tel}}
+    </td>
+    <td class="price-table">
+        от {{client.area_ot}} <br />
+        до {{client.area_do}}
+    </td>
+    <td class="price-table">
+        {{client.price_obsh}}
+    </td>
+    <td>
+        {{client.price_m}}
+    </td>
+    <td>
+        {{client.email}}
+    </td>
+</tr>
 
+{% endfor %}
+</table>
 {% endblock %}

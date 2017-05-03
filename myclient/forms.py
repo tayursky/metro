@@ -9,4 +9,8 @@ from .models import Client
 class ClientForm(forms.ModelForm):
     class Meta:
         model = Client
-        fields = ('name', 'tel')
+        fields = ('name', 'tel', 'email', 'naznach_one', 'naznach_two',
+                  'area_ot', 'area_do', 'price_obsh', 'price_m', 'dop_kont', 'metro', 'adres', 'komisiya', 'etaj', 'podborka', 'okrug', 'type_obj')
+        widgets = {
+            'okrug': forms.widgets.CheckboxSelectMultiple
+        }
