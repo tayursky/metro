@@ -12,5 +12,5 @@ class ClientForm(forms.ModelForm):
         fields = ('name', 'tel', 'email', 'naznach_one', 'naznach_two',
                   'area_ot', 'area_do', 'price_obsh', 'price_m', 'dop_kont', 'metro', 'adres', 'komisiya', 'etaj', 'podborka', 'okrug', 'type_obj')
         widgets = {
-            'okrug': forms.widgets.CheckboxSelectMultiple
+            'okrug': forms.widgets.CheckboxSelectMultiple,
         }
