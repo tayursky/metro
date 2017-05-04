@@ -69,6 +69,7 @@ class Client(models.Model):
     tel = models.CharField("Телефон", max_length=30, blank=True)
     email = models.EmailField("Email", max_length=30, blank=True)
     hide = models.CharField("Скрыт", max_length=30, choices=HIDE, default="", blank=True)
+    hide_date = models.DateField("Скрыть до", auto_now_add=False, blank=True, null=True)
     naznach_one = models.ForeignKey(
         Naznach, related_name='naznach_one', verbose_name="Назначение №1")
     naznach_two = models.ForeignKey(Naznach, blank=True, null=True, verbose_name="Назначение №2")
