@@ -117,6 +117,86 @@ h1, h2, h3, h4, h5{
 }
 }
 
+#mask {
+    position:absolute;
+    left:0;
+    top:0;
+    z-index:9000;
+    background-color:#000;
+    display:none;
+    }
+#boxes .window {
+    position:absolute;
+    left:0;
+    top:0px;
+    -top: 40px;
+    width:440px;
+    height:200px;
+    display:none;
+    z-index:9999;
+    /*padding: 20px;*/
+    overflow: hidden;
+    }
+#boxes #dialog {
+    width:900px;
+    height:600px;
+    /*padding:10px;*/
+    background-color:#ffffff;
+    }
+
+#boxes2 .window2 {
+	    position:absolute;
+	    left:0;
+	    top:0px;
+	    -top: 40px;
+	    width:440px;
+	    height:200px;
+	    display:none;
+	    z-index:9999;
+	    /*padding: 20px;*/
+	    overflow: hidden;
+	   }
+#boxes2 #dialog2 {
+	    width:700px;
+	    height:600px;
+	    /*padding:10px;*/
+	    background-color:#ffffff;
+	   }
+.top {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 900px;
+	height: 30px;
+	background: #0085cc;
+	padding: 8px 20px 6px 0;
+	margin-left: -20px;
+	}
+.top2 {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 700px;
+		height: 30px;
+		background: #0085cc;
+		padding: 8px 20px 6px 0;
+		margin-left: -20px;
+	}
+.close {
+    float:right;
+    }
+.content-modal {
+    padding-top: 35px;
+}
+
+
+
+
+
+
+
+
+
 @media (max-width: 750){
 	.nav-justified>li {
     float: left !important;

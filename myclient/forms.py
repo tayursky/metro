@@ -14,3 +14,11 @@ class ClientForm(forms.ModelForm):
         widgets = {
             'okrug': forms.widgets.CheckboxSelectMultiple,
         }
+
+# Форма скрытия клиента
+
+
+class HideClientForm(forms.ModelForm):
+    class Meta:
+        model = Client
+        fields = ('hide_date',)
