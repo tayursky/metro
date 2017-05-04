@@ -44,6 +44,7 @@ class Client(models.Model):
         db_table = "client"
         verbose_name = "Клиент"
         verbose_name_plural = "Клиенты"
+        ordering = ['hide']
 
     HIDE = (
         ('no', 'Не скрыт'),
@@ -91,3 +92,27 @@ class Client(models.Model):
 
     def get_absolute_url(self):
         return reverse('my_client')  # , kwargs={'pk': self.pk})
+
+
+# Модель задачи клиента
+class TaskClient(models.Model):
+    class Meta():
+        db_table = "task_client"
+        verbose_name = "Задача клиента"
+        verbose_name_plural = "Задачи клиента"
+
+    PRIORITET = (
+        ('0', 'другое'),
+        ('1', 'звонок, ответ'),
+        ('2', 'первоочередное'),
+        ('3', 'встреча, показ')
+    )
+    manager = models.ForeignKey(User, on_delete=models.CASCADE)
+    client = models.ForeignKey(Client, verbose_name="Клиент")
+    prioritet = models.CharField("Приоритет", max_length=30,
+                                 choices=PRIORITET, default="0", blank=True)
+    date = models.DateField("Дата", auto_now_add=False)
+    task = models.TextField("Задача")
+
+    def get_absolute_url(self):
+        return reverse('my_client')

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django import forms
 from django.contrib.auth.models import User
-from .models import Client
+from .models import Client, TaskClient
 
 # Форма добавления клиента
 
@@ -22,3 +22,11 @@ class HideClientForm(forms.ModelForm):
     class Meta:
         model = Client
         fields = ('hide_date',)
+
+# Форма задачи клиента
+
+
+class TaskClientForm(forms.ModelForm):
+    class Meta:
+        model = TaskClient
+        fields = ('client', 'prioritet', 'date', 'task')

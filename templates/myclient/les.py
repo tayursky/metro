@@ -1,5 +1,5 @@
 
-
+# Лайки для поста
 <a href = "/add/like/{{post.id}}/" > like < /a >
 
 url(r'^lenta/like/(?P<pk>\d+)/$', views.addlike)
@@ -16,3 +16,10 @@ def addlike(request, pk):
     except ObjectDoesNotExist:
         raise Http404
     return redirect('/')
+
+
+# Создание профиля
+@receiver(post_save, sender=User)
+def add_profiles(instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)

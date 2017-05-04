@@ -2,12 +2,12 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from django.http.response import Http404
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic import DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
-from .forms import ClientForm, HideClientForm
-from .models import Client
+from .forms import ClientForm, HideClientForm, TaskClientForm
+from .models import Client, TaskClient
 # Добавления клиента
 
 
@@ -92,3 +92,15 @@ class ClientDelete(LoginRequiredMixin, DeleteView):
 
     def get_success_url(self):
         return reverse('my_client')
+
+
+# Добавление задачи для клиента
+class AddTaskClient(LoginRequiredMixin, CreateView):
+    model = TaskClient
+    #fields = ['name']
+    template_name = "myclient/add_task_client.html"
+    form_class = TaskClientForm
+
+    def form_valid(self, form):
+        form.instance.manager = self.request.user
+        return super(AddTaskClient, self).form_valid(form)

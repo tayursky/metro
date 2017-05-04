@@ -96,6 +96,7 @@
         {% else %}
             <a href="{% url 'show_client' pk=client.pk %}">Открыть</a><br />
         {% endif %}
+        <a href="{% url 'add_task_client' pk=client.pk %}">Задача</a><br />
         <a href="{% url 'update_client' pk=client.pk %}">Редактировать</a><br />
         <a href="{% url 'delete_client' pk=client.pk %}">Удалить</a>
     </td>
