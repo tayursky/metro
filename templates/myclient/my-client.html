@@ -72,7 +72,8 @@
         {{client.email}}
     </td>
     <td>
-        <a href="{% url 'update_client' pk=client.pk %}">{% bootstrap_button "Редактировать" button_type="submit" name="1" button_class="btn-primary btn-xs" %}</a>
+        <a href="{% url 'update_client' pk=client.pk %}">Редактировать</a><br />
+        <a href="{% url 'delete_client' pk=client.pk %}">Удалить</a>
     </td>
 </tr>
 
