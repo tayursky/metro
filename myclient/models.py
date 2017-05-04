@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 
 # Модель назначения
@@ -86,3 +87,6 @@ class Client(models.Model):
     okrug = models.ManyToManyField(Okrug, blank=True, verbose_name="Округ")
     type_obj = models.CharField("Тип объекта", max_length=30,
                                 choices=TYPE_OBJ, default="undeg", blank=True)
+
+    def get_absolute_url(self):
+        return reverse('my_client')  # , kwargs={'pk': self.pk})

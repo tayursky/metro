@@ -1,4 +1,5 @@
 {% extends 'myclient/base.html' %}
+{% load bootstrap3 %}
 {% block title %}
 Мои клиенты
 {% endblock %}
@@ -36,6 +37,9 @@
 <th class="span-task active">
     Email
 </th>
+<th class="span-task active">
+
+</th>
 {% for client in clients %}
 <tr>
     <td>
@@ -66,6 +70,9 @@
     </td>
     <td>
         {{client.email}}
+    </td>
+    <td>
+        <a href="{% url 'update_client' pk=client.pk %}">{% bootstrap_button "Редактировать" button_type="submit" name="1" button_class="btn-primary btn-xs" %}</a>
     </td>
 </tr>
 
