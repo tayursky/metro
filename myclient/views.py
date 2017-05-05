@@ -88,7 +88,7 @@ class ClientUpdate(LoginRequiredMixin, UpdateView):
 class ClientDelete(LoginRequiredMixin, DeleteView):
     model = Client
     template_name = 'myclient/client_delete.html'
-    # редирект на страницу клиентов
+    # редирект на страницу мои клиенты
 
     def get_success_url(self):
         return reverse('my_client')
