@@ -104,3 +104,18 @@ class AddTaskClient(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.manager = self.request.user
         return super(AddTaskClient, self).form_valid(form)
+
+# Копирование клиента
+
+
+class ClientCopy(LoginRequiredMixin, UpdateView):
+    model = Client
+    template_name = "myclient/copy_client.html"
+    form_class = ClientForm
+
+    def form_valid(self, form):
+        form.instance.manager = self.request.user
+        # Для копирования устанавливаю pk и id в None
+        form.instance.pk = None
+        form.instance.id = None
+        return super(ClientCopy, self).form_valid(form)

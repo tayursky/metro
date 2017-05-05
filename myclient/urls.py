@@ -11,4 +11,5 @@ urlpatterns = [
     url(r'^delete_client/(?P<pk>[0-9]+)/$', views.ClientDelete.as_view(), name='delete_client'),
     url(r'^add/task_client/(?P<pk>[0-9]+)/$',
         views.AddTaskClient.as_view(), name='add_task_client'),
+    url(r'^copy_client/(?P<pk>[0-9]+)/$', views.ClientCopy.as_view(), name='copy_client'),
 ]
