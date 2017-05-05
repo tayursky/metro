@@ -21,7 +21,7 @@ from django.conf import settings
 from . import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^', views.home, name="home"),
+    url(r'^$', views.home, name="home"),
     url(r'^login/client/', include('myclient.urls')),
     url(r'^login/object/', include('myobject.urls')),
     url(r'^login/task/', include('mytask.urls')),

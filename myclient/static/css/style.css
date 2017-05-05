@@ -157,26 +157,16 @@ h1, h2, h3, h4, h5{
 	    overflow: hidden;
 	   }
 #boxes2 #dialog2 {
-	    width:700px;
-	    height:600px;
-	    /*padding:10px;*/
-	    background-color:#ffffff;
-	   }
-.top {
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: 900px;
-	height: 30px;
-	background: #0085cc;
-	padding: 8px 20px 6px 0;
-	margin-left: -20px;
-	}
+    width: 500px;
+	height:250px;
+    text-align: center;
+	background-color:#ffffff;
+}
 .top2 {
 		position: absolute;
 		left: 0;
 		top: 0;
-		width: 700px;
+		width: 500px;
 		height: 30px;
 		background: #0085cc;
 		padding: 8px 20px 6px 0;
@@ -187,6 +177,9 @@ h1, h2, h3, h4, h5{
     }
 .content-modal {
     padding-top: 35px;
+}
+#w2{
+    padding: 25px;
 }
 
 
