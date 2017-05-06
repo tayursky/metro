@@ -49,7 +49,7 @@
         {{client.my_manager}}
     </td>
     <td>
-        {% if client.hide == '0' or client.hide_date == ""%}
+        {% if client.hide == '0' or client.hide_date == "" %}
 
         {% else %}
             {{client.hide_date}}
@@ -76,7 +76,7 @@
         {{client.email}}
     </td>
     <td>
-        {% if client.hide == "0" or client.hide_date == ""%}
+        {% if client.hide == "0" or client.hide_date == "" %}
             <a href="#dialog2" name="modal2" class="more">Скрыть</a><br />
             <!-- Форма обратной связи-->
             <div id="boxes2">
@@ -84,7 +84,7 @@
             <div class="top2"><a href="#" class="link close"/>Закрыть</a></div>
             <div id="w2">
               <h1 class="cont">Скрыть клиента!</h1>
-              <form id="contactform" name="contact" method="post" action="{% url 'hide_client' pk=client.pk %}">
+              <form id="contactform" name="contact" method="post" action="{% url 'hide_client' pk=client.id %}">
             	  <p class="note"><span class="req"></span> Поля обязательны для заполнения</p>
             	  	{% csrf_token %}
             	  	{{ form.as_p }}

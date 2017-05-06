@@ -8,6 +8,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from .forms import ClientForm, HideClientForm, TaskClientForm
 from .models import Client, TaskClient
+
+
 # Добавления клиента
 
 

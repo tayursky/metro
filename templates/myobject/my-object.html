@@ -8,5 +8,9 @@
 {% endblock %}
 
 {% block content %}
-
+{% for obj in myobjects %}
+{{obj.id}}
+{{obj.type_obj}}
+{{obj.okrug}}<br />
+{% endfor %}
 {% endblock %}
