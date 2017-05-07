@@ -44,7 +44,6 @@ def hide_client(request, pk):
     if request.method == "POST":
         form = HideClientForm(request.POST)
         if form.is_valid():
-            #hide = form.save(commit=False)
             date = form.cleaned_data['hide_date']
             try:
                 hide = Client.objects.get(id=pk)
@@ -66,7 +65,6 @@ def show_client(request, pk):
         hide = Client.objects.get(id=pk)
         hide.hide_date = "1970-01-01"
         hide.hide = '0'
-        #hide.hide = '0'
         hide.save()
     except ObjectDoesNotExist:
         raise Http404

@@ -2,6 +2,15 @@
 {% block title %}
 {% endblock %}
 
+{% block search-admin %}
+
+<form name="contact" method="post" action="{% url 'search_client' %}">
+      {% csrf_token %}
+      {{client_form.as_p}}
+      <input class="btn-us" type="submit" value=">>>" />
+   </form>
+{% endblock  %}
+
 {% block content-title %}
 
 {% endblock %}

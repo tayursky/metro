@@ -6,7 +6,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
 	<meta name="description" content="Административная панель">
-	<meta name="keywords" content="работа в интернете, реклама,продвижение,раскрутка,оптимизация,сео,серфинг,тесты,опросы,задания">
+	<meta name="keywords" content="">
 	<title>{% block title %}Административная панель{% endblock %}</title>
 	<link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/png">
 	<link rel="stylesheet" href="{% static 'css/style.css' %}" />
@@ -27,6 +27,9 @@
 			</h4>
 		</div>
 		<div class="main">
+			<div class="search-admin">
+				 {% block search-admin %}{% endblock  %}
+			</div>
 			<header class="title-post">
 				<h2>{% block content-title %}Заголовок страницы{% endblock %}</h2>
 			</header>

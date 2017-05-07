@@ -24,7 +24,10 @@ h1, h2, h3, h4, h5{
 .main-menu li a{
 	color: #000;
 }
-
+/* Поиск админка */
+.search-admin{
+    
+}
 /* Контент */
 .page{
     width: 1000px;
