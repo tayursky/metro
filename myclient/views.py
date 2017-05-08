@@ -11,8 +11,6 @@ from .models import Client, TaskClient
 
 
 # Добавления клиента
-
-
 @login_required
 def add_client(request):
     if request.method == "POST":
@@ -28,8 +26,6 @@ def add_client(request):
     return render(request, 'myclient/add-client.html', {'form': form})
 
 # Мои клиенты
-
-
 @login_required
 def my_client(request):
     myclient = Client.objects.filter(my_manager_id=request.user.id)
@@ -37,8 +33,6 @@ def my_client(request):
     return render(request, 'myclient/my-client.html', {"clients": myclient, 'form': form})
 
 # Скрыть клиента
-
-
 @login_required
 def hide_client(request, pk):
     if request.method == "POST":
@@ -57,8 +51,6 @@ def hide_client(request, pk):
             raise Http404
 
 # Открытия клиента
-
-
 @login_required
 def show_client(request, pk):
     try:
@@ -71,8 +63,6 @@ def show_client(request, pk):
     return redirect('my_client')
 
 # Редактирование клиента
-
-
 class ClientUpdate(LoginRequiredMixin, UpdateView):
     model = Client
     #fields = ['name', 'tel']
@@ -83,8 +73,6 @@ class ClientUpdate(LoginRequiredMixin, UpdateView):
     # return Client.objects.get(id=self.object.pk)
 
 # Удаление клиента
-
-
 class ClientDelete(LoginRequiredMixin, DeleteView):
     model = Client
     template_name = 'myclient/client_delete.html'
@@ -106,8 +94,6 @@ class AddTaskClient(LoginRequiredMixin, CreateView):
         return super(AddTaskClient, self).form_valid(form)
 
 # Копирование клиента
-
-
 class ClientCopy(LoginRequiredMixin, UpdateView):
     model = Client
     template_name = "myclient/copy_client.html"

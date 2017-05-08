@@ -4,12 +4,12 @@
 {% endblock %}
 
 {% block search-admin %}
-<form class="form_s_c" name="contact" method="post" action="{% url 'search_client' %}">
+<form class="form_s_c" name="contact" method="post" action="{% url 'search_object' %}">
       {% csrf_token %}
       {% bootstrap_form object_form %}
       <button type="submit" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-search"></span></button>
 </form>
-<form class="form_s_c" name="contact" method="post" action="{% url 'search_client' %}">
+<form class="form_s_c" name="contact" method="post" action="{% url 'search_adres' %}">
       {% csrf_token %}
       {% bootstrap_form adres_form %}
       <button type="submit" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-search"></span></button>
@@ -19,12 +19,12 @@
       {% bootstrap_form client_form %}
       <button type="submit" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-search"></span></button>
 </form>
-<form class="form_s_c" name="contact" method="post" action="{% url 'search_client' %}">
+<form class="form_s_c" name="contact" method="post" action="{% url 'search_metro' %}">
       {% csrf_token %}
       {% bootstrap_form metro_form %}
       <button type="submit" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-search"></span></button>
 </form>
-<form class="form_s_c" name="contact" method="post" action="{% url 'search_client' %}">
+<form class="form_s_c" name="contact" method="post" action="{% url 'search_vlad' %}">
       {% csrf_token %}
       {% bootstrap_form vlad_form %}
       <button type="submit" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-search"></span></button>
