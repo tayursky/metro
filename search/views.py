@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import SearchClient
 from myclient.models import Client
 
@@ -11,5 +11,5 @@ def search_client(request):
             # Сделать поиск по 3 столбцам как в ТЗ и проверку чей клиент
             client = Client.objects.filter(name = search)
     else:
-        return redirect('my_client')
-    return render(request, 'search/search-client.html', {'client': client})
+        return redirect('/login/client/')
+    return render(request, 'myclient/my-client.html', {'search_client': client})

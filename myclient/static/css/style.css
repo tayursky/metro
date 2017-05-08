@@ -25,8 +25,21 @@ h1, h2, h3, h4, h5{
 	color: #000;
 }
 /* Поиск админка */
+.form_s_c {
+    width: 130px;
+    float: left;
+    margin-right: 32px;
+}
+.btn-md {
+    padding: 0;
+    font-size: 13px;
+    line-height: 1.5;
+    margin-top: -82px;
+    margin-left: 120px;
+    border-radius: 3px;
+}
 .search-admin{
-    
+
 }
 /* Контент */
 .page{

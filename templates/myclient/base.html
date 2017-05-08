@@ -1,14 +1,34 @@
 {% extends 'base-admin.html' %}
+{% load bootstrap3 %}
 {% block title %}
 {% endblock %}
 
 {% block search-admin %}
-
-<form name="contact" method="post" action="{% url 'search_client' %}">
+<form class="form_s_c" name="contact" method="post" action="{% url 'search_client' %}">
       {% csrf_token %}
-      {{client_form.as_p}}
-      <input class="btn-us" type="submit" value=">>>" />
-   </form>
+      {% bootstrap_form object_form %}
+      <button type="submit" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-search"></span></button>
+</form>
+<form class="form_s_c" name="contact" method="post" action="{% url 'search_client' %}">
+      {% csrf_token %}
+      {% bootstrap_form adres_form %}
+      <button type="submit" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-search"></span></button>
+</form>
+<form class="form_s_c" name="contact" method="post" action="{% url 'search_client' %}">
+      {% csrf_token %}
+      {% bootstrap_form client_form %}
+      <button type="submit" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-search"></span></button>
+</form>
+<form class="form_s_c" name="contact" method="post" action="{% url 'search_client' %}">
+      {% csrf_token %}
+      {% bootstrap_form metro_form %}
+      <button type="submit" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-search"></span></button>
+</form>
+<form class="form_s_c" name="contact" method="post" action="{% url 'search_client' %}">
+      {% csrf_token %}
+      {% bootstrap_form vlad_form %}
+      <button type="submit" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-search"></span></button>
+</form>
 {% endblock  %}
 
 {% block content-title %}
