@@ -5,9 +5,9 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<meta name="description" content="Административная панель">
-	<meta name="keywords" content="">
-	<title>{% block title %}Административная панель{% endblock %}</title>
+	<meta name="description" content="{{meta.desc}}">
+	<meta name="keywords" content="{{meta.keywords}}">
+	<title>{% block title %}{{meta.title}}{% endblock %}</title>
 	<link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/png">
 	<link rel="stylesheet" href="{% static 'css/style.css' %}" />
 	<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
@@ -28,7 +28,34 @@
 		</div>
 		<div class="main">
 			<div class="search-admin">
-				 {% block search-admin %}{% endblock  %}
+				 {% block search-admin %}
+				 <form class="form_s_c" name="contact" method="post" action="{% url 'search_object' %}">
+				       {% csrf_token %}
+				       {% bootstrap_form object_form %}
+				       <button type="submit" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-search"></span></button>
+				 </form>
+				 <form class="form_s_c" name="contact" method="post" action="{% url 'search_adres' %}">
+				       {% csrf_token %}
+				       {% bootstrap_form adres_form %}
+				       <button type="submit" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-search"></span></button>
+				 </form>
+				 <form class="form_s_c" name="contact" method="post" action="{% url 'search_client' %}">
+				       {% csrf_token %}
+				       {% bootstrap_form client_form %}
+				       <button type="submit" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-search"></span></button>
+				 </form>
+				 <form class="form_s_c" name="contact" method="post" action="{% url 'search_metro' %}">
+				       {% csrf_token %}
+				       {% bootstrap_form metro_form %}
+				       <button type="submit" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-search"></span></button>
+				 </form>
+				 <form class="form_s_c" name="contact" method="post" action="{% url 'search_vlad' %}">
+				       {% csrf_token %}
+				       {% bootstrap_form vlad_form %}
+				       <button type="submit" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-search"></span></button>
+				 </form>
+
+				 {% endblock  %}
 			</div>
 			<header class="title-post">
 				<h2>{% block content-title %}Заголовок страницы{% endblock %}</h2>

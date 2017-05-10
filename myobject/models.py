@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from myclient.models import Okrug, Naznach
+from django.core.urlresolvers import reverse
 
 # Станции метро
 class StancMetro(models.Model):
@@ -22,6 +23,7 @@ class MyObject(models.Model):
         db_table = "object"
         verbose_name = "Объект"
         verbose_name_plural = "Объекты"
+        ordering = ['hide']
 
     TYPE_OBJ = (
         ('1', 'Павильон'),
@@ -34,9 +36,9 @@ class MyObject(models.Model):
         ('no', 'Не скрыт'),
         ('yes', 'Скрыт')
     )
-    
+
     my_manager = models.ForeignKey(User, related_name='my_manager')
-    type_obj = models.CharField("Тип объекта", max_length=30, choices=TYPE_OBJ, default="0")
+    typeobj = models.CharField("Тип объекта", max_length=30, choices=TYPE_OBJ, default="0")
     okrug = models.ManyToManyField(Okrug, blank=True, verbose_name="Округ")
     adres = models.CharField("Адрес", max_length=100, blank=True)
     naznach = models.ManyToManyField(Naznach, verbose_name="Назначение")
@@ -60,3 +62,6 @@ class MyObject(models.Model):
     zametka = models.TextField("Заметка", max_length=1000, blank=True)
     hide = models.CharField("Скрыт", max_length=30, choices=HIDE, default="0", blank=True)
     hide_date = models.DateField("Скрыть до", auto_now_add=False, blank=True, null=True)
+
+    def get_absolute_url(self):
+        return reverse('my_object')

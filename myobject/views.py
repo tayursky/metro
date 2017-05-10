@@ -5,7 +5,7 @@ from .models import MyObject
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic import DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from django.core.urlresolvers import reverse
 # Добавление объекта
 @login_required
 def add_object(request):
@@ -52,7 +52,25 @@ def show_obj(request, pk):
 class ObjDelete(LoginRequiredMixin, DeleteView):
     model = MyObject
     template_name = 'myobject/delete-obj.html'
-    # редирект на страницу мои клиенты
-
+    # редирект на страницу мои объекты
     def get_success_url(self):
         return reverse('my_object')
+
+# Редактирование объекта
+class ObjUpdate(LoginRequiredMixin, UpdateView):
+    model = MyObject
+    form_class = MyObjectForm
+    template_name = 'myobject/update-obj.html'
+
+# Копирование объекта
+class ObjCopy(LoginRequiredMixin, UpdateView):
+    model = MyObject
+    template_name = "myobject/copy-obj.html"
+    form_class = MyObjectForm
+
+    def form_valid(self, form):
+        form.instance.my_manager = self.request.user
+        # Для копирования устанавливаю pk и id в None
+        form.instance.pk = None
+        form.instance.id = None
+        return super(ObjCopy, self).form_valid(form)

@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'myclient',
     'myobject',
     'mytask',
+    'seo',
 ]
 
 MIDDLEWARE = [
@@ -75,6 +76,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'search.context_processors.search_admin',
+                'seo.context_processors.seo_meta',
             ],
         },
     },

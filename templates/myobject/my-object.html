@@ -47,7 +47,7 @@
         {{obj.id}}
     </td>
     <td>
-        {{obj.type_obj}}
+        {{obj.get_typeobj_display}}
     </td>
     <td>
         {{obj.station_one}}<br />
@@ -74,7 +74,7 @@
         {% if obj.hide == '0' or obj.hide_date == "" %}
 
         {% else %}
-            {{obj.hide_date}}
+            Скрыт
         {% endif %}
     <td>
         {% if obj.hide == "0" or obj.hide_date == "" %}
@@ -83,9 +83,9 @@
             <a href="{% url 'show_obj' pk=obj.pk %}">Открыть</a><br />
         {% endif %}
         <a href="{% url 'add_task_client' pk=obj.pk %}">Задача</a><br />
-        <a href="{% url 'update_client' pk=obj.pk %}">Редактировать</a><br />
+        <a href="{% url 'update_obj' pk=obj.pk %}">Редактировать</a><br />
         <a href="{% url 'delete_obj' pk=obj.pk %}">Удалить</a>
-        <a href="{% url 'copy_client' pk=obj.pk %}">Копировать</a>
+        <a href="{% url 'copy_obj' pk=obj.pk %}">Копировать</a>
     </td>
 </tr>
 
@@ -97,7 +97,7 @@
         {{obj.id}}
     </td>
     <td>
-        {{obj.type_obj}}
+        {{obj.get_typeobj_display}}
     </td>
     <td>
         {{obj.station_one}}<br />
@@ -125,11 +125,13 @@
 
     </td>
     <td>
-        {% if obj.hide == '0' or obj.hide_date == "" %}
 
-        {% else %}
-            {{obj.hide_date}}
-        {% endif %}
+            {% if obj.hide == '0' or obj.hide_date == "" %}
+
+            {% else %}
+                Скрыт
+            {% endif %}
+
     <td>
         {% if obj.my_manager == user %}
             {% if obj.hide == "0" or obj.hide_date == "" %}
@@ -137,10 +139,10 @@
             {% else %}
             <a href="{% url 'show_obj' pk=obj.pk %}">Открыть</a><br />
             {% endif %}
-        <a href="{% url 'add_task_client' pk=obj.pk %}">Задача</a><br />
-        <a href="{% url 'update_client' pk=obj.pk %}">Редактировать</a><br />
-        <a href="{% url 'delete_obj' pk=obj.pk %}">Удалить</a>
-        <a href="{% url 'copy_client' pk=obj.pk %}">Копировать</a>
+            <a href="{% url 'add_task_client' pk=obj.pk %}">Задача</a><br />
+            <a href="{% url 'update_obj' pk=obj.pk %}">Редактировать</a><br />
+            <a href="{% url 'delete_obj' pk=obj.pk %}">Удалить</a>
+            <a href="{% url 'copy_obj' pk=obj.pk %}">Копировать</a>
         {% else %}
             Есть совпадение, у коллеги {{obj.my_manager}}
         {% endif %}
