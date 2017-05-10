@@ -8,5 +8,5 @@ class MyObjectForm(forms.ModelForm):
         fields = ('type_obj', 'okrug', 'naznach', 'station_one', 'station_two')
         widgets = {
             'okrug': forms.widgets.CheckboxSelectMultiple,
-            #'naznach': forms.widgets.CheckboxSelectMultiple
+            'naznach': forms.widgets.CheckboxSelectMultiple
         }

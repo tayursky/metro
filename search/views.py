@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.db.models import Q
 from .forms import *
 from myclient.models import Client
 from myobject.models import MyObject
@@ -20,7 +21,8 @@ def search_adres(request):
         form = SearchAdres(request.POST)
         if form.is_valid():
             search = form.cleaned_data['search']
-            myobject = MyObject.objects.filter(adres = search)
+            # Поиск по полю адрес без учета регистра
+            myobject = MyObject.objects.filter(adres__icontains = search)
     else:
         return redirect('/login/object/')
     return render(request, 'myobject/my-object.html', {'search_object': myobject})
@@ -31,8 +33,8 @@ def search_client(request):
         form = SearchClient(request.POST)
         if form.is_valid():
             search = form.cleaned_data['search']
-            # Сделать поиск по 3 столбцам как в ТЗ
-            client = Client.objects.filter(name = search)
+            # Поиск по любому из трех полей
+            client = Client.objects.filter(Q(name__exact = search) | Q(email__exact = search) | Q(tel__exact = search))
     else:
         return redirect('/login/client/')
     return render(request, 'myclient/my-client.html', {'search_client': client})
@@ -44,7 +46,7 @@ def search_metro(request):
         if form.is_valid():
             search = form.cleaned_data['search']
             # Узнать как сделать или и искать по двум станциям
-            metro = MyObject.objects.filter(station_one = search)
+            metro = MyObject.objects.filter(Q(station_one = search) | Q(station_two = search))
     else:
         return redirect('/login/object/')
     return render(request, 'myobject/my-object.html', {'search_metro': metro})
@@ -55,8 +57,7 @@ def search_vlad(request):
         form = SearchVlad(request.POST)
         if form.is_valid():
             search = form.cleaned_data['search']
-            # Узнать как сделать или
-            vlad = MyObject.objects.filter(block_name = search)
+            vlad = MyObject.objects.filter(Q(block_name = search) | Q(block_email = search) | Q(block_tel = search))
     else:
         return redirect('/login/object/')
     return render(request, 'myobject/my-object.html', {'search_vlad': vlad})

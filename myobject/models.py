@@ -29,11 +29,11 @@ class MyObject(models.Model):
         ('3', 'Отдел\БЦ\ТЦ'),
         ('4', 'Подземка')
     )
-    my_manager = models.ForeignKey(User)
+    my_manager = models.ForeignKey(User, related_name='my_manager')
     type_obj = models.CharField("Тип объекта", max_length=30, choices=TYPE_OBJ, default="0")
     okrug = models.ManyToManyField(Okrug, blank=True, verbose_name="Округ")
     adres = models.CharField("Адрес", max_length=100, blank=True)
-    naznach = models.ForeignKey(Naznach, related_name='naznach', verbose_name="Назначение")
+    naznach = models.ManyToManyField(Naznach, verbose_name="Назначение")
     area = models.IntegerField("Площадь", default=0)
     block_area = models.FloatField("Метраж", default=0, blank=True)
     block_price = models.FloatField("Цена", default=0, blank=True)

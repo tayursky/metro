@@ -36,9 +36,8 @@ class Okrug(models.Model):
 
     def __str__(self):
         return self.options
+
 # Таблица клиентов
-
-
 class Client(models.Model):
     class Meta():
         db_table = "client"
