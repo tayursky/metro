@@ -1,0 +1,20 @@
+{% extends 'myclient/base.html' %}
+{% load bootstrap3 %}
+{% block title %}
+Удалить Объекта
+{% endblock %}
+
+{% block content-title %}
+Удалить объект  №{{object.id}}?
+{% endblock %}
+
+{% block content %}
+<form action="" method="POST">
+  {% csrf_token %}
+  {% buttons %}
+  {% bootstrap_button "Да" button_type="submit" button_class="btn-primary" %}
+  <a class="btn-warning btn" href="{% url "my_client" %}">Нет</a>
+  {% endbuttons %}
+
+</form>
+{% endblock%}

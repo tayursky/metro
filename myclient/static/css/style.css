@@ -76,6 +76,9 @@ h1, h2, h3, h4, h5{
 .price-table{
     width: 7%;
 }
+.chec5kbox {
+    float: left;
+}
 /*Правый сайдбар*/
 .right-side {
     width: 15%;

@@ -29,6 +29,12 @@ class MyObject(models.Model):
         ('3', 'Отдел\БЦ\ТЦ'),
         ('4', 'Подземка')
     )
+
+    HIDE = (
+        ('no', 'Не скрыт'),
+        ('yes', 'Скрыт')
+    )
+    
     my_manager = models.ForeignKey(User, related_name='my_manager')
     type_obj = models.CharField("Тип объекта", max_length=30, choices=TYPE_OBJ, default="0")
     okrug = models.ManyToManyField(Okrug, blank=True, verbose_name="Округ")
@@ -52,3 +58,5 @@ class MyObject(models.Model):
     block_email = models.EmailField("Email", max_length=30, blank=True)
     silka = models.CharField("Ссылка на сайт", max_length=200, blank=True)
     zametka = models.TextField("Заметка", max_length=1000, blank=True)
+    hide = models.CharField("Скрыт", max_length=30, choices=HIDE, default="0", blank=True)
+    hide_date = models.DateField("Скрыть до", auto_now_add=False, blank=True, null=True)

@@ -57,7 +57,7 @@ def search_vlad(request):
         form = SearchVlad(request.POST)
         if form.is_valid():
             search = form.cleaned_data['search']
-            vlad = MyObject.objects.filter(Q(block_name = search) | Q(block_email = search) | Q(block_tel = search))
+            vlad = MyObject.objects.filter(Q(block_name__exact = search) | Q(block_tel__exact = search))
     else:
         return redirect('/login/object/')
-    return render(request, 'myobject/my-object.html', {'search_vlad': vlad})
+    return render(request, 'myobject/my-object.html', {'search_object': vlad})
