@@ -6,6 +6,8 @@ from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic import DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.urlresolvers import reverse
+from django.utils import timezone
+
 # Добавление объекта
 @login_required
 def add_object(request):
@@ -73,4 +75,13 @@ class ObjCopy(LoginRequiredMixin, UpdateView):
         # Для копирования устанавливаю pk и id в None
         form.instance.pk = None
         form.instance.id = None
+        form.instance.zvon = timezone.now()
         return super(ObjCopy, self).form_valid(form)
+
+# Прозвон объекта
+@login_required
+def zvon_obj(request, pk):
+    zvon = MyObject.objects.get(id=pk)
+    zvon.zvon = timezone.now()
+    zvon.save()
+    return redirect('my_object')

@@ -68,7 +68,7 @@
         {{obj.block_email}}
     </td>
     <td>
-
+        {{obj.zvon}}
     </td>
     <td>
         {% if obj.hide == '0' or obj.hide_date == "" %}
@@ -82,10 +82,10 @@
         {% else %}
             <a href="{% url 'show_obj' pk=obj.pk %}">Открыть</a><br />
         {% endif %}
-        <a href="{% url 'add_task_client' pk=obj.pk %}">Задача</a><br />
+        <a href="{% url 'zvon_obj' pk=obj.pk %}">Прозвон</a><br />
         <a href="{% url 'update_obj' pk=obj.pk %}">Редактировать</a><br />
+        <a href="{% url 'copy_obj' pk=obj.pk %}">Копировать</a><br />
         <a href="{% url 'delete_obj' pk=obj.pk %}">Удалить</a>
-        <a href="{% url 'copy_obj' pk=obj.pk %}">Копировать</a>
     </td>
 </tr>
 

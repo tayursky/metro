@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from myclient.models import Okrug, Naznach
 from django.core.urlresolvers import reverse
+from django.utils import timezone
 
 # Станции метро
 class StancMetro(models.Model):
@@ -62,6 +63,7 @@ class MyObject(models.Model):
     zametka = models.TextField("Заметка", max_length=1000, blank=True)
     hide = models.CharField("Скрыт", max_length=30, choices=HIDE, default="0", blank=True)
     hide_date = models.DateField("Скрыть до", auto_now_add=False, blank=True, null=True)
+    zvon = models.DateField("Скрыть до", default=timezone.now(), blank=True)
 
     def get_absolute_url(self):
         return reverse('my_object')

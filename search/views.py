@@ -46,10 +46,10 @@ def search_metro(request):
         if form.is_valid():
             search = form.cleaned_data['search']
             # Узнать как сделать или и искать по двум станциям
-            metro = MyObject.objects.filter(Q(station_one = search) | Q(station_two = search))
+            metro = MyObject.objects.filter(Q(station_one__name = search) | Q(station_two__name = search))
     else:
         return redirect('/login/object/')
-    return render(request, 'myobject/my-object.html', {'search_metro': metro})
+    return render(request, 'myobject/my-object.html', {'search_object': metro})
 
 # Поиск по владельцу
 def search_vlad(request):
