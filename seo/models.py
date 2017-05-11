@@ -35,3 +35,15 @@ class MenagerOptions(models.Model):
         return self.user.username
 
 # Логин пароль ЦИАН
+class Cian(models.Model):
+    class Meta:
+        db_table = 'cian'
+        verbose_name = "Настройки циан"
+        verbose_name_plural = "Настройки циан"
+
+    login = models.CharField("ID пользователя", max_length=30)
+    password = models.CharField("Пароль", max_length=30)
+    tel = models.CharField("Телефон", max_length=30)
+
+    def __str__(self):
+        return self.login
