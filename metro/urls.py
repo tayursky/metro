@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^login/client/', include('myclient.urls')),
     url(r'^login/object/', include('myobject.urls')),
     url(r'^login/task/', include('mytask.urls')),
+    url(r'^login/prof/', include('seo.urls')),
     url(r'^login/search/', include('search.urls')),
     url(r'^accounts/', include('allauth.urls')),
 

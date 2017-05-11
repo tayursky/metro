@@ -3,6 +3,11 @@ from django.contrib.auth.models import User
 from myclient.models import Okrug, Naznach
 from django.core.urlresolvers import reverse
 from django.utils import timezone
+from django.contrib.auth import get_user_model
+from django.conf import settings
+
+def get_sentinel_user():
+    return get_user_model().objects.get_or_create(username='deleted')[0]
 
 # Станции метро
 class StancMetro(models.Model):
@@ -38,7 +43,8 @@ class MyObject(models.Model):
         ('yes', 'Скрыт')
     )
 
-    my_manager = models.ForeignKey(User, related_name='my_manager')
+    my_manager = models.ForeignKey(settings.AUTH_USER_MODEL,
+        on_delete=models.SET(get_sentinel_user),)
     typeobj = models.CharField("Тип объекта", max_length=30, choices=TYPE_OBJ, default="0")
     okrug = models.ManyToManyField(Okrug, blank=True, verbose_name="Округ")
     adres = models.CharField("Адрес", max_length=100, blank=True)
@@ -63,7 +69,7 @@ class MyObject(models.Model):
     zametka = models.TextField("Заметка", max_length=1000, blank=True)
     hide = models.CharField("Скрыт", max_length=30, choices=HIDE, default="0", blank=True)
     hide_date = models.DateField("Скрыть до", auto_now_add=False, blank=True, null=True)
-    zvon = models.DateField("Скрыть до", default=timezone.now(), blank=True)
+    zvon = models.DateField("Скрыть до", default=timezone.now, blank=True)
 
     def get_absolute_url(self):
         return reverse('my_object')

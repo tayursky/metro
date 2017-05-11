@@ -1,10 +1,10 @@
 from django.db import models
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+from django.conf import settings
 
 # Модель назначения
-
-
 class Naznach(models.Model):
     class Meta():
         db_table = "naznach"
@@ -24,8 +24,6 @@ class Naznach(models.Model):
         return self.options
 
 # Модель округов
-
-
 class Okrug(models.Model):
     class Meta():
         db_table = "okrug"
@@ -36,6 +34,9 @@ class Okrug(models.Model):
 
     def __str__(self):
         return self.options
+
+def get_sentinel_user():
+    return get_user_model().objects.get_or_create(username='deleted')[0]
 
 # Таблица клиентов
 class Client(models.Model):
@@ -64,7 +65,8 @@ class Client(models.Model):
         ('street', 'Улица'),
         ('tc', 'Отдел\ТЦ')
     )
-    my_manager = models.ForeignKey(User)
+    my_manager = models.ForeignKey(settings.AUTH_USER_MODEL,
+        on_delete=models.SET(get_sentinel_user),)
     name = models.CharField("Имя", max_length=30)
     tel = models.CharField("Телефон", max_length=30, blank=True)
     email = models.EmailField("Email", max_length=30, blank=True)
