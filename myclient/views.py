@@ -6,8 +6,8 @@ from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic import DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
-from .forms import ClientForm, HideClientForm, TaskClientForm
-from .models import Client, TaskClient
+from .forms import ClientForm, HideClientForm
+from .models import Client
 
 
 # Добавления клиента
@@ -80,18 +80,6 @@ class ClientDelete(LoginRequiredMixin, DeleteView):
 
     def get_success_url(self):
         return reverse('my_client')
-
-
-# Добавление задачи для клиента
-class AddTaskClient(LoginRequiredMixin, CreateView):
-    model = TaskClient
-    #fields = ['name']
-    template_name = "myclient/add_task_client.html"
-    form_class = TaskClientForm
-
-    def form_valid(self, form):
-        form.instance.manager = self.request.user
-        return super(AddTaskClient, self).form_valid(form)
 
 # Копирование клиента
 class ClientCopy(LoginRequiredMixin, UpdateView):

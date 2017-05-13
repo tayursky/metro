@@ -1,0 +1,40 @@
+{% extends 'myclient/base.html' %}
+{% block title %}
+Мои задачи
+{% endblock %}
+
+{% block content-title %}
+Мои задачи
+{% endblock %}
+
+{% block content %}
+{% for task in mytask %}
+    <div class="task">
+        <div class="head-task">
+            <strong>{{task.date}} {{task.client}}
+            {% for t in task.client_set.all %}
+                {{t.tel}} {{t.email}}
+            {% endfor %}
+            {{ task.client_set.tel}}
+            </strong>
+        </div>
+        <div>
+            <p>
+                {{task.get_prioritet_display}}
+            </p>
+            <p>
+                {{task.task}}
+            </p>
+        </div>
+
+        <div>
+            <a href="{% url 'my_client' %}" class="btn btn-primary btn-xs">Сделано</a>
+            <a href="{% url 'my_client' %}" class="btn btn-primary btn-xs">Изменить</a>
+            <a href="{% url 'my_client' %}" class="btn btn-primary btn-xs">На завтра</a>
+            <a href="{% url 'my_client' %}" class="btn btn-primary btn-xs">Позже</a>
+            <a href="{% url 'my_client' %}" class="btn btn-primary btn-xs">Через неделю</a>
+            <a href="{% url 'my_client' %}" class="btn btn-primary btn-xs">Другое</a>
+        </div>
+    </div>
+{% endfor %}
+{% endblock %}

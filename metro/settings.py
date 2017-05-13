@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'search',
     'myclient',
     'myobject',
-    'mytask',
     'seo',
 ]
 
@@ -58,7 +57,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-LOGIN_REDIRECT_URL = '/login/task/'
+LOGIN_REDIRECT_URL = '/login/client/task/'
 LOGIN_URL = '/accounts/login/'  # Страница, на которую перенаправляются пользователи, если они не вошли в
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 

@@ -4,8 +4,6 @@ from django.contrib.auth.models import User
 from .models import Client, TaskClient
 
 # Форма добавления клиента
-
-
 class ClientForm(forms.ModelForm):
     class Meta:
         model = Client
@@ -16,16 +14,12 @@ class ClientForm(forms.ModelForm):
         }
 
 # Форма скрытия клиента
-
-
 class HideClientForm(forms.ModelForm):
     class Meta:
         model = Client
         fields = ('hide_date',)
 
 # Форма задачи клиента
-
-
 class TaskClientForm(forms.ModelForm):
     class Meta:
         model = TaskClient
