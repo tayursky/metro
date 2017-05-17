@@ -13,7 +13,7 @@ from .models import Client, TaskClient
 # Мои задачи
 @login_required
 def my_task(request):
-    mytask = TaskClient.objects.filter(manager_id=request.user.id)
+    mytask = TaskClient.objects.filter(manager_id=request.user.id, end=False)
     return render(request, 'myclient/my-task.html', {"mytask": mytask})
 
 class AddTaskClient(LoginRequiredMixin, CreateView):

@@ -6,6 +6,7 @@ body{
 	margin: 0 auto;
     /*width: 1000px;*/
     margin-bottom: 60px;
+    background: url(../images/header.jpg) top center;
 }
 h1, h2, h3, h4, h5{
 	text-align: center;
@@ -97,6 +98,38 @@ h1, h2, h3, h4, h5{
     padding: 10px;
 }
 
+/* Клиент. часть */
+
+/* Шапка */
+.search-head{
+    width: 1000px;
+    height: 50px;
+    margin: 200px auto 20px auto;
+}
+.form_s_s {
+    width: 250px;
+    height: 50px;
+    background-color: #DB2C27;
+    float: left;
+    margin-right: 15px;
+    padding: 7px 55px 5px 5px;
+}
+.btn-serch {
+    margin-top: -86px;
+    margin-left: 200px;
+    background-color: #000 !important;
+    border: none !important;
+}
+.menu{
+    height: 50px;
+    width: 100%;
+    background-color: #fff;
+
+}
+
+
+
+
 /*Футер*/
 .footer {
     margin: 25px auto;
@@ -111,39 +144,7 @@ h1, h2, h3, h4, h5{
     box-shadow: 1px 1px 10px 1px #cecece;
 }
 
-
-/*Медиа*/
-@media (max-width: 992px){
-.left-side, .right-side {
-    width: 100%;
-    float: left;
-    margin: 0 5px 10px 0;
-}
-
-.main {
-    width: 98%;
-	margin: 0;
-}
-
-.logo {
-    margin: 20px 0 20px 0;
-    float: left;
-}
-
-.stat-header {
-    width: 100%;
-    float: left;
-    /* margin: 10px 25px 0 0; */
-}
-
-
-
-.footer {
-    margin: 25px 0 0 0;
-    width: 100%;
-}
-}
-
+/* Всплывающие окно */
 #mask {
     position:absolute;
     left:0;
@@ -207,6 +208,36 @@ h1, h2, h3, h4, h5{
 }
 #w2{
     padding: 25px;
+}
+
+/*Медиа*/
+@media (max-width: 992px){
+.left-side, .right-side {
+    width: 100%;
+    float: left;
+    margin: 0 5px 10px 0;
+}
+
+.main {
+    width: 98%;
+	margin: 0;
+}
+
+.logo {
+    margin: 20px 0 20px 0;
+    float: left;
+}
+
+.stat-header {
+    width: 100%;
+    float: left;
+    /* margin: 10px 25px 0 0; */
+}
+
+.footer {
+    margin: 25px 0 0 0;
+    width: 100%;
+}
 }
 
 @media (max-width: 750){

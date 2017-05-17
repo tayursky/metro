@@ -12,31 +12,80 @@
 	<link rel="stylesheet" href="{% static 'css/style.css' %}" />
 	<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
 
-	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+
 	<script src="{% static 'js/jquery.min.js' %}"></script>
 	<script src="{% static 'js/jquery-ui/jquery-ui.min.js' %}"></script>
 	<link href="{% static 'js/jquery-ui/jquery-ui.theme.min.css' %}" rel="stylesheet">
-	<link href="{% static 'js/jquery-ui/jquery-ui.min.css' %}" rel="stylesheet"> {% bootstrap_css %}
+	<link href="{% static 'js/jquery-ui/jquery-ui.min.css' %}" rel="stylesheet">
 </head>
 
 <body>
-	<div class="page">
-		<div class="site-header">
-			<div>
+	<div class="page2">
+		<div class="search-head">
+			<div class="search-head-form">
+				<form class="form_s_s" name="contact" method="post" action="{% url 'search_object' %}">
+					{% csrf_token %} {% bootstrap_form object_form_s %}
+					<button type="submit" class="btn btn-primary btn-md btn-serch"><span class="glyphicon glyphicon-play"></span></button>
+				</form>
+			</div>
+			<div class="search-head-form">
+				<form class="form_s_s" name="contact" method="post" action="{% url 'search_adres' %}">
+					{% csrf_token %} {% bootstrap_form metro_form_s %}
+					<button type="submit" class="btn btn-primary btn-md btn-serch"><span class="glyphicon glyphicon-play"></span></button>
+				</form>
+			</div>
+		</div>
 
-			</div>
-			<div class="menu">
-				<a href="" class="">ГЛАВНАЯ</a>
-				<a href="" class="">НОВЫЕ</a>
-				<a href="" class="">ПРЕИМУЩЕСТВА</a>
-				<a href="" class="">ЗАЯВКА</a>
-			</div>
+		<div class="menu">
+			<a href="" class="">ГЛАВНАЯ</a>
+			<a href="" class="">НОВЫЕ</a>
+			<a href="" class="">ПРЕИМУЩЕСТВА</a>
+			<a href="" class="">ЗАЯВКА</a>
+			<nav class="navbar navbar-default" role="navigation">
+				<div class="container-fluid">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+					</div>
+
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav">
+							<li>
+								<a href="" class="">ГЛАВНАЯ</a>
+							</li>
+							<li>
+								<a href="" class="">НОВЫЕ</a>
+							</li>
+							<li>
+								<a href="" class="">ПРЕИМУЩЕСТВА</a>
+							</li>
+							<li>
+								<a href="" class="">ЗАЯВКА</a>
+							</li>
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<li>
+								<span>(495) 58-58-231</span>
+							</li>
+							<li>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Заказать обратный звонок</a>
+							</li>
+						</ul>
+					</div>
+					<!-- /.navbar-collapse -->
+				</div>
+				<!-- /.container-fluid -->
+			</nav>
 		</div>
 		<div class="main-site">
 			<div class="search">
-				 {% block search %}
-
-				 {% endblock  %}
+				{% block search %} {% endblock %}
 			</div>
 			<header class="post">
 				<h2>{% block content-title %}{% endblock %}</h2>
@@ -45,13 +94,14 @@
 				{% block content %} {% endblock %}
 			</div>
 		</div>
-	<footer>
-		<div class="footer">
-			Все права защищены &copy; 2017. Омельченко Михаил
-		</div>
-	</footer>
+		<footer>
+			<div class="footer">
+				Все права защищены &copy; 2017. Омельченко Михаил
+			</div>
+		</footer>
 	</div>
 
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
 </body>
 
 </html>

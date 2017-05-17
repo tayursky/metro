@@ -76,6 +76,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'search.context_processors.search_admin',
+                'metro_site.context_processors.search_site',
                 'seo.context_processors.seo_meta',
             ],
         },
