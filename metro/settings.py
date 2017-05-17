@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'myclient',
     'myobject',
     'seo',
+    'metro_site',
 ]
 
 MIDDLEWARE = [

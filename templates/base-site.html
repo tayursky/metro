@@ -21,72 +21,36 @@
 
 <body>
 	<div class="page">
-		<div class="header">
-			<h4>
-				Административная панель
-			</h4>
+		<div class="site-header">
+			<div>
+
+			</div>
+			<div class="menu">
+				<a href="" class="">ГЛАВНАЯ</a>
+				<a href="" class="">НОВЫЕ</a>
+				<a href="" class="">ПРЕИМУЩЕСТВА</a>
+				<a href="" class="">ЗАЯВКА</a>
+			</div>
 		</div>
-		<div class="main">
-			<div class="search-admin">
-				 {% block search-admin %}
-				 <form class="form_s_c" name="contact" method="post" action="{% url 'search_object' %}">
-				       {% csrf_token %}
-				       {% bootstrap_form object_form %}
-				       <button type="submit" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-search"></span></button>
-				 </form>
-				 <form class="form_s_c" name="contact" method="post" action="{% url 'search_adres' %}">
-				       {% csrf_token %}
-				       {% bootstrap_form adres_form %}
-				       <button type="submit" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-search"></span></button>
-				 </form>
-				 <form class="form_s_c" name="contact" method="post" action="{% url 'search_client' %}">
-				       {% csrf_token %}
-				       {% bootstrap_form client_form %}
-				       <button type="submit" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-search"></span></button>
-				 </form>
-				 <form class="form_s_c" name="contact" method="post" action="{% url 'search_metro' %}">
-				       {% csrf_token %}
-				       {% bootstrap_form metro_form %}
-				       <button type="submit" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-search"></span></button>
-				 </form>
-				 <form class="form_s_c" name="contact" method="post" action="{% url 'search_vlad' %}">
-				       {% csrf_token %}
-				       {% bootstrap_form vlad_form %}
-				       <button type="submit" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-search"></span></button>
-				 </form>
+		<div class="main-site">
+			<div class="search">
+				 {% block search %}
 
 				 {% endblock  %}
 			</div>
-			<header class="title-post">
-				<h2>{% block content-title %}Заголовок страницы{% endblock %}</h2>
+			<header class="post">
+				<h2>{% block content-title %}{% endblock %}</h2>
 			</header>
-			<div class="main-content">
+			<div class="content">
 				{% block content %} {% endblock %}
 			</div>
 		</div>
-		{% if user.is_active %}
-		<aside class="right-side">
-				<div class="profi">
-					<a href="{% url 'my_client' %}" class="list-group-item menu-left">Мои клиенты</a>
-					<a href="{% url 'my_object' %}" class="list-group-item menu-left">Мои объекты</a>
-					<a href="{% url 'my_task' %}" class="list-group-item menu-left">Мои задачи</a>
-					<a href="" class="list-group-item menu-left">Заявки</a>
-					<a href="" class="list-group-item menu-left">Фотобаза</a>
-					<a href="" class="list-group-item menu-left">Чёрный список</a>
-					<a href="{% url 'add_client' %}" class="list-group-item menu-left">Добавить клиента</a>
-					<a href="{% url 'add_object' %}" class="list-group-item menu-left">Добавить объект</a>
-					<a href="{% url 'add_task' %}" class="list-group-item menu-left">Новая задача</a>
-					<a href="" class="list-group-item menu-left">Приоритеты</a>
-					<a href="/accounts/logout" class="list-group-item menu-left">Выход</a>
-				</div>
-		</aside>
 	<footer>
 		<div class="footer">
 			Все права защищены &copy; 2017. Омельченко Михаил
 		</div>
 	</footer>
 	</div>
-	{% endif %}
 
 </body>
 

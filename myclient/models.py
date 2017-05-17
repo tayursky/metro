@@ -103,12 +103,13 @@ class TaskClient(models.Model):
         db_table = "task_client"
         verbose_name = "Задача клиента"
         verbose_name_plural = "Задачи клиента"
+        ordering = ['-prioritet']
 
     PRIORITET = (
         ('0', 'другое'),
         ('1', 'звонок, ответ'),
-        ('2', 'первоочередное'),
-        ('3', 'встреча, показ')
+        ('2', 'встреча, показ'),
+        ('3', 'первоочередное')
     )
     manager = models.ForeignKey(User, on_delete=models.CASCADE)
     client = models.ForeignKey(Client, related_name='client', verbose_name="Клиент")
@@ -116,6 +117,7 @@ class TaskClient(models.Model):
                                  choices=PRIORITET, default="0", blank=True)
     date = models.DateField("Дата", auto_now_add=False)
     task = models.TextField("Задача")
+    end = models.BooleanField("Выполнено", default=False)
 
     def get_absolute_url(self):
         return reverse('my_client')
