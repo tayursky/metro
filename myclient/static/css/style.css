@@ -103,6 +103,7 @@ h1, h2, h3, h4, h5{
     width: 1000px;
     height: 50px;
     margin: 200px auto 20px auto;
+    padding: 0 0 0 45px;
 }
 .form_s_s {
     width: 250px;
@@ -153,7 +154,17 @@ a.a-nav{
     text-decoration: none !important;
     color: #fff !important;
 }
-
+.main-site{
+    width: 1000px;
+    margin: 0 auto;
+}
+.search {
+    /*background-color: #fff;*/
+    height: 600px;
+    margin-top: 25px;
+    /*box-shadow: 1px 1px 1px 1px #cecece;*/
+    background: url(../images/bg-search2.png) no-repeat top left;
+}
 /*Футер*/
 .footer {
     margin: 25px auto;
