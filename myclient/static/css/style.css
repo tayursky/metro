@@ -19,9 +19,7 @@ h1, h2, h3, h4, h5{
     margin: 0 0 10px 0;
     box-shadow: 0 1px 5px 0 #555;
 }
-.nav>li>a:focus, .nav>li>a:hover, .nav>li>a:active{
-	background: #D48624 !important;
-}
+
 .main-menu li a{
 	color: #000;
 }
@@ -120,15 +118,41 @@ h1, h2, h3, h4, h5{
     background-color: #000 !important;
     border: none !important;
 }
+.menu-bar{
+    background-color: #fff;
+    height: 52px;
+}
 .menu{
     height: 50px;
-    width: 100%;
-    background-color: #fff;
-
+    width: 1000px;
+    margin: 0 auto;
 }
-
-
-
+a.a-nav{
+    color: #000;
+    text-decoration: none;
+}
+.nav>li>a:focus, .nav>li>a:hover, .nav>li>a:active{
+	text-decoration: underline !important;
+    color: #000 !important;
+    background-color: #fff !important;
+}
+.li-tel{
+    margin-top: 5px;
+}
+.span-tel{
+    font-size: 28px;
+}
+.a-nav-btn{
+    background-color: #DB2C27;
+    color: #fff;
+    height: 50px;
+    margin-left: 10px;
+}
+.nav>li>a.a-nav-btn:hover{
+    background-color: rgb(224, 65, 61) !important;
+    text-decoration: none !important;
+    color: #fff !important;
+}
 
 /*Футер*/
 .footer {
