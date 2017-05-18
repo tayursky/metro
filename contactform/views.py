@@ -7,7 +7,7 @@ from django.views.generic import ListView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 
-# Форма обратной связи
+# Оставить заявку
 def contact(request):
 	if request.method == "POST":
 		form = ContactForm(request.POST)
@@ -37,5 +37,6 @@ class ZayavkaUpdate(LoginRequiredMixin, UpdateView):
 class ZayavkaDelete(LoginRequiredMixin, DeleteView):
     model = Contact
     template_name = 'contactform/zayavka_delete.html'
+	
     def get_success_url(self):
         return reverse('zayavka')
