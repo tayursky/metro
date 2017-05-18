@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^login/prof/', include('seo.urls')),
     url(r'^login/search/', include('search.urls')),
     url(r'^$', include('metro_site.urls')),
+    url(r'^zvonok/', include('contactform.urls')),
     url(r'^accounts/', include('allauth.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

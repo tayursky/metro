@@ -1,0 +1,174 @@
+{% extends 'myclient/base.html' %} {% load bootstrap3 %} {% block title %} Заявки {% endblock %} {% block content-title %} Заявки {% endblock %} {% block content %}
+<table class="table table-bordered table-hover">
+    <th class="active">
+        ID
+    </th>
+    <th class="active">
+        Имя
+    </th>
+    <th class="span-task active">
+        Номер телефона
+    </th>
+    <th class="span-task active">
+        Email
+    </th>
+    <th class="span-task active">
+        Дата создания
+    </th>
+    <th class="span-task active">
+        Сообщение
+    </th>
+    <th class="span-task active price-table">
+
+    </th>
+
+    {% for zvon in zayavka %}
+    <tr>
+        <td>
+            {{zvon.id}}
+        </td>
+        <td>
+            {{zvon.name}}
+        </td>
+        <td>
+            {{zvon.tel}}
+        </td>
+        <td>
+            {{zvon.email}}
+        </td>
+        <td>
+            {{zvon.data}}
+        </td>
+        <td>
+            {{zvon.message}}
+        </td>
+        <td>
+            <a href="#dialog-zvon" name="modal2" class="more">Посмотреть</a><br />
+            <!-- Форма обратной связи-->
+            <div id="boxes-zvon">
+                <div id="dialog-zvon" class="window-zvon"> Текст модального окна
+                    <div class="top2"><a href="#" class="link close" />Закрыть</a>
+                    </div>
+                    <div id="w2">
+                        <h1 class="cont">Заявка № {{zvon.id}}</h1>
+                        <table class="table table-bordered table-hover">
+                            <tr>
+                                <td>
+                                    ID
+                                </td>
+                                <td>
+                                    {{zvon.id}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Имя
+                                </td>
+                                <td>
+                                    {{zvon.name}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    E-mail
+                                </td>
+                                <td>
+                                    {{zvon.email}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Номер телефона
+                                </td>
+                                <td>
+                                    {{zvon.tel}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Дата создания
+                                </td>
+                                <td>
+                                    {{zvon.data}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Сообщения
+                                </td>
+                                <td>
+                                    {{zvon.message}}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <a href="#dialog-red" name="modal3" class="more">Редактировать</a><br />
+            <div id="boxes-zvon">
+                <div id="dialog-red" class="window-zvon"> Текст модального окна
+                    <div class="top2"><a href="#" class="link close" />Закрыть</a>
+                    </div>
+                    <div id="w2">
+                        <h1 class="cont">Заявка № {{zvon.id}}</h1>
+                        <form id="contactform" name="contact" method="post" action="{% url 'update_zayavka' pk=zvon.pk %}">
+                            <p class="note"><span class="req"></span> Поля обязательны для заполнения</p>
+                            {% csrf_token %} {{ form.as_p }}
+                            <input class="btn-us" type="submit" value="Отправить" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <a href="{% url 'delete_zayavka' pk=zvon.pk %}">Удалить</a>
+        </td>
+    </tr>
+    <script>
+        jQuery(document).ready(function($) {
+    $('a[name=modal3]').click(function(e) {
+        window.open("{% url 'update_zayavka' pk=zvon.pk %}", 'Редактировать заявку', 'width=1000px,height=500px,toolbar=0,status=0');
+    });
+});
+</script>
+    {% endfor %}
+</table>
+<!-- Маска, затемняющая фон -->
+<div id="mask"></div>
+
+<script>
+    jQuery(document).ready(function($) {
+
+        //Всплывающие окно с формы
+        $('a[name=modal2]').click(function(e) {
+            e.preventDefault();
+            var id = $(this).attr('href');
+            var maskHeight = $(document).height();
+            var maskWidth = $(window).width();
+            $('#mask').css({
+                'width': maskWidth,
+                'height': maskHeight
+            });
+            $('#mask').fadeIn(1000);
+            $('#mask').fadeTo("slow", 0.8);
+            var winH = $(window).height();
+            var winW = $(window).width();
+            $(id).css('top', winH / 2 - $(id).height() / 2);
+            $(id).css('left', winW / 2 - $(id).width() / 2);
+            $(id).fadeIn(2000);
+            $("body,html").animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+
+        $('.window-zvon .close').click(function(e) {
+            e.preventDefault();
+            $('#mask, .window-zvon').hide();
+        });
+        $('#mask').click(function() {
+            $(this).hide();
+            $('.window-zvon').hide();
+        });
+
+    });
+</script>
+{% endblock %}

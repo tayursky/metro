@@ -244,7 +244,20 @@ a.a-nav{
 #w2{
     padding: 25px;
 }
-
+#boxes-zvon .window-zvon {
+	    position:absolute;
+	    left:0;
+	    top:0px;
+	    -top: 40px;
+	    width:440px;
+	    display:none;
+	    z-index:9999;
+	    overflow: hidden;
+	   }
+#boxes-zvon #dialog-zvon {
+    width: 500px;
+    background-color: #ffffff;
+}
 /*Медиа*/
 @media (max-width: 992px){
 .left-side, .right-side {

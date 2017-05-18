@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'myobject',
     'seo',
     'metro_site',
+    'contactform',
 ]
 
 MIDDLEWARE = [

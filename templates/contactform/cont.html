@@ -1,0 +1,15 @@
+{% extends 'contactform/base.html' %}
+{% load staticfiles %}
+{% load bootstrap3 %}
+
+{% block content %}
+<div id="con_form">
+	<h1 class="cont">Написать письмо !</h1>
+	<form id="contactform" method="POST" action="">
+		<p class="note"><span class="req"></span> Поля обязательны для заполнения</p>
+		{% csrf_token %}
+		{{ form.as_p }}
+		<input class="btn-us" type="submit" value="Отправить" />
+	</form>
+</div>
+{% endblock %}
