@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^login/object', include('myobject.urls')),
     url(r'^login/prof/', include('seo.urls')),
     url(r'^login/search/', include('search.urls')),
+    url(r'^login/black_list/', include('black_list.urls')),
     url(r'^$', include('metro_site.urls')),
     url(r'^zvonok/', include('contactform.urls')),
     url(r'^accounts/', include('allauth.urls')),

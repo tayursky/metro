@@ -1,0 +1,42 @@
+{% extends 'black_list/base.html' %} {% load bootstrap3 %} {% block content-title %} Черный список {% endblock %} {% block content %}
+<a href="{% url 'add_black_list' %}">Добавить в черный список</a><br />
+<table class="table table-bordered table-hover">
+    <th class="active">
+        Имя
+    </th>
+    <th class="active">
+        Телефон
+    </th>
+    <th class="span-task active">
+        Причина
+    </th>
+    <th class="span-task active">
+        Дата
+    </th>
+    <th class="span-task active price-table">
+
+    </th>
+
+    {% for list in black_list %}
+    <tr>
+        <td>
+            {{list.name}}
+        </td>
+        <td>
+            {{list.tel}}
+        </td>
+        <td>
+            {{list.text}}
+        </td>
+        <td>
+            {{list.data}}
+        </td>
+        <td>
+            <a href="{% url 'update_black_list' pk=list.pk %}">Редактировать</a><br />
+            <a href="{% url 'delete_black_list' pk=list.pk %}">Удалить</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
