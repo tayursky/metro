@@ -3,18 +3,30 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from django.http.response import Http404
 from django.views.generic.edit import CreateView, UpdateView
-from django.views.generic import DeleteView
+from django.views.generic import ListView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from .forms import TaskClientForm
 from .models import Client, TaskClient
 
 
-# Мои задачи
+'''# Мои задачи
 @login_required
 def my_task(request):
     mytask = TaskClient.objects.filter(manager_id=request.user.id, end=False)
-    return render(request, 'myclient/my-task.html', {"mytask": mytask})
+    return render(request, 'myclient/my-task.html', {"mytask": mytask})'''
+
+# Мои задачи
+class MyTaskList(LoginRequiredMixin, ListView):
+    context_object_name = 'mytask'
+    queryset = TaskClient.objects.filter(end=False)
+    template_name = 'myclient/my-task.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(MyTaskList, self).get_context_data(**kwargs)
+        context['mytask'] = TaskClient.objects.filter(manager_id=self.request.user.id, end=False)
+        return context
+
 
 class AddTaskClient(LoginRequiredMixin, CreateView):
 

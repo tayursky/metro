@@ -1,19 +1,38 @@
 {% extends 'myclient/base.html' %} {% load bootstrap3 %} {% block title %} Заявки {% endblock %} {% block content-title %} Заявки {% endblock %} {% block content %}
+
 <table class="table table-bordered table-hover">
-    <th class="active">
+    <th class="active id">
         ID
+        <form class="form_s_c2" method="post" action="">
+              {% csrf_token %}
+              {{form_id.as_p }}
+        </form>
     </th>
-    <th class="active">
+    <th class="active price-table">
         Имя
+        <form class="form_s_c2" method="post" action="">
+              {% csrf_token %}
+              {# bootstrap_form form_name #}
+              {{form_name.as_p}}
+        </form>
     </th>
-    <th class="span-task active">
+    <th class="span-task active tel_s">
         Номер телефона
+        <form class="form_s_c2" method="post" action="">
+              {% csrf_token %}
+             {{form_tel.as_p}}
+        </form>
     </th>
-    <th class="span-task active">
+    <th class="span-task active tel_s">
         Email
+        <form class="form_s_c2" method="post" action="">
+              {% csrf_token %}
+             {{form_email.as_p}}
+        </form>
     </th>
-    <th class="span-task active">
-        Дата создания
+    <th class="span-task active price-table">
+        Дата
+
     </th>
     <th class="span-task active">
         Сообщение
@@ -23,6 +42,32 @@
     </th>
 
     {% for zvon in zayavka %}
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Редактировать</h4>
+          </div>
+          <div class="modal-body">
+              <form id="contactform" name="contact" method="get" action="{% url 'edit_zvon' pk=zvon.id %}">
+                  <p class="note"><span class="req"></span> Поля обязательны для заполнения</p>
+                  {% csrf_token %}
+                  <div id="forms">
+                      {# form.as_p #}
+                  </div>
+                 <input class="btn-us" type="submit" value="Отправить" />
+                 <div class="modal-footer">
+                   <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                   <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+                 </div>
+              </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
     <tr>
         <td>
             {{zvon.id}}
@@ -104,30 +149,16 @@
                     </div>
                 </div>
             </div>
-            <a href="#dialog-red" name="modal3" class="more">Редактировать</a><br />
-            <div id="boxes-zvon">
-                <div id="dialog-red" class="window-zvon"> Текст модального окна
-                    <div class="top2"><a href="#" class="link close" />Закрыть</a>
-                    </div>
-                    <div id="w2">
-                        <h1 class="cont">Заявка № {{zvon.id}}</h1>
-                        <form id="contactform" name="contact" method="post" action="{% url 'update_zayavka' pk=zvon.pk %}">
-                            <p class="note"><span class="req"></span> Поля обязательны для заполнения</p>
-                            {% csrf_token %} {{ form.as_p }}
-                            <input class="btn-us" type="submit" value="Отправить" />
-                        </form>
-                    </div>
-                </div>
-            </div>
+            <a href="#dialog-red" name="modal3" id="{{zvon.id}}">Редактировать</a><br />
             <a href="{% url 'delete_zayavka' pk=zvon.pk %}">Удалить</a>
         </td>
     </tr>
     <script>
-        jQuery(document).ready(function($) {
-    $('a[name=modal3]').click(function(e) {
-        window.open("{% url 'update_zayavka' pk=zvon.pk %}", 'Редактировать заявку', 'width=1000px,height=500px,toolbar=0,status=0');
-    });
-});
+        //jQuery(document).ready(function($) {
+    //$('a[name=modal]').click(function(e) {
+    //    window.open("{% url 'update_zayavka' pk=zvon.pk %}", 'Редактировать заявку', 'width=1000px,height=500px,toolbar=0,status=0');
+    //});
+//});
 </script>
     {% endfor %}
 </table>
@@ -136,7 +167,21 @@
 
 <script>
     jQuery(document).ready(function($) {
+          $('a[name=modal3]').click(function(e) {
+              id = $(this).attr("id");
+              id = parseInt(id);
+              $.post("update_zvon/",
+                 {
+                      'pk': id,
 
+                  },
+                  function(data) {
+                      $('#myModal').modal('toggle');
+                      $('#forms').html(data);
+                  }
+              );
+             // return false;
+          });
         //Всплывающие окно с формы
         $('a[name=modal2]').click(function(e) {
             e.preventDefault();
@@ -168,6 +213,7 @@
             $(this).hide();
             $('.window-zvon').hide();
         });
+
 
     });
 </script>

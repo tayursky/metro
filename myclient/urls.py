@@ -13,7 +13,8 @@ urlpatterns = [
     url(r'^copy_client/(?P<pk>[0-9]+)/$', views.ClientCopy.as_view(), name='copy_client'),
 
     # Задачи
-    url(r'^task/$', task.my_task, name='my_task'),
+    #url(r'^task/$', task.my_task, name='my_task'),
+    url(r'^task/$', task.MyTaskList.as_view(), name='my_task'),
     url(r'^add/task_client/(?P<pk>[0-9]+)/$',
             task.AddTaskClient.as_view(), name='add_task_client'),
     url(r'^add/task/$', task.AddTaskClient.as_view(), name='add_task'),

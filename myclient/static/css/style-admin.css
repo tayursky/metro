@@ -36,8 +36,14 @@ h1, h2, h3, h4, h5{
     margin-left: 120px;
     border-radius: 3px;
 }
-.search-admin{
-
+.id{
+    width: 5%;
+}
+.tel_s{
+    width: 15%;
+}
+.id_s{
+    width: 100%;
 }
 /* Контент */
 .page{
