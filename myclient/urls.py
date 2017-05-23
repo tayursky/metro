@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from . import views, task
+from . import views, task, prioritet
 
 urlpatterns = [
     # Клиенты
@@ -18,4 +18,10 @@ urlpatterns = [
     url(r'^add/task_client/(?P<pk>[0-9]+)/$',
             task.AddTaskClient.as_view(), name='add_task_client'),
     url(r'^add/task/$', task.AddTaskClient.as_view(), name='add_task'),
+
+    # Приоритеты
+    url(r'^prioritet/$', prioritet.PrioritetList.as_view(), name='prioritet'),
+    url(r'^prioritet/add/$', prioritet.AddPrioritet.as_view(), name='add_prioritet'),
+    url(r'^prioritet/update/(?P<pk>[0-9]+)/$', prioritet.PrioritetUpdate.as_view(), name='update_prio'),
+    url(r'^prioritet/delete/(?P<pk>[0-9]+)/$', prioritet.PrioritetDelete.as_view(), name='delete_prio'),
 ]

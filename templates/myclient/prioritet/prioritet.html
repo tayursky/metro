@@ -1,0 +1,60 @@
+{% extends 'myclient/base.html' %}
+{% load bootstrap3 %}
+{% block title %}
+Приоритеты
+{% endblock %}
+
+{% block content-title %}
+Приоритеты
+{% endblock %}
+
+{% block content %}
+<a href="{% url 'add_prioritet' %}" class="btn btn-primary btn-xs">Добавить приоритет</a><br /><br />
+<table class="table table-bordered table-hover">
+    <th class="active price-table">
+        Важность
+    </th>
+    <th class="active">
+        Название
+    </th>
+    <th class="span-task active ">
+
+    </th>
+
+    {% for list in prioritet %}
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Удалить приоритет '{{list.prioritet}}'</h4>
+          </div>
+          <div class="modal-body">
+              <form action="{% url 'delete_prio' pk=list.id %}" method="POST">
+                {% csrf_token %}
+                {% buttons %}
+                {% bootstrap_button "Да" button_type="submit" button_class="btn-primary" %}
+                <a class="btn-warning btn" href="{% url 'prioritet' %}">Нет</a>
+                {% endbuttons %}
+              </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <tr>
+        <td>
+            {{list.num}}
+        </td>
+        <td>
+            {{list.prioritet}}
+        </td>
+        <td>
+            <a href="{% url 'update_prio' pk=list.pk %}">Редактировать</a><br />
+            <a href="" data-toggle="modal" data-target="#myModal">Удалить</a><br />
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

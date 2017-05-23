@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django import forms
 from django.contrib.auth.models import User
-from .models import Client, TaskClient
+from .models import Client, TaskClient, Prioritet
 
 # Форма добавления клиента
 class ClientForm(forms.ModelForm):
@@ -24,3 +24,9 @@ class TaskClientForm(forms.ModelForm):
     class Meta:
         model = TaskClient
         fields = ('client', 'prioritet', 'date', 'task')
+
+# Форма добавления приоритета
+class PrioritetForm(forms.ModelForm):
+    class Meta:
+        model = Prioritet
+        fields = ('prioritet', 'num')

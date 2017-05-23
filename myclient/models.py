@@ -97,6 +97,23 @@ class Client(models.Model):
     def __str__(self):
         return self.name
 
+# Модель приоритетов
+class Prioritet(models.Model):
+    class Meta():
+        db_table = "prioritet"
+        verbose_name = "Приоритет"
+        verbose_name_plural = "Приоритеты"
+        ordering = ['-num']
+
+    prioritet = models.CharField("Приоритет", max_length=30)
+    num = models.IntegerField("Важность", default=0)
+
+    def get_absolute_url(self):
+        return reverse('prioritet')
+
+    def __str__(self):
+        return self.prioritet
+
 # Модель задачи клиента
 class TaskClient(models.Model):
     class Meta():
@@ -105,16 +122,15 @@ class TaskClient(models.Model):
         verbose_name_plural = "Задачи клиента"
         ordering = ['-prioritet']
 
-    PRIORITET = (
+    '''PRIORITET = (
         ('0', 'другое'),
         ('1', 'звонок, ответ'),
         ('2', 'встреча, показ'),
         ('3', 'первоочередное')
-    )
+    )'''
     manager = models.ForeignKey(User, on_delete=models.CASCADE)
     client = models.ForeignKey(Client, related_name='client', verbose_name="Клиент")
-    prioritet = models.CharField("Приоритет", max_length=30,
-                                 choices=PRIORITET, default="0", blank=True)
+    prioritet = models.ForeignKey(Prioritet, verbose_name="Приоритет")
     date = models.DateField("Дата", auto_now_add=False)
     task = models.TextField("Задача")
     end = models.BooleanField("Выполнено", default=False)

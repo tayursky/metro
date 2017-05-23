@@ -1,5 +1,5 @@
 {% extends 'black_list/base.html' %} {% load bootstrap3 %} {% block content-title %} Черный список {% endblock %} {% block content %}
-<a href="{% url 'add_black_list' %}">Добавить в черный список</a><br />
+<a href="{% url 'add_black_list' %}" class="btn btn-primary btn-xs">Добавить в черный список</a><br /><br />
 <table class="table table-bordered table-hover">
     <th class="active">
         Имя

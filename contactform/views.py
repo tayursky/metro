@@ -40,7 +40,7 @@ class ZayavkaList(LoginRequiredMixin, ListView):
         context['form_email'] = SZvonName(prefix='email')
         context['form_data'] = SZvonId(prefix='data')
         return context
-
+    # Поиск
     def post(self, request):
         form_i = SZvonId(self.request.POST, prefix='id')
         form_n = SZvonName(self.request.POST, prefix='name')
@@ -58,7 +58,7 @@ class ZayavkaList(LoginRequiredMixin, ListView):
             self.context['zayavka'] = Contact.objects.filter(tel = search)
         if form_e.is_valid() and form_e.cleaned_data['search'] != '':
             search = form_e.cleaned_data['search']
-            self.context['zayavka'] = Contact.objects.filter(email = search)      
+            self.context['zayavka'] = Contact.objects.filter(email = search)
         if form_d.is_valid() and form_d.cleaned_data['search'] != '':
             search = form_d.cleaned_data['search']
             self.context['zayavka'] = Contact.objects.filter(data = search)
