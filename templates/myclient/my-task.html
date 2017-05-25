@@ -1,7 +1,7 @@
 {% extends 'myclient/base.html' %} {% block title %} Мои задачи {% endblock %} {% block content-title %} Мои задачи {% endblock %} {% block content %} {% for task in mytask %}
 <div class="task">
     <div class="head-task">
-        <strong>{{task.date}} {{task.client}}
+        <strong>{{task.date}} {{task.client}} {{task.prioritet}}
             {% for t in mytask.client_set.all %}
                 {{t.id}} {{t.email}}
             {% endfor %}

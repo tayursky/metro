@@ -29,7 +29,7 @@
         </div>
         <div class="dell_footer">
             <a class="btn-warning btn" name="del" id="{{list.id}}" href="">Да</a>
-            <a class="btn-warning btn" href="{% url 'prioritet' %}">Нет</a>
+            <a class="btn-warning btn no" id="{{list.id}}" href="">Нет</a>
         </div>
     </div>
 
@@ -55,22 +55,22 @@
               $.post("delete_prio/",
                  {
                       'pk': id,
-
                   },
                   function(data) {
-                      $('.'+id).hide();
+                      $('.'+id).hide("slow");
                       //$('table').html(data);
                   }
               );
               //return false;
           });
-         //$('a[name=dell]').click(function() {
-            // $('#dell').show();
-         //});
          $('body').on('click','#d',function(){
             num = $(this).attr("class");
-            $('.'+num).show();
+            $('.'+num).show("slow");
         });
+        $('body').on('click','.no',function(){
+           num = $(this).attr("id");
+           $('.'+num).hide();
+       });
     });
 </script>
 {% endblock %}

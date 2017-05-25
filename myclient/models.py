@@ -106,7 +106,7 @@ class Prioritet(models.Model):
         ordering = ['-num']
 
     prioritet = models.CharField("Приоритет", max_length=30)
-    num = models.IntegerField("Важность", default=0)
+    num = models.IntegerField("Важность", default=1)
 
     def get_absolute_url(self):
         return reverse('prioritet')
@@ -122,6 +122,15 @@ class TaskClient(models.Model):
         verbose_name_plural = "Задачи клиента"
         ordering = ['-prioritet']
 
+    '''При удалении приоритета назначаем задачам другой приоритет'''
+
+    def get_prio():
+        try:
+            prio = Prioritet.objects.all().order_by('-num')[:-1]
+        except:
+            prio = Prioritet.objects.get_or_create(prioritet='Другое10', num=0)[0]
+        return prio
+
     '''PRIORITET = (
         ('0', 'другое'),
         ('1', 'звонок, ответ'),
@@ -130,7 +139,7 @@ class TaskClient(models.Model):
     )'''
     manager = models.ForeignKey(User, on_delete=models.CASCADE)
     client = models.ForeignKey(Client, related_name='client', verbose_name="Клиент")
-    prioritet = models.ForeignKey(Prioritet, verbose_name="Приоритет")
+    prioritet = models.ForeignKey(Prioritet, on_delete=models.SET(get_prio), verbose_name="Приоритет")
     date = models.DateField("Дата", auto_now_add=False)
     task = models.TextField("Задача")
     end = models.BooleanField("Выполнено", default=False)

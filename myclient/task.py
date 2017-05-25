@@ -24,7 +24,7 @@ class MyTaskList(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super(MyTaskList, self).get_context_data(**kwargs)
-        context['mytask'] = TaskClient.objects.filter(manager_id=self.request.user.id, end=False)
+        context['mytask'] = TaskClient.objects.filter(manager_id=self.request.user.id, end=False).order_by('-prioritet__num')
         return context
 
 

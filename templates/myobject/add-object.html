@@ -9,6 +9,10 @@
 {% endblock %}
 
 {% block content %}
+{% if error %}
+    <h2>{{error}}</h2>
+{% endif %}
+
 <form   method="post" action="">
     {% csrf_token %}
     {% bootstrap_form form %}

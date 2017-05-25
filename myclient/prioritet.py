@@ -35,6 +35,7 @@ class PrioritetDelete(LoginRequiredMixin, DeleteView):
     def get_success_url(self):
         return reverse('prioritet')
 
+# Удаление приоритета
 @csrf_exempt
 @login_required
 def del_prio(request):

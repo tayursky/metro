@@ -90,12 +90,13 @@ h1, h2, h3, h4, h5{
     padding: 5px;
     border: 1px solid #cecece;
 }
+
 /* Заявки окно удаления */
 #dell2 {
     position: fixed;
     width: 300px;
     z-index: 22;
-    height: 200px;
+    /*height: 200px;*/
     border: 1px solid #cecece;
     margin: 0 20%;
     background: #fff;

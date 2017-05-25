@@ -8,7 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from .forms import ClientForm, HideClientForm
 from .models import Client
-
+from black_list.models import BlackList
 
 # Добавления клиента
 @login_required
@@ -16,14 +16,19 @@ def add_client(request):
     if request.method == "POST":
         form = ClientForm(request.POST)
         if form.is_valid():
-            # Сахроняю форму
             post = form.save(commit=False)
-            post.my_manager = request.user
-            post.save()
-            return redirect('my_client')
+            # Есть ли клиент в черном списке
+            tel = form.cleaned_data['tel']
+            if BlackList.objects.filter(tel=tel).exists():
+                error = "Номер находится в черном списке"
+            else:
+                post.my_manager = request.user
+                post.save()
+                return redirect('my_client')
     else:
         form = ClientForm()
-    return render(request, 'myclient/add-client.html', {'form': form})
+        error = ""
+    return render(request, 'myclient/add-client.html', {'form': form, 'error': error})
 
 # Мои клиенты
 @login_required

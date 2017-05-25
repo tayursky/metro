@@ -7,6 +7,7 @@ from django.views.generic import DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.urlresolvers import reverse
 from django.utils import timezone
+from black_list.models import BlackList
 
 # Добавление объекта
 @login_required
@@ -14,14 +15,19 @@ def add_object(request):
     if request.method == "POST":
         form = MyObjectForm(request.POST)
         if form.is_valid():
-            # Сахроняю форму
             post = form.save(commit=False)
-            post.my_manager = request.user
-            post.save()
-            return redirect('my_object')
+            # Есть ли номер в черном списке
+            tel = form.cleaned_data['block_tel']
+            if BlackList.objects.filter(tel=tel).exists():
+                error = "Номер находится в черном списке"
+            else:
+                post.my_manager = request.user
+                post.save()
+                return redirect('my_object')
     else:
         form = MyObjectForm()
-    return render(request, 'myobject/add-object.html', {"form": form})
+        error = ""
+    return render(request, 'myobject/add-object.html', {"form": form, 'error': error})
 
 # Мои объекты
 @login_required
