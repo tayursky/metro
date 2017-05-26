@@ -9,8 +9,8 @@ urlpatterns = [
 	url(r'^update_zayavka/(?P<pk>[0-9]+)/$', views.edit_zvon, name='edit_zvon'),
 	url(r'^login/contact/update_zvon/$', views.update_zvon, name='update_zvon'),
 
-	url(r'^delete_zayavka/(?P<pk>[0-9]+)/$', views.ZayavkaDelete.as_view(), name='delete_zayavka'),
-
+	#url(r'^delete_zayavka/(?P<pk>[0-9]+)/$', views.ZayavkaDelete.as_view(), name='delete_zayavka'),
+    url(r'^delete_zayavka/$', views.del_ajax, name='delete_zayavka'),
 	# Поиск заявок
 	url(r'^search_id_zvon/$', views.s_zvon_id, name='s_z_id'),
 ]

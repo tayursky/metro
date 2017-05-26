@@ -28,7 +28,7 @@
         <div class="dell_body">
         </div>
         <div class="dell_footer">
-            <a class="btn-warning btn" name="del" id="{{list.id}}" href="">Да</a>
+            <a class="btn-primary btn" name="yes" id="{{list.id}}" href="">Да</a>
             <a class="btn-warning btn no" id="{{list.id}}" href="">Нет</a>
         </div>
     </div>
@@ -42,14 +42,14 @@
         </td>
         <td>
             <a href="{% url 'update_prio' pk=list.pk %}">Редактировать</a><br />
-            <a href="#" id="d" name="dell" class="{{list.id}}" >Удалить</a><br />
+            <a href="#" id="delete" name="dell" class="{{list.id}}" >Удалить</a><br />
         </td>
     </tr>
     {% endfor %}
 </table>
 <script>
     jQuery(document).ready(function($) {
-          $('a[name=del]').click(function(e) {
+          $('a[name=yes]').click(function(e) {
               id = $(this).attr("id");
               id = parseInt(id);
               $.post("delete_prio/",
@@ -63,7 +63,7 @@
               );
               //return false;
           });
-         $('body').on('click','#d',function(){
+         $('body').on('click','#delete',function(){
             num = $(this).attr("class");
             $('.'+num).show("slow");
         });

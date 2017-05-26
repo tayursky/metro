@@ -5,6 +5,9 @@ from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic import ListView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse
 
 # Список из черного листа
 class BlackListViews(LoginRequiredMixin, ListView):
@@ -31,9 +34,16 @@ class BlackListUpdate(LoginRequiredMixin, UpdateView):
         return reverse('black_list')
 
 # Удаление из черного списка
-class BlackListDelete(LoginRequiredMixin, DeleteView):
-    model = BlackList
-    template_name = 'black_list/delete.html'
-
-    def get_success_url(self):
-        return reverse('black_list')
+@csrf_exempt
+@login_required
+def del_black_list(request):
+    if request.is_ajax():
+        if request.method == "POST":
+            if 'pk' in  request.POST:
+                pk = request.POST.get('pk')
+                pk = int(pk)
+                post = BlackList.objects.get(id=pk)
+                post.delete()
+                return HttpResponse("YES")
+    else:
+        return HttpResponse("NO")

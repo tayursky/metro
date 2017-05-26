@@ -1,5 +1,7 @@
 {% extends 'black_list/base.html' %} {% load bootstrap3 %} {% block content-title %} Черный список {% endblock %} {% block content %}
 <a href="{% url 'add_black_list' %}" class="btn btn-primary btn-xs">Добавить в черный список</a><br /><br />
+
+
 <table class="table table-bordered table-hover">
     <th class="active">
         Имя
@@ -18,6 +20,17 @@
     </th>
 
     {% for list in black_list %}
+
+    <div id="dell2" class="{{list.id}}">
+        <h4>Удалить из черного списка тел. '{{list.tel}}' ?</h4>
+        <div class="dell_body">
+        </div>
+        <div class="dell_footer">
+            <a class="btn-primary btn" name="yes" id="{{list.id}}" href="">Да</a>
+            <a class="btn-warning btn no" id="{{list.id}}" href="">Нет</a>
+        </div>
+    </div>
+
     <tr>
         <td>
             {{list.name}}
@@ -33,10 +46,35 @@
         </td>
         <td>
             <a href="{% url 'update_black_list' pk=list.pk %}">Редактировать</a><br />
-            <a href="{% url 'delete_black_list' pk=list.pk %}">Удалить</a>
+            <a href="#" id="delete" name="dell" class="{{list.id}}" >Удалить</a><br />
         </td>
     </tr>
     {% endfor %}
 </table>
-
+<script>
+    jQuery(document).ready(function($) {
+          $('a[name=yes]').click(function(e) {
+              id = $(this).attr("id");
+              id = parseInt(id);
+              $.post("{% url 'del_black_list'%}",
+                 {
+                      'pk': id,
+                  },
+                  function(data) {
+                      $('.'+id).hide("slow");
+                      //$('#p').html(data);
+                  }
+              );
+              //return false;
+          });
+         $('body').on('click','#delete',function(){
+            num = $(this).attr("class");
+            $('.'+num).show("slow");
+        });
+        $('body').on('click','.no',function(){
+           num = $(this).attr("id");
+           $('.'+num).hide();
+       });
+    });
+</script>
 {% endblock %}

@@ -8,7 +8,7 @@ from django.views.generic import ListView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
-
+from django.http.response import Http404
 # Оставить заявку
 def contact(request):
 	if request.method == "POST":
@@ -71,16 +71,24 @@ class ZayavkaUpdate(LoginRequiredMixin, UpdateView):
     template_name = 'contactform/zayavka_update.html'
 
     def get_success_url(self):
-        return reverse('update_zayavka')
-
-# Удаление заявки
-class ZayavkaDelete(LoginRequiredMixin, DeleteView):
-    model = Contact
-    template_name = 'contactform/zayavka_delete.html'
-
-    def get_success_url(self):
         return reverse('zayavka')
 
+# Удаление
+@csrf_exempt
+@login_required
+def del_ajax(request):
+    if request.is_ajax():
+        if request.method == "POST":
+            if 'pk' in  request.POST:
+                pk = request.POST.get('pk')
+                pk = int(pk)
+                post = Contact.objects.get(id=pk)
+                post.delete()
+                return HttpResponse("YES")
+        else:
+            return HttpResponse("NO")
+
+# Редактировать через ajax
 @csrf_exempt
 @login_required
 def update_zvon(request):
@@ -91,6 +99,9 @@ def update_zvon(request):
                 pk = int(pk)
                 post = Contact.objects.get(id=pk)
                 form = ContactForm(instance=post)
+                a = "%}"
+                b = "{%"
+                cc = '{} bootstrap_form {}  {}'.format(b, form, a)
                 return HttpResponse(form)
         else:
             return HttpResponse("NO")
@@ -98,14 +109,14 @@ def update_zvon(request):
 
 @login_required
 def edit_zvon(request, pk):
-    post = Contact.objects.get(id=pk)
+    post = get_object_or_404(Contact, pk=pk)
     if request.method == "POST":
-        form = ContactForm(request.POST)#, instance=post)
+        form = ContactForm(data=request.POST, instance=post)
         if form.is_valid():
-            post = form.save(commit=False)
-            post.id = pk
             post.save()
             return redirect('zayavka')
+        else:
+            return HttpResponse("NO2")
 
 # Поиск заявки по номеру
 def s_zvon_id(request):

@@ -13,7 +13,18 @@
     {% csrf_token %}
     {% bootstrap_form form %}
     {% buttons %}
-    {% bootstrap_button "Сохранить" button_type="submit" button_class="btn-primary" %}
+    <button  type="submit" onclick="my()" class="btn-primary">"Сохранить"</button>
     {% endbuttons %}
 </form>
+
+
+<script>
+jQuery(document).ready(function($) {
+
+//$('body').on('click','.btn-primary',function(){
+//window.close();
+//});
+
+  });
+</script>
 {% endblock %}
