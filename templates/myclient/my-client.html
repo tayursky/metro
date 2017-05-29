@@ -12,18 +12,38 @@
 <table class="table table-bordered table-hover">
     <th class="active">
     Имя
+    <form class="form_s_c2" method="post" action="">
+          {% csrf_token %}
+          {# bootstrap_form form_name #}
+          {{forms.name.as_p}}
+    </form>
 </th>
 <th class="active">
     Менеджер
+    <form class="form_s_c2" method="post" action="">
+          {% csrf_token %}
+          {# bootstrap_form form_name #}
+          {{forms.manager.as_p}}
+    </form>
 </th>
 <th class="span-task active">
     Скрыт
+    <form id="hide" class="form_s_c2" method="post" action="">
+          {% csrf_token %}
+          {# bootstrap_form form_name #}
+          {{forms.hide.as_p}}
+    </form>
 </th>
 <th class="span-task active">
     Назначение
 </th>
 <th class="span-task active">
     Телефон
+    <form class="form_s_c2" method="post" action="">
+          {% csrf_token %}
+          {# bootstrap_form form_name #}
+          {{forms.tel.as_p}}
+    </form>
 </th>
 <th class="span-task active">
     Метраж
@@ -36,6 +56,11 @@
 </th>
 <th class="span-task active">
     Email
+    <form class="form_s_c2" method="post" action="">
+          {% csrf_token %}
+          {# bootstrap_form form_name #}
+          {{forms.email.as_p}}
+    </form>
 </th>
 <th class="span-task active">
 
@@ -116,8 +141,9 @@
     </td>
     <td>
         {% if client.hide == '0' or client.hide_date == "" %}
-
+            {{client.hide}}
         {% else %}
+        {{client.get_hide_display}}
             {{client.hide_date}}
         {% endif %}
     </td>
@@ -213,6 +239,20 @@
     	$('.window2').hide();
     });
 
-	});
+
+    // Обработка select
+    $("select#id_my_manager").change(function () {
+        var manager = $("select#id_my_manager").val();
+        $(location).attr('href','/login/client/'+manager);
+    });
+    $("select#id_hide").change(function () {
+        //var manager = $("select#id_my_manager").val();
+        //$(location).attr('href','/login/client/'+manager);
+        //jQuery('13').click();trigger("click");
+        $("#hide").submit();
+    });
+
+    });
 </script>
+
 {% endblock %}

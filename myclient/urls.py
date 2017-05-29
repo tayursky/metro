@@ -4,7 +4,7 @@ from . import views, task, prioritet
 
 urlpatterns = [
     # Клиенты
-    url(r'^$', views.my_client, name='my_client'),
+    url(r'^(?P<pk>[0-9]+)/$', views.my_client, name='my_client'),
     url(r'^add-client/$', views.add_client, name='add_client'),
     url(r'^hide/(?P<pk>\d+)/$', views.hide_client, name='hide_client'),
     url(r'^show/(?P<pk>\d+)/$', views.show_client, name='show_client'),

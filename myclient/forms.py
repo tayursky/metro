@@ -30,3 +30,33 @@ class PrioritetForm(forms.ModelForm):
     class Meta:
         model = Prioritet
         fields = ('prioritet', 'num')
+
+# Форма поиска клиента по имени
+class SerchNameForm(forms.Form):
+    search = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder': '', 'class': 'id_s'}), max_length=30, error_messages={'required': ''})
+
+# Форма поиска клиента по менеджеру
+class SCkientMenForm(forms.ModelForm):
+    class Meta:
+        model = Client
+        fields = ('my_manager', )
+        labels = {
+            'my_manager': ''
+        }
+        error_messages = {
+            'my_manager': ''
+        }
+        '''field_classes = {
+            'my_manager': 'id_s'
+        }'''
+
+class SCkientHideForm(forms.ModelForm):
+    class Meta:
+        model = Client
+        fields = ('hide', )
+        labels = {
+            'hide': ''
+        }
+        error_messages = {
+            'hide': ''
+        }

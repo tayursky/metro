@@ -9,6 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 from django.http.response import Http404
+
 # Оставить заявку
 def contact(request):
 	if request.method == "POST":
@@ -102,11 +103,11 @@ def update_zvon(request):
                 a = "%}"
                 b = "{%"
                 cc = '{} bootstrap_form {}  {}'.format(b, form, a)
-                return HttpResponse(form)
+                return HttpResponse(cc)
         else:
             return HttpResponse("NO")
 
-
+@csrf_exempt
 @login_required
 def edit_zvon(request, pk):
     post = get_object_or_404(Contact, pk=pk)
