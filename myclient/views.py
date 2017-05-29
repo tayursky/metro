@@ -6,12 +6,13 @@ from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic import DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
-from .forms import ClientForm, HideClientForm, SerchNameForm, SCkientMenForm, SCkientHideForm
+from .forms import ClientForm, HideClientForm, SerchNameForm, SCkientMenForm, SCkientHideForm, SCkientNazForm
 from .models import Client
 from black_list.models import BlackList
 from django.core.mail import send_mail, BadHeaderError
 from myobject.models import MyObject
 from django.views.decorators.csrf import csrf_exempt
+from django.db.models import Q
 
 # Добавления клиента
 @login_required
@@ -68,6 +69,7 @@ def my_client(request, pk):
     forms['email'] = SerchNameForm(prefix='email')
     forms['manager'] = SCkientMenForm()
     forms['hide'] = SCkientHideForm()
+    forms['naz'] = SCkientNazForm()
     form = HideClientForm()
 
     if request.method == 'POST':
@@ -84,6 +86,11 @@ def my_client(request, pk):
                 myclient = Client.objects.filter(my_manager_id=pk, hide_date__gte='1970-01-01')
             else:
                 myclient = Client.objects.filter(my_manager_id=pk).exclude(hide_date__gte='1970-01-01')
+        # Поиск по полю назначения
+        form_naz = SCkientNazForm(request.POST)
+        if form_naz.is_valid():
+            search = form_naz.cleaned_data['naznach_one']
+            myclient = Client.objects.filter(Q(naznach_one = search) | Q(naznach_two = search))
     else:
         myclient = Client.objects.filter(my_manager_id=pk)
     return render(request, 'myclient/my-client.html', {"clients": myclient, 'form': form, 'forms':forms})
@@ -144,8 +151,8 @@ class ClientUpdate(LoginRequiredMixin, UpdateView):
     form_class = ClientForm
     template_name_suffix = '_update_form'
 
-    # def get_object(self):
-    # return Client.objects.get(id=self.object.pk)
+    def get_success_url(self):
+        return reverse('my_client', kwargs={'pk': self.request.user.id})
 
 # Удаление клиента
 class ClientDelete(LoginRequiredMixin, DeleteView):
@@ -154,7 +161,7 @@ class ClientDelete(LoginRequiredMixin, DeleteView):
     # редирект на страницу мои клиенты
 
     def get_success_url(self):
-        return reverse('my_client')
+        return reverse('my_client', kwargs={'pk': self.request.user.id})
 
 # Копирование клиента
 class ClientCopy(LoginRequiredMixin, UpdateView):

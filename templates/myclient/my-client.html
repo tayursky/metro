@@ -26,7 +26,7 @@
           {{forms.manager.as_p}}
     </form>
 </th>
-<th class="span-task active">
+<th class="span-task active price-table">
     Скрыт
     <form id="hide" class="form_s_c2" method="post" action="">
           {% csrf_token %}
@@ -36,6 +36,11 @@
 </th>
 <th class="span-task active">
     Назначение
+    <form id="naz" class="form_s_c2" method="post" action="">
+          {% csrf_token %}
+          {# bootstrap_form form_name #}
+          {{forms.naz.as_p}}
+    </form>
 </th>
 <th class="span-task active">
     Телефон
@@ -141,9 +146,8 @@
     </td>
     <td>
         {% if client.hide == '0' or client.hide_date == "" %}
-            {{client.hide}}
+
         {% else %}
-        {{client.get_hide_display}}
             {{client.hide_date}}
         {% endif %}
     </td>
@@ -240,16 +244,18 @@
     });
 
 
-    // Обработка select
+    // Обработка select менеджер
     $("select#id_my_manager").change(function () {
         var manager = $("select#id_my_manager").val();
         $(location).attr('href','/login/client/'+manager);
     });
+    // Обработка select скрыт\не скрыт
     $("select#id_hide").change(function () {
-        //var manager = $("select#id_my_manager").val();
-        //$(location).attr('href','/login/client/'+manager);
-        //jQuery('13').click();trigger("click");
         $("#hide").submit();
+    });
+    // Обработка select назначения
+    $("select#id_naznach_one").change(function () {
+        $("#naz").submit();
     });
 
     });

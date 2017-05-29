@@ -45,6 +45,9 @@ h1, h2, h3, h4, h5{
 .id_s{
     width: 100%;
 }
+#id_hide, #id_my_manager, #id_naznach_one{
+    width: 100%;
+}
 /* Контент */
 .page{
     width: 1000px;

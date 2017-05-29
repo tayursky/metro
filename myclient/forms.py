@@ -46,10 +46,11 @@ class SCkientMenForm(forms.ModelForm):
         error_messages = {
             'my_manager': ''
         }
-        '''field_classes = {
+        '''fields_classes = {
             'my_manager': 'id_s'
         }'''
 
+# Форма поиска клиента по полю скрыт\не скрыт
 class SCkientHideForm(forms.ModelForm):
     class Meta:
         model = Client
@@ -59,4 +60,16 @@ class SCkientHideForm(forms.ModelForm):
         }
         error_messages = {
             'hide': ''
+        }
+
+# Форма поиска клиента по назначению
+class SCkientNazForm(forms.ModelForm):
+    class Meta:
+        model = Client
+        fields = ('naznach_one', )
+        labels = {
+            'naznach_one': ''
+        }
+        error_messages = {
+            'naznach_one': ''
         }
