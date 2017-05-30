@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .forms import MyObjectForm
+from .forms import MyObjectForm, SObjectTypeForm
 from .models import MyObject
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic import DeleteView
@@ -8,6 +8,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.urlresolvers import reverse
 from django.utils import timezone
 from black_list.models import BlackList
+from myclient.forms import SerchNameForm
+from django.db.models import Q
 
 # Добавление объекта
 @login_required
@@ -32,8 +34,43 @@ def add_object(request):
 # Мои объекты
 @login_required
 def my_object(request):
-    my_object = MyObject.objects.filter(my_manager_id=request.user.id)
-    return render(request, 'myobject/my-object.html', {"myobjects": my_object})
+    forms = {}
+    forms['id'] = SerchNameForm(prefix="id")
+    forms['adres'] = SerchNameForm(prefix="adres")
+    forms['sobs'] = SerchNameForm(prefix="sobs")
+    forms['type'] = SObjectTypeForm()
+    if request.method == "POST":
+        # Поиск по полям
+        forms_id = SerchNameForm(request.POST, prefix="id")
+        forms_adres = SerchNameForm(request.POST, prefix="adres")
+        forms_sobs = SerchNameForm(request.POST, prefix="sobs")
+        my_object = search_form(forms_id, forms_adres, forms_sobs)
+        # Поиск по типу
+        form_type = SObjectTypeForm(request.POST)
+        if form_type.is_valid():
+            search = form_type.cleaned_data['typeobj']
+            my_object = MyObject.objects.filter(typeobj=search)
+    else:
+        my_object = MyObject.objects.filter(my_manager_id=request.user.id)
+
+    return render(request, 'myobject/my-object.html', {"myobjects": my_object, "forms": forms})
+
+# Обработка поиска по полям
+def search_form(id_o, adres, sobs):
+    if id_o.is_valid() and id_o.cleaned_data['search'] != '':
+        search = id_o.cleaned_data['search']
+        query = MyObject.objects.filter(id=search)
+
+    elif adres.is_valid() and adres.cleaned_data['search'] != '':
+        search = adres.cleaned_data['search']
+        query = MyObject.objects.filter(adres=search)
+
+    elif sobs.is_valid() and sobs.cleaned_data['search'] != '':
+        search = sobs.cleaned_data['search']
+        query = MyObject.objects.filter(Q(block_name=search) | Q(block_tel=search))
+    else:
+        query=0
+    return query
 
 # Скрыть клиента
 @login_required

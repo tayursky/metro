@@ -11,3 +11,18 @@ class MyObjectForm(forms.ModelForm):
             'okrug': forms.widgets.CheckboxSelectMultiple,
             'naznach': forms.widgets.CheckboxSelectMultiple
         }
+
+# Форма поиска клиента по менеджеру
+class SObjectTypeForm(forms.ModelForm):
+    class Meta:
+        model = MyObject
+        fields = ('typeobj', )
+        labels = {
+            'typeobj': ''
+        }
+        error_messages = {
+            'typeobj': ''
+        }
+        '''fields_classes = {
+            'typeobj': 'id_s'
+        }'''

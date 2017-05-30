@@ -12,15 +12,30 @@
 <table class="table table-bordered table-hover">
     <th class="active">
     № объекта
+    <form class="form_s_c2" method="post" action="">
+          {% csrf_token %}
+          {# bootstrap_form form_name #}
+          {{forms.id.as_p}}
+    </form>
 </th>
 <th class="active">
     Тип объекта
+    <form id="type" class="form_s_c2" method="post" action="">
+          {% csrf_token %}
+          {# bootstrap_form form_name #}
+          {{forms.type.as_p}}
+    </form>
 </th>
 <th class="span-task active">
     Станция метро
 </th>
 <th class="span-task active">
     Адрес
+    <form class="form_s_c2" method="post" action="">
+          {% csrf_token %}
+          {# bootstrap_form form_name #}
+          {{forms.adres.as_p}}
+    </form>
 </th>
 <th class="span-task active">
     Площадь
@@ -30,6 +45,11 @@
 </th>
 <th class="span-task active">
     Собственник
+    <form class="form_s_c2" method="post" action="">
+          {% csrf_token %}
+          {# bootstrap_form form_name #}
+          {{forms.sobs.as_p}}
+    </form>
 </th>
 <th class="span-task active">
     Дата последнего прозвона
@@ -151,5 +171,24 @@
 {% endfor %}
 {% endif %}
 </table>
+<script>
+	jQuery(document).ready(function($) {
+    //Добавление и выбор пустого пункта в select
+    $("select#id_typeobj").prepend( $('<option value="0">-----</option>'));
+    $("select#id_typeobj :contains('-')").attr("selected", "selected");
+    // Обработка select менеджер
+    $("select#id_typeobj").change(function () {
+        $("#type").submit();
+    });
+    // Обработка select скрыт\не скрыт
+    $("select#id_hide").change(function () {
+        $("#hide").submit();
+    });
+    // Обработка select назначения
+    $("select#id_naznach_one").change(function () {
+        $("#naz").submit();
+    });
 
+    });
+</script>
 {% endblock %}
