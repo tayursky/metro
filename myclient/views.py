@@ -53,7 +53,7 @@ def add_client(request):
 
                 post.my_manager = request.user
                 post.save()
-                return redirect('my_client')
+                return redirect('/login/client/my/{}'.format(request.user.id))
     else:
         form = ClientForm()
         error = ""
@@ -126,7 +126,8 @@ def hide_client(request, pk):
                 hide.hide_date = date
                 hide.hide = '1'
                 hide.save()
-                return redirect('/login/client/{}'.format(request.user.id))
+                return redirect('/login/client/my/{}'.format(request.user.id))
+                #return reverse('my_client', kwargs={'pk': self.request.user.id})
             except ObjectDoesNotExist:
                 raise Http404
         else:
@@ -142,7 +143,7 @@ def show_client(request, pk):
         hide.save()
     except ObjectDoesNotExist:
         raise Http404
-    return redirect('/login/client/{}'.format(request.user.id))
+    return redirect('/login/client/my/{}'.format(request.user.id))
 
 # Редактирование клиента
 class ClientUpdate(LoginRequiredMixin, UpdateView):

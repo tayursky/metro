@@ -92,7 +92,7 @@ class Client(models.Model):
                                 choices=TYPE_OBJ, default="undeg", blank=True)
 
     def get_absolute_url(self):
-        return reverse('my_client')  # , kwargs={'pk': self.pk})
+        return reverse('my_client', kwargs={'pk': self.my_manager.id})
 
     def __str__(self):
         return self.name
