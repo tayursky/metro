@@ -23,9 +23,15 @@
         <a href="" class="btn btn-primary btn-xs">На завтра</a>
         <a href="" class="btn btn-primary btn-xs">Позже</a>
         <a href="" class="btn btn-primary btn-xs">Через неделю</a>
-        <a href="" class="btn btn-primary btn-xs">Другое</a>
+        <div class="btn-group">
+        <a href="" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown">Другое<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Скрыть клиента</a></li>
+                <li><a href="#">Email</a></li>
+                <li><a href="#">Изменить клиента</a></li>
+                <li><a href="{% url 'add_task' %}">Ещё одна задача</a></li>
+            </ul>
+        </div>
     </div>
 </div>
-{% endfor %}
-
-{% endblock %}
+{% endfor %} {% endblock %}
