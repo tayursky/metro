@@ -12,30 +12,16 @@
 <table class="table table-bordered table-hover">
     <th class="active">
     № объекта
-    <form class="form_s_c2" method="post" action="">
-          {% csrf_token %}
-          {# bootstrap_form form_name #}
-          {{forms.id.as_p}}
-    </form>
 </th>
 <th class="active">
     Тип объекта
-    <form id="type" class="form_s_c2" method="post" action="">
-          {% csrf_token %}
-          {# bootstrap_form form_name #}
-          {{forms.type.as_p}}
-    </form>
 </th>
 <th class="span-task active">
     Станция метро
 </th>
+
 <th class="span-task active">
     Адрес
-    <form class="form_s_c2" method="post" action="">
-          {% csrf_token %}
-          {# bootstrap_form form_name #}
-          {{forms.adres.as_p}}
-    </form>
 </th>
 <th class="span-task active">
     Площадь
@@ -45,11 +31,6 @@
 </th>
 <th class="span-task active">
     Собственник
-    <form class="form_s_c2" method="post" action="">
-          {% csrf_token %}
-          {# bootstrap_form form_name #}
-          {{forms.sobs.as_p}}
-    </form>
 </th>
 <th class="span-task active">
     Дата последнего прозвона
@@ -60,6 +41,60 @@
 <th class="span-task active">
 
 </th>
+<tr>
+    <td>
+        <form class="form_s_c2" method="post" action="">
+              {% csrf_token %}
+              {# bootstrap_form form_name #}
+              {{forms.id.as_p}}
+        </form>
+    </td>
+    <td>
+        <form id="type" class="form_s_c2" method="post" action="">
+              {% csrf_token %}
+              {# bootstrap_form form_name #}
+              {{forms.type.as_p}}
+        </form>
+    </td>
+    <td>
+        <form id="station_one" class="form_s_c2" method="post" action="">
+              {% csrf_token %}
+              {# bootstrap_form form_name #}
+              {{forms.metro.as_p}}
+        </form>
+    </td>
+    <td>
+        <form class="form_s_c2" method="post" action="">
+              {% csrf_token %}
+              {# bootstrap_form form_name #}
+              {{forms.adres.as_p}}
+        </form>
+    </td>
+    <td>
+
+    </td>
+    <td>
+
+    </td>
+    <td>
+        <form class="form_s_c2" method="post" action="">
+              {% csrf_token %}
+              {# bootstrap_form form_name #}
+              {{forms.sobs.as_p}}
+        </form>
+    </td>
+    <td>
+
+    </td>
+    <td>
+        <form id="hide" class="form_s_c2" method="post" action="">
+              {% csrf_token %}
+              {# bootstrap_form form_name #}
+              {{forms.hide.as_p}}
+        </form>
+    </td>
+</tr>
+
 {% if myobjects %}
 {% for obj in myobjects %}
 <tr>
@@ -110,6 +145,7 @@
 </tr>
 
 {% endfor %}
+
 {% else %}
 {% for obj in search_object %}
 <tr>
@@ -181,12 +217,12 @@
         $("#type").submit();
     });
     // Обработка select скрыт\не скрыт
-    $("select#id_hide").change(function () {
-        $("#hide").submit();
+    $("select#id_station_one").change(function () {
+        $("#station_one").submit();
     });
     // Обработка select назначения
-    $("select#id_naznach_one").change(function () {
-        $("#naz").submit();
+    $("select#id_hide").change(function () {
+        $("#hide").submit();
     });
 
     });

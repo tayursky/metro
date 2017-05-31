@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .forms import MyObjectForm, SObjectTypeForm
+from .forms import MyObjectForm, SObjectTypeForm, SObjectMetroForm, SObjectHideForm
 from .models import MyObject
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic import DeleteView
@@ -39,6 +39,9 @@ def my_object(request):
     forms['adres'] = SerchNameForm(prefix="adres")
     forms['sobs'] = SerchNameForm(prefix="sobs")
     forms['type'] = SObjectTypeForm()
+    forms['metro'] = SObjectMetroForm()
+    forms['hide'] = SObjectHideForm()
+    search = 3545
     if request.method == "POST":
         # Поиск по полям
         forms_id = SerchNameForm(request.POST, prefix="id")
@@ -50,10 +53,23 @@ def my_object(request):
         if form_type.is_valid():
             search = form_type.cleaned_data['typeobj']
             my_object = MyObject.objects.filter(typeobj=search)
+        # Поиск по метро
+        form_metro = SObjectMetroForm(request.POST)
+        if form_metro.is_valid():
+            search = form_metro.cleaned_data['station_one']
+            my_object = MyObject.objects.filter(Q(station_one=search) | Q(station_two=search))
+        # Скрытые/не скрытые
+        form_hide = SObjectHideForm(request.POST)
+        if form_hide.is_valid():
+            search = form_hide.cleaned_data['hide']
+            if search == "no":
+                my_object = MyObject.objects.filter(my_manager_id=request.user.id, hide="0")
+            else:
+                my_object = MyObject.objects.filter(my_manager_id=request.user.id)
     else:
         my_object = MyObject.objects.filter(my_manager_id=request.user.id)
 
-    return render(request, 'myobject/my-object.html', {"myobjects": my_object, "forms": forms})
+    return render(request, 'myobject/my-object.html', {"myobjects": my_object, "forms": forms, 'search':search})
 
 # Обработка поиска по полям
 def search_form(id_o, adres, sobs):

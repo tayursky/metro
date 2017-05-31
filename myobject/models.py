@@ -39,8 +39,8 @@ class MyObject(models.Model):
     )
 
     HIDE = (
-        ('no', 'Не скрыт'),
-        ('yes', 'Скрыт')
+        ('no', 'Нет'),
+        ('yes', 'Все')
     )
 
     my_manager = models.ForeignKey(settings.AUTH_USER_MODEL,

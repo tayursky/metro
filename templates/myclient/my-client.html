@@ -12,43 +12,18 @@
 <table class="table table-bordered table-hover">
     <th class="active">
     Имя
-    <form class="form_s_c2" method="post" action="">
-          {% csrf_token %}
-          {# bootstrap_form form_name #}
-          {{forms.name.as_p}}
-    </form>
 </th>
 <th class="active">
     Менеджер
-    <form class="form_s_c2" method="post" action="">
-          {% csrf_token %}
-          {# bootstrap_form form_name #}
-          {{forms.manager.as_p}}
-    </form>
 </th>
 <th class="span-task active price-table">
     Скрыт
-    <form id="hide" class="form_s_c2" method="post" action="">
-          {% csrf_token %}
-          {# bootstrap_form form_name #}
-          {{forms.hide.as_p}}
-    </form>
 </th>
 <th class="span-task active">
     Назначение
-    <form id="naz" class="form_s_c2" method="post" action="">
-          {% csrf_token %}
-          {# bootstrap_form form_name #}
-          {{forms.naz.as_p}}
-    </form>
 </th>
 <th class="span-task active">
     Телефон
-    <form class="form_s_c2" method="post" action="">
-          {% csrf_token %}
-          {# bootstrap_form form_name #}
-          {{forms.tel.as_p}}
-    </form>
 </th>
 <th class="span-task active">
     Метраж
@@ -61,15 +36,66 @@
 </th>
 <th class="span-task active">
     Email
-    <form class="form_s_c2" method="post" action="">
-          {% csrf_token %}
-          {# bootstrap_form form_name #}
-          {{forms.email.as_p}}
-    </form>
 </th>
 <th class="span-task active">
 
 </th>
+<tr>
+    <td>
+        <form class="form_s_c2" method="post" action="">
+              {% csrf_token %}
+              {# bootstrap_form form_name #}
+              {{forms.name.as_p}}
+        </form>
+    </td>
+    <td>
+        <form class="form_s_c2" method="post" action="">
+              {% csrf_token %}
+              {# bootstrap_form form_name #}
+              {{forms.manager.as_p}}
+        </form>
+    </td>
+    <td>
+        <form id="hide" class="form_s_c2" method="post" action="">
+              {% csrf_token %}
+              {# bootstrap_form form_name #}
+              {{forms.hide.as_p}}
+        </form>
+    </td>
+    <td>
+        <form id="naz" class="form_s_c2" method="post" action="">
+              {% csrf_token %}
+              {# bootstrap_form form_name #}
+              {{forms.naz.as_p}}
+        </form>
+    </td>
+    <td>
+        <form class="form_s_c2" method="post" action="">
+              {% csrf_token %}
+              {# bootstrap_form form_name #}
+              {{forms.tel.as_p}}
+        </form>
+    </td>
+    <td >
+
+    </td>
+    <td >
+
+    </td>
+    <td>
+
+    </td>
+    <td>
+        <form class="form_s_c2" method="post" action="">
+              {% csrf_token %}
+              {# bootstrap_form form_name #}
+              {{forms.email.as_p}}
+        </form>
+    </td>
+    <td>
+        
+    </td>
+</tr>
 {% if clients %}
 {% for client in clients %}
 <tr>

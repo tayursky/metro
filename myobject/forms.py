@@ -12,7 +12,7 @@ class MyObjectForm(forms.ModelForm):
             'naznach': forms.widgets.CheckboxSelectMultiple
         }
 
-# Форма поиска клиента по менеджеру
+# Форма поиска объекта по типу
 class SObjectTypeForm(forms.ModelForm):
     class Meta:
         model = MyObject
@@ -26,3 +26,27 @@ class SObjectTypeForm(forms.ModelForm):
         '''fields_classes = {
             'typeobj': 'id_s'
         }'''
+
+# Форма поиска объекта по станции метро
+class SObjectMetroForm(forms.ModelForm):
+    class Meta:
+        model = MyObject
+        fields = ('station_one', )
+        labels = {
+            'station_one': ''
+        }
+        error_messages = {
+            'station_one': ''
+        }
+
+# Форма поиска объекта по станции метро
+class SObjectHideForm(forms.ModelForm):
+    class Meta:
+        model = MyObject
+        fields = ('hide', )
+        labels = {
+            'hide': ''
+        }
+        error_messages = {
+            'hide': ''
+        }
