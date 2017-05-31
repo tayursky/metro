@@ -18,6 +18,7 @@ urlpatterns = [
     url(r'^add/task_client/(?P<pk>[0-9]+)/$',
             task.AddTaskClient.as_view(), name='add_task_client'),
     url(r'^add/task/$', task.AddTaskClient.as_view(), name='add_task'),
+    url(r'^task/update/(?P<pk>[0-9]+)$', task.TaskUpdate.as_view(), name='update_task'),
 
     # Приоритеты
     url(r'^prioritet/$', prioritet.PrioritetList.as_view(), name='prioritet'),

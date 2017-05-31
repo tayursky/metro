@@ -2,7 +2,7 @@
 <div class="task">
     <div class="head-task">
         <strong>{{task.date}} {{task.client}} {{task.prioritet}}
-            {% for t in mytask.client_set.all %}
+            {% for t in task.client_set.all %}
                 {{t.id}} {{t.email}}
             {% endfor %}
             {{ task.client_set.all}}
@@ -19,7 +19,7 @@
 
     <div>
         <a href="{# url 'my_client' #}" class="btn btn-primary btn-xs">Сделано</a>
-        <a href="" class="btn btn-primary btn-xs">Изменить</a>
+        <a href="{% url 'update_task' pk=task.id %}" class="btn btn-primary btn-xs">Изменить</a>
         <a href="" class="btn btn-primary btn-xs">На завтра</a>
         <a href="" class="btn btn-primary btn-xs">Позже</a>
         <a href="" class="btn btn-primary btn-xs">Через неделю</a>
@@ -28,10 +28,13 @@
             <ul class="dropdown-menu" role="menu">
                 <li><a href="#">Скрыть клиента</a></li>
                 <li><a href="#">Email</a></li>
-                <li><a href="#">Изменить клиента</a></li>
+                <li><a href="{% url 'update_client' pk=task.client.id %}">Изменить клиента</a></li>
                 <li><a href="{% url 'add_task' %}">Ещё одна задача</a></li>
             </ul>
         </div>
     </div>
 </div>
-{% endfor %} {% endblock %}
+{% endfor %}
+
+
+{% endblock %}

@@ -42,4 +42,15 @@ class AddTaskClient(LoginRequiredMixin, CreateView):
         return super(AddTaskClient, self).form_valid(form)
 
     def get_success_url(self):
-        return reverse('my_client', kwargs={'pk': self.request.user.id})    
+        return reverse('my_client', kwargs={'pk': self.request.user.id})
+
+
+# Редактирование задачи
+class TaskUpdate(LoginRequiredMixin, UpdateView):
+    model = TaskClient
+    #fields = ['name', 'tel']
+    form_class = TaskClientForm
+    template_name = 'myclient/add_task_client.html'
+
+    def get_success_url(self):
+        return reverse('my_task')#, kwargs={'pk': self.request.user.id})
