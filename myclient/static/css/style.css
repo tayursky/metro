@@ -6,7 +6,9 @@ body{
 	margin: 0 auto;
     /*width: 1000px;*/
     margin-bottom: 60px;
-    background: url(../images/header.jpg) top center;
+    background: url(../images/fon.jpg) top center no-repeat;
+    font-style: normal;
+    font-family: Arial, sans-serif;
 }
 h1, h2, h3, h4, h5{
 	text-align: center;
@@ -24,7 +26,11 @@ h1, h2, h3, h4, h5{
     text-align: center;
     box-shadow: 1px 1px 20px 1px #cecece;
 }
-
+.title-logo a{
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: -10px;
+}
 .main {
     width: 83%;
     float: left;
@@ -43,6 +49,17 @@ h1, h2, h3, h4, h5{
 /* Клиент. часть */
 
 /* Шапка */
+.head{
+    width: 1000px;
+    margin: 0 auto;
+    padding: 27px 0 0 0;
+}
+.logo{
+    float: left;
+}
+.title-logo{
+    margin-left: 175px;
+}
 .search-head{
     width: 1000px;
     height: 50px;
@@ -65,16 +82,31 @@ h1, h2, h3, h4, h5{
 }
 .menu-bar{
     background-color: #fff;
-    height: 52px;
+    height: 146px;
 }
 .menu{
     height: 50px;
     width: 1000px;
     margin: 0 auto;
 }
+.top-nav{
+    margin-left: 45px !important;
+    margin-top: 25px !important;
+}
 a.a-nav{
     color: #000;
     text-decoration: none;
+    font-size: 25px;
+    font-weight: bold;
+}
+a.a-nav::before{
+    content: " ";
+    background: url(../images/ico-menu.jpg) top center no-repeat;
+    display: block;
+    height: 18px;
+    width: 18px;
+    float: left;
+    margin: 1px 10px 0 0;
 }
 .nav>li>a:focus, .nav>li>a:hover, .nav>li>a:active{
 	text-decoration: underline !important;
@@ -82,10 +114,11 @@ a.a-nav{
     background-color: #fff !important;
 }
 .li-tel{
-    margin-top: 5px;
+    margin-top: -7px;
+    margin-right: 50px;
 }
 .span-tel{
-    font-size: 28px;
+    font-size: 32px;
 }
 .a-nav-btn{
     background-color: #DB2C27;

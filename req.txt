@@ -1,4 +1,4 @@
-django==11.1
+django==1.11
 Pillow
 django-bootstrap3
 django-allauth
