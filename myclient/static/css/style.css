@@ -65,21 +65,32 @@ h1, h2, h3, h4, h5{
 }
 .search-head{
     height: 50px;
-    padding: 0 0 0 45px;
+    padding: 100px 0 50px 90px;
 }
 .form_s_s {
-    width: 250px;
+    width: 360px;
     height: 50px;
-    background-color: #DB2C27;
+    /* background-color: #DB2C27; */
     float: left;
-    margin-right: 15px;
+    /*margin-right: 15px;*/
     padding: 7px 55px 5px 5px;
 }
+.form_s_s2{
+    margin-left: 145px;
+    width: 360px;
+    height: 50px;
+    float: left;
+    padding: 7px 55px 5px 5px;
+}
+#id_search{
+    height: 45px;
+}
 .btn-serch {
-    margin-top: -86px;
-    margin-left: 200px;
-    background-color: #000 !important;
-    border: none !important;
+    margin-top: -96px;
+    margin-left: 258px;
+    background-color: #fff !important;
+    /* border: 1px solid #ccc !important; */
+    color: #ec0000;
 }
 .menu-bar{
     background-color: #fff;
@@ -147,6 +158,7 @@ a.a-nav::before{
 }
 .main-site{
     width: 1000px;
+    height: 100%;
     /*margin: -20px 0 0 0;*/
     background-color: #fff;
 }
