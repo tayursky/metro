@@ -5,16 +5,19 @@ html {
 body{
 	margin: 0 auto;
     /*width: 1000px;*/
+    background: url(../images/fon2.jpg) top center no-repeat;
+    background-position: 0 148px;
     margin-bottom: 60px;
-    background: url(../images/fon.jpg) top center no-repeat;
     font-style: normal;
     font-family: Arial, sans-serif;
+    /*background-size: 100%;*/
 }
 h1, h2, h3, h4, h5{
 	text-align: center;
 }
 
 /* Контент */
+
 .page{
     width: 1000px;
     margin: auto;
@@ -61,9 +64,7 @@ h1, h2, h3, h4, h5{
     margin-left: 175px;
 }
 .search-head{
-    width: 1000px;
     height: 50px;
-    margin: 200px auto 20px auto;
     padding: 0 0 0 45px;
 }
 .form_s_s {
@@ -131,9 +132,23 @@ a.a-nav::before{
     text-decoration: none !important;
     color: #fff !important;
 }
+.title-site{
+    margin-top: 45px;
+    color: #fff;
+}
+.title-site h1{
+    font-size: 48px;
+    font-weight: bold;
+}
+.title-site p{
+    font-size: 27px;
+    font-weight: bold;
+    text-align: center;
+}
 .main-site{
     width: 1000px;
-    margin: 0 auto;
+    /*margin: -20px 0 0 0;*/
+    background-color: #fff;
 }
 .search {
     /*background-color: #fff;*/
