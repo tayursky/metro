@@ -21,5 +21,18 @@
 {% endblock %}
 
 {% block content %}
+<div>
+    {% for obj in myobj %}
 
+        <div class="myobj">
+            <p>
+                {{obj.price}}
+            </p>
+            <p>
+                {{obj.adres}}
+            </p>
+
+        </div>
+    {% endfor %}
+</div>
 {% endblock %}

@@ -5,7 +5,8 @@ from .forms import SearchObjectFront, SearchMetroFront
 
 # Главная
 def home(request):
-    return render(request, 'site/home.html')
+    myobj = MyObject.objects.all()[:4]
+    return render(request, 'site/home.html', locals())
 
 # Поиск объекта по номеру
 def search_object(request):
