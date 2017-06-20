@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django import forms
 
 from .models import Naznach, Okrug, Prioritet, Client
+from myobject.models import MyObject
 from .forms import ManagersForm
 
 
@@ -20,17 +21,21 @@ class UserAdmin(admin.ModelAdmin):
         form = ManagersForm(exclude={'id': object_id})
         extra_context['form'] = form
 
+        if not request.POST:
+            print(dir(del_user))
 
-        if del_user.client_set.exists():
+        if del_user.client_set.exists() or del_user.myobject_set.exists():
             if request.POST:
                 if form.is_valid:
                     form = ManagersForm(request.POST)
-                    remove_user = User.objects.get(pk=object_id)
-                    remove_user.is_active = False
-                    remove_user.client_set.update(
+                    del_user.is_active = False
+                    del_user.client_set.update(
                         my_manager=User.objects.get(pk=form.data['managers'])
                     )
-                    remove_user.save()
+                    del_user.myobject_set.update(
+                        my_manager=User.objects.get(pk=form.data['managers'])
+                    )
+                    del_user.save()
                     return redirect('/admin/auth/user')
             return render(request, 'admin/delete_user.html', extra_context)
         else:
