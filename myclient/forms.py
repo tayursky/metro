@@ -8,7 +8,9 @@ class ClientForm(forms.ModelForm):
     class Meta:
         model = Client
         fields = ('name', 'tel', 'email', 'naznach_one', 'naznach_two',
-                  'area_ot', 'area_do', 'price_obsh', 'price_m', 'dop_kont', 'metro', 'adres', 'komisiya', 'etaj', 'podborka', 'okrug', 'type_obj')
+                  'area_ot', 'area_do', 'price_obsh', 'price_m', 'dop_kont',
+                  'metro', 'adres', 'komisiya', 'etaj', 'podborka',
+                  'okrug', 'type_obj')
         widgets = {
             'okrug': forms.widgets.CheckboxSelectMultiple,
         }
@@ -33,7 +35,10 @@ class PrioritetForm(forms.ModelForm):
 
 # Форма поиска клиента по имени
 class SerchNameForm(forms.Form):
-    search = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder': '', 'class': 'id_s'}), max_length=30, error_messages={'required': ''})
+    search = forms.CharField(label='',
+                             widget=forms.TextInput(attrs={'placeholder': '',
+                                                           'class': 'id_s'}),
+                             max_length=30, error_messages={'required': ''})
 
 # Форма поиска клиента по менеджеру
 class SCkientMenForm(forms.ModelForm):
@@ -73,3 +78,17 @@ class SCkientNazForm(forms.ModelForm):
         error_messages = {
             'naznach_one': ''
         }
+
+
+class ManagersForm(forms.Form):
+    '''Форма для переназначения менедежера
+    при удалении из панели администратора'''
+
+    managers = forms.ModelChoiceField(queryset=User.objects.all(),
+                                     to_field_name='id')
+
+    def __init__(self, *args, **kwargs):
+        exclude_args = kwargs.pop('exclude', {})
+        super(ManagersForm, self).__init__(*args, **kwargs)
+        self.fields['managers'].queryset = User.objects\
+            .filter(is_active=True).exclude(id__in=exclude_args)
