@@ -96,7 +96,7 @@ AUTHENTICATION_BACKENDS = (
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.mysql1',
         'NAME': 'metro',
         'USER': 'root',
         'PASSWORD': 'Djwoms18',
@@ -148,3 +148,9 @@ MEDIA_URL = '/media/'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
