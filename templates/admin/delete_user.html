@@ -1,0 +1,28 @@
+{% extends "admin/base_site.html" %}
+{% load admin_urls %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Arenda site admin') }}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">Удаление пользователя</a></h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block content %}
+
+  {% if del_user.client_set.exists %}
+
+    <h1>У данного менеджера есть клиенты выберите кому их передать</h1>
+    <span>
+    Количество клиентов менеджера: {{ del_user.client_set.count }}
+    </span>
+
+    <form action="." method="post">
+      {%csrf_token%}
+      {{form.as_p}}
+      <input type="submit" value="Да, удалить менеджера." />
+      <a href="{% url 'admin:auth_user_change' del_user.pk %}" class="button cancel-link">Отмена</a>
+    <form>
+  {% endif %}  
+{% endblock %}
