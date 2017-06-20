@@ -1,0 +1,25 @@
+{% extends 'base-site.html' %}
+{% load bootstrap3 %}
+{% block search %}
+
+{% endblock %}
+{% block content-title %}
+
+{% endblock %}
+
+{% block content %}
+<div>
+    {% for obj in myobj %}
+
+        <div class="myobj">
+            <p>
+                {{obj.price}}
+            </p>
+            <p>
+                {{obj.adres}}
+            </p>
+
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
