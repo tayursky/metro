@@ -38,9 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+
     'allauth',
     'allauth.account',
     'bootstrap3',
+    'simple_history',
+
     'search',
     'myclient',
     'myobject',
@@ -58,6 +61,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'simple_history.middleware.HistoryRequestMiddleware',
 ]
 
 LOGIN_REDIRECT_URL = '/login/client/task/'
@@ -97,9 +102,9 @@ AUTHENTICATION_BACKENDS = (
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'metro',
+        'NAME': 'new_db',
         'USER': 'root',
-        'PASSWORD': 'Djwoms18',
+        'PASSWORD': 'lex',
         'HOST': 'localhost',
     }
 }
