@@ -19,7 +19,7 @@ def search_object(request):
             myobject = MyObject.objects.filter(id = search)
     else:
         return redirect('/')
-    return render(request, 'myobject/my-object.html', {'search_object': myobject})
+    return render(request, 'site/obj-single.html', {'obj_single': myobject})
 
 # Поиск станции метро
 def search_metro(request):

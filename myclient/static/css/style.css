@@ -191,6 +191,10 @@ form.form_s_3s {
 .form_s_3s .form-group {
     float: left;
 }
+
+table .table-obj{
+    width: 600px;
+}
 /*Футер*/
 footer{
     width: 100%;
