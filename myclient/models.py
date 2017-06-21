@@ -133,10 +133,6 @@ class TaskClient(models.Model):
             prio = Prioritet.objects.get_or_create(prioritet='Другое10', num=0)[0]
         return prio
 
-    def prio():
-        b = 2
-        return b
-
     '''PRIORITET = (
         ('0', 'другое'),
         ('1', 'звонок, ответ'),
@@ -145,7 +141,7 @@ class TaskClient(models.Model):
     )'''
     manager = models.ForeignKey(User, on_delete=models.CASCADE)
     client = models.ForeignKey(Client, verbose_name="Клиент")# related_name='client',
-    prioritet = models.ForeignKey(Prioritet, on_delete=models.SET(prio), verbose_name="Приоритет")
+    prioritet = models.ForeignKey(Prioritet, on_delete=models.SET(get_prio), verbose_name="Приоритет")
     date = models.DateField("Дата", auto_now_add=False)
     task = models.TextField("Задача")
     end = models.BooleanField("Выполнено", default=False)

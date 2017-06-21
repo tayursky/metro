@@ -176,6 +176,21 @@ a.a-nav::before{
     width: 285px;
     float: left;
 }
+form.form_s_3s {
+    width: 100%;
+    height: 300px;
+}
+.btn-search-obj{
+    background-color: #db2c27 !important;
+    color: #fff;
+    width: 200px;
+    font-size: 18px !important;
+    font-weight: bold !important;
+    margin-left: 35%;
+}
+.form_s_3s .form-group {
+    float: left;
+}
 /*Футер*/
 footer{
     width: 100%;
