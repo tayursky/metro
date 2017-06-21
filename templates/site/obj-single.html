@@ -9,13 +9,17 @@
 
 {% block content %}
 <div>
+    {% if obj_single %}
     {% for obj in obj_single %}
     <h2>ПОДРОБНАЯ ИНФОРМАЦИЯ ОБ ОБЪЕКТЕ № {{obj.id}}</h2>
     <table class="table table-bordered table-hover table-obj">
         <tr>
-            <td>Локация</td>
+            <td class="td-op">Локация</td>
             <td>
-                {{obj.get_typeobj_display}},
+                {% for okrug in obj.okrug.all %}
+                    {{okrug.options}},
+                {% endfor %}
+                {{obj.station_one}} {% if obj.station_two %}, {{obj.station_two}} {% endif %}
             </td>
         </tr>
         <tr>
@@ -27,31 +31,33 @@
         <tr>
             <td>Коммерческие условия</td>
             <td>
-
+                <strong>{{obj.block_area}} м<sup>2</sup> - {{obj.block_price}}-{{obj.block_procent}}</strong>
             </td>
         </tr>
         <tr>
             <td>Описание объекта</td>
             <td>
-
+                {{obj.opis}}
             </td>
         </tr>
         <tr>
             <td>Назначение</td>
             <td>
-
+                {% for naznach in obj.naznach.all %}
+                    {{naznach.options}},
+                {% endfor %}
             </td>
         </tr>
         <tr>
             <td>Характеристики</td>
             <td>
-
+                <strong>{{obj.kvt}} КВТ</strong>
             </td>
         </tr>
         <tr>
             <td>Вид договора</td>
             <td>
-
+                {{obj.dogovor}}
             </td>
         </tr>
         <tr>
@@ -62,5 +68,8 @@
         </tr>
 </table>
     {% endfor %}
+    {% else %}
+        <h2>Ошибка. Объект не существует.</h2>
+    {% endif %}
 </div>
 {% endblock %}

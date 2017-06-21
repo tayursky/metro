@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_list_or_404
 from django.contrib.auth.decorators import login_required
 from .forms import MyObjectForm, SObjectTypeForm, SObjectMetroForm, SObjectHideForm
 from .models import MyObject
@@ -144,3 +144,8 @@ def zvon_obj(request, pk):
     zvon.zvon = timezone.now()
     zvon.save()
     return redirect('my_object')
+
+def look_obj(request, pk):
+    ''' Просмотр страницы объекта менеджером'''
+    obj = get_list_or_404(MyObject, pk=pk)
+    return render(request, 'site/obj-single.html', {'obj_single': obj})
