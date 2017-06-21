@@ -47,6 +47,7 @@ class UserAdmin(admin.ModelAdmin):
                       {'managers': queryset.filter(is_active=True),
                        'form': form})
 
+
     def delete_view(self, request, object_id, extra_context=None):
         del_user = User.objects.get(pk=object_id)
         extra_context = {}

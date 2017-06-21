@@ -5,14 +5,19 @@ html {
 body{
 	margin: 0 auto;
     /*width: 1000px;*/
+    background: url(../images/fon2.jpg) top center no-repeat;
+    background-position: 0 148px;
     margin-bottom: 60px;
-    background: url(../images/header.jpg) top center;
+    font-style: normal;
+    font-family: Arial, sans-serif;
+    /*background-size: 100%;*/
 }
 h1, h2, h3, h4, h5{
 	text-align: center;
 }
 
 /* Контент */
+
 .page{
     width: 1000px;
     margin: auto;
@@ -24,7 +29,11 @@ h1, h2, h3, h4, h5{
     text-align: center;
     box-shadow: 1px 1px 20px 1px #cecece;
 }
-
+.title-logo a{
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: -10px;
+}
 .main {
     width: 83%;
     float: left;
@@ -43,38 +52,73 @@ h1, h2, h3, h4, h5{
 /* Клиент. часть */
 
 /* Шапка */
-.search-head{
+.head{
     width: 1000px;
+    margin: 0 auto;
+    padding: 27px 0 0 0;
+}
+.logo{
+    float: left;
+}
+.title-logo{
+    margin-left: 175px;
+}
+.search-head{
     height: 50px;
-    margin: 200px auto 20px auto;
-    padding: 0 0 0 45px;
+    padding: 100px 0 50px 90px;
 }
 .form_s_s {
-    width: 250px;
+    width: 360px;
     height: 50px;
-    background-color: #DB2C27;
+    /* background-color: #DB2C27; */
     float: left;
-    margin-right: 15px;
+    /*margin-right: 15px;*/
     padding: 7px 55px 5px 5px;
 }
+.form_s_s2{
+    margin-left: 145px;
+    width: 360px;
+    height: 50px;
+    float: left;
+    padding: 7px 55px 5px 5px;
+}
+#id_search{
+    height: 45px;
+}
 .btn-serch {
-    margin-top: -86px;
-    margin-left: 200px;
-    background-color: #000 !important;
-    border: none !important;
+    margin-top: -96px;
+    margin-left: 258px;
+    background-color: #fff !important;
+    /* border: 1px solid #ccc !important; */
+    color: #ec0000;
 }
 .menu-bar{
     background-color: #fff;
-    height: 52px;
+    height: 146px;
 }
 .menu{
     height: 50px;
     width: 1000px;
     margin: 0 auto;
 }
+.top-nav{
+    margin-left: 45px !important;
+    margin-top: 25px !important;
+}
 a.a-nav{
     color: #000;
     text-decoration: none;
+    font-size: 25px;
+    font-weight: bold;
+}
+a.a-nav::before{
+    content: " ";
+    background: url(../images/ico-menu.jpg) top center no-repeat;
+    display: block;
+    height: 18px;
+    width: 18px;
+    float: left;
+    margin: 1px 10px 0 0;
 }
 .nav>li>a:focus, .nav>li>a:hover, .nav>li>a:active{
 	text-decoration: underline !important;
@@ -82,10 +126,11 @@ a.a-nav{
     background-color: #fff !important;
 }
 .li-tel{
-    margin-top: 5px;
+    margin-top: -7px;
+    margin-right: 50px;
 }
 .span-tel{
-    font-size: 28px;
+    font-size: 32px;
 }
 .a-nav-btn{
     background-color: #DB2C27;
@@ -98,9 +143,24 @@ a.a-nav{
     text-decoration: none !important;
     color: #fff !important;
 }
+.title-site{
+    margin-top: 45px;
+    color: #fff;
+}
+.title-site h1{
+    font-size: 48px;
+    font-weight: bold;
+}
+.title-site p{
+    font-size: 27px;
+    font-weight: bold;
+    text-align: center;
+}
 .main-site{
     width: 1000px;
-    margin: 0 auto;
+    height: 100%;
+    /*margin: -20px 0 0 0;*/
+    background-color: #fff;
 }
 .search {
     /*background-color: #fff;*/
@@ -109,21 +169,44 @@ a.a-nav{
     /*box-shadow: 1px 1px 1px 1px #cecece;*/
     background: url(../images/bg-search2.png) no-repeat top left;
 }
+.content{
+    padding: 60px;
+}
+.myobj{
+    width: 285px;
+    float: left;
+}
 /*Футер*/
+footer{
+    width: 100%;
+    margin: auto;
+    background-color: #fff;
+}
 .footer {
     margin: 25px auto;
     top: 100%;
-    height: 50px;
+    height: 115px;
     background-color: #f5f5f5;
     padding: 15px;
-    /* float: left; */
-    position: absolute;
+    /* float: left;
+    position: absolute;*/
     bottom: 0;
     width: 1000px;
-    box-shadow: 1px 1px 10px 1px #cecece;
+    /* box-shadow: 1px 1px 10px 1px #cecece; */
+    border-top: 1px solid #8ebddb;
 }
-
-
+.nav-footer{
+    margin: 20px 5px 0 0 !important;
+}
+.span-day{
+    font-size: 20px;
+}
+.li-footer-day{
+    margin: 10px 30px 0 0;
+}
+.li-footer{
+    margin-right: 100px;
+}
 /*Медиа*/
 @media (max-width: 992px){
 .left-side, .right-side {

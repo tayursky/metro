@@ -20,23 +20,24 @@
 </head>
 
 <body>
-	<div class="page2">
-		<div class="search-head">
-			<div class="search-head-form">
-				<form class="form_s_s" name="contact" method="post" action="{% url 'search_object' %}">
-					{% csrf_token %} {% bootstrap_form object_form_s %}
-					<button type="submit" class="btn btn-primary btn-md btn-serch"><span class="glyphicon glyphicon-play"></span></button>
-				</form>
-			</div>
-			<div class="search-head-form">
-				<form class="form_s_s" name="contact" method="post" action="{% url 'search_adres' %}">
-					{% csrf_token %} {% bootstrap_form metro_form_s %}
-					<button type="submit" class="btn btn-primary btn-md btn-serch"><span class="glyphicon glyphicon-play"></span></button>
-				</form>
-			</div>
-		</div>
+	<div class="page">
+        <div class="menu-bar">
+            <div class="head">
+                <div class="logo">
+                    <a href="/"><img src="{% static 'images/logo.jpg' %}"></a>
+                </div>
+                <div class="title-logo">
+                    <a href="/"><img src="{% static 'images/title.jpg' %}"></a>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="li-tel">
+                            <span class="span-tel">(495) 58-58-231</span>
+                        </li>
+                        <li>
+                            <a href="#" class="a-nav-btn">ЗАДАТЬ ВОПРОС</a>
+                        </li>
+                    </ul>
+                </div>
 
-		<div class="menu-bar">
 			<nav class="navbar menu" role="navigation">
 				<div class="container-fluid">
 					<!-- Brand and toggle get grouped for better mobile display -->
@@ -51,7 +52,7 @@
 
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-						<ul class="nav navbar-nav">
+						<ul class="nav navbar-nav top-nav">
 							<li>
 								<a href="{% url 'home' %}" class="a-nav">ГЛАВНАЯ</a>
 							</li>
@@ -59,26 +60,27 @@
 								<a href="" class="a-nav">НОВЫЕ</a>
 							</li>
 							<li>
-								<a href="" class="a-nav">ПРЕИМУЩЕСТВА</a>
+								<a href="" class="a-nav">ОБЪЕКТЫ В ПЕРЕХОДАХ МЕТРО</a>
 							</li>
-							<li>
+							<!--<li>
 								<a href="{% url 'contact' %}" class="a-nav">ЗАЯВКА</a>
-							</li>
+							</li>-->
 						</ul>
-						<ul class="nav navbar-nav navbar-right">
-							<li class="li-tel">
-								<span class="span-tel">(495) 58-58-231</span>
-							</li>
-							<li>
-								<a href="#" class="a-nav-btn">Заказать обратный звонок</a>
-							</li>
-						</ul>
+
 					</div>
 					<!-- /.navbar-collapse -->
 				</div>
 				<!-- /.container-fluid -->
 			</nav>
 		</div>
+</div>
+<div class="title-site">
+    <h1>АРЕНДА ПОМЕЩЕНИЙ</h1>
+    <p>
+        у метро и в проходных местах
+    </p>
+</div>
+
 		<div class="main-site">
 			{% block search %}
 
@@ -90,14 +92,27 @@
 				{% block content %} {% endblock %}
 			</div>
 		</div>
-		<footer>
-			<div class="footer">
-				Все права защищены &copy; 2017. Омельченко Михаил
-			</div>
-		</footer>
-	</div>
 
+	</div>
+    <footer>
+        <div class="footer">
+        <a href="/"><img src="{% static 'images/logo.jpg' %}"></a>
+
+        <ul class="nav navbar-nav navbar-right nav-footer">
+            <li class="li-footer-day">
+                <span class="span-day">с 10.00 до 18.00 будни</span>
+            </li>
+            <li class="li-footer">
+                <span class="span-tel">(495) 58-58-231</span>
+            </li>
+            <li>
+                <a href="#" class="a-nav-btn">ЗАДАТЬ ВОПРОС</a>
+            </li>
+        </ul>
+        </div>
+    </footer>
 	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+
 </body>
 
 </html>
