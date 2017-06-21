@@ -1,8 +1,11 @@
+from simple_history.models import HistoricalRecords
+
 from django.db import models
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from django.conf import settings
+
 
 # Модель назначения
 class Naznach(models.Model):
@@ -90,12 +93,67 @@ class Client(models.Model):
     okrug = models.ManyToManyField(Okrug, blank=True, verbose_name="Округ")
     type_obj = models.CharField("Тип объекта", max_length=30,
                                 choices=TYPE_OBJ, default="undeg", blank=True)
+    history = HistoricalRecords(user_related_name="history_client")
+
+    def __str__(self):
+        return self.name
 
     def get_absolute_url(self):
         return reverse('my_client', kwargs={'pk': self.my_manager.id})
 
-    def __str__(self):
-        return self.name
+
+    @staticmethod
+    def _bootstrap(count=200, locale='ru'):
+        import random
+        boolean = [True, False]
+
+        from elizabeth import Generic
+        g = Generic(locale)
+
+        naznach = Naznach(options='Магазин')
+        naznach.save()
+
+        User = get_user_model()
+        for _ in range(10):
+            user = User.objects.create_user(
+                g.personal.username(), g.personal.email(), '123')
+            user.save()
+
+        users_list = User.objects.all()[:5]
+        for u in users_list:
+            for _ in range(count):
+                area_ot = g.numbers.floats(n=2, type_code='f', to_list=True)[0] * 100
+                area_do = area_ot + 100
+                client = Client(
+                    my_manager=u,
+                    name=g.personal.name(),
+                    tel=g.personal.telephone(),
+                    email=g.personal.email(),
+                    naznach_one=naznach,
+                    area_ot=area_ot,
+                    area_do=area_do,
+                    metro=random.choice(boolean),
+                    adres=random.choice(boolean),
+                    komisiya=random.choice(boolean),
+                    etaj=random.choice(boolean),
+                    podborka=random.choice(boolean)
+                )
+                client.save()
+
+    @staticmethod
+    def _change(locale='ru'):
+        from elizabeth import Generic
+        g = Generic(locale)
+
+        okrug = Okrug(options='Шевченковский район')
+        okrug.save()
+
+        clients_list = Client.objects.all()[:20]
+        for client in clients_list:
+            client.tel = g.personal.telephone()
+            client.okrug.add(okrug)
+            client.email = g.personal.email()
+            client.save()
 
 
 # Модель приоритетов

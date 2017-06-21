@@ -1,13 +1,17 @@
+from simple_history.models import HistoricalRecords
+
 from django.db import models
-from django.contrib.auth.models import User
-from myclient.models import Okrug, Naznach
 from django.core.urlresolvers import reverse
 from django.utils import timezone
 from django.contrib.auth import get_user_model
 from django.conf import settings
 
+from myclient.models import Okrug, Naznach
+
+
 def get_sentinel_user():
     return get_user_model().objects.get_or_create(username='deleted')[0]
+
 
 # Станции метро
 class StancMetro(models.Model):
@@ -22,6 +26,7 @@ class StancMetro(models.Model):
 
     def __str__(self):
         return self.name
+
 
 # Модель объектов
 class MyObject(models.Model):
@@ -70,6 +75,75 @@ class MyObject(models.Model):
     hide = models.CharField("Скрыт", max_length=30, choices=HIDE, default="0", blank=True)
     hide_date = models.DateField("Скрыть до", auto_now_add=False, blank=True, null=True)
     zvon = models.DateField("Скрыть до", default=timezone.now, blank=True)
+    history = HistoricalRecords(user_related_name="history_object")
+
+    def __str__(self):
+        return self.adres
 
     def get_absolute_url(self):
         return reverse('my_object')
+
+    @staticmethod
+    def _bootstrap(count=200, locale='ru'):
+        import random
+        boolean = [True, False]
+
+        from elizabeth import Generic
+        g = Generic(locale)
+
+        naznach = Naznach(options='Магазин')
+        naznach.save()
+
+        okrug = Okrug(options='Шевченковский район')
+        okrug.save()
+
+        st_metro = StancMetro(color="красная", name="Лебедская")
+        st_metro.save()
+
+        User = get_user_model()
+        users_list = User.objects.all()[:5]
+
+        for u in users_list:
+            for _ in range(count):
+                block_area = g.numbers.floats(
+                    n=2, type_code='f', to_list=True)[0] * 100
+                block_price = g.numbers.floats(
+                    n=2, type_code='f', to_list=True)[0] * 1000
+
+                client = MyObject(
+                    my_manager=u,
+                    adres=g.address.address(),
+                    area=120,
+                    block_area=block_area,
+                    block_price=block_price,
+                    etaj=3,
+                    price=2000,
+                    opis=g.text.text(quantity=5),
+                    station_one=st_metro,
+                    dom=random.choice(boolean),
+                    kvt="None",
+                    dogovor="Dogovor",
+                    block_name=random.choice(boolean),
+                    block_tel=g.personal.telephone(),
+                    block_email=g.personal.email(),
+                    silka='http://silca.com',
+                    zametka=g.text.text(quantity=7),
+                )
+                client.save()
+                client.naznach.add(naznach)
+                client.okrug.add(okrug)
+
+    @staticmethod
+    def _change(locale='ru'):
+        from elizabeth import Generic
+        g = Generic(locale)
+
+        okrug = Okrug(options='Орджонекидзовский район')
+        okrug.save()
+
+        objects_list = MyObject.objects.all()[:20]
+        for object in objects_list:
+            object.okrug.add(okrug)
+            object.block_tel = g.personal.telephone()
+            object.block_email = g.personal.email()
+            object.save()
