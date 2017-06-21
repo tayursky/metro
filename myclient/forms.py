@@ -90,4 +90,5 @@ class ManagersForm(forms.Form):
     def __init__(self, *args, **kwargs):
         exclude_args = kwargs.pop('exclude', {})
         super(ManagersForm, self).__init__(*args, **kwargs)
-        self.fields['managers'].queryset = User.objects.exclude(**exclude_args)
+        self.fields['managers'].queryset = User.objects\
+            .filter(is_active=True).exclude(id__in=exclude_args)
