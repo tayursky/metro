@@ -12,10 +12,11 @@ from django.utils.text import capfirst
 from django.utils.translation import ugettext as _
 from django.utils.encoding import force_text
 from django.utils.html import format_html
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 from django.conf.urls import url
+from django.urls import reverse
 
-from .models import Naznach, Okrug, Prioritet, Client
+from .models import Naznach, Okrug, Prioritet, Client, TaskClient
 from myobject.models import MyObject
 from .forms import ManagersForm
 
@@ -65,6 +66,8 @@ class UserAdmin(UserAdmin):
                       'admin/delete_users.html',
                       {'managers': queryset.filter(is_active=True),
                        'form': form})
+
+    delete_managers_action.short_description = 'Удалить выбранных менеджеров'
 
 
     def delete_view(self, request, object_id, extra_context=None):
@@ -146,10 +149,39 @@ class UserAdmin(UserAdmin):
         return render(request, "admin/history_list.html", context)
 
 
+
+class PrioritetAdmin(admin.ModelAdmin):
+
+    def get_actions(self, request):
+        actions = super(UserAdmin, self).get_actions(request)
+        del actions['delete_selected']
+        return actions
+
+    def delete_view(self, request, object_id, extra_context=None):
+        obj = Prioritet.objects.get(pk=object_id)
+
+        max_prio = Prioritet.objects.all()\
+            .order_by('num')\
+            .exclude(pk=get_obj.id)\
+            .last()
+
+        post_url = reverse('admin:myclient_prioritet_changelist')
+
+        if request.POST:
+            obj.taskclient_set.update(prioritet=max_prio.id)
+            obj.delete()
+
+            return HttpResponseRedirect(post_url)
+        else:
+            return super(PrioritetAdmin, self).\
+                delete_view(request, object_id, extra_context=extra_context)
+
+
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
 
 admin.site.register(Client, SimpleHistoryAdmin)
-admin.site.register(Prioritet)
+admin.site.register(Prioritet, PrioritetAdmin)
 admin.site.register(Naznach)
 admin.site.register(Okrug)
+admin.site.register(TaskClient)
