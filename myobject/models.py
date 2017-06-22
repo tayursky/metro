@@ -13,8 +13,8 @@ def get_sentinel_user():
     return get_user_model().objects.get_or_create(username='deleted')[0]
 
 
-# Станции метро
 class StancMetro(models.Model):
+    '''Станции метро'''
     class Meta():
         db_table = "metro"
         verbose_name = "Стация метро"
@@ -28,8 +28,8 @@ class StancMetro(models.Model):
         return self.name
 
 
-# Модель объектов
 class MyObject(models.Model):
+    '''Модель объектов'''
     class Meta:
         db_table = "object"
         verbose_name = "Объект"
@@ -49,21 +49,24 @@ class MyObject(models.Model):
     )
 
     my_manager = models.ForeignKey(settings.AUTH_USER_MODEL,
-        on_delete=models.SET(get_sentinel_user),)
-    typeobj = models.CharField("Тип объекта", max_length=30, choices=TYPE_OBJ, default="0")
+                                   on_delete=models.SET(get_sentinel_user))
+    typeobj = models.CharField("Тип объекта", max_length=30,
+                               choices=TYPE_OBJ, default="0")
     okrug = models.ManyToManyField(Okrug, blank=True, verbose_name="Округ")
     adres = models.CharField("Адрес", max_length=100, blank=True)
     naznach = models.ManyToManyField(Naznach, verbose_name="Назначение")
     area = models.IntegerField("Площадь", default=0)
     block_area = models.FloatField("Метраж", default=0, blank=True)
     block_price = models.FloatField("Цена", default=0, blank=True)
-    block_procent = models.FloatField("Процент комиссии", default=0, blank=True)
+    block_procent = models.FloatField("Процент комиссии",
+                                      default=0, blank=True)
     etaj = models.IntegerField("Этаж", default=0, blank=True)
     price = models.IntegerField("Цена", default=0)
     opis = models.TextField("Описание", max_length=1000, blank=True)
     station_one = models.ForeignKey(
         StancMetro, related_name='station_one', verbose_name="Станция сетро")
-    station_two = models.ForeignKey(StancMetro, blank=True, null=True, verbose_name="Станция метро доп.")
+    station_two = models.ForeignKey(StancMetro, blank=True, null=True,
+                                    verbose_name="Станция метро доп.")
     dom = models.BooleanField("Дом", default=False, blank=True)
     kvt = models.CharField("КВт", max_length=50, blank=True)
     dogovor = models.CharField("Тип договора", max_length=50, blank=True)
@@ -72,8 +75,10 @@ class MyObject(models.Model):
     block_email = models.EmailField("Email", max_length=30, blank=True)
     silka = models.CharField("Ссылка на сайт", max_length=200, blank=True)
     zametka = models.TextField("Заметка", max_length=1000, blank=True)
-    hide = models.CharField("Скрыт", max_length=30, choices=HIDE, default="0", blank=True)
-    hide_date = models.DateField("Скрыть до", auto_now_add=False, blank=True, null=True)
+    hide = models.CharField("Скрыт", max_length=30, choices=HIDE,
+                            default="0", blank=True)
+    hide_date = models.DateField("Скрыть до", auto_now_add=False,
+                                 blank=True, null=True)
     zvon = models.DateField("Скрыть до", default=timezone.now, blank=True)
     history = HistoricalRecords(user_related_name="history_object")
 

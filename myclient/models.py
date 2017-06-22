@@ -142,7 +142,7 @@ class TaskClient(models.Model):
     )'''
     manager = models.ForeignKey(User, on_delete=models.CASCADE)
     client = models.ForeignKey(Client, verbose_name="Клиент")# related_name='client',
-    prioritet = models.ForeignKey(Prioritet, on_delete=models.SET(get_prio), verbose_name="Приоритет")
+    prioritet = models.ForeignKey(Prioritet, verbose_name="Приоритет")
     date = models.DateField("Дата", auto_now_add=False)
     task = models.TextField("Задача")
     end = models.BooleanField("Выполнено", default=False)
