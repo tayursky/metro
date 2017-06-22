@@ -152,6 +152,7 @@ class UserAdmin(UserAdmin):
 
 class PrioritetAdmin(admin.ModelAdmin):
 
+<<<<<<< HEAD
     def get_actions(self, request):
         actions = super(UserAdmin, self).get_actions(request)
         del actions['delete_selected']
@@ -168,9 +169,8 @@ class PrioritetAdmin(admin.ModelAdmin):
         post_url = reverse('admin:myclient_prioritet_changelist')
 
         if request.POST:
-            obj.taskclient_set.update(prioritet=max_prio.id)
+            obj.taskclient_set.update(prioritet=get_obj.id)
             obj.delete()
-
             return HttpResponseRedirect(post_url)
         else:
             return super(PrioritetAdmin, self).\
