@@ -3,6 +3,6 @@ db.sqlite3
 .DS_Store
 settings.py
 local_settings.py
-
+migrations/
 __pycache__/
 *.py[cod]
