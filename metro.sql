@@ -69,7 +69,7 @@ CREATE TABLE `auth_group_permissions` (
 	`group_id` Int( 11 ) NOT NULL,
 	`permission_id` Int( 11 ) NOT NULL,
 	PRIMARY KEY ( `id` ),
-	CONSTRAINT `auth_group_permissions_group_id_0cd325b0_uniq` UNIQUE( `group_id`, `permission_id` ) )
+	CONSTRAINT `auth_group_permissions_group_id_permission_id_0cd325b0_uniq` UNIQUE( `group_id`, `permission_id` ) )
 CHARACTER SET = utf8
 COLLATE = utf8_general_ci
 ENGINE = InnoDB
@@ -114,7 +114,7 @@ CREATE TABLE `auth_user` (
 CHARACTER SET = utf8
 COLLATE = utf8_general_ci
 ENGINE = InnoDB
-AUTO_INCREMENT = 5;
+AUTO_INCREMENT = 2;
 -- -------------------------------------------------------------
 -- ---------------------------------------------------------
 
@@ -126,7 +126,7 @@ CREATE TABLE `auth_user_groups` (
 	`user_id` Int( 11 ) NOT NULL,
 	`group_id` Int( 11 ) NOT NULL,
 	PRIMARY KEY ( `id` ),
-	CONSTRAINT `auth_user_groups_user_id_94350c0c_uniq` UNIQUE( `user_id`, `group_id` ) )
+	CONSTRAINT `auth_user_groups_user_id_group_id_94350c0c_uniq` UNIQUE( `user_id`, `group_id` ) )
 CHARACTER SET = utf8
 COLLATE = utf8_general_ci
 ENGINE = InnoDB
@@ -142,11 +142,11 @@ CREATE TABLE `auth_user_user_permissions` (
 	`user_id` Int( 11 ) NOT NULL,
 	`permission_id` Int( 11 ) NOT NULL,
 	PRIMARY KEY ( `id` ),
-	CONSTRAINT `auth_user_user_permissions_user_id_14a6b632_uniq` UNIQUE( `user_id`, `permission_id` ) )
+	CONSTRAINT `auth_user_user_permissions_user_id_permission_id_14a6b632_uniq` UNIQUE( `user_id`, `permission_id` ) )
 CHARACTER SET = utf8
 COLLATE = utf8_general_ci
 ENGINE = InnoDB
-AUTO_INCREMENT = 103;
+AUTO_INCREMENT = 1;
 -- -------------------------------------------------------------
 -- ---------------------------------------------------------
 
@@ -179,7 +179,7 @@ CREATE TABLE `cian` (
 CHARACTER SET = utf8
 COLLATE = utf8_general_ci
 ENGINE = InnoDB
-AUTO_INCREMENT = 2;
+AUTO_INCREMENT = 1;
 -- -------------------------------------------------------------
 -- ---------------------------------------------------------
 
@@ -211,7 +211,7 @@ CREATE TABLE `client` (
 CHARACTER SET = utf8
 COLLATE = utf8_general_ci
 ENGINE = InnoDB
-AUTO_INCREMENT = 5;
+AUTO_INCREMENT = 1;
 -- -------------------------------------------------------------
 -- ---------------------------------------------------------
 
@@ -223,11 +223,11 @@ CREATE TABLE `client_okrug` (
 	`client_id` Int( 11 ) NOT NULL,
 	`okrug_id` Int( 11 ) NOT NULL,
 	PRIMARY KEY ( `id` ),
-	CONSTRAINT `client_okrug_client_id_1fb4d33b_uniq` UNIQUE( `client_id`, `okrug_id` ) )
+	CONSTRAINT `client_okrug_client_id_okrug_id_1fb4d33b_uniq` UNIQUE( `client_id`, `okrug_id` ) )
 CHARACTER SET = utf8
 COLLATE = utf8_general_ci
 ENGINE = InnoDB
-AUTO_INCREMENT = 5;
+AUTO_INCREMENT = 1;
 -- -------------------------------------------------------------
 -- ---------------------------------------------------------
 
@@ -265,7 +265,7 @@ CREATE TABLE `django_admin_log` (
 CHARACTER SET = utf8
 COLLATE = utf8_general_ci
 ENGINE = InnoDB
-AUTO_INCREMENT = 45;
+AUTO_INCREMENT = 7;
 -- -------------------------------------------------------------
 -- ---------------------------------------------------------
 
@@ -297,7 +297,7 @@ CREATE TABLE `django_migrations` (
 CHARACTER SET = utf8
 COLLATE = utf8_general_ci
 ENGINE = InnoDB
-AUTO_INCREMENT = 31;
+AUTO_INCREMENT = 24;
 -- -------------------------------------------------------------
 -- ---------------------------------------------------------
 
@@ -348,7 +348,7 @@ CREATE TABLE `manager_options` (
 CHARACTER SET = utf8
 COLLATE = utf8_general_ci
 ENGINE = InnoDB
-AUTO_INCREMENT = 5;
+AUTO_INCREMENT = 2;
 -- -------------------------------------------------------------
 -- ---------------------------------------------------------
 
@@ -363,7 +363,7 @@ CREATE TABLE `metro` (
 CHARACTER SET = utf8
 COLLATE = utf8_general_ci
 ENGINE = InnoDB
-AUTO_INCREMENT = 2;
+AUTO_INCREMENT = 1;
 -- -------------------------------------------------------------
 -- ---------------------------------------------------------
 
@@ -375,11 +375,11 @@ CREATE TABLE `metro_okrug` (
 	`stancmetro_id` Int( 11 ) NOT NULL,
 	`okrug_id` Int( 11 ) NOT NULL,
 	PRIMARY KEY ( `id` ),
-	CONSTRAINT `metro_okrug_stancmetro_id_19f018d2_uniq` UNIQUE( `stancmetro_id`, `okrug_id` ) )
+	CONSTRAINT `metro_okrug_stancmetro_id_okrug_id_19f018d2_uniq` UNIQUE( `stancmetro_id`, `okrug_id` ) )
 CHARACTER SET = utf8
 COLLATE = utf8_general_ci
 ENGINE = InnoDB
-AUTO_INCREMENT = 2;
+AUTO_INCREMENT = 1;
 -- -------------------------------------------------------------
 -- ---------------------------------------------------------
 
@@ -416,7 +416,7 @@ CREATE TABLE `myclient_historicalclient` (
 CHARACTER SET = utf8
 COLLATE = utf8_general_ci
 ENGINE = InnoDB
-AUTO_INCREMENT = 2;
+AUTO_INCREMENT = 1;
 -- -------------------------------------------------------------
 -- ---------------------------------------------------------
 
@@ -457,7 +457,7 @@ CREATE TABLE `myobject_historicalmyobject` (
 CHARACTER SET = utf8
 COLLATE = utf8_general_ci
 ENGINE = InnoDB
-AUTO_INCREMENT = 5;
+AUTO_INCREMENT = 1;
 -- -------------------------------------------------------------
 -- ---------------------------------------------------------
 
@@ -472,7 +472,7 @@ CREATE TABLE `naznach` (
 CHARACTER SET = utf8
 COLLATE = utf8_general_ci
 ENGINE = InnoDB
-AUTO_INCREMENT = 25;
+AUTO_INCREMENT = 1;
 -- -------------------------------------------------------------
 -- ---------------------------------------------------------
 
@@ -508,7 +508,7 @@ CREATE TABLE `object` (
 CHARACTER SET = utf8
 COLLATE = utf8_general_ci
 ENGINE = InnoDB
-AUTO_INCREMENT = 3;
+AUTO_INCREMENT = 1;
 -- -------------------------------------------------------------
 -- ---------------------------------------------------------
 
@@ -520,11 +520,11 @@ CREATE TABLE `object_naznach` (
 	`myobject_id` Int( 11 ) NOT NULL,
 	`naznach_id` Int( 11 ) NOT NULL,
 	PRIMARY KEY ( `id` ),
-	CONSTRAINT `object_naznach_myobject_id_8d65e6bb_uniq` UNIQUE( `myobject_id`, `naznach_id` ) )
+	CONSTRAINT `object_naznach_myobject_id_naznach_id_8d65e6bb_uniq` UNIQUE( `myobject_id`, `naznach_id` ) )
 CHARACTER SET = utf8
 COLLATE = utf8_general_ci
 ENGINE = InnoDB
-AUTO_INCREMENT = 3;
+AUTO_INCREMENT = 1;
 -- -------------------------------------------------------------
 -- ---------------------------------------------------------
 
@@ -536,11 +536,11 @@ CREATE TABLE `object_okrug` (
 	`myobject_id` Int( 11 ) NOT NULL,
 	`okrug_id` Int( 11 ) NOT NULL,
 	PRIMARY KEY ( `id` ),
-	CONSTRAINT `object_okrug_myobject_id_5e901da1_uniq` UNIQUE( `myobject_id`, `okrug_id` ) )
+	CONSTRAINT `object_okrug_myobject_id_okrug_id_5e901da1_uniq` UNIQUE( `myobject_id`, `okrug_id` ) )
 CHARACTER SET = utf8
 COLLATE = utf8_general_ci
 ENGINE = InnoDB
-AUTO_INCREMENT = 2;
+AUTO_INCREMENT = 1;
 -- -------------------------------------------------------------
 -- ---------------------------------------------------------
 
@@ -585,7 +585,7 @@ CREATE TABLE `seo` (
 CHARACTER SET = utf8
 COLLATE = utf8_general_ci
 ENGINE = InnoDB
-AUTO_INCREMENT = 2;
+AUTO_INCREMENT = 1;
 -- -------------------------------------------------------------
 -- ---------------------------------------------------------
 
@@ -594,11 +594,12 @@ AUTO_INCREMENT = 2;
 -- CREATE TABLE "task_client" ----------------------------------
 CREATE TABLE `task_client` ( 
 	`id` Int( 11 ) AUTO_INCREMENT NOT NULL,
-	`prioritet` VarChar( 30 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
 	`date` Date NOT NULL,
 	`task` LongText CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+	`end` TinyInt( 1 ) NOT NULL,
 	`client_id` Int( 11 ) NOT NULL,
 	`manager_id` Int( 11 ) NOT NULL,
+	`prioritet_id` Int( 11 ) NOT NULL,
 	PRIMARY KEY ( `id` ) )
 CHARACTER SET = utf8
 COLLATE = utf8_general_ci
@@ -628,15 +629,15 @@ AUTO_INCREMENT = 1;
 INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '1', 'Can add log entry', '1', 'add_logentry' );
 INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '2', 'Can change log entry', '1', 'change_logentry' );
 INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '3', 'Can delete log entry', '1', 'delete_logentry' );
-INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '4', 'Can add user', '2', 'add_user' );
-INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '5', 'Can change user', '2', 'change_user' );
-INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '6', 'Can delete user', '2', 'delete_user' );
+INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '4', 'Can add group', '2', 'add_group' );
+INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '5', 'Can change group', '2', 'change_group' );
+INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '6', 'Can delete group', '2', 'delete_group' );
 INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '7', 'Can add permission', '3', 'add_permission' );
 INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '8', 'Can change permission', '3', 'change_permission' );
 INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '9', 'Can delete permission', '3', 'delete_permission' );
-INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '10', 'Can add group', '4', 'add_group' );
-INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '11', 'Can change group', '4', 'change_group' );
-INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '12', 'Can delete group', '4', 'delete_group' );
+INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '10', 'Can add user', '4', 'add_user' );
+INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '11', 'Can change user', '4', 'change_user' );
+INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '12', 'Can delete user', '4', 'delete_user' );
 INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '13', 'Can add content type', '5', 'add_contenttype' );
 INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '14', 'Can change content type', '5', 'change_contenttype' );
 INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '15', 'Can delete content type', '5', 'delete_contenttype' );
@@ -652,42 +653,42 @@ INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES (
 INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '25', 'Can add email address', '9', 'add_emailaddress' );
 INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '26', 'Can change email address', '9', 'change_emailaddress' );
 INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '27', 'Can delete email address', '9', 'delete_emailaddress' );
-INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '28', 'Can add Приоритет', '10', 'add_prioritet' );
-INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '29', 'Can change Приоритет', '10', 'change_prioritet' );
-INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '30', 'Can delete Приоритет', '10', 'delete_prioritet' );
-INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '31', 'Can add Назначение', '11', 'add_naznach' );
-INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '32', 'Can change Назначение', '11', 'change_naznach' );
-INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '33', 'Can delete Назначение', '11', 'delete_naznach' );
-INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '34', 'Can add Клиент', '12', 'add_client' );
-INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '35', 'Can change Клиент', '12', 'change_client' );
-INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '36', 'Can delete Клиент', '12', 'delete_client' );
-INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '37', 'Can add Округ', '13', 'add_okrug' );
-INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '38', 'Can change Округ', '13', 'change_okrug' );
-INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '39', 'Can delete Округ', '13', 'delete_okrug' );
+INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '28', 'Can add Округ', '10', 'add_okrug' );
+INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '29', 'Can change Округ', '10', 'change_okrug' );
+INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '30', 'Can delete Округ', '10', 'delete_okrug' );
+INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '31', 'Can add Клиент', '11', 'add_client' );
+INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '32', 'Can change Клиент', '11', 'change_client' );
+INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '33', 'Can delete Клиент', '11', 'delete_client' );
+INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '34', 'Can add Назначение', '12', 'add_naznach' );
+INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '35', 'Can change Назначение', '12', 'change_naznach' );
+INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '36', 'Can delete Назначение', '12', 'delete_naznach' );
+INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '37', 'Can add Задача клиента', '13', 'add_taskclient' );
+INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '38', 'Can change Задача клиента', '13', 'change_taskclient' );
+INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '39', 'Can delete Задача клиента', '13', 'delete_taskclient' );
 INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '40', 'Can add historical Клиент', '14', 'add_historicalclient' );
 INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '41', 'Can change historical Клиент', '14', 'change_historicalclient' );
 INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '42', 'Can delete historical Клиент', '14', 'delete_historicalclient' );
-INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '43', 'Can add Задача клиента', '15', 'add_taskclient' );
-INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '44', 'Can change Задача клиента', '15', 'change_taskclient' );
-INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '45', 'Can delete Задача клиента', '15', 'delete_taskclient' );
-INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '46', 'Can add historical Объект', '16', 'add_historicalmyobject' );
-INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '47', 'Can change historical Объект', '16', 'change_historicalmyobject' );
-INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '48', 'Can delete historical Объект', '16', 'delete_historicalmyobject' );
+INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '43', 'Can add Приоритет', '15', 'add_prioritet' );
+INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '44', 'Can change Приоритет', '15', 'change_prioritet' );
+INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '45', 'Can delete Приоритет', '15', 'delete_prioritet' );
+INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '46', 'Can add Стация метро', '16', 'add_stancmetro' );
+INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '47', 'Can change Стация метро', '16', 'change_stancmetro' );
+INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '48', 'Can delete Стация метро', '16', 'delete_stancmetro' );
 INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '49', 'Can add Объект', '17', 'add_myobject' );
 INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '50', 'Can change Объект', '17', 'change_myobject' );
 INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '51', 'Can delete Объект', '17', 'delete_myobject' );
-INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '52', 'Can add Стация метро', '18', 'add_stancmetro' );
-INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '53', 'Can change Стация метро', '18', 'change_stancmetro' );
-INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '54', 'Can delete Стация метро', '18', 'delete_stancmetro' );
-INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '55', 'Can add Настройки циан', '19', 'add_cian' );
-INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '56', 'Can change Настройки циан', '19', 'change_cian' );
-INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '57', 'Can delete Настройки циан', '19', 'delete_cian' );
-INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '58', 'Can add Настрока сайта\\SEO', '20', 'add_seo' );
-INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '59', 'Can change Настрока сайта\\SEO', '20', 'change_seo' );
-INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '60', 'Can delete Настрока сайта\\SEO', '20', 'delete_seo' );
-INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '61', 'Can add Настроки прав', '21', 'add_menageroptions' );
-INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '62', 'Can change Настроки прав', '21', 'change_menageroptions' );
-INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '63', 'Can delete Настроки прав', '21', 'delete_menageroptions' );
+INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '52', 'Can add historical Объект', '18', 'add_historicalmyobject' );
+INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '53', 'Can change historical Объект', '18', 'change_historicalmyobject' );
+INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '54', 'Can delete historical Объект', '18', 'delete_historicalmyobject' );
+INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '55', 'Can add Настрока сайта\\SEO', '19', 'add_seo' );
+INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '56', 'Can change Настрока сайта\\SEO', '19', 'change_seo' );
+INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '57', 'Can delete Настрока сайта\\SEO', '19', 'delete_seo' );
+INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '58', 'Can add Настроки прав', '20', 'add_menageroptions' );
+INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '59', 'Can change Настроки прав', '20', 'change_menageroptions' );
+INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '60', 'Can delete Настроки прав', '20', 'delete_menageroptions' );
+INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '61', 'Can add Настройки циан', '21', 'add_cian' );
+INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '62', 'Can change Настройки циан', '21', 'change_cian' );
+INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '63', 'Can delete Настройки циан', '21', 'delete_cian' );
 INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '64', 'Can add Обратная связь', '22', 'add_contact' );
 INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '65', 'Can change Обратная связь', '22', 'change_contact' );
 INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES ( '66', 'Can delete Обратная связь', '22', 'delete_contact' );
@@ -698,8 +699,7 @@ INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES (
 
 
 -- Dump data of "auth_user" --------------------------------
-INSERT INTO `auth_user`(`id`,`password`,`last_login`,`is_superuser`,`username`,`first_name`,`last_name`,`email`,`is_staff`,`is_active`,`date_joined`) VALUES ( '1', 'pbkdf2_sha256$36000$iGF3wrRR0Y6Y$7gGeAvkaQisWPzOoJcrIEl0I0fiesaqTgNpwtyvvYMw=', '2017-06-21 21:09:27.536169', '1', 'DJWOMS', '', '', 'sd@mail.ru', '1', '1', '2017-06-21 20:52:27.446832' );
-INSERT INTO `auth_user`(`id`,`password`,`last_login`,`is_superuser`,`username`,`first_name`,`last_name`,`email`,`is_staff`,`is_active`,`date_joined`) VALUES ( '4', 'pbkdf2_sha256$36000$RVnWl8wURuFx$0IByOll47bYmx5+UypCg5b2kbiOOIe+//rc4VqRdwGE=', '2017-06-21 21:08:43.473287', '0', 'test', '', '', '', '0', '0', '2017-06-21 21:08:28.016803' );
+INSERT INTO `auth_user`(`id`,`password`,`last_login`,`is_superuser`,`username`,`first_name`,`last_name`,`email`,`is_staff`,`is_active`,`date_joined`) VALUES ( '1', 'pbkdf2_sha256$36000$nB8s4T9SRYER$iuNJ0JkYBeXDjQLafbhFEAUlybxGTBLPUSvVmIMiM9M=', '2017-06-22 09:51:44.914464', '1', 'DJWOMS', '', '', 'socanime@gmail.com', '1', '1', '2017-06-22 09:51:28.029187' );
 -- ---------------------------------------------------------
 
 
@@ -708,102 +708,6 @@ INSERT INTO `auth_user`(`id`,`password`,`last_login`,`is_superuser`,`username`,`
 
 
 -- Dump data of "auth_user_user_permissions" ---------------
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '1', '2', '1' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '2', '2', '2' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '3', '2', '3' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '4', '2', '4' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '5', '2', '5' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '6', '2', '6' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '7', '2', '7' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '8', '2', '8' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '9', '2', '9' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '10', '2', '10' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '11', '2', '11' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '12', '2', '12' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '13', '2', '13' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '14', '2', '14' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '15', '2', '15' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '16', '2', '16' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '17', '2', '17' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '18', '2', '18' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '25', '2', '25' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '26', '2', '26' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '27', '2', '27' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '28', '2', '28' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '29', '2', '29' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '30', '2', '30' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '31', '2', '31' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '32', '2', '32' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '33', '2', '33' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '34', '2', '34' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '35', '2', '35' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '36', '2', '36' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '37', '2', '37' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '38', '2', '38' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '39', '2', '39' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '40', '2', '40' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '41', '2', '41' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '42', '2', '42' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '43', '2', '43' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '44', '2', '44' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '45', '2', '45' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '46', '2', '46' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '47', '2', '47' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '48', '2', '48' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '49', '2', '49' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '50', '2', '50' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '51', '2', '51' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '52', '2', '52' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '53', '2', '53' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '54', '2', '54' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '55', '3', '1' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '56', '3', '2' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '57', '3', '3' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '58', '3', '4' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '59', '3', '5' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '60', '3', '6' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '61', '3', '7' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '62', '3', '8' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '63', '3', '9' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '64', '3', '10' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '65', '3', '11' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '66', '3', '12' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '67', '3', '13' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '68', '3', '14' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '69', '3', '15' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '70', '3', '16' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '71', '3', '17' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '72', '3', '18' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '73', '3', '25' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '74', '3', '26' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '75', '3', '27' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '76', '3', '28' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '77', '3', '29' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '78', '3', '30' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '79', '3', '31' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '80', '3', '32' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '81', '3', '33' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '82', '3', '34' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '83', '3', '35' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '84', '3', '36' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '85', '3', '37' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '86', '3', '38' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '87', '3', '39' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '88', '3', '40' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '89', '3', '41' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '90', '3', '42' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '91', '3', '43' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '92', '3', '44' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '93', '3', '45' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '94', '3', '46' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '95', '3', '47' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '96', '3', '48' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '97', '3', '49' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '98', '3', '50' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '99', '3', '51' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '100', '3', '52' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '101', '3', '53' );
-INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES ( '102', '3', '54' );
 -- ---------------------------------------------------------
 
 
@@ -812,20 +716,17 @@ INSERT INTO `auth_user_user_permissions`(`id`,`user_id`,`permission_id`) VALUES 
 
 
 -- Dump data of "cian" -------------------------------------
-INSERT INTO `cian`(`id`,`login`,`password`,`tel`) VALUES ( '1', '72364', '785585260', '4955858231' );
 -- ---------------------------------------------------------
 
 
 -- Dump data of "client" -----------------------------------
-INSERT INTO `client`(`id`,`name`,`tel`,`email`,`hide`,`hide_date`,`area_ot`,`area_do`,`price_obsh`,`price_m`,`dop_kont`,`metro`,`adres`,`komisiya`,`etaj`,`podborka`,`type_obj`,`my_manager_id`,`naznach_one_id`,`naznach_two_id`) VALUES ( '4', 'Миша', '+380957506112', 'l2maximum@mail.ru', '0', NULL, '0', '0', '0', '0', '', '0', '0', '1', '0', '0', 'tc', '1', '18', NULL );
+INSERT INTO `client`(`id`,`name`,`tel`,`email`,`hide`,`hide_date`,`area_ot`,`area_do`,`price_obsh`,`price_m`,`dop_kont`,`metro`,`adres`,`komisiya`,`etaj`,`podborka`,`type_obj`,`my_manager_id`,`naznach_one_id`,`naznach_two_id`) VALUES ( '1', 'Михаил Омельчекно', '+380957506112', 'socanime@gmail.com', '', NULL, '0', '0', '0', '0', 'вавапав', '0', '0', '0', '1', '0', 'undeg', '1', '1', '1' );
 -- ---------------------------------------------------------
 
 
 -- Dump data of "client_okrug" -----------------------------
-INSERT INTO `client_okrug`(`id`,`client_id`,`okrug_id`) VALUES ( '1', '2', '3' );
-INSERT INTO `client_okrug`(`id`,`client_id`,`okrug_id`) VALUES ( '2', '2', '5' );
-INSERT INTO `client_okrug`(`id`,`client_id`,`okrug_id`) VALUES ( '3', '3', '3' );
-INSERT INTO `client_okrug`(`id`,`client_id`,`okrug_id`) VALUES ( '4', '3', '5' );
+INSERT INTO `client_okrug`(`id`,`client_id`,`okrug_id`) VALUES ( '1', '1', '4' );
+INSERT INTO `client_okrug`(`id`,`client_id`,`okrug_id`) VALUES ( '2', '1', '6' );
 -- ---------------------------------------------------------
 
 
@@ -834,50 +735,43 @@ INSERT INTO `client_okrug`(`id`,`client_id`,`okrug_id`) VALUES ( '4', '3', '5' )
 
 
 -- Dump data of "django_admin_log" -------------------------
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '1', '2017-05-05 02:14:50.986748', '2', 'admin', '1', '[{"added": {}}]', '3', '1' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '2', '2017-05-05 02:15:11.865925', '2', 'admin', '2', '[{"changed": {"fields": ["is_staff"]}}]', '3', '1' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '3', '2017-05-05 02:16:13.011400', '1', 'Юг', '1', '[{"added": {}}]', '11', '1' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '4', '2017-05-05 02:16:17.155639', '2', 'Север', '1', '[{"added": {}}]', '11', '1' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '5', '2017-05-05 02:16:21.239904', '3', 'Запад', '1', '[{"added": {}}]', '11', '1' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '6', '2017-05-05 02:16:25.515896', '4', 'Восток', '1', '[{"added": {}}]', '11', '1' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '7', '2017-05-05 02:16:30.042932', '5', 'Центер', '1', '[{"added": {}}]', '11', '1' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '8', '2017-05-05 02:16:47.345368', '6', 'Область', '1', '[{"added": {}}]', '11', '1' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '9', '2017-05-05 02:17:13.824740', '1', 'Колбаса', '1', '[{"added": {}}]', '10', '1' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '10', '2017-05-05 02:17:44.529933', '2', 'Молоко', '1', '[{"added": {}}]', '10', '1' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '11', '2017-05-05 02:17:50.677548', '3', 'Табак', '1', '[{"added": {}}]', '10', '1' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '12', '2017-05-05 02:18:00.718106', '4', 'Кондитерка', '1', '[{"added": {}}]', '10', '1' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '13', '2017-05-05 02:18:06.368174', '5', 'Мясо', '1', '[{"added": {}}]', '10', '1' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '14', '2017-05-05 02:18:18.254843', '6', 'Фрукты\\Овощи', '1', '[{"added": {}}]', '10', '1' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '15', '2017-05-05 02:18:28.001067', '7', 'Кулинария', '1', '[{"added": {}}]', '10', '1' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '16', '2017-05-05 02:18:39.106332', '8', 'Пиво\\Алкоголь', '1', '[{"added": {}}]', '10', '1' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '17', '2017-05-05 02:18:43.037032', '9', 'Хлеб', '1', '[{"added": {}}]', '10', '1' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '18', '2017-05-05 02:18:55.753575', '10', 'Магазин продуктов', '1', '[{"added": {}}]', '10', '1' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '19', '2017-05-05 02:19:04.679910', '11', 'Рыба\\Икра', '1', '[{"added": {}}]', '10', '1' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '20', '2017-05-05 02:19:12.526380', '12', 'Чай и другое', '1', '[{"added": {}}]', '10', '1' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '21', '2017-05-05 02:19:24.333682', '13', 'Выпечка и подобное', '1', '[{"added": {}}]', '10', '1' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '22', '2017-05-05 02:19:35.210730', '14', 'Кофе с собой', '1', '[{"added": {}}]', '10', '1' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '23', '2017-05-05 02:19:51.640549', '15', 'Рестораны и другое', '1', '[{"added": {}}]', '10', '1' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '24', '2017-05-05 02:20:14.342547', '16', 'Шаурма\\Тандыр', '1', '[{"added": {}}]', '10', '1' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '25', '2017-05-05 02:20:32.380205', '17', 'Аптека\\Оптика', '1', '[{"added": {}}]', '10', '1' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '26', '2017-05-05 02:21:25.937641', '18', 'Офис\\Мед. Услуги\\Салон кр.', '1', '[{"added": {}}]', '10', '1' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '27', '2017-05-05 02:21:34.466809', '19', 'Промтовары', '1', '[{"added": {}}]', '10', '1' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '28', '2017-05-05 02:21:57.774699', '20', 'Ломбард\\Банк. Услуги', '1', '[{"added": {}}]', '10', '1' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '29', '2017-05-05 02:22:11.872109', '21', 'Ремонт\\Быт. Услуги', '1', '[{"added": {}}]', '10', '1' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '30', '2017-05-05 02:22:24.141828', '22', 'Одежда\\Обувь', '1', '[{"added": {}}]', '10', '1' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '31', '2017-05-05 02:22:30.891400', '23', 'Цветы', '1', '[{"added": {}}]', '10', '1' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '32', '2017-05-05 02:22:41.506610', '24', 'Другое', '1', '[{"added": {}}]', '10', '1' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '33', '2017-05-11 21:56:53.198440', '1', 'admin', '1', '[{"added": {}}]', '16', '1' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '34', '2017-05-11 21:57:27.167977', '1', 'SEO настройки Аренда у метро, аренда торговых площадей, аренда под магазин, аренда в метро, аренда отдела', '1', '[{"added": {}}]', '17', '1' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '35', '2017-05-11 21:58:08.779978', '1', '72364', '1', '[{"added": {}}]', '18', '1' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '36', '2017-05-11 21:59:39.110006', '2', 'admin', '2', '[]', '3', '1' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '37', '2017-05-11 22:03:18.386794', '3', 'superadmin', '1', '[{"added": {}}]', '3', '1' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '38', '2017-05-11 22:04:12.306640', '3', 'superadmin', '2', '[{"changed": {"fields": ["is_staff"]}}]', '3', '1' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '39', '2017-05-11 22:04:35.415132', '2', 'superadmin', '2', '[{"changed": {"fields": ["tel", "tel_vlad", "del_obj", "edit_obj", "look"]}}]', '16', '1' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '40', '2017-05-15 10:51:13.467096', '1', 'Сокольники', '1', '[{"added": {}}]', '14', '3' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '41', '2017-05-15 10:51:51.140059', '5', 'Центр', '2', '[{"changed": {"fields": ["options"]}}]', '11', '3' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '42', '2017-05-15 12:46:04.108927', '6', 'Область', '2', '[]', '11', '3' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '43', '2017-06-21 21:05:20.029405', '1', 'Москва', '2', '[{"changed": {"fields": ["hide"]}}]', '17', '1' );
-INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '44', '2017-06-21 21:08:28.087807', '4', 'test', '1', '[{"added": {}}]', '2', '1' );
+INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '1', '2017-06-22 09:52:36.015524', '1', 'Север', '1', '[{"added": {}}]', '10', '1' );
+INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '2', '2017-06-22 09:52:42.251681', '2', 'Юг', '1', '[{"added": {}}]', '10', '1' );
+INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '3', '2017-06-22 09:52:46.693843', '3', 'Восток', '1', '[{"added": {}}]', '10', '1' );
+INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '4', '2017-06-22 09:52:50.419936', '4', 'Запад', '1', '[{"added": {}}]', '10', '1' );
+INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '5', '2017-06-22 09:52:56.209053', '5', 'Центр', '1', '[{"added": {}}]', '10', '1' );
+INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '6', '2017-06-22 09:53:03.071173', '6', 'Область', '1', '[{"added": {}}]', '10', '1' );
+INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '7', '2017-06-22 10:12:48.245111', '1', 'Электрозаводская', '1', '[{"added": {}}]', '16', '1' );
+INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '8', '2017-06-22 10:13:25.196512', '1', 'Колбаса', '1', '[{"added": {}}]', '12', '1' );
+INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '9', '2017-06-22 10:14:22.391156', '1', 'Михаил Омельчекно', '2', '[{"changed": {"fields": ["hide"]}}]', '11', '1' );
+INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '10', '2017-06-22 10:14:37.603557', '1', 'Михаил Омельчекно', '2', '[{"changed": {"fields": ["hide"]}}]', '11', '1' );
+INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '11', '2017-06-22 10:16:35.813060', '1', 'Москва', '1', '[{"added": {}}]', '17', '1' );
+INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '12', '2017-06-22 10:16:46.441379', '1', 'Москва', '2', '[{"changed": {"fields": ["opis"]}}]', '17', '1' );
+INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '13', '2017-06-22 10:16:57.803777', '1', 'Москва', '2', '[]', '17', '1' );
+INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '14', '2017-06-22 10:17:45.304625', '2', 'Молоко', '1', '[{"added": {}}]', '12', '1' );
+INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '15', '2017-06-22 10:17:53.198884', '3', 'Табак', '1', '[{"added": {}}]', '12', '1' );
+INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '16', '2017-06-22 10:18:00.433113', '4', 'Кондитерка', '1', '[{"added": {}}]', '12', '1' );
+INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '17', '2017-06-22 10:18:05.582263', '5', 'Мясо', '1', '[{"added": {}}]', '12', '1' );
+INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '18', '2017-06-22 10:18:10.826432', '6', 'Фрукты\\Овощи', '1', '[{"added": {}}]', '12', '1' );
+INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '19', '2017-06-22 10:18:18.664649', '7', 'Кулинария', '1', '[{"added": {}}]', '12', '1' );
+INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '20', '2017-06-22 10:18:27.338869', '8', 'Пиво\\Алкоголь', '1', '[{"added": {}}]', '12', '1' );
+INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '21', '2017-06-22 10:18:31.123965', '9', 'Хлеб', '1', '[{"added": {}}]', '12', '1' );
+INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '22', '2017-06-22 10:18:45.049242', '10', 'Магазин продуктов', '1', '[{"added": {}}]', '12', '1' );
+INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '23', '2017-06-22 10:18:54.923471', '11', 'Рыба\\Икра', '1', '[{"added": {}}]', '12', '1' );
+INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '24', '2017-06-22 10:19:01.626675', '12', 'Чай и другое', '1', '[{"added": {}}]', '12', '1' );
+INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '25', '2017-06-22 10:19:13.305970', '13', 'Выпечка и подобное', '1', '[{"added": {}}]', '12', '1' );
+INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '26', '2017-06-22 10:19:20.977189', '14', 'Кофе с собой', '1', '[{"added": {}}]', '12', '1' );
+INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '27', '2017-06-22 10:19:28.393424', '15', 'Рестораны и другое', '1', '[{"added": {}}]', '12', '1' );
+INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '28', '2017-06-22 10:19:36.290642', '16', 'Шаурма\\Тандыр', '1', '[{"added": {}}]', '12', '1' );
+INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '29', '2017-06-22 10:19:45.305890', '17', 'Аптека\\Оптика', '1', '[{"added": {}}]', '12', '1' );
+INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '30', '2017-06-22 10:19:53.225109', '18', 'Офис\\Мед. Услуги\\Салон кр.', '1', '[{"added": {}}]', '12', '1' );
+INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '31', '2017-06-22 10:20:02.264353', '19', 'Другое', '1', '[{"added": {}}]', '12', '1' );
+INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '32', '2017-06-22 10:20:07.008488', '20', 'Промтовары', '1', '[{"added": {}}]', '12', '1' );
+INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '33', '2017-06-22 10:20:18.993775', '21', 'Ломбард\\Банк. Услуги', '1', '[{"added": {}}]', '12', '1' );
+INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '34', '2017-06-22 10:20:28.847010', '22', 'Ремонт\\Быт. Услуги', '1', '[{"added": {}}]', '12', '1' );
+INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '35', '2017-06-22 10:20:33.903153', '23', 'Одежда\\Обувь', '1', '[{"added": {}}]', '12', '1' );
+INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '36', '2017-06-22 10:20:41.085350', '24', 'Цветы', '1', '[{"added": {}}]', '12', '1' );
+INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`action_flag`,`change_message`,`content_type_id`,`user_id`) VALUES ( '37', '2017-06-22 10:21:30.437451', '2', 'Тушинская', '1', '[{"added": {}}]', '16', '1' );
 -- ---------------------------------------------------------
 
 
@@ -885,70 +779,58 @@ INSERT INTO `django_admin_log`(`id`,`action_time`,`object_id`,`object_repr`,`act
 INSERT INTO `django_content_type`(`id`,`app_label`,`model`) VALUES ( '9', 'account', 'emailaddress' );
 INSERT INTO `django_content_type`(`id`,`app_label`,`model`) VALUES ( '8', 'account', 'emailconfirmation' );
 INSERT INTO `django_content_type`(`id`,`app_label`,`model`) VALUES ( '1', 'admin', 'logentry' );
-INSERT INTO `django_content_type`(`id`,`app_label`,`model`) VALUES ( '4', 'auth', 'group' );
+INSERT INTO `django_content_type`(`id`,`app_label`,`model`) VALUES ( '2', 'auth', 'group' );
 INSERT INTO `django_content_type`(`id`,`app_label`,`model`) VALUES ( '3', 'auth', 'permission' );
-INSERT INTO `django_content_type`(`id`,`app_label`,`model`) VALUES ( '2', 'auth', 'user' );
+INSERT INTO `django_content_type`(`id`,`app_label`,`model`) VALUES ( '4', 'auth', 'user' );
 INSERT INTO `django_content_type`(`id`,`app_label`,`model`) VALUES ( '23', 'black_list', 'blacklist' );
 INSERT INTO `django_content_type`(`id`,`app_label`,`model`) VALUES ( '22', 'contactform', 'contact' );
 INSERT INTO `django_content_type`(`id`,`app_label`,`model`) VALUES ( '5', 'contenttypes', 'contenttype' );
-INSERT INTO `django_content_type`(`id`,`app_label`,`model`) VALUES ( '12', 'myclient', 'client' );
+INSERT INTO `django_content_type`(`id`,`app_label`,`model`) VALUES ( '11', 'myclient', 'client' );
 INSERT INTO `django_content_type`(`id`,`app_label`,`model`) VALUES ( '14', 'myclient', 'historicalclient' );
-INSERT INTO `django_content_type`(`id`,`app_label`,`model`) VALUES ( '11', 'myclient', 'naznach' );
-INSERT INTO `django_content_type`(`id`,`app_label`,`model`) VALUES ( '13', 'myclient', 'okrug' );
-INSERT INTO `django_content_type`(`id`,`app_label`,`model`) VALUES ( '10', 'myclient', 'prioritet' );
-INSERT INTO `django_content_type`(`id`,`app_label`,`model`) VALUES ( '15', 'myclient', 'taskclient' );
-INSERT INTO `django_content_type`(`id`,`app_label`,`model`) VALUES ( '16', 'myobject', 'historicalmyobject' );
+INSERT INTO `django_content_type`(`id`,`app_label`,`model`) VALUES ( '12', 'myclient', 'naznach' );
+INSERT INTO `django_content_type`(`id`,`app_label`,`model`) VALUES ( '10', 'myclient', 'okrug' );
+INSERT INTO `django_content_type`(`id`,`app_label`,`model`) VALUES ( '15', 'myclient', 'prioritet' );
+INSERT INTO `django_content_type`(`id`,`app_label`,`model`) VALUES ( '13', 'myclient', 'taskclient' );
+INSERT INTO `django_content_type`(`id`,`app_label`,`model`) VALUES ( '18', 'myobject', 'historicalmyobject' );
 INSERT INTO `django_content_type`(`id`,`app_label`,`model`) VALUES ( '17', 'myobject', 'myobject' );
-INSERT INTO `django_content_type`(`id`,`app_label`,`model`) VALUES ( '18', 'myobject', 'stancmetro' );
-INSERT INTO `django_content_type`(`id`,`app_label`,`model`) VALUES ( '19', 'seo', 'cian' );
-INSERT INTO `django_content_type`(`id`,`app_label`,`model`) VALUES ( '21', 'seo', 'menageroptions' );
-INSERT INTO `django_content_type`(`id`,`app_label`,`model`) VALUES ( '20', 'seo', 'seo' );
+INSERT INTO `django_content_type`(`id`,`app_label`,`model`) VALUES ( '16', 'myobject', 'stancmetro' );
+INSERT INTO `django_content_type`(`id`,`app_label`,`model`) VALUES ( '21', 'seo', 'cian' );
+INSERT INTO `django_content_type`(`id`,`app_label`,`model`) VALUES ( '20', 'seo', 'menageroptions' );
+INSERT INTO `django_content_type`(`id`,`app_label`,`model`) VALUES ( '19', 'seo', 'seo' );
 INSERT INTO `django_content_type`(`id`,`app_label`,`model`) VALUES ( '6', 'sessions', 'session' );
 INSERT INTO `django_content_type`(`id`,`app_label`,`model`) VALUES ( '7', 'sites', 'site' );
 -- ---------------------------------------------------------
 
 
 -- Dump data of "django_migrations" ------------------------
-INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '1', 'contenttypes', '0001_initial', '2017-05-05 01:48:49.148328' );
-INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '2', 'auth', '0001_initial', '2017-05-05 01:48:52.617181' );
-INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '3', 'account', '0001_initial', '2017-05-05 01:48:53.526493' );
-INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '4', 'account', '0002_email_max_length', '2017-05-05 01:48:53.556699' );
-INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '5', 'admin', '0001_initial', '2017-05-05 01:48:54.341642' );
-INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '6', 'admin', '0002_logentry_remove_auto_add', '2017-05-05 01:48:54.364341' );
-INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '7', 'contenttypes', '0002_remove_content_type_name', '2017-05-05 01:48:54.484453' );
-INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '8', 'auth', '0002_alter_permission_name_max_length', '2017-05-05 01:48:54.518434' );
-INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '9', 'auth', '0003_alter_user_email_max_length', '2017-05-05 01:48:54.549410' );
-INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '10', 'auth', '0004_alter_user_username_opts', '2017-05-05 01:48:54.562590' );
-INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '11', 'auth', '0005_alter_user_last_login_null', '2017-05-05 01:48:54.600755' );
-INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '12', 'auth', '0006_require_contenttypes_0002', '2017-05-05 01:48:54.602096' );
-INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '13', 'auth', '0007_alter_validators_add_error_messages', '2017-05-05 01:48:54.615237' );
-INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '14', 'auth', '0008_alter_user_username_max_length', '2017-05-05 01:48:54.645555' );
-INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '15', 'sessions', '0001_initial', '2017-05-05 01:48:54.955294' );
-INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '16', 'sites', '0001_initial', '2017-05-05 01:48:55.221029' );
-INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '17', 'sites', '0002_alter_domain_unique', '2017-05-05 01:48:55.272815' );
-INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '18', 'myclient', '0001_initial', '2017-05-05 01:51:18.735460' );
-INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '19', 'myclient', '0002_auto_20170504_0052', '2017-05-05 01:51:18.775114' );
-INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '20', 'myclient', '0003_auto_20170504_0055', '2017-05-05 01:51:18.796515' );
-INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '21', 'myclient', '0004_auto_20170504_0058', '2017-05-05 01:51:18.820370' );
-INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '22', 'myclient', '0005_auto_20170504_0103', '2017-05-05 01:51:18.838747' );
-INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '23', 'myclient', '0006_auto_20170504_0109', '2017-05-05 01:51:18.923313' );
-INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '24', 'myclient', '0007_auto_20170504_0118', '2017-05-05 01:51:20.271140' );
-INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '25', 'myclient', '0008_auto_20170504_0455', '2017-05-05 01:51:20.546889' );
-INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '26', 'myclient', '0009_auto_20170505_0135', '2017-05-05 01:51:21.282059' );
-INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '27', 'myclient', '0010_auto_20170505_0229', '2017-05-05 01:51:21.322040' );
-INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '28', 'myobject', '0001_initial', '2017-05-11 21:54:26.774681' );
-INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '29', 'seo', '0001_initial', '2017-05-11 21:54:28.028637' );
-INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '30', 'seo', '0002_cian', '2017-05-11 21:54:28.426147' );
+INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '1', 'contenttypes', '0001_initial', '2017-06-22 09:50:04.388647' );
+INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '2', 'auth', '0001_initial', '2017-06-22 09:50:11.634685' );
+INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '3', 'account', '0001_initial', '2017-06-22 09:50:14.238703' );
+INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '4', 'account', '0002_email_max_length', '2017-06-22 09:50:14.958708' );
+INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '5', 'admin', '0001_initial', '2017-06-22 09:50:16.912722' );
+INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '6', 'admin', '0002_logentry_remove_auto_add', '2017-06-22 09:50:16.998723' );
+INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '7', 'contenttypes', '0002_remove_content_type_name', '2017-06-22 09:50:18.108730' );
+INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '8', 'auth', '0002_alter_permission_name_max_length', '2017-06-22 09:50:18.862736' );
+INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '9', 'auth', '0003_alter_user_email_max_length', '2017-06-22 09:50:19.731739' );
+INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '10', 'auth', '0004_alter_user_username_opts', '2017-06-22 09:50:19.768740' );
+INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '11', 'auth', '0005_alter_user_last_login_null', '2017-06-22 09:50:20.400741' );
+INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '12', 'auth', '0006_require_contenttypes_0002', '2017-06-22 09:50:20.438742' );
+INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '13', 'auth', '0007_alter_validators_add_error_messages', '2017-06-22 09:50:20.498742' );
+INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '14', 'auth', '0008_alter_user_username_max_length', '2017-06-22 09:50:21.338749' );
+INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '15', 'black_list', '0001_initial', '2017-06-22 09:50:21.736752' );
+INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '16', 'contactform', '0001_initial', '2017-06-22 09:50:22.188754' );
+INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '17', 'myclient', '0001_initial', '2017-06-22 09:50:38.188864' );
+INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '18', 'myobject', '0001_initial', '2017-06-22 09:50:53.274982' );
+INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '19', 'seo', '0001_initial', '2017-06-22 09:50:54.897997' );
+INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '20', 'seo', '0002_cian', '2017-06-22 09:50:55.368998' );
+INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '21', 'sessions', '0001_initial', '2017-06-22 09:50:55.906005' );
+INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '22', 'sites', '0001_initial', '2017-06-22 09:50:56.249009' );
+INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '23', 'sites', '0002_alter_domain_unique', '2017-06-22 09:50:56.499010' );
 -- ---------------------------------------------------------
 
 
 -- Dump data of "django_session" ---------------------------
-INSERT INTO `django_session`(`session_key`,`session_data`,`expire_date`) VALUES ( '6t64bdtwwwm6mki6hddhyds7uudh00b8', 'NGQxZjI5ZjBhMGY1MmFiYTdiZDc2YjYzMWVmZThlZjNhZjY4NzFmMDp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX3Nlc3Npb25fZXhwaXJ5IjowLCJfYXV0aF91c2VyX2hhc2giOiIzODgwMWU2ODdmM2JmNjU5YTE2NmZlNmExYjExZjI2MDYyNmI0YmVhIiwiX2F1dGhfdXNlcl9pZCI6IjIifQ==', '2017-05-19 09:28:21.877828' );
-INSERT INTO `django_session`(`session_key`,`session_data`,`expire_date`) VALUES ( 'dwar8actuw68e7mowzz0ma4zmeqtsw8z', 'YTBhYjU2YmUwZjE0YTI1MmRkYWMzYjc2Y2QyZGUyYzYyM2M2MTVjNDp7Il9hdXRoX3VzZXJfaGFzaCI6IjQzMTA0N2U3ZTY3MWUzZTFhMTIyMmVhZmZlM2M0NDY4ZTQzNzcyMGIiLCJfYXV0aF91c2VyX2lkIjoiMSIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX3Nlc3Npb25fZXhwaXJ5IjowfQ==', '2017-06-24 17:32:38.409091' );
-INSERT INTO `django_session`(`session_key`,`session_data`,`expire_date`) VALUES ( 'hnpjl9gh393aygda0j37i4zi69roelhl', 'YzE4MDZiYTk1YjAyOGQ4NjU2OGRmMmZmM2ExNGQ5OWExMTVmNjk0ZTp7Il9hdXRoX3VzZXJfaWQiOiIzIiwiX2F1dGhfdXNlcl9oYXNoIjoiMTVkMGFmMWZkODIwNDZhZDE2NmViZjUzYWZhOGFkOWVmZDNiZDRiZCIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=', '2017-05-25 22:29:35.816691' );
-INSERT INTO `django_session`(`session_key`,`session_data`,`expire_date`) VALUES ( 'mfudkc0po6lt8etqfwa60n0k23q0hhuv', 'Y2JmZmMzNzk2Nzc1MDkzODk0MzkwNGYxYzQ4MjlmOWU3OWVmZjhjZDp7Il9zZXNzaW9uX2V4cGlyeSI6MCwiX2F1dGhfdXNlcl9pZCI6IjMiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaGFzaCI6IjE1ZDBhZjFmZDgyMDQ2YWQxNjZlYmY1M2FmYThhZDllZmQzYmQ0YmQifQ==', '2017-05-29 10:47:02.564892' );
-INSERT INTO `django_session`(`session_key`,`session_data`,`expire_date`) VALUES ( 'vuja3zeapxiwfh0evgo0ljnj6gohta7d', 'MDg3ZjUzMDkzN2JmNjU2ZjNmZDc4NzAxNGIxNGQ2MmE3NzczNzE1Mjp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9oYXNoIjoiMDAyNWQ2ZmE3MzM0MjY1MWI1YzY2NTcwNDQwZTFmMjEwOTg3ZGI0YyIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=', '2017-07-05 21:09:27.650176' );
-INSERT INTO `django_session`(`session_key`,`session_data`,`expire_date`) VALUES ( 'w5h209myktd8tjuxle1wa7iiz7nudqea', 'NzI1ZjcwZDQxZDVjODU4MDA5MjE4NDk2NDUxYWY4Y2Y4ZGU3ZDA5NTp7Il9hdXRoX3VzZXJfaGFzaCI6IjE1ZDBhZjFmZDgyMDQ2YWQxNjZlYmY1M2FmYThhZDllZmQzYmQ0YmQiLCJfYXV0aF91c2VyX2lkIjoiMyIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX3Nlc3Npb25fZXhwaXJ5IjoxMjA5NjAwfQ==', '2017-05-26 16:13:23.896160' );
+INSERT INTO `django_session`(`session_key`,`session_data`,`expire_date`) VALUES ( 'yp36ifbo8zbei13yq5we44m56xbxv84j', 'ZWY2ZTI2N2E3ZGNkMWVkOGM1YmExNjk3YjcyZTM0MGVlZDNjNTJkMTp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9oYXNoIjoiOTZmMjFmNWY3MmI1MmJjMzBiZjVkMWY5M2Y0ODcyMGQ3ODA5ZWY1ZiIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=', '2017-07-06 09:51:44.959466' );
 -- ---------------------------------------------------------
 
 
@@ -958,33 +840,34 @@ INSERT INTO `django_site`(`id`,`domain`,`name`) VALUES ( '1', 'example.com', 'ex
 
 
 -- Dump data of "manager_options" --------------------------
-INSERT INTO `manager_options`(`id`,`name`,`tel`,`tel_vlad`,`del_obj`,`edit_obj`,`look`,`user_id`) VALUES ( '1', 'Миша', '+380957506112', '1', '1', '1', '1', '2' );
-INSERT INTO `manager_options`(`id`,`name`,`tel`,`tel_vlad`,`del_obj`,`edit_obj`,`look`,`user_id`) VALUES ( '2', 'superadmin', '+380957506112', '1', '1', '1', '1', '3' );
-INSERT INTO `manager_options`(`id`,`name`,`tel`,`tel_vlad`,`del_obj`,`edit_obj`,`look`,`user_id`) VALUES ( '3', 'DJWOMS', '', '0', '0', '0', '0', '1' );
-INSERT INTO `manager_options`(`id`,`name`,`tel`,`tel_vlad`,`del_obj`,`edit_obj`,`look`,`user_id`) VALUES ( '4', 'test', '', '0', '0', '0', '0', '4' );
+INSERT INTO `manager_options`(`id`,`name`,`tel`,`tel_vlad`,`del_obj`,`edit_obj`,`look`,`user_id`) VALUES ( '1', 'DJWOMS', '', '0', '0', '0', '0', '1' );
 -- ---------------------------------------------------------
 
 
 -- Dump data of "metro" ------------------------------------
-INSERT INTO `metro`(`id`,`color`,`name`) VALUES ( '1', 'Сокольническая', 'Сокольники' );
+INSERT INTO `metro`(`id`,`color`,`name`) VALUES ( '1', 'Красная', 'Электрозаводская' );
+INSERT INTO `metro`(`id`,`color`,`name`) VALUES ( '2', 'Зеленая', 'Тушинская' );
 -- ---------------------------------------------------------
 
 
 -- Dump data of "metro_okrug" ------------------------------
-INSERT INTO `metro_okrug`(`id`,`stancmetro_id`,`okrug_id`) VALUES ( '1', '1', '4' );
+INSERT INTO `metro_okrug`(`id`,`stancmetro_id`,`okrug_id`) VALUES ( '1', '1', '1' );
+INSERT INTO `metro_okrug`(`id`,`stancmetro_id`,`okrug_id`) VALUES ( '2', '2', '2' );
 -- ---------------------------------------------------------
 
 
 -- Dump data of "myclient_historicalclient" ----------------
-INSERT INTO `myclient_historicalclient`(`id`,`name`,`tel`,`email`,`hide`,`hide_date`,`area_ot`,`area_do`,`price_obsh`,`price_m`,`dop_kont`,`metro`,`adres`,`komisiya`,`etaj`,`podborka`,`type_obj`,`history_id`,`history_date`,`history_change_reason`,`history_type`,`history_user_id`,`my_manager_id`,`naznach_one_id`,`naznach_two_id`) VALUES ( '4', 'Миша', '+380957506112', 'l2maximum@mail.ru', '0', NULL, '0', '0', '0', '0', '', '0', '0', '1', '0', '0', 'tc', '1', '2017-06-21 21:08:59.021290', NULL, '+', '4', '4', '18', NULL );
+INSERT INTO `myclient_historicalclient`(`id`,`name`,`tel`,`email`,`hide`,`hide_date`,`area_ot`,`area_do`,`price_obsh`,`price_m`,`dop_kont`,`metro`,`adres`,`komisiya`,`etaj`,`podborka`,`type_obj`,`history_id`,`history_date`,`history_change_reason`,`history_type`,`history_user_id`,`my_manager_id`,`naznach_one_id`,`naznach_two_id`) VALUES ( '1', 'Михаил Омельчекно', '+380957506112', 'socanime@gmail.com', '0', NULL, '0', '0', '0', '0', '', '0', '0', '0', '1', '0', 'undeg', '1', '2017-06-22 10:13:45.750177', NULL, '+', '1', '1', '1', '1' );
+INSERT INTO `myclient_historicalclient`(`id`,`name`,`tel`,`email`,`hide`,`hide_date`,`area_ot`,`area_do`,`price_obsh`,`price_m`,`dop_kont`,`metro`,`adres`,`komisiya`,`etaj`,`podborka`,`type_obj`,`history_id`,`history_date`,`history_change_reason`,`history_type`,`history_user_id`,`my_manager_id`,`naznach_one_id`,`naznach_two_id`) VALUES ( '1', 'Михаил Омельчекно', '+380957506112', 'socanime@gmail.com', '0', NULL, '0', '0', '0', '0', 'вавапав', '0', '0', '0', '1', '0', 'undeg', '2', '2017-06-22 10:13:54.601467', NULL, '~', '1', '1', '1', '1' );
+INSERT INTO `myclient_historicalclient`(`id`,`name`,`tel`,`email`,`hide`,`hide_date`,`area_ot`,`area_do`,`price_obsh`,`price_m`,`dop_kont`,`metro`,`adres`,`komisiya`,`etaj`,`podborka`,`type_obj`,`history_id`,`history_date`,`history_change_reason`,`history_type`,`history_user_id`,`my_manager_id`,`naznach_one_id`,`naznach_two_id`) VALUES ( '1', 'Михаил Омельчекно', '+380957506112', 'socanime@gmail.com', '', NULL, '0', '0', '0', '0', '', '0', '0', '0', '1', '0', 'undeg', '3', '2017-06-22 10:14:22.350154', NULL, '~', '1', '1', '1', '1' );
+INSERT INTO `myclient_historicalclient`(`id`,`name`,`tel`,`email`,`hide`,`hide_date`,`area_ot`,`area_do`,`price_obsh`,`price_m`,`dop_kont`,`metro`,`adres`,`komisiya`,`etaj`,`podborka`,`type_obj`,`history_id`,`history_date`,`history_change_reason`,`history_type`,`history_user_id`,`my_manager_id`,`naznach_one_id`,`naznach_two_id`) VALUES ( '1', 'Михаил Омельчекно', '+380957506112', 'socanime@gmail.com', '', NULL, '0', '0', '0', '0', 'вавапав', '0', '0', '0', '1', '0', 'undeg', '4', '2017-06-22 10:14:37.500551', NULL, '~', '1', '1', '1', '1' );
 -- ---------------------------------------------------------
 
 
 -- Dump data of "myobject_historicalmyobject" --------------
-INSERT INTO `myobject_historicalmyobject`(`id`,`typeobj`,`adres`,`area`,`block_area`,`block_price`,`block_procent`,`etaj`,`price`,`opis`,`dom`,`kvt`,`dogovor`,`block_name`,`block_tel`,`block_email`,`silka`,`zametka`,`hide`,`hide_date`,`zvon`,`history_id`,`history_date`,`history_change_reason`,`history_type`,`history_user_id`,`my_manager_id`,`station_one_id`,`station_two_id`) VALUES ( '1', '1', 'Москва', '0', '0', '0', '0', '0', '0', '', '0', '', '', '', '', '', '', '', '0', NULL, '2017-06-22', '1', '2017-06-21 21:03:10.007655', NULL, '+', '1', '1', '1', NULL );
-INSERT INTO `myobject_historicalmyobject`(`id`,`typeobj`,`adres`,`area`,`block_area`,`block_price`,`block_procent`,`etaj`,`price`,`opis`,`dom`,`kvt`,`dogovor`,`block_name`,`block_tel`,`block_email`,`silka`,`zametka`,`hide`,`hide_date`,`zvon`,`history_id`,`history_date`,`history_change_reason`,`history_type`,`history_user_id`,`my_manager_id`,`station_one_id`,`station_two_id`) VALUES ( '1', '1', 'Москва', '3424', '0', '0', '0', '0', '0', '', '0', '', '', '', '', '', '', 'увпнукпавпавпиавпвапр', '0', NULL, '2017-06-22', '2', '2017-06-21 21:04:51.790516', NULL, '~', '1', '1', '1', NULL );
-INSERT INTO `myobject_historicalmyobject`(`id`,`typeobj`,`adres`,`area`,`block_area`,`block_price`,`block_procent`,`etaj`,`price`,`opis`,`dom`,`kvt`,`dogovor`,`block_name`,`block_tel`,`block_email`,`silka`,`zametka`,`hide`,`hide_date`,`zvon`,`history_id`,`history_date`,`history_change_reason`,`history_type`,`history_user_id`,`my_manager_id`,`station_one_id`,`station_two_id`) VALUES ( '1', '1', 'Москва', '0', '0', '0', '0', '0', '0', '', '0', '', '', '', '', '', '', '', '', NULL, '2017-06-22', '3', '2017-06-21 21:05:19.983403', NULL, '~', '1', '1', '1', NULL );
-INSERT INTO `myobject_historicalmyobject`(`id`,`typeobj`,`adres`,`area`,`block_area`,`block_price`,`block_procent`,`etaj`,`price`,`opis`,`dom`,`kvt`,`dogovor`,`block_name`,`block_tel`,`block_email`,`silka`,`zametka`,`hide`,`hide_date`,`zvon`,`history_id`,`history_date`,`history_change_reason`,`history_type`,`history_user_id`,`my_manager_id`,`station_one_id`,`station_two_id`) VALUES ( '2', '3', 'Москва', '0', '0', '0', '0', '0', '0', '', '0', '', '', '', '', '', '', 'fdbvfcxb', '0', NULL, '2017-06-22', '4', '2017-06-21 21:09:14.373775', NULL, '+', '4', '4', '1', NULL );
+INSERT INTO `myobject_historicalmyobject`(`id`,`typeobj`,`adres`,`area`,`block_area`,`block_price`,`block_procent`,`etaj`,`price`,`opis`,`dom`,`kvt`,`dogovor`,`block_name`,`block_tel`,`block_email`,`silka`,`zametka`,`hide`,`hide_date`,`zvon`,`history_id`,`history_date`,`history_change_reason`,`history_type`,`history_user_id`,`my_manager_id`,`station_one_id`,`station_two_id`) VALUES ( '1', '1', 'Москва', '0', '0', '0', '0', '0', '0', '', '0', '', '', '', '', '', '', '', '', NULL, '2017-06-22', '1', '2017-06-22 10:16:35.793059', NULL, '+', '1', '1', '1', NULL );
+INSERT INTO `myobject_historicalmyobject`(`id`,`typeobj`,`adres`,`area`,`block_area`,`block_price`,`block_procent`,`etaj`,`price`,`opis`,`dom`,`kvt`,`dogovor`,`block_name`,`block_tel`,`block_email`,`silka`,`zametka`,`hide`,`hide_date`,`zvon`,`history_id`,`history_date`,`history_change_reason`,`history_type`,`history_user_id`,`my_manager_id`,`station_one_id`,`station_two_id`) VALUES ( '1', '1', 'Москва', '0', '0', '0', '0', '0', '0', 'выавыавыа', '0', '', '', '', '', '', '', '', '', NULL, '2017-06-22', '2', '2017-06-22 10:16:46.258368', NULL, '~', '1', '1', '1', NULL );
+INSERT INTO `myobject_historicalmyobject`(`id`,`typeobj`,`adres`,`area`,`block_area`,`block_price`,`block_procent`,`etaj`,`price`,`opis`,`dom`,`kvt`,`dogovor`,`block_name`,`block_tel`,`block_email`,`silka`,`zametka`,`hide`,`hide_date`,`zvon`,`history_id`,`history_date`,`history_change_reason`,`history_type`,`history_user_id`,`my_manager_id`,`station_one_id`,`station_two_id`) VALUES ( '1', '1', 'Москва', '0', '0', '0', '0', '0', '0', '', '0', '', '', '', '', '', '', '', '', NULL, '2017-06-22', '3', '2017-06-22 10:16:57.757774', NULL, '~', '1', '1', '1', NULL );
 -- ---------------------------------------------------------
 
 
@@ -1007,37 +890,36 @@ INSERT INTO `naznach`(`id`,`group`,`options`) VALUES ( '15', 'Общепит', '
 INSERT INTO `naznach`(`id`,`group`,`options`) VALUES ( '16', 'Общепит', 'Шаурма\\Тандыр' );
 INSERT INTO `naznach`(`id`,`group`,`options`) VALUES ( '17', 'Другое', 'Аптека\\Оптика' );
 INSERT INTO `naznach`(`id`,`group`,`options`) VALUES ( '18', 'Другое', 'Офис\\Мед. Услуги\\Салон кр.' );
-INSERT INTO `naznach`(`id`,`group`,`options`) VALUES ( '19', 'Другое', 'Промтовары' );
-INSERT INTO `naznach`(`id`,`group`,`options`) VALUES ( '20', 'Другое', 'Ломбард\\Банк. Услуги' );
-INSERT INTO `naznach`(`id`,`group`,`options`) VALUES ( '21', 'Другое', 'Ремонт\\Быт. Услуги' );
-INSERT INTO `naznach`(`id`,`group`,`options`) VALUES ( '22', 'Другое', 'Одежда\\Обувь' );
-INSERT INTO `naznach`(`id`,`group`,`options`) VALUES ( '23', 'Другое', 'Цветы' );
-INSERT INTO `naznach`(`id`,`group`,`options`) VALUES ( '24', 'Другое', 'Другое' );
+INSERT INTO `naznach`(`id`,`group`,`options`) VALUES ( '19', 'Другое', 'Другое' );
+INSERT INTO `naznach`(`id`,`group`,`options`) VALUES ( '20', 'Другое', 'Промтовары' );
+INSERT INTO `naznach`(`id`,`group`,`options`) VALUES ( '21', 'Другое', 'Ломбард\\Банк. Услуги' );
+INSERT INTO `naznach`(`id`,`group`,`options`) VALUES ( '22', 'Другое', 'Ремонт\\Быт. Услуги' );
+INSERT INTO `naznach`(`id`,`group`,`options`) VALUES ( '23', 'Другое', 'Одежда\\Обувь' );
+INSERT INTO `naznach`(`id`,`group`,`options`) VALUES ( '24', 'Другое', 'Цветы' );
 -- ---------------------------------------------------------
 
 
 -- Dump data of "object" -----------------------------------
 INSERT INTO `object`(`id`,`typeobj`,`adres`,`area`,`block_area`,`block_price`,`block_procent`,`etaj`,`price`,`opis`,`dom`,`kvt`,`dogovor`,`block_name`,`block_tel`,`block_email`,`silka`,`zametka`,`hide`,`hide_date`,`zvon`,`my_manager_id`,`station_one_id`,`station_two_id`) VALUES ( '1', '1', 'Москва', '0', '0', '0', '0', '0', '0', '', '0', '', '', '', '', '', '', '', '', NULL, '2017-06-22', '1', '1', NULL );
-INSERT INTO `object`(`id`,`typeobj`,`adres`,`area`,`block_area`,`block_price`,`block_procent`,`etaj`,`price`,`opis`,`dom`,`kvt`,`dogovor`,`block_name`,`block_tel`,`block_email`,`silka`,`zametka`,`hide`,`hide_date`,`zvon`,`my_manager_id`,`station_one_id`,`station_two_id`) VALUES ( '2', '3', 'Москва', '0', '0', '0', '0', '0', '0', '', '0', '', '', '', '', '', '', 'fdbvfcxb', '0', NULL, '2017-06-22', '1', '1', NULL );
 -- ---------------------------------------------------------
 
 
 -- Dump data of "object_naznach" ---------------------------
-INSERT INTO `object_naznach`(`id`,`myobject_id`,`naznach_id`) VALUES ( '1', '1', '4' );
-INSERT INTO `object_naznach`(`id`,`myobject_id`,`naznach_id`) VALUES ( '2', '1', '22' );
+INSERT INTO `object_naznach`(`id`,`myobject_id`,`naznach_id`) VALUES ( '1', '1', '1' );
 -- ---------------------------------------------------------
 
 
 -- Dump data of "object_okrug" -----------------------------
-INSERT INTO `object_okrug`(`id`,`myobject_id`,`okrug_id`) VALUES ( '1', '1', '4' );
+INSERT INTO `object_okrug`(`id`,`myobject_id`,`okrug_id`) VALUES ( '2', '1', '1' );
+INSERT INTO `object_okrug`(`id`,`myobject_id`,`okrug_id`) VALUES ( '3', '1', '5' );
 -- ---------------------------------------------------------
 
 
 -- Dump data of "okrug" ------------------------------------
-INSERT INTO `okrug`(`id`,`options`) VALUES ( '1', 'Юг' );
-INSERT INTO `okrug`(`id`,`options`) VALUES ( '2', 'Север' );
-INSERT INTO `okrug`(`id`,`options`) VALUES ( '3', 'Запад' );
-INSERT INTO `okrug`(`id`,`options`) VALUES ( '4', 'Восток' );
+INSERT INTO `okrug`(`id`,`options`) VALUES ( '1', 'Север' );
+INSERT INTO `okrug`(`id`,`options`) VALUES ( '2', 'Юг' );
+INSERT INTO `okrug`(`id`,`options`) VALUES ( '3', 'Восток' );
+INSERT INTO `okrug`(`id`,`options`) VALUES ( '4', 'Запад' );
 INSERT INTO `okrug`(`id`,`options`) VALUES ( '5', 'Центр' );
 INSERT INTO `okrug`(`id`,`options`) VALUES ( '6', 'Область' );
 -- ---------------------------------------------------------
@@ -1048,7 +930,6 @@ INSERT INTO `okrug`(`id`,`options`) VALUES ( '6', 'Область' );
 
 
 -- Dump data of "seo" --------------------------------------
-INSERT INTO `seo`(`id`,`title`,`desc`,`keywords`) VALUES ( '1', 'Аренда у метро, аренда торговых площадей, аренда под магазин, аренда в метро, аренда отдела', 'Аренда у метро, аренда торговых площадей, аренда под магазин, аренда в метро, аренда отдела', 'аренда павильонов, аренда торговых павильонов, аренда торговых площадей, аренда торговых, аренда торговых помещений, торговое помещение в аренду, павильон в аренду, аренда торгового помещения, помещения в аренду, торговая аренда, аренда под магазин, аренда в подземных переходах, аренда в метро' );
 -- ---------------------------------------------------------
 
 
@@ -1063,16 +944,16 @@ CREATE INDEX `account_emailaddress_user_id_2c513194_fk_auth_user_id` USING BTREE
 -- ---------------------------------------------------------
 
 
--- CREATE INDEX "account_ema_email_address_id_5b7f8c58_fk_account_emailaddress_id" 
--- CREATE INDEX "account_ema_email_address_id_5b7f8c58_fk_account_emailaddress_id" 
-CREATE INDEX `account_ema_email_address_id_5b7f8c58_fk_account_emailaddress_id` USING BTREE ON `account_emailconfirmation`( `email_address_id` );
+-- CREATE INDEX "account_emailconfirm_email_address_id_5b7f8c58_fk_account_e" 
+-- CREATE INDEX "account_emailconfirm_email_address_id_5b7f8c58_fk_account_e" 
+CREATE INDEX `account_emailconfirm_email_address_id_5b7f8c58_fk_account_e` USING BTREE ON `account_emailconfirmation`( `email_address_id` );
 -- -------------------------------------------------------------
 -- ---------------------------------------------------------
 
 
--- CREATE INDEX "auth_group_permissi_permission_id_84c5c92e_fk_auth_permission_id" 
--- CREATE INDEX "auth_group_permissi_permission_id_84c5c92e_fk_auth_permission_id" 
-CREATE INDEX `auth_group_permissi_permission_id_84c5c92e_fk_auth_permission_id` USING BTREE ON `auth_group_permissions`( `permission_id` );
+-- CREATE INDEX "auth_group_permissio_permission_id_84c5c92e_fk_auth_perm" 
+-- CREATE INDEX "auth_group_permissio_permission_id_84c5c92e_fk_auth_perm" 
+CREATE INDEX `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` USING BTREE ON `auth_group_permissions`( `permission_id` );
 -- -------------------------------------------------------------
 -- ---------------------------------------------------------
 
@@ -1084,9 +965,9 @@ CREATE INDEX `auth_user_groups_group_id_97559544_fk_auth_group_id` USING BTREE O
 -- ---------------------------------------------------------
 
 
--- CREATE INDEX "auth_user_user_perm_permission_id_1fbb5f2c_fk_auth_permission_id" 
--- CREATE INDEX "auth_user_user_perm_permission_id_1fbb5f2c_fk_auth_permission_id" 
-CREATE INDEX `auth_user_user_perm_permission_id_1fbb5f2c_fk_auth_permission_id` USING BTREE ON `auth_user_user_permissions`( `permission_id` );
+-- CREATE INDEX "auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm" 
+-- CREATE INDEX "auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm" 
+CREATE INDEX `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` USING BTREE ON `auth_user_user_permissions`( `permission_id` );
 -- -------------------------------------------------------------
 -- ---------------------------------------------------------
 
@@ -1119,6 +1000,13 @@ CREATE INDEX `client_okrug_okrug_id_5841394a_fk_okrug_id` USING BTREE ON `client
 -- ---------------------------------------------------------
 
 
+-- CREATE INDEX "django_admin_log_content_type_id_c4bce8eb_fk_django_co" 
+-- CREATE INDEX "django_admin_log_content_type_id_c4bce8eb_fk_django_co" 
+CREATE INDEX `django_admin_log_content_type_id_c4bce8eb_fk_django_co` USING BTREE ON `django_admin_log`( `content_type_id` );
+-- -------------------------------------------------------------
+-- ---------------------------------------------------------
+
+
 -- CREATE INDEX "django_admin_log_user_id_c564eba6_fk_auth_user_id" 
 -- CREATE INDEX "django_admin_log_user_id_c564eba6_fk_auth_user_id" 
 CREATE INDEX `django_admin_log_user_id_c564eba6_fk_auth_user_id` USING BTREE ON `django_admin_log`( `user_id` );
@@ -1126,16 +1014,9 @@ CREATE INDEX `django_admin_log_user_id_c564eba6_fk_auth_user_id` USING BTREE ON 
 -- ---------------------------------------------------------
 
 
--- CREATE INDEX "django_admin__content_type_id_c4bce8eb_fk_django_content_type_id" 
--- CREATE INDEX "django_admin__content_type_id_c4bce8eb_fk_django_content_type_id" 
-CREATE INDEX `django_admin__content_type_id_c4bce8eb_fk_django_content_type_id` USING BTREE ON `django_admin_log`( `content_type_id` );
--- -------------------------------------------------------------
--- ---------------------------------------------------------
-
-
--- CREATE INDEX "django_session_de54fa62" ------------------
--- CREATE INDEX "django_session_de54fa62" ----------------------
-CREATE INDEX `django_session_de54fa62` USING BTREE ON `django_session`( `expire_date` );
+-- CREATE INDEX "django_session_expire_date_a5c62663" ------
+-- CREATE INDEX "django_session_expire_date_a5c62663" ----------
+CREATE INDEX `django_session_expire_date_a5c62663` USING BTREE ON `django_session`( `expire_date` );
 -- -------------------------------------------------------------
 -- ---------------------------------------------------------
 
@@ -1266,6 +1147,13 @@ CREATE INDEX `task_client_manager_id_044d843b_fk_auth_user_id` USING BTREE ON `t
 -- ---------------------------------------------------------
 
 
+-- CREATE INDEX "task_client_prioritet_id_11769f7b_fk_prioritet_id" 
+-- CREATE INDEX "task_client_prioritet_id_11769f7b_fk_prioritet_id" 
+CREATE INDEX `task_client_prioritet_id_11769f7b_fk_prioritet_id` USING BTREE ON `task_client`( `prioritet_id` );
+-- -------------------------------------------------------------
+-- ---------------------------------------------------------
+
+
 -- CREATE LINK "account_emailaddress_user_id_2c513194_fk_auth_user_id" 
 -- CREATE LINK "account_emailaddress_user_id_2c513194_fk_auth_user_id" 
 ALTER TABLE `account_emailaddress`
@@ -1277,10 +1165,10 @@ ALTER TABLE `account_emailaddress`
 -- ---------------------------------------------------------
 
 
--- CREATE LINK "account_ema_email_address_id_5b7f8c58_fk_account_emailaddress_id" 
--- CREATE LINK "account_ema_email_address_id_5b7f8c58_fk_account_emailaddress_id" 
+-- CREATE LINK "account_emailconfirm_email_address_id_5b7f8c58_fk_account_e" 
+-- CREATE LINK "account_emailconfirm_email_address_id_5b7f8c58_fk_account_e" 
 ALTER TABLE `account_emailconfirmation`
-	ADD CONSTRAINT `account_ema_email_address_id_5b7f8c58_fk_account_emailaddress_id` FOREIGN KEY ( `email_address_id` )
+	ADD CONSTRAINT `account_emailconfirm_email_address_id_5b7f8c58_fk_account_e` FOREIGN KEY ( `email_address_id` )
 	REFERENCES `account_emailaddress`( `id` )
 	ON DELETE Restrict
 	ON UPDATE Restrict;
@@ -1288,10 +1176,10 @@ ALTER TABLE `account_emailconfirmation`
 -- ---------------------------------------------------------
 
 
--- CREATE LINK "auth_group_permissi_permission_id_84c5c92e_fk_auth_permission_id" 
--- CREATE LINK "auth_group_permissi_permission_id_84c5c92e_fk_auth_permission_id" 
+-- CREATE LINK "auth_group_permissio_permission_id_84c5c92e_fk_auth_perm" 
+-- CREATE LINK "auth_group_permissio_permission_id_84c5c92e_fk_auth_perm" 
 ALTER TABLE `auth_group_permissions`
-	ADD CONSTRAINT `auth_group_permissi_permission_id_84c5c92e_fk_auth_permission_id` FOREIGN KEY ( `permission_id` )
+	ADD CONSTRAINT `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` FOREIGN KEY ( `permission_id` )
 	REFERENCES `auth_permission`( `id` )
 	ON DELETE Restrict
 	ON UPDATE Restrict;
@@ -1304,17 +1192,6 @@ ALTER TABLE `auth_group_permissions`
 ALTER TABLE `auth_group_permissions`
 	ADD CONSTRAINT `auth_group_permissions_group_id_b120cbf9_fk_auth_group_id` FOREIGN KEY ( `group_id` )
 	REFERENCES `auth_group`( `id` )
-	ON DELETE Restrict
-	ON UPDATE Restrict;
--- -------------------------------------------------------------
--- ---------------------------------------------------------
-
-
--- CREATE LINK "auth_permissi_content_type_id_2f476e4b_fk_django_content_type_id" 
--- CREATE LINK "auth_permissi_content_type_id_2f476e4b_fk_django_content_type_id" 
-ALTER TABLE `auth_permission`
-	ADD CONSTRAINT `auth_permissi_content_type_id_2f476e4b_fk_django_content_type_id` FOREIGN KEY ( `content_type_id` )
-	REFERENCES `django_content_type`( `id` )
 	ON DELETE Restrict
 	ON UPDATE Restrict;
 -- -------------------------------------------------------------
@@ -1354,6 +1231,28 @@ ALTER TABLE `auth_user_groups`
 -- ---------------------------------------------------------
 
 
+-- CREATE LINK "auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm" 
+-- CREATE LINK "auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm" 
+ALTER TABLE `auth_user_user_permissions`
+	ADD CONSTRAINT `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` FOREIGN KEY ( `permission_id` )
+	REFERENCES `auth_permission`( `id` )
+	ON DELETE Restrict
+	ON UPDATE Restrict;
+-- -------------------------------------------------------------
+-- ---------------------------------------------------------
+
+
+-- CREATE LINK "auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id" 
+-- CREATE LINK "auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id" 
+ALTER TABLE `auth_user_user_permissions`
+	ADD CONSTRAINT `auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id` FOREIGN KEY ( `user_id` )
+	REFERENCES `auth_user`( `id` )
+	ON DELETE Restrict
+	ON UPDATE Restrict;
+-- -------------------------------------------------------------
+-- ---------------------------------------------------------
+
+
 -- CREATE LINK "client_my_manager_id_530baa61_fk_auth_user_id" 
 -- CREATE LINK "client_my_manager_id_530baa61_fk_auth_user_id" -
 ALTER TABLE `client`
@@ -1381,6 +1280,61 @@ ALTER TABLE `client`
 ALTER TABLE `client`
 	ADD CONSTRAINT `client_naznach_two_id_ad3a4e5a_fk_naznach_id` FOREIGN KEY ( `naznach_two_id` )
 	REFERENCES `naznach`( `id` )
+	ON DELETE Restrict
+	ON UPDATE Restrict;
+-- -------------------------------------------------------------
+-- ---------------------------------------------------------
+
+
+-- CREATE LINK "client_okrug_client_id_16a0bcc5_fk_client_id" 
+-- CREATE LINK "client_okrug_client_id_16a0bcc5_fk_client_id" --
+ALTER TABLE `client_okrug`
+	ADD CONSTRAINT `client_okrug_client_id_16a0bcc5_fk_client_id` FOREIGN KEY ( `client_id` )
+	REFERENCES `client`( `id` )
+	ON DELETE Restrict
+	ON UPDATE Restrict;
+-- -------------------------------------------------------------
+-- ---------------------------------------------------------
+
+
+-- CREATE LINK "client_okrug_okrug_id_5841394a_fk_okrug_id" 
+-- CREATE LINK "client_okrug_okrug_id_5841394a_fk_okrug_id" ----
+ALTER TABLE `client_okrug`
+	ADD CONSTRAINT `client_okrug_okrug_id_5841394a_fk_okrug_id` FOREIGN KEY ( `okrug_id` )
+	REFERENCES `okrug`( `id` )
+	ON DELETE Restrict
+	ON UPDATE Restrict;
+-- -------------------------------------------------------------
+-- ---------------------------------------------------------
+
+
+-- CREATE LINK "django_admin_log_content_type_id_c4bce8eb_fk_django_co" 
+-- CREATE LINK "django_admin_log_content_type_id_c4bce8eb_fk_django_co" 
+ALTER TABLE `django_admin_log`
+	ADD CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY ( `content_type_id` )
+	REFERENCES `django_content_type`( `id` )
+	ON DELETE Restrict
+	ON UPDATE Restrict;
+-- -------------------------------------------------------------
+-- ---------------------------------------------------------
+
+
+-- CREATE LINK "django_admin_log_user_id_c564eba6_fk_auth_user_id" 
+-- CREATE LINK "django_admin_log_user_id_c564eba6_fk_auth_user_id" 
+ALTER TABLE `django_admin_log`
+	ADD CONSTRAINT `django_admin_log_user_id_c564eba6_fk_auth_user_id` FOREIGN KEY ( `user_id` )
+	REFERENCES `auth_user`( `id` )
+	ON DELETE Restrict
+	ON UPDATE Restrict;
+-- -------------------------------------------------------------
+-- ---------------------------------------------------------
+
+
+-- CREATE LINK "manager_options_user_id_46e7b9d8_fk_auth_user_id" 
+-- CREATE LINK "manager_options_user_id_46e7b9d8_fk_auth_user_id" 
+ALTER TABLE `manager_options`
+	ADD CONSTRAINT `manager_options_user_id_46e7b9d8_fk_auth_user_id` FOREIGN KEY ( `user_id` )
+	REFERENCES `auth_user`( `id` )
 	ON DELETE Restrict
 	ON UPDATE Restrict;
 -- -------------------------------------------------------------
@@ -1524,6 +1478,17 @@ ALTER TABLE `task_client`
 ALTER TABLE `task_client`
 	ADD CONSTRAINT `task_client_manager_id_044d843b_fk_auth_user_id` FOREIGN KEY ( `manager_id` )
 	REFERENCES `auth_user`( `id` )
+	ON DELETE Restrict
+	ON UPDATE Restrict;
+-- -------------------------------------------------------------
+-- ---------------------------------------------------------
+
+
+-- CREATE LINK "task_client_prioritet_id_11769f7b_fk_prioritet_id" 
+-- CREATE LINK "task_client_prioritet_id_11769f7b_fk_prioritet_id" 
+ALTER TABLE `task_client`
+	ADD CONSTRAINT `task_client_prioritet_id_11769f7b_fk_prioritet_id` FOREIGN KEY ( `prioritet_id` )
+	REFERENCES `prioritet`( `id` )
 	ON DELETE Restrict
 	ON UPDATE Restrict;
 -- -------------------------------------------------------------
