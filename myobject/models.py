@@ -1,12 +1,10 @@
-from simple_history.models import HistoricalRecords
-
 from django.db import models
 from django.core.urlresolvers import reverse
 from django.utils import timezone
 from django.contrib.auth import get_user_model
 from django.conf import settings
 
-from myclient.models import Okrug, Naznach
+from myclient.models import Okrug, Naznach, HistoricalRecordsExtended
 
 
 def get_sentinel_user():
@@ -75,7 +73,7 @@ class MyObject(models.Model):
     hide = models.CharField("Скрыт", max_length=30, choices=HIDE, default="0", blank=True)
     hide_date = models.DateField("Скрыть до", auto_now_add=False, blank=True, null=True)
     zvon = models.DateField("Скрыть до", default=timezone.now, blank=True)
-    history = HistoricalRecords(user_related_name="history_object")
+    history = HistoricalRecordsExtended(user_related_name="history_object")
 
     def __str__(self):
         return self.adres

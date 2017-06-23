@@ -7,6 +7,7 @@ WORKDIR /code
 
 RUN python -m pip install --upgrade pip
 
+ADD requirements/ /code/requirements/
 ADD req.txt /code/
 
 RUN pip install -r req.txt

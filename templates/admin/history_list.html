@@ -8,9 +8,9 @@
 
 {% block content %}
   <div id="content-main">
-
+    {% if action_list %}
     <p>{% blocktrans %}Choose a date from the list below to revert to a previous version of this object.{% endblocktrans %}</p>
-
+    {% endif %}
     <div class="module">
       {% if action_list %}
         <table id="change-history" class="table table-bordered table-striped">
@@ -33,7 +33,7 @@
                   <td scope="col">{{ action|getattribute:column }}</th>
                   {% endfor %}
                   <td>{{ action.history_date }}</td>
-                  <td>{{ action.get_history_type_display }}</td>
+                  <td>{{ action.get_change_message }}</td>
                   <td>
                     {% if action.history_user %}
                       {% url admin_user_view action.history_user_id as admin_user_url %}
@@ -51,7 +51,7 @@
             </tbody>
             </table>
       {% else %}
-        <p>{% trans "This object doesn't have a change history." %}</p>
+        <p>{% trans "This object doesn't have a change history. It probably wasn't added via this admin site." %}</p>
       {% endif %}
     </div>
   </div>
