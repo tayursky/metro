@@ -152,7 +152,7 @@ class UserAdmin(UserAdmin):
 
 class PrioritetAdmin(admin.ModelAdmin):
 
-<<<<<<< HEAD
+#<<<<<<< HEAD
     def get_actions(self, request):
         actions = super(UserAdmin, self).get_actions(request)
         del actions['delete_selected']

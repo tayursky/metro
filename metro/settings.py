@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'metro_site',
     'contactform',
     'black_list',
+    'photo_baza',
 ]
 
 MIDDLEWARE = [
