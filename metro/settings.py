@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'metro_site',
     'contactform',
     'black_list',
+    'photo_baza',
 ]
 
 MIDDLEWARE = [
@@ -102,9 +103,9 @@ AUTHENTICATION_BACKENDS = (
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'new_db',
+        'NAME': 'metro',
         'USER': 'root',
-        'PASSWORD': 'lex',
+        'PASSWORD': 'password',
         'HOST': 'localhost',
     }
 }
