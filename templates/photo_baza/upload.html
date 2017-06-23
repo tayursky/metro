@@ -1,6 +1,13 @@
+{% extends 'black_list/base.html' %}
+{% load bootstrap3 %}
+{% block content-title %} Фото база {% endblock %}
+{% block content %}
 <div>
     <form method="POST" action="" enctype="multipart/form-data">{% csrf_token %}
-         {{ form.as_p }}
-         <input type="submit" class="btn btn-default" value="Add photo"/>
+        {% bootstrap_form form %}
+        {% buttons %}
+        {% bootstrap_button "Добавить" button_type="submit" button_class="btn-primary" %}
+        {% endbuttons %}
      </form>
 </div>
+{% endblock %}
