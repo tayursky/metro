@@ -5,10 +5,9 @@ from .models import MenagerOptions
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-
-# Создание менеджера
 @receiver(post_save, sender = User)
 def addinfo(instance, **kwargs):
+    '''Создание менеджера'''
 	#Существует пользователь или нет
 	try:
 		p = MenagerOptions.objects.get(user = instance)

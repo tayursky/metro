@@ -4,8 +4,9 @@ from .forms import FileFieldForm
 from .models import Photo
 
 class FileFieldView(FormView):
+    '''Добавление фото в Фото базу'''
     form_class = FileFieldForm
-    template_name = 'photo_baza/upload.html'  
+    template_name = 'photo_baza/upload.html'
     success_url = '/photo/upload/'  # Replace with your URL or reverse().
 
     def post(self, request, *args, **kwargs):
@@ -20,4 +21,3 @@ class FileFieldView(FormView):
             return self.form_valid(form)
         else:
             return self.form_invalid(form)
-

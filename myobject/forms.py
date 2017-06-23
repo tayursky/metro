@@ -4,6 +4,7 @@ from .models import MyObject
 
 
 class MyObjectForm(forms.ModelForm):
+    '''Форма добавления объекта'''
     class Meta:
         model = MyObject
         fields = ('typeobj', 'okrug', 'adres', 'naznach', 'area',

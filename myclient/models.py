@@ -7,8 +7,8 @@ from django.contrib.auth import get_user_model
 from django.conf import settings
 
 
-# Модель назначения
 class Naznach(models.Model):
+    ''' Модель назначения '''
     class Meta():
         db_table = "naznach"
         verbose_name = "Назначение"
@@ -26,8 +26,9 @@ class Naznach(models.Model):
     def __str__(self):
         return self.options
 
-# Модель округов
+
 class Okrug(models.Model):
+    ''' Модель округов '''
     class Meta():
         db_table = "okrug"
         verbose_name = "Округ"
@@ -41,8 +42,9 @@ class Okrug(models.Model):
 def get_sentinel_user():
     return get_user_model().objects.get_or_create(username='deleted')[0]
 
-# Таблица клиентов
+
 class Client(models.Model):
+    ''' Таблица клиентов '''
     class Meta():
         db_table = "client"
         verbose_name = "Клиент"
@@ -102,8 +104,8 @@ class Client(models.Model):
         return reverse('my_client', kwargs={'pk': self.my_manager.id})
 
 
-# Модель приоритетов
 class Prioritet(models.Model):
+    ''' Модель приоритетов '''
     class Meta():
         db_table = "prioritet"
         verbose_name = "Приоритет"
@@ -120,8 +122,8 @@ class Prioritet(models.Model):
         return self.prioritet
 
 
-# Модель задачи клиента
 class TaskClient(models.Model):
+    ''' Модель задачи клиента '''    
     class Meta():
         db_table = "task_client"
         verbose_name = "Задача клиента"

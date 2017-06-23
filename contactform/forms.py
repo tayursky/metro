@@ -2,16 +2,16 @@
 from django import forms
 from .models import Contact
 
-#Форма обратной связи
 class ContactForm(forms.ModelForm):
+    ''' Форма обратной связи '''
     class Meta:
         model = Contact
         fields = ('name', 'tel', 'email', 'message')
 
-# Форма поиска по id
 class SZvonId(forms.Form):
+    ''' Форма поиска по id '''
     search = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder': '', 'class': 'id_s'}), max_length=30, error_messages={'required': ''})
 
-# Форма поиска по имени
 class SZvonName(forms.Form):
+    ''' Форма поиска по имени '''
     search = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder': '', 'class': 'id_s'}), max_length=30, error_messages={'required': ''})
