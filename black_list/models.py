@@ -1,7 +1,8 @@
 from django.db import models
 
-# Модель черного списка
+
 class BlackList(models.Model):
+    ''' Модель черного списка '''
     class Meta:
         db_table = 'black_list'
         verbose_name = 'Черный список'
@@ -11,6 +12,6 @@ class BlackList(models.Model):
     tel = models.CharField("Телефон", max_length=20)
     text = models.TextField("Заметка")
     data = models.DateTimeField("Дата", auto_now=True)
-    
+
     def __str__(self):
         return self.tel

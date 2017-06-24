@@ -1,8 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# Модель META\SEO настроект
 class Seo(models.Model):
+    '''Модель META\SEO настроект'''
     class Meta:
         db_table = 'seo'
         verbose_name = "Настрока сайта\SEO"
@@ -15,9 +15,8 @@ class Seo(models.Model):
     def __str__(self):
         return 'SEO настройки %s' % (self.title,)
 
-
-# Модель настройки прав менеджеров
 class MenagerOptions(models.Model):
+    '''Модель настройки прав менеджеров'''
     class Meta:
         db_table = 'manager_options'
         verbose_name = "Настроки прав"
@@ -34,8 +33,8 @@ class MenagerOptions(models.Model):
     def __str__(self):
         return self.user.username
 
-# Логин пароль ЦИАН
 class Cian(models.Model):
+    '''Логин пароль ЦИАН'''
     class Meta:
         db_table = 'cian'
         verbose_name = "Настройки циан"

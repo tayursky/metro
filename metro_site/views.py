@@ -1,15 +1,17 @@
 from django.shortcuts import render, redirect
 from myobject.models import MyObject
-from .forms import SearchObjectFront, SearchMetroFront
+from .forms import SearchObjectFront, SearchMetroFront, SearchObjFullFront
 
 
-# Главная
 def home(request):
+    ''' Гланая страница сайта '''
     myobj = MyObject.objects.all()[:4]
-    return render(request, 'site/home.html', locals())
+    search_obj = SearchObjFullFront()
+    context = {'myobj': myobj, 'search_obj': search_obj}
+    return render(request, 'site/home.html', context)
 
-# Поиск объекта по номеру
 def search_object(request):
+    ''' Поиск объекта по номеру '''
     if request.method == "POST":
         form = SearchObjectFront(request.POST)
         if form.is_valid():
@@ -17,10 +19,10 @@ def search_object(request):
             myobject = MyObject.objects.filter(id = search)
     else:
         return redirect('/')
-    return render(request, 'myobject/my-object.html', {'search_object': myobject})
+    return render(request, 'site/obj-single.html', {'obj_single': myobject})
 
-# Поиск станции метро
 def search_metro(request):
+    ''' Поиск станции метро '''
     if request.method == "POST":
         form = SearchMetroFront(request.POST)
         if form.is_valid():

@@ -102,8 +102,8 @@ class HistoricalRecordsExtended(HistoricalRecords):
         return model
 
 
-# Модель назначения
 class Naznach(models.Model):
+    ''' Модель назначения '''
     class Meta():
         db_table = "naznach"
         verbose_name = "Назначение"
@@ -121,8 +121,9 @@ class Naznach(models.Model):
     def __str__(self):
         return self.options
 
-# Модель округов
+
 class Okrug(models.Model):
+    ''' Модель округов '''
     class Meta():
         db_table = "okrug"
         verbose_name = "Округ"
@@ -136,8 +137,9 @@ class Okrug(models.Model):
 def get_sentinel_user():
     return get_user_model().objects.get_or_create(username='deleted')[0]
 
-# Таблица клиентов
+
 class Client(models.Model):
+    ''' Таблица клиентов '''
     class Meta():
         db_table = "client"
         verbose_name = "Клиент"
@@ -197,62 +199,8 @@ class Client(models.Model):
         return reverse('my_client', kwargs={'pk': self.my_manager.id})
 
 
-    @staticmethod
-    def _bootstrap(count=200, locale='ru'):
-        import random
-        boolean = [True, False]
-
-        from elizabeth import Generic
-        g = Generic(locale)
-
-        naznach = Naznach(options='Магазин')
-        naznach.save()
-
-        User = get_user_model()
-        for _ in range(10):
-            user = User.objects.create_user(
-                g.personal.username(), g.personal.email(), '123')
-            user.save()
-
-        users_list = User.objects.all()[:5]
-        for u in users_list:
-            for _ in range(count):
-                area_ot = g.numbers.floats(n=2, type_code='f', to_list=True)[0] * 100
-                area_do = area_ot + 100
-                client = Client(
-                    my_manager=u,
-                    name=g.personal.name(),
-                    tel=g.personal.telephone(),
-                    email=g.personal.email(),
-                    naznach_one=naznach,
-                    area_ot=area_ot,
-                    area_do=area_do,
-                    metro=random.choice(boolean),
-                    adres=random.choice(boolean),
-                    komisiya=random.choice(boolean),
-                    etaj=random.choice(boolean),
-                    podborka=random.choice(boolean)
-                )
-                client.save()
-
-    @staticmethod
-    def _change(locale='ru'):
-        from elizabeth import Generic
-        g = Generic(locale)
-
-        okrug = Okrug(options='Шевченковский район')
-        okrug.save()
-
-        clients_list = Client.objects.all()[:20]
-        for client in clients_list:
-            client.tel = g.personal.telephone()
-            client.okrug.add(okrug)
-            client.email = g.personal.email()
-            client.save()
-
-
-# Модель приоритетов
 class Prioritet(models.Model):
+    ''' Модель приоритетов '''
     class Meta():
         db_table = "prioritet"
         verbose_name = "Приоритет"
@@ -269,8 +217,8 @@ class Prioritet(models.Model):
         return self.prioritet
 
 
-# Модель задачи клиента
 class TaskClient(models.Model):
+    ''' Модель задачи клиента '''    
     class Meta():
         db_table = "task_client"
         verbose_name = "Задача клиента"
@@ -280,15 +228,8 @@ class TaskClient(models.Model):
     '''При удалении приоритета назначаем задачам другой приоритет'''
 
     def get_prio():
-        try:
-            prio = Prioritet.objects.all().order_by('-num')[:-1]
-        except:
-            prio = Prioritet.objects.get_or_create(prioritet='Другое10', num=0)[0]
+        prio = Prioritet.objects.get_or_create(prioritet='Другое10', num=0)[0]
         return prio
-
-    def prio():
-        b = 2
-        return b
 
     '''PRIORITET = (
         ('0', 'другое'),
@@ -298,7 +239,7 @@ class TaskClient(models.Model):
     )'''
     manager = models.ForeignKey(User, on_delete=models.CASCADE)
     client = models.ForeignKey(Client, verbose_name="Клиент")# related_name='client',
-    prioritet = models.ForeignKey(Prioritet, on_delete=models.SET(prio), verbose_name="Приоритет")
+    prioritet = models.ForeignKey(Prioritet, verbose_name="Приоритет")
     date = models.DateField("Дата", auto_now_add=False)
     task = models.TextField("Задача")
     end = models.BooleanField("Выполнено", default=False)

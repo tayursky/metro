@@ -1,8 +1,9 @@
 from django.db import models
 from django.utils import timezone
 
-#Модель обратной связи
+
 class Contact(models.Model):
+    ''' Модель обратной связи '''
 	class Meta():
 		db_table = 'contact'
 		verbose_name = "Обратная связь"

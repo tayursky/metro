@@ -17,5 +17,4 @@ urlpatterns = [
     url(r'^zvonok/', include('contactform.urls')),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^photo/', include('photo_baza.urls')),
-
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

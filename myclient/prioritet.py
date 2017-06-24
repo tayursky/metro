@@ -9,36 +9,36 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 
 
-# Список приоритетов
 class PrioritetList(LoginRequiredMixin, ListView):
+    '''Список приоритетов'''
     context_object_name = 'prioritet'
     queryset = Prioritet.objects.all()
     template_name = 'myclient/prioritet/prioritet.html'
 
-# Добавление приоритета
 class AddPrioritet(LoginRequiredMixin, CreateView):
+    '''Добавление приоритета'''
     model = Prioritet
     template_name = "myclient/prioritet/add_prioritet.html"
     form_class = PrioritetForm
 
-# Редактирование приоритета
 class PrioritetUpdate(LoginRequiredMixin, UpdateView):
+    '''Редактирование приоритета'''
     model = Prioritet
     form_class = PrioritetForm
     template_name = 'myclient/prioritet/update.html'
 
-# Удаление приоритета
 class PrioritetDelete(LoginRequiredMixin, DeleteView):
+    '''Удаление приоритета'''
     model = Prioritet
     template_name = 'myclient/prioritet/delete.html'
 
     def get_success_url(self):
         return reverse('prioritet')
 
-# Удаление приоритета
 @csrf_exempt
 @login_required
 def del_prio(request):
+    '''Удаление приоритета'''
     if request.is_ajax():
         if request.method == "POST":
             if 'pk' in  request.POST:

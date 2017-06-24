@@ -106,7 +106,7 @@ DATABASES = {
         'NAME': 'metro',
         'USER': 'root',
         'PASSWORD': 'Djwoms18',
-        'HOST': 'mysql',
+        'HOST': 'localhost',
     }
 }
 

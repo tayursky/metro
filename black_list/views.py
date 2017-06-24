@@ -9,14 +9,15 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
 
-# Список из черного листа
+
 class BlackListViews(LoginRequiredMixin, ListView):
+    ''' Список из черного листа '''
     context_object_name = 'black_list'
     queryset = BlackList.objects.all()
     template_name = 'black_list/black_list.html'
 
-# Добавлениев черный список
 class BlackListCreate(LoginRequiredMixin, CreateView):
+    ''' Добавлениев черный список '''
     model = BlackList
     form_class = BlackListForm
     template_name = 'black_list/add.html'
@@ -24,8 +25,8 @@ class BlackListCreate(LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse('black_list')
 
-# Редактирование черного списка
 class BlackListUpdate(LoginRequiredMixin, UpdateView):
+    ''' Редактирование черного списка '''
     model = BlackList
     form_class = BlackListForm
     template_name = 'black_list/update.html'
@@ -33,10 +34,10 @@ class BlackListUpdate(LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse('black_list')
 
-# Удаление из черного списка
 @csrf_exempt
 @login_required
 def del_black_list(request):
+    ''' Удаление из черного списка '''
     if request.is_ajax():
         if request.method == "POST":
             if 'pk' in  request.POST:
