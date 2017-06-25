@@ -30,7 +30,7 @@ class UserAdmin(UserAdmin):
     def __init__(self, *args, **kwargs):
          super(UserAdmin,self).__init__(*args, **kwargs)
          UserAdmin.list_display = list(
-             UserAdmin.list_display) + ['date_joined', 'is_active', 'last_login', 'history_link']
+             UserAdmin.list_display) + ['date_joined', 'is_active',          'last_login', 'history_link']
          UserAdmin.list_filter = ('is_active',)
 
     def get_actions(self, request):
@@ -154,7 +154,7 @@ class PrioritetAdmin(admin.ModelAdmin):
 
 #<<<<<<< HEAD
     def get_actions(self, request):
-        actions = super(UserAdmin, self).get_actions(request)
+        actions = super(PrioritetAdmin, self).get_actions(request)
         del actions['delete_selected']
         return actions
 
@@ -163,7 +163,7 @@ class PrioritetAdmin(admin.ModelAdmin):
 
         max_prio = Prioritet.objects.all()\
             .order_by('num')\
-            .exclude(pk=get_obj.id)\
+            .exclude(pk=obj.id)\
             .last()
 
         post_url = reverse('admin:myclient_prioritet_changelist')
