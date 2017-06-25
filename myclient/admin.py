@@ -169,7 +169,7 @@ class PrioritetAdmin(admin.ModelAdmin):
         post_url = reverse('admin:myclient_prioritet_changelist')
 
         if request.POST:
-            obj.taskclient_set.update(prioritet=get_obj.id)
+            obj.taskclient_set.update(prioritet=max_prio.id)
             obj.delete()
             return HttpResponseRedirect(post_url)
         else:
