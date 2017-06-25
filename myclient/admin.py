@@ -99,8 +99,13 @@ class UserAdmin(UserAdmin):
 
     def history_link(self, obj):
         if obj.history_client.all() or obj.history_object.all():
-            return format_html('<a href="/{}/{}/{}/history/{:d}/">история</a>'.format(
-                self.admin_site.name, obj._meta.app_label, obj._meta.object_name.lower(), obj.id))
+            return format_html(
+                '<a href="/{}/{}/{}/history/{:d}/">история</a>'.format(
+                    self.admin_site.name,
+                    obj._meta.app_label,
+                    obj._meta.object_name.lower(),
+                    obj.id)
+            )
 
     history_link.short_description = 'История пользователя'
 
@@ -152,7 +157,6 @@ class UserAdmin(UserAdmin):
 
 class PrioritetAdmin(admin.ModelAdmin):
 
-#<<<<<<< HEAD
     def get_actions(self, request):
         actions = super(UserAdmin, self).get_actions(request)
         del actions['delete_selected']

@@ -41,15 +41,15 @@ msgstr "Возвращено %s"
 
 #: models.py:222
 msgid "Created"
-msgstr "Создано"
+msgstr "Создан"
 
 #: models.py:223
 msgid "Changed"
-msgstr "Изменено"
+msgstr "Изменен"
 
 #: models.py:224
 msgid "Deleted"
-msgstr "Удалено"
+msgstr "Удален"
 
 #: templates/simple_history/_object_history_list.html:9
 msgid "Object"
@@ -65,7 +65,7 @@ msgstr "Примечание"
 
 #: templates/simple_history/_object_history_list.html:15
 msgid "Changed by"
-msgstr "Изменено"
+msgstr "Изменен"
 
 #: templates/simple_history/_object_history_list.html:36
 msgid "None"

@@ -1,5 +1,6 @@
 import json
 import ast
+from datetime import datetime, timedelta
 
 from simple_history.models import HistoricalRecords
 
@@ -34,8 +35,25 @@ class HistoricalRecordsExtended(HistoricalRecords):
         change_message = []
         if history_list:
             last_record = history_list[0]
-            if len(history_list) < 2:
-                change_message.append({'added': {}})
+
+            if history_type == '+':
+                change_message.append({
+                    'added': {
+                        'name': str(instance),
+                        'object': instance._meta.verbose_name
+                    }
+                })
+                last_record.change_message = change_message
+                last_record.save()
+                return
+
+            if history_type == '-':
+                change_message.append({
+                    'deleted': {
+                        'name': str(instance),
+                        'object': instance._meta.verbose_name
+                    }
+                })
                 last_record.change_message = change_message
                 last_record.save()
                 return
@@ -44,10 +62,24 @@ class HistoricalRecordsExtended(HistoricalRecords):
 
             change = []
             for field in self.fields_included(instance):
-                if field.attname != 'change_message':
-                    if (h_last[field.attname] != h_penultimate[field.attname]):
-                        change.append(field.verbose_name)
-            change_message.append({'changed': {'fields': change}})
+                if (h_last[field.attname] != h_penultimate[field.attname]):
+                    change.append(field.verbose_name)
+
+            if change:
+                change_message.append({
+                    'changed': {
+                        'fields': change,
+                        'name': str(instance),
+                        'object': instance._meta.verbose_name
+                    }
+                })
+            else:
+                change_message.append({
+                    'no changed': {
+                        'name': str(instance),
+                        'object': instance._meta.verbose_name
+                    }
+                })
             last_record.change_message = change_message
             last_record.save()
 
