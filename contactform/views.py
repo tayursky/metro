@@ -13,14 +13,14 @@ from django.http.response import Http404
 
 def contact(request):
     ''' Оставить заявку '''
-	if request.method == "POST":
-		form = ContactForm(request.POST)
-		if form.is_valid():
-			form.save()
-			return render(request, 'contactform/thank.html')
-	else:
-			form = ContactForm()
-	return render(request, 'contactform/cont.html', {'form': form })
+    if request.method == "POST":
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'contactform/thank.html')
+    else:
+            form = ContactForm()
+    return render(request, 'contactform/cont.html', {'form': form })
 
 class ZayavkaList(LoginRequiredMixin, ListView):
     ''' Просмотр заявок '''
