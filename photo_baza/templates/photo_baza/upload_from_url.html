@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{%load staticfiles%}
+
+{% block content %}
+<!--     {% if messages %}
+            {% for message in messages %}
+            <h3{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</h3>
+         {% endfor %}
+
+    {% endif %}
+	{{success_message}} -->
+<form method="POST" action="" enctype="multipart/form-data">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" class="btn btn-default" value="Add"/>
+
+</form>
+
+{% endblock content %}
