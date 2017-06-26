@@ -155,9 +155,14 @@ MEDIA_URL = '/media/'
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'tpa_translation', 'simple_history', 'locale'),
 ]
+
+
+DAYS_KEEP_USER_HISTORY_RECORDS = 14
+
 
 try:
     from .local_settings import *
