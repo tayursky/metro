@@ -27,9 +27,6 @@ def search_object(request):
                 context = {'obj': myobject, 'imgs': img, 'img_objs': img_obj}
             except:
                 context = {'obj': myobject}
-            print(myobject.okrug.all()[:1])
-            #else:
-                #context = {'obj_single': myobject}
     else:
         return redirect('/')
 
@@ -51,3 +48,15 @@ def search_metro(request):
     else:
         return redirect('/')
     return render(request, 'site/search.html', {'search_object': metro})
+
+def obj_single(request, pk):
+    myobject = get_object_or_404(MyObject, pk=pk)
+    try:
+        img = Photo.objects.filter(station = myobject.station_one)[:4]
+        img_obj = MyObject.objects.filter \
+            (okrug = myobject.okrug.all()[:1])
+        context = {'obj': myobject, 'imgs': img, 'img_objs': img_obj}
+    except:
+        context = {'obj': myobject}
+
+    return render(request, 'site/obj-single.html', context)

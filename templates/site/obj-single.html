@@ -66,6 +66,10 @@
             </td>
         </tr>
 </table>
+<h4>Если вы хотите получить подробную информации об этих объектах, пожалуйста, позвоните нам или оставьте заявку на просмотр</h4>
+<div class="btn-obj">
+    <a href="{% url 'contact' %}" class="cont-btn">Записаться на просмотр</a>
+</div>
 <div class="station-img">
     <p><strong>Возможно, Вас заинтересуют похожие предложения:</strong></p>
     {% for img in imgs %}
@@ -79,19 +83,19 @@
     {% for obj in img_objs %}
     <div class="img-obj-opis">
         <strong>
-        <p>
+        <a href="{% url 'obj_single' pk=obj.id %}"><p>
             {% for okrug in obj.okrug.all %}
                 {{okrug.options}},
             {% endfor %}
-
             {{obj.station_one}}
             {% if obj.station_two %},
                 {{obj.station_two}}
             {% endif %}
         </p>
 
-        {{obj.area}} м<sup>2</sup>;
-        Цена: {{obj.price}} руб.
+            {{obj.area}} м<sup>2</sup>;
+            Цена: {{obj.price}} руб.
+        </a>
         </strong>
     </div>
     {% endfor %}
