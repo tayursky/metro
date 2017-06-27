@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from myobject.models import MyObject
 from .forms import SearchObjectFront, SearchMetroFront, SearchObjFullFront
 from photo_baza.models import Photo
@@ -19,16 +19,19 @@ def search_object(request):
         form = SearchObjectFront(request.POST)
         if form.is_valid():
             search = form.cleaned_data['search']
-            myobject = MyObject.objects.filter(id = search)
-            if myobject.exists():
-                for st in myobject:
-                    img = Photo.objects.filter(station = st.station_one)[:3]
-                    context = {'obj_single': myobject, 'imgs': img}
-            else:
-                context = {'obj_single': myobject}
+            myobject = get_object_or_404(MyObject, id=search)
+            try:
+                img = Photo.objects.filter(station = myobject.station_one)[:4]
+                img_obj = MyObject.objects.filter(okrug = myobject.okrug.all()[:1])
+                context = {'obj': myobject, 'imgs': img, 'img_objs': img_obj}
+            except:
+                context = {'obj': myobject}
+            print(myobject.okrug.all()[:1])
+            #else:
+                #context = {'obj_single': myobject}
     else:
         return redirect('/')
-    print(st.station_one.photo)
+
     return render(request, 'site/obj-single.html', context)
 
 def search_metro(request):
@@ -46,5 +49,4 @@ def search_metro(request):
                 context = {'search_object': metro}
     else:
         return redirect('/')
-    print(context)
     return render(request, 'site/search.html', {'search_object': metro})

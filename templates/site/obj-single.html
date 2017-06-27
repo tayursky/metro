@@ -1,17 +1,16 @@
 {% extends 'base-site.html' %}
 {% load bootstrap3 %}
 {% block search %}
-
 {% endblock %}
 {% block content-title %}
-
 {% endblock %}
 
 {% block content %}
-<div>
-    {% if obj_single %}
-    {% for obj in obj_single %}
+
+    {% if obj %}
+    {# for obj in obj_single #}
     <h2>ПОДРОБНАЯ ИНФОРМАЦИЯ ОБ ОБЪЕКТЕ № {{obj.id}}</h2>
+    <div class="obj-cont">
     <table class="table table-bordered table-hover table-obj">
         <tr>
             <td class="td-op">Локация</td>
@@ -31,7 +30,7 @@
         <tr>
             <td>Коммерческие условия</td>
             <td>
-                <strong>{{obj.block_area}} м<sup>2</sup> - {{obj.block_price}}-{{obj.block_procent}}</strong>
+                <strong>{{obj.block_area}} м<sup>2</sup> - {{obj.block_price}} руб - {{obj.block_procent}} %</strong>
             </td>
         </tr>
         <tr>
@@ -68,22 +67,44 @@
         </tr>
 </table>
 <div class="station-img">
-    {% for img in obj.station_one__stat %}
-        {{img.name}}
-    {% endfor %}
-
+    <p><strong>Возможно, Вас заинтересуют похожие предложения:</strong></p>
     {% for img in imgs %}
-        <img src="{{MEDIA_URL}}{{ img.image.url }}" width="200" height="200" alt="Аренда помещений">
-        {% for obj in img.stancmetro.all %}
-            {{obj.name}}
-        {% endfor %}
-    {% endfor %}
+        <img src="{{MEDIA_URL}}{{ img.image.url }}" width="250" height="200" alt="Аренда помещений">
 
+    {% endfor %}
+    
+    {% for obj in img_objs %}
+
+        {% for okrug in obj.okrug.all %}
+            {{okrug.options}},
+        {% endfor %}
+
+        {{obj.station_one}}
+        {% if obj.station_two %},
+            {{obj.station_two}}
+        {% endif %}
+
+        {{obj.area}} м<sup>2</sup>
+        Цена: {{obj.price}}
+
+    {% endfor %}
+</div>
 </div>
 
-    {% endfor %}
+    {# endfor #}
     {% else %}
         <h2>Ошибка. Объект не существует.</h2>
     {% endif %}
+
+<div class="obj-right">
+    <div class="btn-obj-singl">
+        <a href="javascript:window.print(); void 0;" class="cont-btn">РАСПЕЧАТАТЬ</a>
+    </div>
+    <div class="btn-obj-singl">
+        <a href="{% url 'contact' %}" class="cont-btn">ЗАДАТЬ ВОПРОС</a>
+    </div>
+</div>
+<div class="clearfix">
+
 </div>
 {% endblock %}
