@@ -22,7 +22,8 @@ def search_object(request):
             myobject = get_object_or_404(MyObject, id=search)
             try:
                 img = Photo.objects.filter(station = myobject.station_one)[:4]
-                img_obj = MyObject.objects.filter(okrug = myobject.okrug.all()[:1])
+                img_obj = MyObject.objects.filter \
+                    (okrug = myobject.okrug.all()[:1])
                 context = {'obj': myobject, 'imgs': img, 'img_objs': img_obj}
             except:
                 context = {'obj': myobject}

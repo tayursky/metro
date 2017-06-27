@@ -69,24 +69,31 @@
 <div class="station-img">
     <p><strong>Возможно, Вас заинтересуют похожие предложения:</strong></p>
     {% for img in imgs %}
+    <div class="img-obj">
         <img src="{{MEDIA_URL}}{{ img.image.url }}" width="250" height="200" alt="Аренда помещений">
-
+    </div>
     {% endfor %}
-    
+    <div class="clearfix">
+
+    </div>
     {% for obj in img_objs %}
+    <div class="img-obj-opis">
+        <strong>
+        <p>
+            {% for okrug in obj.okrug.all %}
+                {{okrug.options}},
+            {% endfor %}
 
-        {% for okrug in obj.okrug.all %}
-            {{okrug.options}},
-        {% endfor %}
+            {{obj.station_one}}
+            {% if obj.station_two %},
+                {{obj.station_two}}
+            {% endif %}
+        </p>
 
-        {{obj.station_one}}
-        {% if obj.station_two %},
-            {{obj.station_two}}
-        {% endif %}
-
-        {{obj.area}} м<sup>2</sup>
-        Цена: {{obj.price}}
-
+        {{obj.area}} м<sup>2</sup>;
+        Цена: {{obj.price}} руб.
+        </strong>
+    </div>
     {% endfor %}
 </div>
 </div>

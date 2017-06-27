@@ -209,6 +209,17 @@ form.form_s_3s {
 .btn-obj-singl:hover{
     background-color: rgb(224, 65, 61) !important;
 }
+.img-obj{
+    width: 250px;
+    margin-left: 15px;
+    float: left;
+}
+.img-obj-opis{
+    width: 250px;
+    margin-left: 15px;
+    float: left;
+    text-align: center;
+}
 .obj-right{
     width: 270px;
     padding: 20px;
