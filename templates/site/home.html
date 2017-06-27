@@ -22,7 +22,8 @@
 
 {% block content %}
 <form class="form_s_3s" name="contact" method="post" action="">
-    {% csrf_token %} {% bootstrap_form search_obj %}
+    {% csrf_token %} 
+    {% bootstrap_form form %}
     <button type="submit" class="btn btn-md btn-search-obj"><span class="search-obj">ИСКАТЬ</span></button>
 </form>
 <div>

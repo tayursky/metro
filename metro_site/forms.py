@@ -1,6 +1,7 @@
 from django import forms
 
-from myclient.models import Naznach
+from myobject.models import MyObject
+from myclient.models import Naznach, Okrug
 
 
 class SearchObjectFront(forms.Form):
@@ -21,11 +22,6 @@ class SearchMetroFront(forms.Form):
 
 class SearchObjFullFront(forms.Form):
     ''' Форма поиска объекта по параметрам '''
-    PREMISE = (
-        ('small', 'Маленькое до 20 кв.м.'),
-        ('middle', 'Среднее от 20 до 80 кв.м.'),
-        ('large', 'Большое до 80 кв.м.')
-    )
     REGION = (
         ('1', 'Центер и ТТК'),
         ('2', 'Север'),
@@ -43,12 +39,16 @@ class SearchObjFullFront(forms.Form):
         ('6', '10000000'),
     )
 
-    premise = forms.ChoiceField(label='ПОМЕЩЕНИЕ',
-                                widget=forms.RadioSelect, choices=PREMISE)
-    region = forms.ChoiceField(label='РАЙОНЫ МОСКВЫ',
-                               widget=forms.RadioSelect, choices=REGION)
-    price = forms.ChoiceField(label='АРЕНДА В МЕСЯЦ',
-                              widget=forms.RadioSelect, choices=PRICE)
+    area_range = forms.ChoiceField(label='ПОМЕЩЕНИЕ',
+                                   widget=forms.RadioSelect,
+                                   choices=MyObject.RANGE_AREA)
+    okrug = forms.ModelChoiceField(queryset=Okrug.objects.all(),
+                                   empty_label=None,
+                                   label='РАЙОН МОСКВЫ',
+                                   widget=forms.RadioSelect)
+    price = forms.ChoiceField(label='АРЕНДА В МЕСЯЦ до',
+                              widget=forms.RadioSelect,
+                              choices=PRICE)
     naznach = forms.ModelChoiceField(queryset=Naznach.objects.all(),
-                                     label='ВИД ДЕЯТЕЛЬНОСТИ',
-                                     widget=forms.RadioSelect)
+                                     empty_label='ВИД ДЕЯТЕЛЬНОСТИ',
+                                     label='')

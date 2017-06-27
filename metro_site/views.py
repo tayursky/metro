@@ -1,17 +1,32 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from myobject.models import MyObject
-from .forms import SearchObjectFront, SearchMetroFront, SearchObjFullFront
-from photo_baza.models import Photo
 from django.db.models import Q
+
+from myobject.models import MyObject
+from photo_baza.models import Photo
+from .forms import SearchObjectFront, SearchMetroFront, SearchObjFullFront
+
 
 def home(request):
     ''' Гланая страница сайта '''
     myobj = MyObject.objects.all()[:4]
+    form = SearchObjFullFront()
+    if request.method == "POST":
+        form = SearchObjFullFront(request.POST)
+        if form.is_valid():
+            form_price = int(form.cleaned_data['price'])
+            myobj = MyObject.objects.filter(
+                naznach=form.cleaned_data['naznach'],
+                price__lte=(form.fields['price'].choices)[form_price][1],
+                okrug=form.cleaned_data['okrug'],
+                area_range=form.cleaned_data['area_range']
+            )
+
     for st in myobj:
         img = Photo.objects.filter(station = st.station_one)[:4]
-    search_obj = SearchObjFullFront()
-    context = {'myobj': myobj, 'search_obj': search_obj, 'imgs': img}
+
+    context = {'myobj': myobj, 'form': form, 'imgs': img}
     return render(request, 'site/home.html', context)
+
 
 def search_object(request):
     ''' Поиск объекта по номеру '''
@@ -32,6 +47,7 @@ def search_object(request):
 
     return render(request, 'site/obj-single.html', context)
 
+
 def search_metro(request):
     ''' Поиск станции метро '''
     if request.method == "POST":
@@ -49,8 +65,9 @@ def search_metro(request):
         return redirect('/')
     return render(request, 'site/search.html', {'search_object': metro})
 
-#Переход по ссылки на объект, сделать более организовано, без копипаста
+
 def obj_single(request, pk):
+    '''Переход по ссылки на объект, сделать более организовано, без копипаста'''
     myobject = get_object_or_404(MyObject, pk=pk)
     try:
         img = Photo.objects.filter(station = myobject.station_one)[:4]
