@@ -49,6 +49,7 @@ def search_metro(request):
         return redirect('/')
     return render(request, 'site/search.html', {'search_object': metro})
 
+#Переход по ссылки на объект, сделать более организовано, без копипаста
 def obj_single(request, pk):
     myobject = get_object_or_404(MyObject, pk=pk)
     try:
