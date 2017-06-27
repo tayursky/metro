@@ -1,9 +1,8 @@
 #from django.template import Context, Template, RequestContext
 from .forms import *
 
-
-# Формы поиска в шапке админки
 def search_admin(request):
+    '''Формы поиска в шапке админки'''
     object_form = SearchObject()
     adres_form = SearchAdres()
     client_form = SearchClient()

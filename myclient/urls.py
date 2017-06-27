@@ -3,7 +3,7 @@ from django.conf.urls import url
 from . import views, task, prioritet
 
 urlpatterns = [
-    # Клиенты
+    #Клиенты
     url(r'^my/(?P<pk>[0-9]+)/$', views.my_client, name='my_client'),
     url(r'^add-client/$', views.add_client, name='add_client'),
     url(r'^hide/(?P<pk>[0-9]+)/$', views.hide_client, name='hide_client'),
@@ -12,7 +12,7 @@ urlpatterns = [
     url(r'^delete_client/(?P<pk>[0-9]+)/$', views.ClientDelete.as_view(), name='delete_client'),
     url(r'^copy_client/(?P<pk>[0-9]+)/$', views.ClientCopy.as_view(), name='copy_client'),
 
-    # Задачи
+    #Задачи
     #url(r'^task/$', task.my_task, name='my_task'),
     url(r'^task/$', task.MyTaskList.as_view(), name='my_task'),
     url(r'^add/task_client/(?P<pk>[0-9]+)/$',
@@ -20,7 +20,7 @@ urlpatterns = [
     url(r'^add/task/$', task.AddTaskClient.as_view(), name='add_task'),
     url(r'^task/update/(?P<pk>[0-9]+)$', task.TaskUpdate.as_view(), name='update_task'),
 
-    # Приоритеты
+    #Приоритеты
     url(r'^prioritet/$', prioritet.PrioritetList.as_view(), name='prioritet'),
     url(r'^prioritet/add/$', prioritet.AddPrioritet.as_view(), name='add_prioritet'),
     url(r'^prioritet/update/(?P<pk>[0-9]+)/$', prioritet.PrioritetUpdate.as_view(), name='update_prio'),

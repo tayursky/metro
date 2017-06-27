@@ -16,8 +16,8 @@ def my_task(request):
     mytask = TaskClient.objects.filter(manager_id=request.user.id, end=False)
     return render(request, 'myclient/my-task.html', {"mytask": mytask})'''
 
-# Мои задачи
 class MyTaskList(LoginRequiredMixin, ListView):
+    '''Страница Мои задачи'''
     context_object_name = 'mytask'
     queryset = TaskClient.objects.filter(end=False)
     template_name = 'myclient/my-task.html'
@@ -44,9 +44,8 @@ class AddTaskClient(LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse('my_client', kwargs={'pk': self.request.user.id})
 
-
-# Редактирование задачи
 class TaskUpdate(LoginRequiredMixin, UpdateView):
+    '''Редактирование задачи'''
     model = TaskClient
     #fields = ['name', 'tel']
     form_class = TaskClientForm

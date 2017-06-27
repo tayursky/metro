@@ -2,18 +2,23 @@
 from django import forms
 from .models import MyObject
 
+
 class MyObjectForm(forms.ModelForm):
+    '''Форма добавления объекта'''
     class Meta:
         model = MyObject
-        fields = ('typeobj', 'okrug', 'adres', 'naznach', 'area', 'block_area', 'etaj', 'price', 'opis', 'station_one',
-         'station_two', 'dom', 'kvt', 'dogovor', 'block_tel', 'silka','zametka')
+        fields = ('typeobj', 'okrug', 'adres', 'naznach', 'area',
+                  'block_area', 'block_price', 'block_procent', 'etaj', 'price', 'opis', 'station_one',
+                  'station_two', 'dom', 'kvt', 'dogovor',
+                  'block_tel', 'silka', 'zametka')
         widgets = {
             'okrug': forms.widgets.CheckboxSelectMultiple,
             'naznach': forms.widgets.CheckboxSelectMultiple
         }
 
-# Форма поиска объекта по типу
+
 class SObjectTypeForm(forms.ModelForm):
+    '''Форма поиска объекта по типу'''
     class Meta:
         model = MyObject
         fields = ('typeobj', )
@@ -27,8 +32,9 @@ class SObjectTypeForm(forms.ModelForm):
             'typeobj': 'id_s'
         }'''
 
-# Форма поиска объекта по станции метро
+
 class SObjectMetroForm(forms.ModelForm):
+    '''Форма поиска объекта по станции метро'''
     class Meta:
         model = MyObject
         fields = ('station_one', )
@@ -39,8 +45,9 @@ class SObjectMetroForm(forms.ModelForm):
             'station_one': ''
         }
 
-# Форма поиска объекта по станции метро
+
 class SObjectHideForm(forms.ModelForm):
+    '''Форма поиска объекта по станции метро'''
     class Meta:
         model = MyObject
         fields = ('hide', )

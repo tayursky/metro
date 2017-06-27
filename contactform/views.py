@@ -10,19 +10,20 @@ from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 from django.http.response import Http404
 
-# Оставить заявку
-def contact(request):
-	if request.method == "POST":
-		form = ContactForm(request.POST)
-		if form.is_valid():
-			form.save()
-			return render(request, 'contactform/thank.html')
-	else:
-			form = ContactForm()
-	return render(request, 'contactform/cont.html', {'form': form })
 
-# Заявки
+def contact(request):
+    ''' Оставить заявку '''
+    if request.method == "POST":
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'contactform/thank.html')
+    else:
+        form = ContactForm()
+    return render(request, 'contactform/cont.html', {'form': form })
+
 class ZayavkaList(LoginRequiredMixin, ListView):
+    ''' Просмотр заявок '''
     context_object_name = 'zayavka'
     queryset = Contact.objects.all().order_by('-data')
     template_name = 'contactform/zayavki.html'
@@ -65,8 +66,9 @@ class ZayavkaList(LoginRequiredMixin, ListView):
             self.context['zayavka'] = Contact.objects.filter(data = search)
         return render(request, self.template_name, self.context)
 
-# Редактирование заявки
+
 class ZayavkaUpdate(LoginRequiredMixin, UpdateView):
+    ''' Редактирование заявки '''
     model = Contact
     form_class = ContactForm
     template_name = 'contactform/zayavka_update.html'
@@ -74,10 +76,11 @@ class ZayavkaUpdate(LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse('zayavka')
 
-# Удаление
+
 @csrf_exempt
 @login_required
 def del_ajax(request):
+    ''' Удаление заявки '''
     if request.is_ajax():
         if request.method == "POST":
             if 'pk' in  request.POST:
@@ -89,10 +92,11 @@ def del_ajax(request):
         else:
             return HttpResponse("NO")
 
-# Редактировать через ajax
+
 @csrf_exempt
 @login_required
 def update_zvon(request):
+    ''' Редактировать через ajax '''
     if request.is_ajax():
         if request.method == "POST":
             if 'pk' in  request.POST:
@@ -119,8 +123,9 @@ def edit_zvon(request, pk):
         else:
             return HttpResponse("NO2")
 
-# Поиск заявки по номеру
+
 def s_zvon_id(request):
+    ''' Поиск заявки по номеру '''
     if request.method == "POST":
         form = SZvonId(request.POST)
         if form.is_valid():

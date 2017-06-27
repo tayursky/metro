@@ -38,9 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+
     'allauth',
     'allauth.account',
     'bootstrap3',
+    'simple_history',
+
     'search',
     'myclient',
     'myobject',
@@ -48,6 +51,7 @@ INSTALLED_APPS = [
     'metro_site',
     'contactform',
     'black_list',
+    'photo_baza',
 ]
 
 MIDDLEWARE = [
@@ -58,6 +62,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'simple_history.middleware.HistoryRequestMiddleware',
 ]
 
 LOGIN_REDIRECT_URL = '/login/client/task/'
@@ -97,7 +103,7 @@ AUTHENTICATION_BACKENDS = (
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'metro',
+        'NAME': 'metro4',
         'USER': 'root',
         'PASSWORD': 'Djwoms18',
         'HOST': 'localhost',
@@ -148,6 +154,14 @@ MEDIA_URL = '/media/'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'tpa_translation', 'simple_history', 'locale'),
+]
+
+
+DAYS_KEEP_USER_HISTORY_RECORDS = 14
 
 
 try:

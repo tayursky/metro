@@ -132,6 +132,7 @@
             Скрыт
         {% endif %}
     <td>
+        <a href="{% url 'look_obj' pk=obj.pk %}">Посмотреть</a><br />
         {% if obj.hide == "0" or obj.hide_date == "" %}
             <a href="{% url 'hide_obj' pk=obj.pk %}" name="modal2" class="more">Скрыть</a><br />
         {% else %}

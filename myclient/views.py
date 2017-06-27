@@ -14,20 +14,22 @@ from myobject.models import MyObject
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
 
-# Добавления клиента
+
 @login_required
 def add_client(request):
+    '''Добавления клиента'''
+
     if request.method == "POST":
         form = ClientForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
-            # Есть ли клиент в черном списке
+            '''Есть ли клиент в черном списке'''
             tel = form.cleaned_data['tel']
             if BlackList.objects.filter(tel=tel).exists():
                 error = "Номер находится в черном списке"
             else:
                 podborka = form.cleaned_data['podborka']
-                # Проверка отправлять объекты клиенту или нет
+                '''Проверка отправлять объекты клиенту или нет'''
                 if podborka == True:
                     metro = form.cleaned_data['metro']
                     adres = form.cleaned_data['adres']
@@ -39,13 +41,14 @@ def add_client(request):
                         objects = MyObject.objects.filter(block_procent = 0)
                     elif komisiya == False and etaj == True:
                         objects = MyObject.objects.filter(etaj = 1)
-                    # Отправка письма клиенту
+                    '''Отправка письма клиенту'''
                     email = form.cleaned_data['email']
                     recipients = []
                     recipients.append(email)
                     sabject = "Объекты"
                     message = "Сдесь должны быть объекты"
                     sent = 'socanime@gmail.com'
+
                     try:
                         send_mail(subject, message, send, recipients)
                     except BadHeaderError: #Защита от уязвимости
@@ -59,10 +62,12 @@ def add_client(request):
         error = ""
     return render(request, 'myclient/add-client.html', {'form': form, 'error': error})
 
-# Мои клиенты
+
 @login_required
 def my_client(request, pk):
-    # Формы поиска
+    '''Мои клиенты'''
+
+    '''Формы поиска'''
     forms = {}
     forms['name'] = SerchNameForm(prefix='name')
     forms['tel'] = SerchNameForm(prefix='tel')
@@ -76,9 +81,9 @@ def my_client(request, pk):
         form_n = SerchNameForm(request.POST, prefix='name')
         form_t = SerchNameForm(request.POST, prefix='tel')
         form_e = SerchNameForm(request.POST, prefix='email')
-        # Вызов функции поиска
+        '''Вызов функции поиска'''
         myclient = search_form(form_n, form_t, form_e)
-        # Поиск по полю Скрыт\Не скрыт
+        '''Поиск по полю Скрыт\Не скрыт'''
         form_hide = SCkientHideForm(request.POST)
         if form_hide.is_valid():
             search = form_hide.cleaned_data['hide']
@@ -86,7 +91,7 @@ def my_client(request, pk):
                 myclient = Client.objects.filter(my_manager_id=pk, hide_date__gte='1970-01-01')
             else:
                 myclient = Client.objects.filter(my_manager_id=pk).exclude(hide_date__gte='1970-01-01')
-        # Поиск по полю назначения
+        '''Поиск по полю назначения'''
         form_naz = SCkientNazForm(request.POST)
         if form_naz.is_valid():
             search = form_naz.cleaned_data['naznach_one']
@@ -95,9 +100,8 @@ def my_client(request, pk):
         myclient = Client.objects.filter(my_manager_id=pk)
     return render(request, 'myclient/my-client.html', {"clients": myclient, 'form': form, 'forms':forms})
 
-
-# Обработка поиска по полям
 def search_form(name, tel, email):
+    '''Обработка поиска по полям'''
     if name.is_valid() and name.cleaned_data['search'] != '':
         search = name.cleaned_data['search']
         query = Client.objects.filter(name=search)
@@ -113,10 +117,9 @@ def search_form(name, tel, email):
         query=0
     return query
 
-
-# Скрыть клиента
 @login_required
 def hide_client(request, pk):
+    '''Скрыть клиента'''
     if request.method == "POST":
         form = HideClientForm(request.POST)
         if form.is_valid():
@@ -133,9 +136,9 @@ def hide_client(request, pk):
         else:
             raise Http404
 
-# Открытия клиента
 @login_required
 def show_client(request, pk):
+    '''Открытия клиента'''
     try:
         hide = Client.objects.get(id=pk)
         hide.hide_date = "1970-01-01"
@@ -145,8 +148,8 @@ def show_client(request, pk):
         raise Http404
     return redirect('/login/client/my/{}'.format(request.user.id))
 
-# Редактирование клиента
 class ClientUpdate(LoginRequiredMixin, UpdateView):
+    '''Редактирование клиента'''
     model = Client
     #fields = ['name', 'tel']
     form_class = ClientForm
@@ -155,24 +158,24 @@ class ClientUpdate(LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse('my_client', kwargs={'pk': self.request.user.id})
 
-# Удаление клиента
 class ClientDelete(LoginRequiredMixin, DeleteView):
+    '''Удаление клиента'''
     model = Client
     template_name = 'myclient/client_delete.html'
-    # редирект на страницу мои клиенты
 
+    '''редирект на страницу мои клиенты'''
     def get_success_url(self):
         return reverse('my_client', kwargs={'pk': self.request.user.id})
 
-# Копирование клиента
 class ClientCopy(LoginRequiredMixin, UpdateView):
+    '''Копирование клиента'''
     model = Client
     template_name = "myclient/copy_client.html"
     form_class = ClientForm
 
     def form_valid(self, form):
         form.instance.manager = self.request.user
-        # Для копирования устанавливаю pk и id в None
+        '''Для копирования устанавливаю pk и id в None'''
         form.instance.pk = None
         form.instance.id = None
         return super(ClientCopy, self).form_valid(form)

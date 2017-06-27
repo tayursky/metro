@@ -4,8 +4,9 @@ from .forms import *
 from myclient.models import Client
 from myobject.models import MyObject
 
-# Поиск объекта по номеру
+
 def search_object(request):
+    '''Поиск объекта по номеру'''
     if request.method == "POST":
         form = SearchObject(request.POST)
         if form.is_valid():
@@ -15,8 +16,8 @@ def search_object(request):
         return redirect('/login/object/')
     return render(request, 'myobject/my-object.html', {'search_object': myobject})
 
-# Поиск объекта по адресу
 def search_adres(request):
+    '''Поиск объекта по адресу'''
     if request.method == "POST":
         form = SearchAdres(request.POST)
         if form.is_valid():
@@ -27,8 +28,8 @@ def search_adres(request):
         return redirect('/login/object/')
     return render(request, 'myobject/my-object.html', {'search_object': myobject})
 
-# Поиск клиента
 def search_client(request):
+    '''Поиск клиента'''
     if request.method == "POST":
         form = SearchClient(request.POST)
         if form.is_valid():
@@ -39,20 +40,19 @@ def search_client(request):
         return redirect('/login/client/')
     return render(request, 'myclient/my-client.html', {'search_client': client})
 
-# Поиск станции метро
 def search_metro(request):
+    '''Поиск станции метро'''
     if request.method == "POST":
         form = SearchMetro(request.POST)
         if form.is_valid():
             search = form.cleaned_data['search']
-            # Узнать как сделать или и искать по двум станциям
             metro = MyObject.objects.filter(Q(station_one__name = search) | Q(station_two__name = search))
     else:
         return redirect('/login/object/')
     return render(request, 'myobject/my-object.html', {'search_object': metro})
 
-# Поиск по владельцу
 def search_vlad(request):
+    '''Поиск по владельцу'''
     if request.method == "POST":
         form = SearchVlad(request.POST)
         if form.is_valid():

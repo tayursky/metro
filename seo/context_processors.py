@@ -1,7 +1,7 @@
 from .models import Seo
 
-# Выводим meta
 def seo_meta(request):
+    '''Выводим meta данные'''
     meta = {}
     for m in Seo.objects.all():
         meta['title'] = m.title

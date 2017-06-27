@@ -1,0 +1,121 @@
+{% extends 'base-site.html' %}
+{% load bootstrap3 %}
+{% block search %}
+{% endblock %}
+{% block content-title %}
+{% endblock %}
+
+{% block content %}
+
+    {% if obj %}
+    {# for obj in obj_single #}
+    <h2>ПОДРОБНАЯ ИНФОРМАЦИЯ ОБ ОБЪЕКТЕ № {{obj.id}}</h2>
+    <div class="obj-cont">
+    <table class="table table-bordered table-hover table-obj">
+        <tr>
+            <td class="td-op">Локация</td>
+            <td>
+                {% for okrug in obj.okrug.all %}
+                    {{okrug.options}},
+                {% endfor %}
+                {{obj.station_one}} {% if obj.station_two %}, {{obj.station_two}} {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td>Тип объекта</td>
+            <td>
+                {{obj.get_typeobj_display}}, {{obj.etaj}} этаж
+            </td>
+        </tr>
+        <tr>
+            <td>Коммерческие условия</td>
+            <td>
+                <strong>{{obj.block_area}} м<sup>2</sup> - {{obj.block_price}} руб - {{obj.block_procent}} %</strong>
+            </td>
+        </tr>
+        <tr>
+            <td>Описание объекта</td>
+            <td>
+                {{obj.opis}}
+            </td>
+        </tr>
+        <tr>
+            <td>Назначение</td>
+            <td>
+                {% for naznach in obj.naznach.all %}
+                    {{naznach.options}},
+                {% endfor %}
+            </td>
+        </tr>
+        <tr>
+            <td>Характеристики</td>
+            <td>
+                <strong>{{obj.kvt}} КВТ</strong>
+            </td>
+        </tr>
+        <tr>
+            <td>Вид договора</td>
+            <td>
+                {{obj.dogovor}}
+            </td>
+        </tr>
+        <tr>
+            <td>Основной трафик</td>
+            <td>
+
+            </td>
+        </tr>
+</table>
+<h4>Если вы хотите получить подробную информации об этих объектах, пожалуйста, позвоните нам или оставьте заявку на просмотр</h4>
+<div class="btn-obj">
+    <a href="{% url 'contact' %}" class="cont-btn">Записаться на просмотр</a>
+</div>
+<div class="station-img">
+    <p><strong>Возможно, Вас заинтересуют похожие предложения:</strong></p>
+    {% for img in imgs %}
+    <div class="img-obj">
+        <img src="{{MEDIA_URL}}{{ img.image.url }}" width="250" height="200" alt="Аренда помещений">
+    </div>
+    {% endfor %}
+    <div class="clearfix">
+
+    </div>
+    {% for obj in img_objs %}
+    <div class="img-obj-opis">
+        <strong>
+        <a href="{% url 'obj_single' pk=obj.id %}"><p>
+            {% for okrug in obj.okrug.all %}
+                {{okrug.options}},
+            {% endfor %}
+            {{obj.station_one}}
+            {% if obj.station_two %},
+                {{obj.station_two}}
+            {% endif %}
+        </p>
+
+            {{obj.area}} м<sup>2</sup>;
+            Цена: {{obj.price}} руб.
+        </a>
+        </strong>
+    </div>
+    {% endfor %}
+</div>
+</div>
+
+    {# endfor #}
+    {% else %}
+        <h2>Ошибка. Объект не существует.</h2>
+    {% endif %}
+
+<div class="obj-right">
+    <div class="btn-obj-singl">
+        <a href="javascript:window.print(); void 0;" class="cont-btn">РАСПЕЧАТАТЬ</a>
+    </div>
+    <div class="btn-obj-singl">
+        <a href="{% url 'contact' %}" class="cont-btn">ЗАДАТЬ ВОПРОС</a>
+    </div>
+</div>
+<div class="clearfix">
+
+</div>
+{% endblock %}
