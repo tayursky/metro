@@ -1,7 +1,9 @@
-{% extends 'black_list/base.html' %}
+{% extends 'base-admin.html' %}
 {% load bootstrap3 %}
 {% block content-title %} Фото база {% endblock %}
 {% block content %}
+<a href="{% url 'photo_baza' %}">Загрузить с ПК</a><br />
+<a href="{% url 'upload-url' %}">Загрузить по URL</a><br /><br />
 <div>
     <form method="POST" action="" enctype="multipart/form-data">{% csrf_token %}
         {% bootstrap_form form %}

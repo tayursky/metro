@@ -9,7 +9,7 @@
         </form>
     </div>
     <div class="search-head-form2">
-        <form class="form_s_s2" name="contact" method="post" action="{% url 'search_adres' %}">
+        <form class="form_s_s2" name="contact" method="post" action="{% url 'search_metro' %}">
             {% csrf_token %} {% bootstrap_form metro_form_s %}
             <button type="submit" class="btn btn-md btn-serch"><span class="glyphicon glyphicon-play"></span></button>
         </form>
@@ -29,6 +29,11 @@
     {% for obj in myobj %}
 
         <div class="myobj">
+            <p>
+                {% for img in obj.stancmetro_set.all %}
+                <img src="{{MEDIA_URL}}{{ img.name }}" width="200" height="200" alt="Аренда помещений">
+                {% endfor %}
+            </p>
             <p>
                 {{obj.price}}
             </p>

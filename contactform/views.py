@@ -18,8 +18,8 @@ def contact(request):
         if form.is_valid():
             form.save()
             return render(request, 'contactform/thank.html')
-        else:
-            form = ContactForm()
+    else:
+        form = ContactForm()
     return render(request, 'contactform/cont.html', {'form': form })
 
 class ZayavkaList(LoginRequiredMixin, ListView):

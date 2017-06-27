@@ -67,6 +67,20 @@
             </td>
         </tr>
 </table>
+<div class="station-img">
+    {% for img in obj.station_one__stat %}
+        {{img.name}}
+    {% endfor %}
+
+    {% for img in imgs %}
+        <img src="{{MEDIA_URL}}{{ img.image.url }}" width="200" height="200" alt="Аренда помещений">
+        {% for obj in img.stancmetro.all %}
+            {{obj.name}}
+        {% endfor %}
+    {% endfor %}
+
+</div>
+
     {% endfor %}
     {% else %}
         <h2>Ошибка. Объект не существует.</h2>

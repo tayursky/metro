@@ -13,7 +13,7 @@ from .fields import ThumbnailImageField
 # Модель фото базы
 class Photo(models.Model):
     ''' Модель ФОТО БАЗЫ '''
-    station = models.ForeignKey(StancMetro, db_index=True)
+    station = models.ForeignKey(StancMetro, db_index=True, verbose_name="Станция")
     image = ThumbnailImageField(upload_to='photo_baza')
     is_main = models.BooleanField(default=False, verbose_name="Заглавная фотография")
     is_active = models.BooleanField(default=True)

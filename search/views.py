@@ -46,7 +46,6 @@ def search_metro(request):
         form = SearchMetro(request.POST)
         if form.is_valid():
             search = form.cleaned_data['search']
-            # Узнать как сделать или и искать по двум станциям
             metro = MyObject.objects.filter(Q(station_one__name = search) | Q(station_two__name = search))
     else:
         return redirect('/login/object/')

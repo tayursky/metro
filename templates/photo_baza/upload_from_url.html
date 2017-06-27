@@ -1,0 +1,16 @@
+{% extends 'base-admin.html' %}
+{%load staticfiles%}
+{% load bootstrap3 %}
+{% block content-title %} Фото база {% endblock %}
+
+{% block content %}
+<a href="{% url 'photo_baza' %}">Загрузить с ПК</a><br />
+<a href="{% url 'upload-url' %}">Загрузить по URL</a><br /><br />
+<form method="POST" action="" enctype="multipart/form-data">{% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+    {% bootstrap_button "Добавить" button_type="submit" button_class="btn-primary" %}
+    {% endbuttons %}
+ </form>
+
+{% endblock content %}

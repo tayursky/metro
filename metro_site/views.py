@@ -1,13 +1,16 @@
 from django.shortcuts import render, redirect
 from myobject.models import MyObject
 from .forms import SearchObjectFront, SearchMetroFront, SearchObjFullFront
-
+from photo_baza.models import Photo
+from django.db.models import Q
 
 def home(request):
     ''' Гланая страница сайта '''
     myobj = MyObject.objects.all()[:4]
+    for st in myobj:
+        img = Photo.objects.filter(station = st.station_one)[:4]
     search_obj = SearchObjFullFront()
-    context = {'myobj': myobj, 'search_obj': search_obj}
+    context = {'myobj': myobj, 'search_obj': search_obj, 'imgs': img}
     return render(request, 'site/home.html', context)
 
 def search_object(request):
@@ -17,9 +20,16 @@ def search_object(request):
         if form.is_valid():
             search = form.cleaned_data['search']
             myobject = MyObject.objects.filter(id = search)
+            if myobject.exists():
+                for st in myobject:
+                    img = Photo.objects.filter(station = st.station_one)[:3]
+                    context = {'obj_single': myobject, 'imgs': img}
+            else:
+                context = {'obj_single': myobject}
     else:
         return redirect('/')
-    return render(request, 'site/obj-single.html', {'obj_single': myobject})
+    print(st.station_one.photo)
+    return render(request, 'site/obj-single.html', context)
 
 def search_metro(request):
     ''' Поиск станции метро '''
@@ -27,8 +37,14 @@ def search_metro(request):
         form = SearchMetroFront(request.POST)
         if form.is_valid():
             search = form.cleaned_data['search']
-            # Узнать как сделать или и искать по двум станциям
             metro = MyObject.objects.filter(Q(station_one__name = search) | Q(station_two__name = search))
+            if metro.exists():
+                for st in metro:
+                    img = Photo.objects.filter(station = st.station_one)
+                    context = {'search_object': metro, 'imgs': img}
+            else:
+                context = {'search_object': metro}
     else:
         return redirect('/')
-    return render(request, 'myobject/my-object.html', {'search_object': metro})
+    print(context)
+    return render(request, 'site/search.html', {'search_object': metro})

@@ -9,17 +9,15 @@
 
 {% block content %}
 <div>
-    {% for obj in myobj %}
-
-        <div class="myobj">
-            <p>
-                {{obj.price}}
-            </p>
-            <p>
-                {{obj.adres}}
-            </p>
-
-        </div>
-    {% endfor %}
+    {% if search_object %}
+        {% for obj in search_object %}
+            <div class="myobj">
+                <p>{{obj.price}}</p>
+                <p>{{obj.adres}}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <h2>Ошибка. Объект не существует.</h2>
+    {% endif %}
 </div>
 {% endblock %}

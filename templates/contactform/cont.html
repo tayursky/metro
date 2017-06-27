@@ -4,12 +4,15 @@
 
 {% block content %}
 <div id="con_form">
-	<h1 class="cont">Написать письмо !</h1>
-	<form id="contactform" method="POST" action="">
-		<p class="note"><span class="req"></span> Поля обязательны для заполнения</p>
-		{% csrf_token %}
-		{{ form.as_p }}
-		<input class="btn-us" type="submit" value="Отправить" />
-	</form>
+    <h1 class="cont">Задать вопрос</h1>
+    <p>
+        Если у Вас есть вопросы - заполните эту форму и отправьте нам. Мы свяжемся с вами в ближайшее время.
+    </p>
+    <form id="contactform" method="POST" action="">
+        <p class="note"><span class="req"></span> Поля обязательны для заполнения</p>
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <input class="btn-us" type="submit" value="Отправить" />
+    </form>
 </div>
 {% endblock %}

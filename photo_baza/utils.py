@@ -111,7 +111,7 @@ def retrieve_image(url):
         return urllib.request.urlretrieve(url)
     except URLError:
         return False
-    
+
 
 def valid_image_size(image, max_size=MAX_SIZE):
     width, height = image.size
@@ -121,6 +121,6 @@ def valid_image_size(image, max_size=MAX_SIZE):
 
 def pil_to_django(image, format="JPEG"):
     '''http://stackoverflow.com/questions/3723220/how-do-you-convert-a-pil-image-to-a-django-file'''
-    fobject = io.StringIO()
+    fobject = io.BytesIO()
     image.save(fobject, format=format)
     return ContentFile(fobject.getvalue())
