@@ -4,7 +4,7 @@ from django.utils import timezone
 
 class Contact(models.Model):
     ''' Модель обратной связи '''
-    class Meta():
+    class Meta:
         db_table = 'contact'
         verbose_name = "Обратная связь"
         verbose_name_plural = "Обратная связь"

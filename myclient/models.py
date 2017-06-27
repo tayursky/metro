@@ -1,5 +1,6 @@
 import json
 import ast
+from datetime import datetime, date, time, timedelta
 
 from simple_history.models import HistoricalRecords
 
@@ -11,6 +12,11 @@ from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 from django.utils.text import get_text_list
 from django.utils.translation import ugettext
+from django.contrib.contenttypes.models import ContentType
+from django.utils import timezone
+
+
+HISTORY_DAYS = getattr(settings, "DAYS_KEEP_USER_HISTORY_RECORDS", 14)
 
 
 # Расширеная модель для записи изменений в зарегистрированых моделях
@@ -28,14 +34,44 @@ class HistoricalRecordsExtended(HistoricalRecords):
         super(HistoricalRecordsExtended, self).create_historical_record(
             instance, history_type)
 
+        # Determine boundary date
+        tz = timezone.get_default_timezone()
+        the_date_tz = tz.localize(datetime.combine(date.today(), time()))
+        boundary_date = the_date_tz - timedelta(HISTORY_DAYS)
+
+        # Takes history models and deletes old history
+        history_model_list = (
+            md.model_class() for md in ContentType.objects.all() if 'historical' in md.name)
+        for history_model in history_model_list:
+            history_model.objects.filter(history_date__lt=boundary_date).delete()
+
+        # Gets manager history model and takes history list
         manager = getattr(instance, self.manager_name)
         history_list = manager.order_by('-history_date')
 
+        # Sets message in accordance type of changes
         change_message = []
         if history_list:
             last_record = history_list[0]
-            if len(history_list) < 2:
-                change_message.append({'added': {}})
+
+            if history_type == '+':
+                change_message.append({
+                    'added': {
+                        'name': str(instance),
+                        'object': instance._meta.verbose_name
+                    }
+                })
+                last_record.change_message = change_message
+                last_record.save()
+                return
+
+            if history_type == '-':
+                change_message.append({
+                    'deleted': {
+                        'name': str(instance),
+                        'object': instance._meta.verbose_name
+                    }
+                })
                 last_record.change_message = change_message
                 last_record.save()
                 return
@@ -44,10 +80,24 @@ class HistoricalRecordsExtended(HistoricalRecords):
 
             change = []
             for field in self.fields_included(instance):
-                if field.attname != 'change_message':
-                    if (h_last[field.attname] != h_penultimate[field.attname]):
-                        change.append(field.verbose_name)
-            change_message.append({'changed': {'fields': change}})
+                if (h_last[field.attname] != h_penultimate[field.attname]):
+                    change.append(field.verbose_name)
+
+            if change:
+                change_message.append({
+                    'changed': {
+                        'fields': change,
+                        'name': str(instance),
+                        'object': instance._meta.verbose_name
+                    }
+                })
+            else:
+                change_message.append({
+                    'no changed': {
+                        'name': str(instance),
+                        'object': instance._meta.verbose_name
+                    }
+                })
             last_record.change_message = change_message
             last_record.save()
 
