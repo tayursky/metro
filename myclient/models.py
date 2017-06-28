@@ -201,15 +201,6 @@ class Client(models.Model):
         ('yes', 'Скрыт')
     )
 
-    OKRUG_OPTIONS = (
-        ('1', 'Центр'),
-        ('2', 'Север'),
-        ('3', 'Юг'),
-        ('4', 'Восток'),
-        ('5', 'Запад'),
-        ('6', 'Область')
-    )
-
     TYPE_OBJ = (
         ('undeg', 'Подземка'),
         ('street', 'Улица'),
@@ -235,12 +226,10 @@ class Client(models.Model):
     komisiya = models.BooleanField("Без комиссии", max_length=30, blank=True)
     etaj = models.BooleanField("1 этаж", max_length=30, blank=True)
     podborka = models.BooleanField("Отправить подборку", max_length=30, blank=True)
-    # okrug = models.CharField("Округ", max_length=30, choices=OKRUG_OPTIONS,
-    # default="", blank=True)
     okrug = models.ManyToManyField(Okrug, blank=True, verbose_name="Округ")
     type_obj = models.CharField("Тип объекта", max_length=30,
                                 choices=TYPE_OBJ, default="undeg", blank=True)
-    history = HistoricalRecordsExtended(user_related_name="history_client")
+    #history = HistoricalRecordsExtended(user_related_name="history_client")
 
     def __str__(self):
         return self.name
@@ -268,18 +257,12 @@ class Prioritet(models.Model):
 
 
 class TaskClient(models.Model):
-    ''' Модель задачи клиента '''    
+    ''' Модель задачи клиента '''
     class Meta():
         db_table = "task_client"
         verbose_name = "Задача клиента"
         verbose_name_plural = "Задачи клиента"
         ordering = ['-prioritet']
-
-    '''При удалении приоритета назначаем задачам другой приоритет'''
-
-    def get_prio():
-        prio = Prioritet.objects.get_or_create(prioritet='Другое10', num=0)[0]
-        return prio
 
     '''PRIORITET = (
         ('0', 'другое'),

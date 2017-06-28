@@ -46,12 +46,18 @@ class MyObject(models.Model):
         ('yes', 'Все')
     )
 
+    RANGE_AREA = (
+        ('small', 'Маленькое до 20 кв.м'),
+        ('middle', 'Среднее от 20 до 80 кв.м'),
+        ('large', 'Большое до 80 кв.м'),
+    )
+
     my_manager = models.ForeignKey(settings.AUTH_USER_MODEL,
                                    on_delete=models.SET(get_sentinel_user))
     typeobj = models.CharField("Тип объекта", max_length=30,
                                choices=TYPE_OBJ, default="0")
     okrug = models.ManyToManyField(Okrug, blank=True, verbose_name="Округ")
-    adres = models.CharField("Адрес", max_length=100, blank=True)
+    adres = models.CharField("Адрес", max_length=100)
     naznach = models.ManyToManyField(Naznach, verbose_name="Назначение")
     area = models.IntegerField("Площадь", default=0)
     block_area = models.FloatField("Метраж", default=0, blank=True)
@@ -62,7 +68,7 @@ class MyObject(models.Model):
     price = models.IntegerField("Цена", default=0)
     opis = models.TextField("Описание", max_length=1000, blank=True)
     station_one = models.ForeignKey(
-        StancMetro, related_name='station_one', verbose_name="Станция сетро")
+        StancMetro, related_name='station_one', verbose_name="Станция метро")
     station_two = models.ForeignKey(StancMetro, blank=True, null=True,
                                     verbose_name="Станция метро доп.")
     dom = models.BooleanField("Дом", default=False, blank=True)
@@ -78,10 +84,21 @@ class MyObject(models.Model):
     hide_date = models.DateField("Скрыть до", auto_now_add=False,
                                  blank=True, null=True)
     zvon = models.DateField("Скрыть до", default=timezone.now, blank=True)
-    history = HistoricalRecordsExtended(user_related_name="history_object")
+    #history = HistoricalRecordsExtended(user_related_name="history_object")
+    area_range = models.CharField(choices=RANGE_AREA,
+                                  max_length=50, blank=True, null=True)
 
     def __str__(self):
         return self.adres
 
     def get_absolute_url(self):
         return reverse('my_object')
+
+    def save(self, *args, **kwargs):
+        if self.area <= 20:
+            self.area_range = 'small'
+        elif self.area >= 80:
+            self.area_range = 'large'
+        else:
+            self.area_range = 'middle'
+        super().save(*args, **kwargs)
