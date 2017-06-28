@@ -21,8 +21,12 @@ def home(request):
                 area_range=form.cleaned_data['area_range']
             )
 
+            if not myobj:
+                context = {'myobj': myobj, 'form': form}
+                return render(request, 'site/home.html', context)
+
     for st in myobj:
-        img = Photo.objects.filter(station = st.station_one)[:4]
+        img = Photo.objects.filter(station=st.station_one)[:4]
 
     context = {'myobj': myobj, 'form': form, 'imgs': img}
     return render(request, 'site/home.html', context)
@@ -36,9 +40,9 @@ def search_object(request):
             search = form.cleaned_data['search']
             myobject = get_object_or_404(MyObject, id=search)
             try:
-                img = Photo.objects.filter(station = myobject.station_one)[:4]
-                img_obj = MyObject.objects.filter \
-                    (okrug = myobject.okrug.all()[:1])
+                img = Photo.objects.filter(station=myobject.station_one)[:4]
+                img_obj = MyObject.objects.\
+                    filter(okrug=myobject.okrug.all()[:1])
                 context = {'obj': myobject, 'imgs': img, 'img_objs': img_obj}
             except:
                 context = {'obj': myobject}
@@ -54,10 +58,12 @@ def search_metro(request):
         form = SearchMetroFront(request.POST)
         if form.is_valid():
             search = form.cleaned_data['search']
-            metro = MyObject.objects.filter(Q(station_one__name = search) | Q(station_two__name = search))
+            metro = MyObject.objects.\
+                filter(Q(station_one__name=search) |
+                       Q(station_two__name=search))
             if metro.exists():
                 for st in metro:
-                    img = Photo.objects.filter(station = st.station_one)
+                    img = Photo.objects.filter(station=st.station_one)
                     context = {'search_object': metro, 'imgs': img}
             else:
                 context = {'search_object': metro}
@@ -67,12 +73,14 @@ def search_metro(request):
 
 
 def obj_single(request, pk):
-    '''Переход по ссылки на объект, сделать более организовано, без копипаста'''
+    '''Переход по ссылки на объект,
+    сделать более организовано, без копипаста
+    '''
     myobject = get_object_or_404(MyObject, pk=pk)
     try:
-        img = Photo.objects.filter(station = myobject.station_one)[:4]
-        img_obj = MyObject.objects.filter \
-            (okrug = myobject.okrug.all()[:1])
+        img = Photo.objects.filter(station=myobject.station_one)[:4]
+        img_obj = MyObject.objects.\
+            filter(okrug=myobject.okrug.all()[:1])
         context = {'obj': myobject, 'imgs': img, 'img_objs': img_obj}
     except:
         context = {'obj': myobject}

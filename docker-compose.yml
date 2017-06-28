@@ -17,7 +17,7 @@ services:
     container_name: metro_django
     depends_on:
       - mysql
-    command: python manage.py runserver 0.0.0.0:8000
+    command: /start-dev.sh
     volumes:
       - .:/code
     ports:

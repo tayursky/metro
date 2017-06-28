@@ -27,6 +27,8 @@
     <button type="submit" class="btn btn-md btn-search-obj"><span class="search-obj">ИСКАТЬ</span></button>
 </form>
 <div>
+
+  {% if myobj %}
     {% for obj in myobj %}
 
         <div class="myobj">
@@ -44,5 +46,8 @@
 
         </div>
     {% endfor %}
+  {% else %}
+    <h1>По вашему запросу нет результатов</h1>
+  {% endif %}
 </div>
 {% endblock %}
