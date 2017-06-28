@@ -229,7 +229,7 @@ class Client(models.Model):
     okrug = models.ManyToManyField(Okrug, blank=True, verbose_name="Округ")
     type_obj = models.CharField("Тип объекта", max_length=30,
                                 choices=TYPE_OBJ, default="undeg", blank=True)
-    #history = HistoricalRecordsExtended(user_related_name="history_client")
+    history = HistoricalRecordsExtended(user_related_name="history_client")
 
     def __str__(self):
         return self.name

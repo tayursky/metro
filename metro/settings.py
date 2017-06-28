@@ -103,7 +103,7 @@ AUTHENTICATION_BACKENDS = (
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'metro4',
+        'NAME': 'metrotest',
         'USER': 'root',
         'PASSWORD': 'Djwoms18',
         'HOST': 'localhost',
