@@ -3,7 +3,7 @@ from django import forms
 from .utils import *
 
 class FileFieldForm(forms.ModelForm):
-    file_field = forms.FileField(label='Фото', widget=forms.ClearableFileInput(attrs={'multiple': True}))
+    file_field = forms.FileField(label='Фото',         widget=forms.ClearableFileInput(attrs={'multiple': True}))
 
     class Meta:
         model = Photo
