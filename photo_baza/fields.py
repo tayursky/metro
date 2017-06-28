@@ -6,8 +6,8 @@ from PIL import Image
 
 def _add_thumb(s):
     """
-    Modifies a string (filename, URL) containing an image filename, to insert
-    '.thumb'
+    Модификация имени файла, путем добавления к нему приставки '.thumb'
+    для превью
     """
     parts = s.split(".")
     parts.insert(-1, "thumb")
@@ -31,6 +31,10 @@ class ThumbnailImageFieldFile(ImageFieldFile):
 
     @staticmethod
     def _scale_dimensions(width, height, longest_side=800):
+        """ 
+        Ресайз изображения до размера в 800 пикселей
+        по длинной стороне
+        """
         if width > height:
             coefficient = float(width) / float(longest_side)
             width = longest_side
@@ -45,6 +49,7 @@ class ThumbnailImageFieldFile(ImageFieldFile):
             return longest_side, longest_side
 
     def save(self, name, content, save=True):
+        """ Сохранение изображения с новым именем и размером"""
         from datetime import datetime
         dt = str(datetime.now()).replace('-', '_').replace(':', '').replace(' ', '_')
         img_name = dt.replace('.', '_') + '.jpg'
@@ -65,13 +70,7 @@ class ThumbnailImageFieldFile(ImageFieldFile):
 
 class ThumbnailImageField(ImageField):
     """
-    Behaves like a regular ImageField, but stores an extra (JPEG) thumbnail
-    image, providing FIELD.thumb_url and FIELD.thumb_path.
-
-    Accepts two additional, optional arguments: thumb_width and thumb_height,
-    both defaulting to 200 (pixels). Resizing will preserve aspect ratio while
-    staying inside the requested dimensions; see PIL's Image.thumbnail()
-    method documentation for details.
+    Создание превью изображения
     """
     attr_class = ThumbnailImageFieldFile
 
@@ -81,5 +80,7 @@ class ThumbnailImageField(ImageField):
         self.thumb_height = thumb_height
 
         super(ThumbnailImageField, self).__init__(*args, **kwargs)
+
+
 
 
