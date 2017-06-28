@@ -54,7 +54,6 @@ def valid_url_mimetype(url, mimetype_list=VALID_IMAGE_MIMETYPES):
     As an alternative to checking the url extension, a basic method to
     check the image file in the URL the user has supplied has an
     image mimetype
-
     - https://docs.python.org/2/library/mimetypes.html
     '''
     mimetype, encoding = mimetypes.guess_type(url)
@@ -79,11 +78,7 @@ def valid_url_mimetype(url, mimetype_list=VALID_IMAGE_MIMETYPES):
 
 def image_exists(domain, path, check_size=False, size_limit=1024):
     '''
-    Make a HEAD request to the remote server to make sure the image
-    actually exists before downloading. Also, check the headers sent
-    back to check the image size
-
-    - http://stackoverflow.com/q/5616102/396300
+    Проверка наличия изображения по указанному адресу
     '''
     try:
         conn = http.HTTPConnection(domain)
@@ -105,7 +100,7 @@ def image_exists(domain, path, check_size=False, size_limit=1024):
 
 
 def retrieve_image(url):
-    '''Download the image from the remote server'''
+    '''Скачивание изображения с сервера по url-адресу'''
 ##    return Image.open(url)
     try:
         return urllib.request.urlretrieve(url)
@@ -116,11 +111,11 @@ def retrieve_image(url):
 def valid_image_size(image, max_size=MAX_SIZE):
     width, height = image.size
     if (width * height) > max_size:
-        return (False, "Image is too large")
+        return (False, "Изображение слишком большое")
     return (True, image)
 
 def pil_to_django(image, format="JPEG"):
-    '''http://stackoverflow.com/questions/3723220/how-do-you-convert-a-pil-image-to-a-django-file'''
+    '''Преобразование изображения из объекта Image в объект Django '''
     fobject = io.BytesIO()
     image.save(fobject, format=format)
-    return ContentFile(fobject.getvalue())
+return ContentFile(fobject.getvalue())
