@@ -84,7 +84,7 @@ class MyObject(models.Model):
     hide_date = models.DateField("Скрыть до", auto_now_add=False,
                                  blank=True, null=True)
     zvon = models.DateField("Скрыть до", default=timezone.now, blank=True)
-    #history = HistoricalRecordsExtended(user_related_name="history_object")
+    # history = HistoricalRecordsExtended(user_related_name="history_object")
     area_range = models.CharField(choices=RANGE_AREA,
                                   max_length=50, blank=True, null=True)
 
