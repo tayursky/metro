@@ -170,6 +170,9 @@ class PrioritetAdmin(admin.ModelAdmin):
             .exclude(pk=obj.id)\
             .last()
 
+        if not max_prio:
+            return render(request, 'admin/delete_last_prio.html', extra_context)
+
         post_url = reverse('admin:myclient_prioritet_changelist')
 
         if request.POST:
