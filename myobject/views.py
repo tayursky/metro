@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, get_list_or_404
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 from .forms import MyObjectForm, SObjectTypeForm, \
-    SObjectMetroForm, SObjectHideForm
-from .models import MyObject
+    SObjectMetroForm, SObjectHideForm, MultiImg
+from .models import MyObject, MultiImages
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic import DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -11,13 +12,62 @@ from django.utils import timezone
 from black_list.models import BlackList
 from myclient.forms import SerchNameForm
 from django.db.models import Q
+import json
 
 
 @login_required
+def upload_photo(request):
+    if request.method == "POST" and request.FILES:
+        form_img = MultiImg(request.POST, request.FILES)
+        print(request.GET)
+        # print(request.FILES)
+        if form_img.is_valid():
+            # print(form_img.cleaned_data.get('title'))
+            form_img.instance.my_manager = request.user
+            form_img.instance.weight = 1
+            photo = form_img.save()
+            data = {
+                'is_valid': True,
+                'name': photo.file.name,
+                'url': photo.file.url,
+                'pk': photo.id,
+                'del_url': 'delete/{}'.format(photo.id)
+            }
+        else:
+            data = {'is_valid': False}
+        return JsonResponse(data)
+
+
+@login_required
+def del_photo(request, pk):
+    """Удаление фото"""
+    print(request.method)
+    if request.method == 'GET':
+        print(pk)
+        x = MultiImages.objects.filter(pk=pk).delete()
+        if x[0] != 0:
+            return JsonResponse({'status': 'ok'})
+        return JsonResponse({'status': 'false'})
+
+@login_required
+def save_weight(request):
+    """Сохранение веса фото"""
+    if request.method == 'GET':
+        data = json.loads(request.GET['data'])
+        print(data)
+        if data:
+            for item in data:
+                MultiImages.objects.filter(pk=item['id']).update(weight=item['weight'])
+            return JsonResponse({'status': 'ok'})
+
+# Добавление объекта
+@login_required
 def add_object(request):
-    '''Добавление объекта'''
+    error = ""
+    photos_list = None
     if request.method == "POST":
         form = MyObjectForm(request.POST)
+
         if form.is_valid():
             post = form.save(commit=False)
             # Есть ли номер в черном списке
@@ -27,12 +77,17 @@ def add_object(request):
             else:
                 post.my_manager = request.user
                 post.save()
+                # Задаю родителя для изображений
+                MultiImages.objects.filter(parent_id=None, my_manager_id=request.user.id).update(parent_id=post.id)
                 return redirect('my_object')
     else:
         form = MyObjectForm()
-        error = ""
-    return render(request, 'myobject/add-object.html',
-                  {"form": form, 'error': error})
+        # Подчищаю бесхозные файлы (у которых нет родителя и которые принадлежат текущему пользователю)
+        # MultiImages.objects.filter(parent_id=None, my_manager=request.user).delete()
+        # Отображаю бесхозные файлы, предполагая что они загружены только что текущим пользователем
+        photos_list = MultiImages.objects.filter(parent_id=None, my_manager=request.user).order_by('weight').all()
+
+    return render(request, 'myobject/add-object.html', {"form": form, 'error': error, 'photos': photos_list})
 
 
 @login_required
@@ -132,11 +187,26 @@ class ObjDelete(LoginRequiredMixin, DeleteView):
         return reverse('my_object')
 
 
+# Редактирование объекта
 class ObjUpdate(LoginRequiredMixin, UpdateView):
-    '''Редактирование объекта'''
     model = MyObject
     form_class = MyObjectForm
     template_name = 'myobject/update-obj.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ObjUpdate, self).get_context_data(**kwargs)
+        pk = self.kwargs.get('pk')
+        photos_list = MultiImages.objects.filter(parent_id=pk).order_by('weight').all()
+        context['photos'] = photos_list
+        return context
+
+    def form_valid(self, form, **kwargs):
+        self.object = form.save(commit=False)
+        self.object.save()
+        # print(self.request.user)
+        pk = self.kwargs.get('pk')
+        MultiImages.objects.filter(parent_id=None, my_manager_id=self.request.user).update(parent_id=pk)
+        return redirect('my_object')
 
 
 class ObjCopy(LoginRequiredMixin, UpdateView):
