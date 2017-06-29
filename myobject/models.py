@@ -17,9 +17,26 @@ class StancMetro(models.Model):
         db_table = "metro"
         verbose_name = "Стация метро"
         verbose_name_plural = "Станции метро"
+        ordering = ['id']
+
+    COLOR = (
+        ('#b004f0', 'фиолетовая'),
+        ('#ff2915', 'красная'),
+        ('#008d50', 'зелёная'),
+        ('#0073bf', 'синяя'),
+        ('#07e8fc', 'голубая'),
+        ('#5b3119', 'коричневая'),
+        ('#e57d0c', 'оранжевая'),
+        ('#ffe200', 'жёлтая'),
+        ('#8c8082', 'серая'),
+        ('#00fdb5', 'салатовая'),
+        ('#2dbd99', 'бирюзовая'),
+        ('#92c1db', 'серо-голубая'),
+    )
 
     okrug = models.ManyToManyField(Okrug, blank=True, verbose_name="Округ")
-    color = models.CharField("Цвет ветки", max_length=100)
+    color = models.CharField("Цвет ветки", max_length=100,
+                                            choices=COLOR, default="0")
     name = models.CharField("Станция", max_length=100)
 
     def __str__(self):

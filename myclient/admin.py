@@ -183,12 +183,14 @@ class PrioritetAdmin(admin.ModelAdmin):
             return super(PrioritetAdmin, self).\
                 delete_view(request, object_id, extra_context=extra_context)
 
+class NaznachAdmin(admin.ModelAdmin):
+    list_display = ('id', 'options', 'group')
 
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
 
 admin.site.register(Client, SimpleHistoryAdmin)
 admin.site.register(Prioritet, PrioritetAdmin)
-admin.site.register(Naznach)
+admin.site.register(Naznach, NaznachAdmin)
 admin.site.register(Okrug)
 admin.site.register(TaskClient)
