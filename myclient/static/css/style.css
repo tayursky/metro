@@ -191,6 +191,31 @@ form.form_s_3s {
 }
 .form_s_3s .form-group {
     float: left;
+    margin-left: 15px;
+}
+.form_s_3s .radio input[type=radio]{
+    position: absolute;
+    margin-left: -15px;
+}
+#id_okrug {
+    display: flex;
+    flex-direction: column;
+    height: 110px;
+    flex-wrap: wrap;
+}
+.radio{
+    font-size: 16px;
+    margin-top: -2px !important;
+    padding-left: 2px;
+}
+#id_price {
+    display: flex;
+    flex-direction: column;
+    height: 110px;
+    flex-wrap: wrap;
+}
+.control-label{
+    font-size: 18px;
 }
 .obj-cont{
     float: left;
@@ -251,6 +276,9 @@ form.form_s_3s {
 }
 .td-op{
     width: 30%;
+}
+.okrug-singl{
+    float: left;
 }
 
 /*Футер*/

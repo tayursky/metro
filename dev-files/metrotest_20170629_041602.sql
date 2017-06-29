@@ -211,7 +211,7 @@ CREATE TABLE `client` (
 CHARACTER SET = utf8
 COLLATE = utf8_general_ci
 ENGINE = InnoDB
-AUTO_INCREMENT = 1;
+AUTO_INCREMENT = 2;
 -- -------------------------------------------------------------
 -- ---------------------------------------------------------
 
@@ -417,7 +417,7 @@ CREATE TABLE `myclient_historicalclient` (
 CHARACTER SET = utf8
 COLLATE = utf8_general_ci
 ENGINE = InnoDB
-AUTO_INCREMENT = 1;
+AUTO_INCREMENT = 2;
 -- -------------------------------------------------------------
 -- ---------------------------------------------------------
 
@@ -460,7 +460,7 @@ CREATE TABLE `myobject_historicalmyobject` (
 CHARACTER SET = utf8
 COLLATE = utf8_general_ci
 ENGINE = InnoDB
-AUTO_INCREMENT = 1;
+AUTO_INCREMENT = 3;
 -- -------------------------------------------------------------
 -- ---------------------------------------------------------
 
@@ -512,7 +512,7 @@ CREATE TABLE `object` (
 CHARACTER SET = utf8
 COLLATE = utf8_general_ci
 ENGINE = InnoDB
-AUTO_INCREMENT = 1;
+AUTO_INCREMENT = 3;
 -- -------------------------------------------------------------
 -- ---------------------------------------------------------
 
@@ -528,7 +528,7 @@ CREATE TABLE `object_naznach` (
 CHARACTER SET = utf8
 COLLATE = utf8_general_ci
 ENGINE = InnoDB
-AUTO_INCREMENT = 1;
+AUTO_INCREMENT = 2;
 -- -------------------------------------------------------------
 -- ---------------------------------------------------------
 
@@ -544,7 +544,7 @@ CREATE TABLE `object_okrug` (
 CHARACTER SET = utf8
 COLLATE = utf8_general_ci
 ENGINE = InnoDB
-AUTO_INCREMENT = 1;
+AUTO_INCREMENT = 2;
 -- -------------------------------------------------------------
 -- ---------------------------------------------------------
 
@@ -745,6 +745,7 @@ INSERT INTO `auth_user`(`id`,`password`,`last_login`,`is_superuser`,`username`,`
 
 
 -- Dump data of "client" -----------------------------------
+INSERT INTO `client`(`id`,`name`,`tel`,`email`,`hide`,`hide_date`,`area_ot`,`area_do`,`price_obsh`,`price_m`,`dop_kont`,`metro`,`adres`,`komisiya`,`etaj`,`podborka`,`type_obj`,`my_manager_id`,`naznach_one_id`,`naznach_two_id`) VALUES ( '1', 'Михаил Омельчекно', '+380957506112', 'socanime@gmail.com', '0', NULL, '50', '80', '10000', '100', 'Доп конт', '1', '0', '0', '1', '0', 'undeg', '1', '1', '2' );
 -- ---------------------------------------------------------
 
 
@@ -889,10 +890,13 @@ INSERT INTO `metro_okrug`(`id`,`stancmetro_id`,`okrug_id`) VALUES ( '4', '4', '2
 
 
 -- Dump data of "myclient_historicalclient" ----------------
+INSERT INTO `myclient_historicalclient`(`id`,`name`,`tel`,`email`,`hide`,`hide_date`,`area_ot`,`area_do`,`price_obsh`,`price_m`,`dop_kont`,`metro`,`adres`,`komisiya`,`etaj`,`podborka`,`type_obj`,`history_id`,`history_date`,`history_change_reason`,`history_type`,`change_message`,`history_user_id`,`my_manager_id`,`naznach_one_id`,`naznach_two_id`) VALUES ( '1', 'Михаил Омельчекно', '+380957506112', 'socanime@gmail.com', '0', NULL, '50', '80', '10000', '100', 'Доп конт', '1', '0', '0', '1', '0', 'undeg', '1', '2017-06-29 01:19:24.785106', NULL, '+', '[{\'added\': {\'object\': \'Клиент\', \'name\': \'Михаил Омельчекно\'}}]', '1', '1', '1', '2' );
 -- ---------------------------------------------------------
 
 
 -- Dump data of "myobject_historicalmyobject" --------------
+INSERT INTO `myobject_historicalmyobject`(`id`,`typeobj`,`adres`,`area`,`block_area`,`block_price`,`block_procent`,`etaj`,`price`,`opis`,`dom`,`kvt`,`dogovor`,`block_name`,`block_tel`,`block_email`,`silka`,`zametka`,`hide`,`hide_date`,`zvon`,`area_range`,`history_id`,`history_date`,`history_change_reason`,`history_type`,`change_message`,`history_user_id`,`my_manager_id`,`station_one_id`,`station_two_id`) VALUES ( '1', '1', 'Ленина 100', '1000', '10', '100', '10', '1', '1000', 'Описание', '1', '10', 'Договор', '', '+380957506112', '', '', 'ЗАМЕТКА', '0', NULL, '2017-06-29', 'large', '1', '2017-06-29 01:20:47.212925', NULL, '+', '[{\'added\': {\'object\': \'Объект\', \'name\': \'Ленина 100\'}}]', '1', '1', '3', NULL );
+INSERT INTO `myobject_historicalmyobject`(`id`,`typeobj`,`adres`,`area`,`block_area`,`block_price`,`block_procent`,`etaj`,`price`,`opis`,`dom`,`kvt`,`dogovor`,`block_name`,`block_tel`,`block_email`,`silka`,`zametka`,`hide`,`hide_date`,`zvon`,`area_range`,`history_id`,`history_date`,`history_change_reason`,`history_type`,`change_message`,`history_user_id`,`my_manager_id`,`station_one_id`,`station_two_id`) VALUES ( '2', '1', 'Ленина 1002', '2000', '10', '200', '20', '1', '5000', 'Описание', '1', '15', 'Договор 2', '', '+380957506112', '', '', 'ЗАМЕТКА', '0', NULL, '2017-06-29', 'large', '2', '2017-06-29 01:21:31.606621', NULL, '+', '[{\'added\': {\'object\': \'Объект\', \'name\': \'Ленина 1002\'}}]', '1', '1', '3', '1' );
 -- ---------------------------------------------------------
 
 
@@ -925,14 +929,18 @@ INSERT INTO `naznach`(`id`,`group`,`options`) VALUES ( '24', 'Другое', 'Ц
 
 
 -- Dump data of "object" -----------------------------------
+INSERT INTO `object`(`id`,`typeobj`,`adres`,`area`,`block_area`,`block_price`,`block_procent`,`etaj`,`price`,`opis`,`dom`,`kvt`,`dogovor`,`block_name`,`block_tel`,`block_email`,`silka`,`zametka`,`hide`,`hide_date`,`zvon`,`area_range`,`my_manager_id`,`station_one_id`,`station_two_id`) VALUES ( '1', '1', 'Ленина 100', '1000', '10', '100', '10', '1', '1000', 'Описание', '1', '10', 'Договор', '', '+380957506112', '', '', 'ЗАМЕТКА', '0', NULL, '2017-06-29', 'large', '1', '3', NULL );
+INSERT INTO `object`(`id`,`typeobj`,`adres`,`area`,`block_area`,`block_price`,`block_procent`,`etaj`,`price`,`opis`,`dom`,`kvt`,`dogovor`,`block_name`,`block_tel`,`block_email`,`silka`,`zametka`,`hide`,`hide_date`,`zvon`,`area_range`,`my_manager_id`,`station_one_id`,`station_two_id`) VALUES ( '2', '1', 'Ленина 1002', '2000', '10', '200', '20', '1', '5000', 'Описание', '1', '15', 'Договор 2', '', '+380957506112', '', '', 'ЗАМЕТКА', '0', NULL, '2017-06-29', 'large', '1', '3', '1' );
 -- ---------------------------------------------------------
 
 
 -- Dump data of "object_naznach" ---------------------------
+INSERT INTO `object_naznach`(`id`,`myobject_id`,`naznach_id`) VALUES ( '1', '2', '3' );
 -- ---------------------------------------------------------
 
 
 -- Dump data of "object_okrug" -----------------------------
+INSERT INTO `object_okrug`(`id`,`myobject_id`,`okrug_id`) VALUES ( '1', '2', '2' );
 -- ---------------------------------------------------------
 
 

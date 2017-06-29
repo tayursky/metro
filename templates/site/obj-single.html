@@ -14,11 +14,14 @@
     <table class="table table-bordered table-hover table-obj">
         <tr>
             <td class="td-op">Локация</td>
-            <td>
+            <td><div class="okrug-singl">
                 {% for okrug in obj.okrug.all %}
                     {{okrug.options}},
                 {% endfor %}
-                {{obj.station_one}} {% if obj.station_two %}, {{obj.station_two}} {% endif %}
+                </div>
+                <div style="width: 10px; height:10px; background-color:    {{obj.station_one.color}};border-radius: 10px;float: left; margin: 5px;">
+                </div>
+                    {{obj.station_one}} {% if obj.station_two %}, {{obj.station_two}} {% endif %}
             </td>
         </tr>
         <tr>
@@ -71,7 +74,9 @@
     <a href="{% url 'contact' %}" class="cont-btn">Записаться на просмотр</a>
 </div>
 <div class="station-img">
-    <p><strong>Возможно, Вас заинтересуют похожие предложения:</strong></p>
+    {% if imgs %}
+        <p><strong>Возможно, Вас заинтересуют похожие предложения:</strong></p>
+    {% endif %}
     {% for img in imgs %}
     <div class="img-obj">
         <img src="{{MEDIA_URL}}{{ img.image.url }}" width="250" height="200" alt="Аренда помещений">
