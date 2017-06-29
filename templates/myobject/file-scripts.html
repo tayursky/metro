@@ -1,0 +1,28 @@
+{% load bootstrap3 static %}
+<script src="{% static 'js/jQuery-File-Upload-9.14.1/js/vendor/jquery.ui.widget.js' %}"></script>
+<script src="{% static 'js/jQuery-File-Upload-9.14.1/js/jquery.iframe-transport.js' %}"></script>
+<script src="{% static 'js/jQuery-File-Upload-9.14.1/js/jquery.fileupload.js' %}"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+{# PHOTOS PAGE SCRIPTS #}
+<script src="{% static 'js/basic-upload.js' %}"></script>
+<style>
+    #gallery tr {
+        width: 100%;
+        background: #fff;
+    }
+    #gallery tr:hover {
+        cursor: pointer;
+    }
+    #gallery tr.ui-sortable-helper {
+        background: #dadada;
+    }
+    #gallery tr td:first-child {
+        width: 80%;
+        vertical-align: middle;
+    }
+    #gallery tr td:last-child {
+        width: 20%;
+        vertical-align: middle;
+        text-align: center;
+    }
+</style>
