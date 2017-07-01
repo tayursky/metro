@@ -41,9 +41,11 @@ class HistoricalRecordsExtended(HistoricalRecords):
 
         # Takes history models and deletes old history
         history_model_list = (
-            md.model_class() for md in ContentType.objects.all() if 'historical' in md.name)
+            md.model_class() for md in ContentType.objects.all()
+            if 'historical' in md.name)
         for history_model in history_model_list:
-            history_model.objects.filter(history_date__lt=boundary_date).delete()
+            history_model.objects\
+                .filter(history_date__lt=boundary_date).delete()
 
         # Gets manager history model and takes history list
         manager = getattr(instance, self.manager_name)
@@ -101,13 +103,15 @@ class HistoricalRecordsExtended(HistoricalRecords):
             last_record.change_message = change_message
             last_record.save()
 
-    # Override create_history_model:  create get_change_message method
     def create_history_model(self, model):
-        model = super(HistoricalRecordsExtended, self).create_history_model(model)
+        '''Override create_history_model:  create get_change_message method'''
+        model = super(HistoricalRecordsExtended, self)\
+            .create_history_model(model)
+
         def get_change_message(self):
             """
-            If self.change_message is a JSON structure, interpret it as a change
-            string, properly translated.
+            If self.change_message is a JSON structure,
+            interpret it as a change string, properly translated.
             """
 
             if self.change_message and self.change_message[0] == '[':
@@ -121,8 +125,11 @@ class HistoricalRecordsExtended(HistoricalRecords):
                 for sub_message in change_message:
                     if 'added' in sub_message:
                         if sub_message['added']:
-                            sub_message['added']['name'] = ugettext(sub_message['added']['name'])
-                            messages.append(ugettext('Added {name} "{object}".').format(**sub_message['added']))
+                            sub_message['added']['name'] = ugettext(
+                                sub_message['added']['name'])
+                            messages.append(
+                                ugettext('Added {name} "{object}".')
+                                .format(**sub_message['added']))
                         else:
                             messages.append(ugettext('Added.'))
 
@@ -131,18 +138,25 @@ class HistoricalRecordsExtended(HistoricalRecords):
                             sub_message['changed']['fields'], ugettext('and')
                         )
                         if 'name' in sub_message['changed']:
-                            sub_message['changed']['name'] = ugettext(sub_message['changed']['name'])
-                            messages.append(ugettext('Changed {fields} for {name} "{object}".').format(
-                                **sub_message['changed']
-                            ))
+                            sub_message['changed']['name'] = ugettext(
+                                sub_message['changed']['name'])
+                            messages.append(ugettext(
+                                'Changed {fields} for {name} "{object}".')
+                                .format(**sub_message['changed']))
                         else:
-                            messages.append(ugettext('Changed {fields}.').format(**sub_message['changed']))
+                            messages.append(ugettext(
+                                'Changed {fields}.')
+                                .format(**sub_message['changed']))
 
                     elif 'deleted' in sub_message:
-                        sub_message['deleted']['name'] = ugettext(sub_message['deleted']['name'])
-                        messages.append(ugettext('Deleted {name} "{object}".').format(**sub_message['deleted']))
+                        sub_message['deleted']['name'] = ugettext(
+                            sub_message['deleted']['name'])
+                        messages.append(ugettext(
+                            'Deleted {name} "{object}".')
+                            .format(**sub_message['deleted']))
 
-                change_message = ' '.join(msg[0].upper() + msg[1:] for msg in messages)
+                change_message = ' '.join(msg[0].upper() +
+                                          msg[1:] for msg in messages)
                 return change_message or ugettext('No fields changed.')
             else:
                 return self.change_message
@@ -165,7 +179,9 @@ class Naznach(models.Model):
         ('Другое', 'Другое')
     )
 
-    group = models.CharField("Группа", max_length=30, choices=GROUP, default="F")
+    group = models.CharField("Группа",
+                             max_length=30,
+                             choices=GROUP, default="F")
     options = models.CharField("Назначения", max_length=100)
 
     def __str__(self):
@@ -184,6 +200,8 @@ class Okrug(models.Model):
     def __str__(self):
         return self.options
 
+
+# NEED REVIEW
 def get_sentinel_user():
     return get_user_model().objects.get_or_create(username='deleted')[0]
 
@@ -207,25 +225,30 @@ class Client(models.Model):
         ('tc', 'Отдел\ТЦ')
     )
     my_manager = models.ForeignKey(settings.AUTH_USER_MODEL,
-        on_delete=models.SET(get_sentinel_user),)
+                                   on_delete=models.SET(get_sentinel_user))
     name = models.CharField("Имя", max_length=30)
     tel = models.CharField("Телефон", max_length=30, blank=True)
     email = models.EmailField("Email", max_length=30, blank=True)
-    hide = models.CharField("Скрыт", max_length=30, choices=HIDE, default="0", blank=True)
-    hide_date = models.DateField("Скрыть до", auto_now_add=False, blank=True, null=True)
+    hide = models.CharField("Скрыт", max_length=30,
+                            choices=HIDE, default="0", blank=True)
+    hide_date = models.DateField("Скрыть до", auto_now_add=False,
+                                 blank=True, null=True)
     naznach_one = models.ForeignKey(
         Naznach, related_name='naznach_one', verbose_name="Назначение №1")
-    naznach_two = models.ForeignKey(Naznach, blank=True, null=True, verbose_name="Назначение №2")
+    naznach_two = models.ForeignKey(Naznach, blank=True,
+                                    null=True, verbose_name="Назначение №2")
     area_ot = models.IntegerField("Площадь от", default=0, blank=True)
     area_do = models.IntegerField("Площадь до", default=0, blank=True)
     price_obsh = models.IntegerField("Цена до", default=0, blank=True)
     price_m = models.IntegerField("Цена до за м2", default=0, blank=True)
-    dop_kont = models.TextField("Дополнительные контакты", max_length=1000, blank=True)
+    dop_kont = models.TextField("Дополнительные контакты",
+                                max_length=1000, blank=True)
     metro = models.BooleanField("У метро", max_length=30, blank=True)
     adres = models.BooleanField("С адресом", max_length=100, blank=True)
     komisiya = models.BooleanField("Без комиссии", max_length=30, blank=True)
     etaj = models.BooleanField("1 этаж", max_length=30, blank=True)
-    podborka = models.BooleanField("Отправить подборку", max_length=30, blank=True)
+    podborka = models.BooleanField("Отправить подборку",
+                                   max_length=30, blank=True)
     okrug = models.ManyToManyField(Okrug, blank=True, verbose_name="Округ")
     type_obj = models.CharField("Тип объекта", max_length=30,
                                 choices=TYPE_OBJ, default="undeg", blank=True)
@@ -271,7 +294,7 @@ class TaskClient(models.Model):
         ('3', 'первоочередное')
     )'''
     manager = models.ForeignKey(User, on_delete=models.CASCADE)
-    client = models.ForeignKey(Client, verbose_name="Клиент")# related_name='client',
+    client = models.ForeignKey(Client, verbose_name="Клиент")
     prioritet = models.ForeignKey(Prioritet, verbose_name="Приоритет")
     date = models.DateField("Дата", auto_now_add=False)
     task = models.TextField("Задача")

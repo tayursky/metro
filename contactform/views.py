@@ -20,7 +20,8 @@ def contact(request):
             return render(request, 'contactform/thank.html')
     else:
         form = ContactForm()
-    return render(request, 'contactform/cont.html', {'form': form })
+    return render(request, 'contactform/cont.html', {'form': form})
+
 
 class ZayavkaList(LoginRequiredMixin, ListView):
     ''' Просмотр заявок '''
@@ -42,6 +43,7 @@ class ZayavkaList(LoginRequiredMixin, ListView):
         context['form_email'] = SZvonName(prefix='email')
         context['form_data'] = SZvonId(prefix='data')
         return context
+
     # Поиск
     def post(self, request):
         form_i = SZvonId(self.request.POST, prefix='id')
@@ -51,19 +53,19 @@ class ZayavkaList(LoginRequiredMixin, ListView):
         form_d = SZvonId(self.request.POST, prefix='data')
         if form_i.is_valid() and form_i.cleaned_data['search'] != '':
             search = form_i.cleaned_data['search']
-            self.context['zayavka'] = Contact.objects.filter(id = search)
+            self.context['zayavka'] = Contact.objects.filter(id=search)
         if form_n.is_valid() and form_n.cleaned_data['search'] != '':
             search = form_n.cleaned_data['search']
-            self.context['zayavka'] = Contact.objects.filter(name = search)
+            self.context['zayavka'] = Contact.objects.filter(name=search)
         if form_t.is_valid() and form_t.cleaned_data['search'] != '':
             search = form_t.cleaned_data['search']
-            self.context['zayavka'] = Contact.objects.filter(tel = search)
+            self.context['zayavka'] = Contact.objects.filter(tel=search)
         if form_e.is_valid() and form_e.cleaned_data['search'] != '':
             search = form_e.cleaned_data['search']
-            self.context['zayavka'] = Contact.objects.filter(email = search)
+            self.context['zayavka'] = Contact.objects.filter(email=search)
         if form_d.is_valid() and form_d.cleaned_data['search'] != '':
             search = form_d.cleaned_data['search']
-            self.context['zayavka'] = Contact.objects.filter(data = search)
+            self.context['zayavka'] = Contact.objects.filter(data=search)
         return render(request, self.template_name, self.context)
 
 
@@ -83,7 +85,7 @@ def del_ajax(request):
     ''' Удаление заявки '''
     if request.is_ajax():
         if request.method == "POST":
-            if 'pk' in  request.POST:
+            if 'pk' in request.POST:
                 pk = request.POST.get('pk')
                 pk = int(pk)
                 post = Contact.objects.get(id=pk)
@@ -99,7 +101,7 @@ def update_zvon(request):
     ''' Редактировать через ajax '''
     if request.is_ajax():
         if request.method == "POST":
-            if 'pk' in  request.POST:
+            if 'pk' in request.POST:
                 pk = request.POST.get('pk')
                 pk = int(pk)
                 post = Contact.objects.get(id=pk)
@@ -110,6 +112,7 @@ def update_zvon(request):
                 return HttpResponse(cc)
         else:
             return HttpResponse("NO")
+
 
 @csrf_exempt
 @login_required
@@ -130,7 +133,7 @@ def s_zvon_id(request):
         form = SZvonId(request.POST)
         if form.is_valid():
             search = form.cleaned_data['search']
-            zayavka = Contact.objects.filter(id = search)
+            zayavka = Contact.objects.filter(id=search)
     else:
         return redirect('zayavka')
     return render(request, 'contactform/zayavki.html', {'zayavka': zayavka})
