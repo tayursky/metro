@@ -28,7 +28,7 @@ def home(request):
     for st in myobj:
         img = Photo.objects.filter(station=st.station_one)[:4]
 
-    context = {'myobj': myobj, 'form': form}#, 'imgs': img}
+    context = {'myobj': myobj, 'form': form}  # 'imgs': img}
     return render(request, 'site/home.html', context)
 
 

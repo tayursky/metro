@@ -8,7 +8,8 @@ class MyObjectForm(forms.ModelForm):
     class Meta:
         model = MyObject
         fields = ('typeobj', 'okrug', 'adres', 'naznach', 'area',
-                  'block_area', 'block_price', 'block_procent', 'etaj', 'price', 'opis', 'station_one',
+                  'block_area', 'block_price', 'block_procent',
+                  'etaj', 'price', 'opis', 'station_one',
                   'station_two', 'dom', 'kvt', 'dogovor',
                   'block_tel', 'silka', 'zametka')
         widgets = {

@@ -15,17 +15,20 @@ class PrioritetList(LoginRequiredMixin, ListView):
     queryset = Prioritet.objects.all()
     template_name = 'myclient/prioritet/prioritet.html'
 
+
 class AddPrioritet(LoginRequiredMixin, CreateView):
     '''Добавление приоритета'''
     model = Prioritet
     template_name = "myclient/prioritet/add_prioritet.html"
     form_class = PrioritetForm
 
+
 class PrioritetUpdate(LoginRequiredMixin, UpdateView):
     '''Редактирование приоритета'''
     model = Prioritet
     form_class = PrioritetForm
     template_name = 'myclient/prioritet/update.html'
+
 
 class PrioritetDelete(LoginRequiredMixin, DeleteView):
     '''Удаление приоритета'''
@@ -35,13 +38,14 @@ class PrioritetDelete(LoginRequiredMixin, DeleteView):
     def get_success_url(self):
         return reverse('prioritet')
 
+
 @csrf_exempt
 @login_required
 def del_prio(request):
     '''Удаление приоритета'''
     if request.is_ajax():
         if request.method == "POST":
-            if 'pk' in  request.POST:
+            if 'pk' in request.POST:
                 pk = request.POST.get('pk')
                 pk = int(pk)
                 post = Prioritet.objects.get(id=pk)
