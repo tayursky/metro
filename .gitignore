@@ -5,4 +5,4 @@ settings.py
 local_settings.py
 __pycache__/
 *.py[cod]
-
+media/
