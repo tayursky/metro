@@ -1,5 +1,6 @@
 from .forms import *
 
+
 def search_site(request):
     ''' Формы поиска на все страницах сайта '''
     object_form = SearchObjectFront()

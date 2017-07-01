@@ -1,5 +1,6 @@
 from .models import Seo
 
+
 def seo_meta(request):
     '''Выводим meta данные'''
     meta = {}

@@ -3,6 +3,7 @@ from django import forms
 from django.contrib.auth.models import User
 from .models import Client, TaskClient, Prioritet
 
+
 class ClientForm(forms.ModelForm):
     ''' Форма добавления клиента'''
     class Meta:
@@ -15,11 +16,13 @@ class ClientForm(forms.ModelForm):
             'okrug': forms.widgets.CheckboxSelectMultiple,
         }
 
+
 class HideClientForm(forms.ModelForm):
     ''' Форма скрытия клиента '''
     class Meta:
         model = Client
         fields = ('hide_date',)
+
 
 class TaskClientForm(forms.ModelForm):
     ''' Форма задачи клиента '''
@@ -27,11 +30,13 @@ class TaskClientForm(forms.ModelForm):
         model = TaskClient
         fields = ('client', 'prioritet', 'date', 'task')
 
+
 class PrioritetForm(forms.ModelForm):
     ''' Форма добавления приоритета '''
     class Meta:
         model = Prioritet
         fields = ('prioritet', 'num')
+
 
 class SerchNameForm(forms.Form):
     ''' Форма поиска клиента по имени '''
@@ -39,6 +44,7 @@ class SerchNameForm(forms.Form):
                              widget=forms.TextInput(attrs={'placeholder': '',
                                                            'class': 'id_s'}),
                              max_length=30, error_messages={'required': ''})
+
 
 class SCkientMenForm(forms.ModelForm):
     ''' Форма поиска клиента по менеджеру '''
@@ -51,9 +57,7 @@ class SCkientMenForm(forms.ModelForm):
         error_messages = {
             'my_manager': ''
         }
-        '''fields_classes = {
-            'my_manager': 'id_s'
-        }'''
+
 
 class SCkientHideForm(forms.ModelForm):
     ''' Форма поиска клиента по полю скрыт\не скрыт '''
@@ -66,6 +70,7 @@ class SCkientHideForm(forms.ModelForm):
         error_messages = {
             'hide': ''
         }
+
 
 class SCkientNazForm(forms.ModelForm):
     ''' Форма поиска клиента по назначению '''
@@ -85,7 +90,7 @@ class ManagersForm(forms.Form):
     при удалении из панели администратора'''
 
     managers = forms.ModelChoiceField(queryset=User.objects.all(),
-                                     to_field_name='id')
+                                      to_field_name='id')
 
     def __init__(self, *args, **kwargs):
         exclude_args = kwargs.pop('exclude', {})

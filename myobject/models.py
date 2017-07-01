@@ -39,7 +39,7 @@ class StancMetro(models.Model):
 
     okrug = models.ManyToManyField(Okrug, blank=True, verbose_name="Округ")
     color = models.CharField("Цвет ветки", max_length=100,
-                                            choices=COLOR, default="0")
+                             choices=COLOR, default="0")
     name = models.CharField("Станция", max_length=100)
 
     def __str__(self):

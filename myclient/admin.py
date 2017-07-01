@@ -28,10 +28,11 @@ USER_NATURAL_KEY = tuple(
 class UserAdmin(UserAdmin):
 
     def __init__(self, *args, **kwargs):
-         super(UserAdmin,self).__init__(*args, **kwargs)
-         UserAdmin.list_display = list(
-             UserAdmin.list_display) + ['date_joined', 'is_active',          'last_login', 'history_link']
-         UserAdmin.list_filter = ('is_active',)
+        super(UserAdmin, self).__init__(*args, **kwargs)
+        UserAdmin.list_display = list(
+            UserAdmin.list_display) + ['date_joined', 'is_active',
+                                       'last_login', 'history_link']
+        UserAdmin.list_filter = ('is_active',)
 
     def get_actions(self, request):
         actions = super(UserAdmin, self).get_actions(request)
@@ -49,12 +50,12 @@ class UserAdmin(UserAdmin):
         if 'do_action' in request.POST:
             if form.is_valid:
                 form = ManagersForm(request.POST)
-                Client.objects.filter(my_manager__in=manager_ids)\
-                    .update(my_manager=
-                            User.objects.get(pk=form.data['managers']))
-                MyObject.objects.filter(my_manager__in=manager_ids)\
-                    .update(my_manager=
-                            User.objects.get(pk=form.data['managers']))
+                Client.objects.filter(my_manager__in=manager_ids) \
+                    .update(my_manager=User.objects.get
+                            (pk=form.data['managers']))
+                MyObject.objects.filter(my_manager__in=manager_ids) \
+                    .update(my_manager=User.objects.get
+                            (pk=form.data['managers']))
 
                 queryset.update(is_active=False)
 
@@ -68,7 +69,6 @@ class UserAdmin(UserAdmin):
                        'form': form})
 
     delete_managers_action.short_description = 'Удалить выбранных менеджеров'
-
 
     def delete_view(self, request, object_id, extra_context=None):
         del_user = User.objects.get(pk=object_id)
@@ -112,7 +112,8 @@ class UserAdmin(UserAdmin):
     def get_urls(self):
         urls = super(UserAdmin, self).get_urls()
         my_urls = [
-            url(r'^history/(?P<pk>[0-9]+)/$', self.admin_site.admin_view(self.user_history_view)),
+            url(r'^history/(?P<pk>[0-9]+)/$',
+                self.admin_site.admin_view(self.user_history_view)),
         ]
         return my_urls + urls
 
@@ -154,7 +155,6 @@ class UserAdmin(UserAdmin):
         return render(request, "admin/history_list.html", context)
 
 
-
 class PrioritetAdmin(admin.ModelAdmin):
 
     def get_actions(self, request):
@@ -170,8 +170,9 @@ class PrioritetAdmin(admin.ModelAdmin):
             .exclude(pk=obj.id)\
             .last()
 
-        if not max_prio:
-            return render(request, 'admin/delete_last_prio.html', extra_context)
+        # if not max_prio:
+        #    return render(request,
+        #                  'admin/delete_last_prio.html', extra_context)
 
         post_url = reverse('admin:myclient_prioritet_changelist')
 
@@ -182,6 +183,7 @@ class PrioritetAdmin(admin.ModelAdmin):
         else:
             return super(PrioritetAdmin, self).\
                 delete_view(request, object_id, extra_context=extra_context)
+
 
 class NaznachAdmin(admin.ModelAdmin):
     list_display = ('id', 'options', 'group')

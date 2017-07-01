@@ -5,12 +5,13 @@ from .models import MenagerOptions
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-@receiver(post_save, sender = User)
+
+@receiver(post_save, sender=User)
 def addinfo(instance, **kwargs):
     '''Создание менеджера'''
-    #Существует пользователь или нет
+    # Существует пользователь или нет
     try:
-        p = MenagerOptions.objects.get(user = instance)
+        p = MenagerOptions.objects.get(user=instance)
         return redirect('/login/task')
     except:
         post = MenagerOptions()

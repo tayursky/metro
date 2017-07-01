@@ -235,7 +235,8 @@ def zvon_obj(request, pk):
     zvon.save()
     return redirect('my_object')
 
+
 def look_obj(request, pk):
-    #Просмотр страницы объекта менеджером
+    # Просмотр страницы объекта менеджером
     obj = get_list_or_404(MyObject, pk=pk)
     return render(request, 'site/obj-single.html', {'obj_single': obj})
