@@ -11,10 +11,12 @@ def search_object(request):
         form = SearchObject(request.POST)
         if form.is_valid():
             search = form.cleaned_data['search']
-            myobject = MyObject.objects.filter(id = search)
+            myobject = MyObject.objects.filter(id=search)
     else:
         return redirect('/login/object/')
-    return render(request, 'myobject/my-object.html', {'search_object': myobject})
+    return render(request, 'myobject/my-object.html',
+                  {'search_object': myobject})
+
 
 def search_adres(request):
     '''Поиск объекта по адресу'''
@@ -23,10 +25,12 @@ def search_adres(request):
         if form.is_valid():
             search = form.cleaned_data['search']
             # Поиск по полю адрес без учета регистра
-            myobject = MyObject.objects.filter(adres__icontains = search)
+            myobject = MyObject.objects.filter(adres__icontains=search)
     else:
         return redirect('/login/object/')
-    return render(request, 'myobject/my-object.html', {'search_object': myobject})
+    return render(request, 'myobject/my-object.html',
+                  {'search_object': myobject})
+
 
 def search_client(request):
     '''Поиск клиента'''
@@ -35,10 +39,15 @@ def search_client(request):
         if form.is_valid():
             search = form.cleaned_data['search']
             # Поиск по любому из трех полей
-            client = Client.objects.filter(Q(name__exact = search) | Q(email__exact = search) | Q(tel__exact = search))
+            client = Client.objects.filter(
+                Q(name__exact=search) |
+                Q(email__exact=search) |
+                Q(tel__exact=search))
     else:
         return redirect('/login/client/')
-    return render(request, 'myclient/my-client.html', {'search_client': client})
+    return render(request, 'myclient/my-client.html',
+                  {'search_client': client})
+
 
 def search_metro(request):
     '''Поиск станции метро'''
@@ -46,10 +55,12 @@ def search_metro(request):
         form = SearchMetro(request.POST)
         if form.is_valid():
             search = form.cleaned_data['search']
-            metro = MyObject.objects.filter(Q(station_one__name = search) | Q(station_two__name = search))
+            metro = MyObject.objects.filter(
+                Q(station_one__name=search) | Q(station_two__name=search))
     else:
         return redirect('/login/object/')
     return render(request, 'myobject/my-object.html', {'search_object': metro})
+
 
 def search_vlad(request):
     '''Поиск по владельцу'''
@@ -57,7 +68,9 @@ def search_vlad(request):
         form = SearchVlad(request.POST)
         if form.is_valid():
             search = form.cleaned_data['search']
-            vlad = MyObject.objects.filter(Q(block_name__exact = search) | Q(block_tel__exact = search))
+            vlad = MyObject.objects.filter(
+                Q(block_name__exact=search) | Q(block_tel__exact=search))
     else:
         return redirect('/login/object/')
-    return render(request, 'myobject/my-object.html', {'search_object': vlad})
+    return render(request, 'myobject/my-object.html',
+                  {'search_object': vlad})

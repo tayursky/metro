@@ -12,7 +12,7 @@ install:
 
 before_script:
   - "mysql -e 'create database travis_ci_db;'"
-  - "pep8 --exclude=migrations ."
+  - "pep8 --exclude=migrations,templates,settings.py ."
 
 script:
   - "python manage.py test"

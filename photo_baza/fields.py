@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 from django.db.models.fields.files import ImageField, ImageFieldFile
 from PIL import Image
 
@@ -23,7 +22,6 @@ class ThumbnailImageFieldFile(ImageFieldFile):
 
     thumb_path = property(_get_thumb_path)
 
-
     def _get_thumb_url(self):
         return _add_thumb(self.url)
 
@@ -31,7 +29,7 @@ class ThumbnailImageFieldFile(ImageFieldFile):
 
     @staticmethod
     def _scale_dimensions(width, height, longest_side=800):
-        """ 
+        """
         Ресайз изображения до размера в 800 пикселей
         по длинной стороне
         """
@@ -51,7 +49,8 @@ class ThumbnailImageFieldFile(ImageFieldFile):
     def save(self, name, content, save=True):
         """ Сохранение изображения с новым именем и размером"""
         from datetime import datetime
-        dt = str(datetime.now()).replace('-', '_').replace(':', '').replace(' ', '_')
+        dt = str(datetime.now()).replace('-', '_')\
+            .replace(':', '').replace(' ', '_')
         img_name = dt.replace('.', '_') + '.jpg'
         super(ThumbnailImageFieldFile, self).save(img_name, content, save)
 
@@ -80,7 +79,3 @@ class ThumbnailImageField(ImageField):
         self.thumb_height = thumb_height
 
         super(ThumbnailImageField, self).__init__(*args, **kwargs)
-
-
-
-

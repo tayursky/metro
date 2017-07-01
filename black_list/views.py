@@ -16,6 +16,7 @@ class BlackListViews(LoginRequiredMixin, ListView):
     queryset = BlackList.objects.all()
     template_name = 'black_list/black_list.html'
 
+
 class BlackListCreate(LoginRequiredMixin, CreateView):
     ''' Добавлениев черный список '''
     model = BlackList
@@ -24,6 +25,7 @@ class BlackListCreate(LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         return reverse('black_list')
+
 
 class BlackListUpdate(LoginRequiredMixin, UpdateView):
     ''' Редактирование черного списка '''
@@ -34,13 +36,14 @@ class BlackListUpdate(LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse('black_list')
 
+
 @csrf_exempt
 @login_required
 def del_black_list(request):
     ''' Удаление из черного списка '''
     if request.is_ajax():
         if request.method == "POST":
-            if 'pk' in  request.POST:
+            if 'pk' in request.POST:
                 pk = request.POST.get('pk')
                 pk = int(pk)
                 post = BlackList.objects.get(id=pk)
