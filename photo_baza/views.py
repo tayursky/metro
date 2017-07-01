@@ -10,7 +10,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 
 class FileFieldView(FormView):
     """
-    Загрузка одного или нескольких изображений 
+    Загрузка одного или нескольких изображений
     с локального компьютера пользователя
     """
     form_class = FileFieldForm
@@ -30,47 +30,50 @@ class FileFieldView(FormView):
         else:
             return self.form_invalid(form)
 
+
 class UploadURLView(SuccessMessageMixin, FormView):
     """
-    Загрузка  изображения по URL адресу 
+    Загрузка  изображения по URL адресу
     """
     form_class = UploadURLForm
     template_name = "photo_baza/upload_from_url.html"
     success_url = '/photo/upload_url/'
 
-##    def get_success_url(self):
-##        return reverse("upload-detail", args=[self.image_from_url.pk, ])
+#    def get_success_url(self):
+#        return reverse("upload-detail", args=[self.image_from_url.pk, ])
 
     def form_valid(self, form):
         def _invalidate(msg):
             form.errors['url'] = [msg, ]
             return super(UploadURLView, self).form_invalid(form)
 
-
         url = form.data['url']
         messege_id = form.data['station']
         domain, path = split_url(url)
         filename = get_url_tail(path)
 
-        fobject = retrieve_image(url) # Скачивание изображения с сервера по url-адресу
+        # Скачивание изображения с сервера по url-адресу
+        fobject = retrieve_image(url)
         if not fobject:
             return _invalidate("Ошибка url-адреса")
 
-        pil_image = Image.open(fobject[0]) # Проверка файла на допустимые расширения изображений
+        # Проверка файла на допустимые расширения изображений
+        pil_image = Image.open(fobject[0])
         if pil_image.format.lower() not in VALID_IMAGE_EXTENSIONS:
             return _invalidate("Файл не является изображением")
 
-
         django_file = pil_to_django(pil_image)
 
-        self.uploaded_image = Photo(station_id=messege_id) # Привязка изображения к модели Photo
+        # Привязка изображения к модели Photo
+        self.uploaded_image = Photo(station_id=messege_id)
         self.uploaded_image.image.save(filename, django_file)
         self.uploaded_image.save()
-##        success_message ='Фотография добавлена'
+#        success_message ='Фотография добавлена'
 
         return super(UploadURLView, self).form_valid(form)
+
 
 class UploadDetailView(DetailView):
     model = Photo
     context_object_name = "image"
-template_name = "photo_baza/detail.html"
+    template_name = "photo_baza/detail.html"

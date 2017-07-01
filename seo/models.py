@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Seo(models.Model):
     '''Модель META\SEO настроект'''
     class Meta:
@@ -14,6 +15,7 @@ class Seo(models.Model):
 
     def __str__(self):
         return 'SEO настройки %s' % (self.title,)
+
 
 class MenagerOptions(models.Model):
     '''Модель настройки прав менеджеров'''
@@ -32,6 +34,7 @@ class MenagerOptions(models.Model):
 
     def __str__(self):
         return self.user.username
+
 
 class Cian(models.Model):
     '''Логин пароль ЦИАН'''

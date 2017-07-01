@@ -16,6 +16,7 @@ def my_task(request):
     mytask = TaskClient.objects.filter(manager_id=request.user.id, end=False)
     return render(request, 'myclient/my-task.html', {"mytask": mytask})'''
 
+
 class MyTaskList(LoginRequiredMixin, ListView):
     '''Страница Мои задачи'''
     context_object_name = 'mytask'
@@ -24,7 +25,9 @@ class MyTaskList(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super(MyTaskList, self).get_context_data(**kwargs)
-        context['mytask'] = TaskClient.objects.filter(manager_id=self.request.user.id, end=False).order_by('-prioritet__num')
+        context['mytask'] = TaskClient.objects.filter(
+            manager_id=self.request.user.id, end=False)\
+            .order_by('-prioritet__num')
         return context
 
 
@@ -33,7 +36,7 @@ class AddTaskClient(LoginRequiredMixin, CreateView):
     '''Добавление задачи для клиента'''
 
     model = TaskClient
-    #fields = ['name']
+    # fields = ['name']
     template_name = "myclient/add_task_client.html"
     form_class = TaskClientForm
 
@@ -44,12 +47,13 @@ class AddTaskClient(LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse('my_client', kwargs={'pk': self.request.user.id})
 
+
 class TaskUpdate(LoginRequiredMixin, UpdateView):
     '''Редактирование задачи'''
     model = TaskClient
-    #fields = ['name', 'tel']
+    # fields = ['name', 'tel']
     form_class = TaskClientForm
     template_name = 'myclient/add_task_client.html'
 
     def get_success_url(self):
-        return reverse('my_task')#, kwargs={'pk': self.request.user.id})
+        return reverse('my_task')  # kwargs={'pk': self.request.user.id})
