@@ -10,9 +10,6 @@ $(function () {
     sequentialUploads: true,  /* 1. SEND THE FILES ONE BY ONE */
     // send: function (e, data) {
     //   console.log(data);
-    //   if (data.files.length > 1 ) {
-    //     return false;
-    //   }
     // },
     start: function (e) {  /* 2. WHEN THE UPLOADING PROCESS STARTS, SHOW THE MODAL */
       $("#modal-progress").modal("show");
@@ -49,7 +46,7 @@ $(function () {
             type: 'GET',
             success: function (data) {
                 // console.log(JSON.stringify(data));
-                console.log(data['status']);
+                // console.log(data['status']);
                 if (data['status'] == 'ok') {
                     row.remove();
                 }
@@ -78,47 +75,10 @@ $(function () {
             type: 'GET',
             data: {'data': data},
             success: function (data) {
-                // console.log(JSON.stringify(data));
-                console.log(data);
-                // if (data['status'] == 'ok') {
-                //     console.log('ok');
-                // }
+                // console.log(data);
             }
         });
     }
-
-    // Сохранение сортировки при сохранении формы
-    // var ajax_request;
-    // $('.submit-form').submit(function(e){
-		// e.preventDefault();
-		// var vars=$(this).serialize();
-		// var furl=$(this).attr('action');
-    //
-		// // Отправка порядка сортировки
-    //     // $.ajax({
-    //      //    url: '/login/object/delete/photo/' + pk,
-    //      //    dataType: 'json',
-    //      //    type: 'GET',
-    //      //    success: function (data) {
-    //      //        // console.log(JSON.stringify(data));
-    //      //        console.log(data['status']);
-    //      //        if (data['status'] == 'ok') {
-    //      //            row.remove();
-    //      //        }
-    //      //    }
-    //     // });
-    //     alert('test');
-		// // Отправка самой формы
-		// ajax_request=$.ajax({
-		// 	url: furl,
-		// 	data: vars,
-		// 	success: function(msg)
-		// 	{
-		// 		console.log(msg);
-		// 	}
-		// });
-    // });
-
 
     $('#gallery tbody').sortable({
         update: function(event, ui) {

@@ -1,10 +1,11 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect, get_list_or_404
 from django.contrib.auth.decorators import login_required
-from django.http import JsonResponse
+from django.http import JsonResponse, Http404
 from .forms import MyObjectForm, SObjectTypeForm, \
     SObjectMetroForm, SObjectHideForm, MultiImg
 from .models import MyObject, MultiImages
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import UpdateView
 from django.views.generic import DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.urlresolvers import reverse
@@ -49,6 +50,7 @@ def del_photo(request, pk):
             return JsonResponse({'status': 'ok'})
         return JsonResponse({'status': 'false'})
 
+
 @login_required
 def save_weight(request):
     """Сохранение веса фото"""
@@ -59,6 +61,7 @@ def save_weight(request):
             for item in data:
                 MultiImages.objects.filter(pk=item['id']).update(weight=item['weight'])
             return JsonResponse({'status': 'ok'})
+
 
 # Добавление объекта
 @login_required
@@ -92,7 +95,7 @@ def add_object(request):
 
 @login_required
 def my_object(request):
-    '''Мои объекты'''
+    """Мои объекты"""
     forms = {}
     forms['id'] = SerchNameForm(prefix="id")
     forms['adres'] = SerchNameForm(prefix="adres")
@@ -136,7 +139,7 @@ def my_object(request):
 
 
 def search_form(id_o, adres, sobs):
-    '''Обработка поиска по полям'''
+    """Обработка поиска по полям"""
     if id_o.is_valid() and id_o.cleaned_data['search'] != '':
         search = id_o.cleaned_data['search']
         query = MyObject.objects.filter(id=search)
@@ -156,7 +159,7 @@ def search_form(id_o, adres, sobs):
 
 @login_required
 def hide_obj(request, pk):
-    '''Скрыть клиента'''
+    """Скрыть клиента"""
     hide = MyObject.objects.get(id=pk)
     hide.hide_date = "1970-01-01"
     hide.hide = '1'
@@ -166,7 +169,7 @@ def hide_obj(request, pk):
 
 @login_required
 def show_obj(request, pk):
-    '''Открытия клиента'''
+    """Открытия клиента"""
     try:
         hide = MyObject.objects.get(id=pk)
         hide.hide_date = "1970-01-01"
@@ -178,7 +181,7 @@ def show_obj(request, pk):
 
 
 class ObjDelete(LoginRequiredMixin, DeleteView):
-    '''Удаление объекта'''
+    """Удаление объекта"""
     model = MyObject
     template_name = 'myobject/delete-obj.html'
 
@@ -210,7 +213,7 @@ class ObjUpdate(LoginRequiredMixin, UpdateView):
 
 
 class ObjCopy(LoginRequiredMixin, UpdateView):
-    '''Копирование объекта'''
+    """Копирование объекта"""
     model = MyObject
     template_name = "myobject/copy-obj.html"
     form_class = MyObjectForm
@@ -226,7 +229,7 @@ class ObjCopy(LoginRequiredMixin, UpdateView):
 
 @login_required
 def zvon_obj(request, pk):
-    '''Прозвон объекта'''
+    """Прозвон объекта"""
     zvon = MyObject.objects.get(id=pk)
     zvon.zvon = timezone.now()
     zvon.save()
