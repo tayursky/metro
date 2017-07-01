@@ -1,4 +1,4 @@
-<img src="https://travis-ci.org/DJWOMS/metro.svg?branch=dev">
+<a href="https://travis-ci.org/DJWOMS/metro"><img src="https://travis-ci.org/DJWOMS/metro.svg?branch=dev"></a>
 # Сайт сдачи помещений в аренду
 - Ведение базы клиентов, обьектов аренды, своя админка для менеджеров.
 
