@@ -1,5 +1,5 @@
 {% extends 'myclient/base.html' %}
-{% load bootstrap3 %}
+{% load bootstrap3 static %}
 {% block title %}
 Добавить объект
 {% endblock %}
@@ -9,15 +9,23 @@
 {% endblock %}
 
 {% block content %}
+
 {% if error %}
     <h2>{{error}}</h2>
 {% endif %}
 
-<form   method="post" action="">
+<form method="post" action="">
     {% csrf_token %}
     {% bootstrap_form form %}
+
+    {% include 'myobject/file-fields.html' %}
+
     {% buttons %}
-    {% bootstrap_button "Сохранить" button_type="submit" button_class="btn-primary" %}
+    {% bootstrap_button "Сохранить" button_type="submit" button_class="btn-primary submit-form" %}
     {% endbuttons %}
 </form>
+
+{% include 'myobject/file-block.html' %}
+{% include 'myobject/file-scripts.html' %}
+
 {% endblock %}

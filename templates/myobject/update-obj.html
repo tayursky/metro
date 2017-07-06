@@ -12,8 +12,13 @@
 <form   method="post" action="">
     {% csrf_token %}
     {% bootstrap_form form %}
+    {% include 'myobject/file-fields.html' %}
     {% buttons %}
     {% bootstrap_button "Сохранить" button_type="submit" button_class="btn-primary" %}
     {% endbuttons %}
 </form>
+
+{% include 'myobject/file-block.html' %}
+{% include 'myobject/file-scripts.html' %}
+
 {% endblock %}

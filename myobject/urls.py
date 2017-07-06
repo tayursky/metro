@@ -15,4 +15,8 @@ urlpatterns = [
         views.ObjCopy.as_view(), name='copy_obj'),
     url(r'^prozvon_obj/(?P<pk>[0-9]+)/$', views.zvon_obj, name='zvon_obj'),
     url(r'^look_obj/(?P<pk>[0-9]+)/$', views.look_obj, name='look_obj'),
+
+    url(r'^upload-photo/$', views.upload_photo, name='upload_photo'),
+    url(r'^delete/photo/(?P<pk>[0-9]+)/$', views.del_photo, name='del-photo'),
+    url(r'^save-weight/$', views.save_weight, name='save-weight'),
 ]

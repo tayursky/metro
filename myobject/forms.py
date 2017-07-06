@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django import forms
-from .models import MyObject
+from .models import MyObject, MultiImages
 
 
 class MyObjectForm(forms.ModelForm):
@@ -16,6 +16,12 @@ class MyObjectForm(forms.ModelForm):
             'okrug': forms.widgets.CheckboxSelectMultiple,
             'naznach': forms.widgets.CheckboxSelectMultiple
         }
+
+
+class MultiImg(forms.ModelForm):
+    class Meta:
+        model = MultiImages
+        fields = ('file', 'weight', 'my_manager')
 
 
 class SObjectTypeForm(forms.ModelForm):
