@@ -1,0 +1,27 @@
+{% load bootstrap3 static %}
+
+<label for="photo-upload">Изображения</label>
+{#    Загруженные фотографии#}
+<table id="gallery" class="table table-bordered">
+  <tbody>
+    {% for photo in photos %}
+      <tr data-weight='{{ photo.weight }}'>
+        <td><a href="{{ photo.file.url }}">{{ photo.file.name }}</a></td>
+        <td>
+            <div class='btn btn-sm btn-danger delete del-photo' data-url='{{ photo.pk }}'>
+                <i class='glyphicon glyphicon-trash'></i>
+                удалить</div>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<div class="form-group upload">
+    <button type="button" id="photo-upload" class="btn btn-success js-upload-photos">
+      <span class="glyphicon glyphicon-cloud-upload"></span> Загрузить фотографии
+    </button>
+    <button type='button' id='sort-save' class='btn btn-warning'>
+        <span class='glyphicon glyphicon-sort-by-attributes'></span> Сохранить сортировку
+    </button>
+</div>

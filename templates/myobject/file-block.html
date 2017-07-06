@@ -1,0 +1,24 @@
+{% load bootstrap3 static %}
+
+{# 2. FILE INPUT TO BE USED BY THE PLUG-IN #}
+<input id="fileupload" type="file" name="file" multiple
+       style="display: none;"
+       data-url="{% url 'upload_photo' %}"
+       data-form-data='{"csrfmiddlewaretoken": "{{ csrf_token }}"}'>
+
+
+{#    Displaying the Progress#}
+<div class="modal fade" id="modal-progress" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Загрузка...</h4>
+      </div>
+      <div class="modal-body">
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" style="width: 0%;">0%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

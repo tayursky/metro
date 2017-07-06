@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+body {
+  padding-top: 60px;
+}
+
+.preview img {
+    max-height:50px;
+}
+
+
+#gallery tr {
+    width: 100%;
+    background: #fff;
+}
+#gallery tr:hover {
+    cursor: pointer;
+}
+#gallery tr.ui-sortable-helper {
+    background: rgba(218, 218, 218, 0.5);
+}
+#gallery tr td:first-child {
+    width: 80%;
+    vertical-align: middle;
+}
+#gallery tr td:last-child {
+    width: 20%;
+    vertical-align: middle;
+    text-align: center;
+}

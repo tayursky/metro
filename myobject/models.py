@@ -3,8 +3,11 @@ from django.core.urlresolvers import reverse
 from django.utils import timezone
 from django.contrib.auth import get_user_model
 from django.conf import settings
+from django.dispatch import receiver
 
 from myclient.models import Okrug, Naznach, HistoricalRecordsExtended
+
+import os
 
 
 def get_sentinel_user():
@@ -119,3 +122,24 @@ class MyObject(models.Model):
         else:
             self.area_range = 'middle'
         super().save(*args, **kwargs)
+
+
+class MultiImages(models.Model):
+    """Изображения прикрепленные к объектам. Основа для мультизагрузки фото."""
+    parent = models.ForeignKey(MyObject, blank=True, null=True, verbose_name='Объект')
+    title = models.CharField(max_length=255, blank=True)
+    file = models.ImageField(upload_to='object_photos/%Y%m')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+    weight = models.IntegerField(null=True, blank=True, verbose_name='Вес')
+    my_manager = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True,
+                                   on_delete=models.SET(get_sentinel_user), )
+
+    def __str__(self):
+        return self.file.name
+
+
+@receiver(models.signals.pre_delete, sender=MultiImages, weak=False)
+def delete_photo(sender, instance, **kwargs):
+    path_to_photo = instance.file.path
+    if os.path.exists(path_to_photo):
+        os.remove(path_to_photo)
