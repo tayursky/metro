@@ -8,16 +8,34 @@
 {% endblock %}
 
 {% block content %}
-<div>
-    {% if search_object %}
-        {% for obj in search_object %}
-            <div class="myobj">
-                <p>{{obj.price}}</p>
-                <p>{{obj.adres}}</p>
-            </div>
-        {% endfor %}
-    {% else %}
-        <h2>Ошибка. Объект не существует.</h2>
-    {% endif %}
+
+<div class="home-obj">
+
+  {% if search_object %}
+    {% for obj in search_object %}
+
+        <div class="myobj">
+            <p>
+                {% for img in imgs %}
+                <a href="{% url 'obj_single' pk=obj.id %}"><img src="{{MEDIA_URL}}{{ img.image.url }}" width="200" height="200" alt="Аренда помещений"></a>
+                {% endfor %}
+            </p>
+            <p>
+                {{obj.price}} Р/месяц </br>
+                {{obj.adres}}</br>
+                {{obj.station_one}} {% if obj.station_two %} {{obj.station_two2}} {% endif %}   </br>
+                150 метров от метро </br>
+                {% for okrug in obj.okrug.all %}
+                    {{okrug.options}},
+                {% endfor %}</br>
+            </p>
+        </div>
+    {% endfor %}
+  {% else %}
+    <h1>По вашему запросу нет результатов</h1>
+  {% endif %}
+</div>
+<div class="clearfix">
+
 </div>
 {% endblock %}

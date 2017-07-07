@@ -77,16 +77,15 @@
     {% if imgs %}
         <p><strong>Возможно, Вас заинтересуют похожие предложения:</strong></p>
     {% endif %}
-    {% for img in imgs %}
-    <div class="img-obj">
-        <img src="{{MEDIA_URL}}{{ img.image.url }}" width="250" height="200" alt="Аренда помещений">
-    </div>
-    {% endfor %}
-    <div class="clearfix">
 
-    </div>
     {% for obj in img_objs %}
     <div class="img-obj-opis">
+        {% for img in imgs %}
+        <div class="img-obj">
+            <img src="{{MEDIA_URL}}{{ img.image.url }}" width="250" height="200" alt="Аренда помещений">
+        </div>
+        {% endfor %}
+        
         <strong>
         <a href="{% url 'obj_single' pk=obj.id %}"><p>
             {% for okrug in obj.okrug.all %}
@@ -105,6 +104,9 @@
     </div>
     {% endfor %}
 </div>
+<div class="clearfix">
+
+</div>
 </div>
 
     {# endfor #}
@@ -113,6 +115,13 @@
     {% endif %}
 
 <div class="obj-right">
+    <div class="img-obj-right">
+        {% for photo in photos %}
+        <div class="img-obj-singl">
+            <img src="{{MEDIA_URL}}{{ photo.file.url }}" width="250" height="200" alt="Аренда помещений">
+        </div>
+        {% endfor %}
+    </div>
     <div class="btn-obj-singl">
         <a href="javascript:window.print(); void 0;" class="cont-btn">РАСПЕЧАТАТЬ</a>
     </div>

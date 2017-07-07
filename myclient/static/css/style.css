@@ -174,8 +174,11 @@ a.a-nav::before{
 .content{
     padding: 60px;
 }
+.home-obj{
+    margin: 50px 0 0 0;
+}
 .myobj{
-    width: 285px;
+    width: 215px;
     float: left;
 }
 form.form_s_3s {
@@ -241,12 +244,12 @@ form.form_s_3s {
 }
 .img-obj{
     width: 250px;
-    margin-left: 15px;
+    /*margin-left: 15px;*/
     float: left;
 }
 .img-obj-opis{
     width: 250px;
-    margin-left: 15px;
+    margin: 0 0 15px 15px;
     float: left;
     text-align: center;
 }
@@ -254,6 +257,9 @@ form.form_s_3s {
     width: 270px;
     padding: 20px;
     float: right;
+}
+.img-obj-right{
+    margin: 0 0 15px 0;
 }
 .cont-btn{
     background-color: #DB2C27;

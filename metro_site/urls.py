@@ -5,6 +5,7 @@ from . import views
 urlpatterns = [
     #  url(r'^$', views.HomeView.as_view(), name='home'),
     url(r'^$', views.home, name='home'),
+    url(r'new/$', views.new_obj, name='new_obj'),
 
     # Поиск на сайте
     url(r'^search_object/$', views.search_object, name='search_object'),

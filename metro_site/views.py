@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q
 
-from myobject.models import MyObject
+from myobject.models import MyObject, MultiImages
 from photo_baza.models import Photo
 from .forms import SearchObjectFront, SearchMetroFront, SearchObjFullFront
 
@@ -26,9 +26,9 @@ def home(request):
                 return render(request, 'site/home.html', context)
 
     for st in myobj:
-        img = Photo.objects.filter(station=st.station_one)[:4]
+        img = Photo.objects.filter(station=st.station_one)[:1]
 
-    context = {'myobj': myobj, 'form': form}  # 'imgs': img}
+    context = {'myobj': myobj, 'form': form, 'imgs': img}
     return render(request, 'site/home.html', context)
 
 
@@ -39,13 +39,15 @@ def search_object(request):
         if form.is_valid():
             search = form.cleaned_data['search']
             myobject = get_object_or_404(MyObject, id=search)
+            photos = MultiImages.objects.filter(parent=myobject)
+            print(photos)
             try:
-                img = Photo.objects.filter(station=myobject.station_one)[:4]
+                img = Photo.objects.filter(station=myobject.station_one)[:1]
                 img_obj = MyObject.objects.\
                     filter(okrug=myobject.okrug.all()[:1])
-                context = {'obj': myobject, 'imgs': img, 'img_objs': img_obj}
+                context = {'obj': myobject, 'photos': photos, 'imgs': img,  'img_objs': img_obj}
             except:
-                context = {'obj': myobject}
+                context = {'obj': myobject, 'photos': photos}
     else:
         return redirect('/')
 
@@ -63,13 +65,13 @@ def search_metro(request):
                        Q(station_two__name=search))
             if metro.exists():
                 for st in metro:
-                    img = Photo.objects.filter(station=st.station_one)
+                    img = Photo.objects.filter(station=st.station_one)[:1]
                     context = {'search_object': metro, 'imgs': img}
             else:
                 context = {'search_object': metro}
     else:
         return redirect('/')
-    return render(request, 'site/search.html', {'search_object': metro})
+    return render(request, 'site/search.html', context)
 
 
 def obj_single(request, pk):
@@ -77,12 +79,22 @@ def obj_single(request, pk):
     сделать более организовано, без копипаста
     '''
     myobject = get_object_or_404(MyObject, pk=pk)
+    photos = MultiImages.objects.filter(parent=myobject)
     try:
-        img = Photo.objects.filter(station=myobject.station_one)[:4]
+        img = Photo.objects.filter(station=myobject.station_one)[:1]
         img_obj = MyObject.objects.\
             filter(okrug=myobject.okrug.all()[:1])
-        context = {'obj': myobject, 'imgs': img, 'img_objs': img_obj}
+        context = {'obj': myobject, 'photos': photos, 'imgs': img, 'img_objs': img_obj}
     except:
-        context = {'obj': myobject}
+        context = {'obj': myobject, 'photos': photos}
 
     return render(request, 'site/obj-single.html', context)
+
+def new_obj(request):
+    '''Новые объекты'''
+    myobj = MyObject.objects.order_by('-id')[:16]
+    for st in myobj:
+        img = Photo.objects.filter(station=st.station_one)[:1]
+        context = {'search_object': myobj, 'imgs': img}
+
+    return render(request, 'site/search.html', context)
