@@ -410,7 +410,7 @@ footer{
     margin-right: 100px;
 }
 /*Медиа*/
-@media (max-width: 992px){
+/*@media (max-width: 992px){
 .left-side, .right-side {
     width: 100%;
     float: left;
@@ -430,18 +430,142 @@ footer{
 .stat-header {
     width: 100%;
     float: left;
-    /* margin: 10px 25px 0 0; */
 }
 
 .footer {
     margin: 25px 0 0 0;
     width: 100%;
 }
+}*/
+@media (max-width: 800px){
+.page {
+    width: 100%;
+    margin: auto;
+    }
+.head {
+    width: 100%;
+    margin: 0 auto;
+    padding: 27px 0 0 0;
 }
-
-@media (max-width: 750){
-	.nav-justified>li {
-    float: left !important;
+.navbar-toggle {
+    position: relative;
+    float: right;
+    padding: 0 !important;
+    margin-top: 8px;
+    margin-right: 15px;
+    margin-bottom: 8px;
+    background-color: transparent;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    width: 40px;
+    font-size: 24px;
+    height: 35px;
+    background-color: #fff !important;
 }
-
+.logo {
+    margin: 0 0 0 10px;
+}
+.menu {
+    height: 50px;
+    width: 100%;
+}
+.nav>li>a {
+    position: relative;
+    display: block;
+    width: 200px;
+    float: right;
+    text-align: center;
+}
+.li-tel {
+    margin-top: -7px;
+    margin-right: 180px;
+}
+.a-nav-btn {
+    height: auto;
+    margin-left: 0;
+}
+.main-site {
+    width: 100%;;
+}
+.title-site {
+    margin-top: 45px;
+    color: #fff;
+    width: 100%;
+}
+.search-head {
+    width: 100%;
+    height: 50px;
+    padding: 50px 0 50px 50px;
+}
+.search-head-form {
+    width: 60px;
+    float: left;
+}
+.form_s_s {
+    padding: 0 55px 5px 5px;
+}
+.form_s_s2 {
+    margin-left: 255px;
+    padding: 0 55px 5px 5px;
+}
+    .footer {
+    margin: 25px 0 0 0;
+    width: 100%;
+    height: 100%;
+}
+.nav-footer {
+    margin: 10px 0 0 0 !important;
+    float: right;
+    /* width: 330px; */
+}
+.li-footer-day {
+    margin: 0;
+}
+.li-footer {
+    margin-right: 0;
+}
+}
+@media (max-width: 480px){
+    .menu-bar {
+    height: 180px;
+}
+    .li-tel {
+        margin: 0 0 0 20px;
+    }
+    .a-nav-btn {
+    margin: 10px 0 0 35px !important;
+}
+    .navbar {
+    position: static;
+}
+    .container-fluid {
+    padding-left: 0;
+}
+    .nav>li>a {
+        float: none;
+        margin: 0;
+    }
+    .top-nav {
+        margin-left: 1px !important;
+        margin-top: 1px !important;
+        background-color: #fff;
+    }
+    a.a-nav {
+    font-size: 20px;
+    width: 100% !important;
+}
+.form_s_s2 {
+    margin-left: 0;
+    padding: 0 55px 5px 5px;
+}
+.form_s_3s .form-group {
+    margin-left: 0;
+}
+.btn-search-obj {
+    margin-left: 25%;
+}
+.a-footer{
+    float: left;
+}
 }
