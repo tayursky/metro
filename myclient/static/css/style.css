@@ -325,13 +325,12 @@ form.form_s_3s {
 .btn-obj:hover{
     background-color: rgb(224, 65, 61) !important;
 }
-.img-obj{
+/*.img-obj{
     width: 250px;
-    /*margin-left: 15px;*/
     float: left;
-}
+}*/
 .img-obj-opis{
-    width: 250px;
+    width: 180px;
     margin: 0 0 15px 15px;
     float: left;
     text-align: center;
@@ -343,6 +342,13 @@ form.form_s_3s {
 .pr-obj{
     width: 100px;
     height: 50px;
+}
+.img-sop-obj{
+    width: 150px;
+    height: 100px;
+}
+.p-pohoj{
+    font-size: 12px;
 }
 .obj-right{
     width: 270px;
@@ -506,7 +512,7 @@ footer{
     .footer {
     margin: 25px 0 0 0;
     width: 100%;
-    height: 100%;
+    /*height: 100%;*/
 }
 .nav-footer {
     margin: 10px 0 0 0 !important;
@@ -559,6 +565,27 @@ footer{
 .btn-search-obj {
     margin-left: 25%;
 }
+.home-obj {
+    margin: 0 0 0 15%;
+}
+/*Возможно редактировать кантент нужно*/
+.content {
+    padding: 10px;
+}
+.obj-cont {
+    float: none;
+    width: 100%;
+    border-right: none;
+}
+.table-obj {
+    width: 100% !important;
+}
+.obj-right {
+    width: 100%;
+    float: none;
+}
+
+
 .a-footer{
     float: left;
 }

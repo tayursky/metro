@@ -6,7 +6,11 @@
 {% endblock %}
 
 {% block content %}
-
+<script type="text/javascript">
+$(document).ready(function() {
+    $("a.gallery").fancybox();
+});
+</script>
     {% if obj %}
     {# for obj in obj_single #}
     <h2>ПОДРОБНАЯ ИНФОРМАЦИЯ ОБ ОБЪЕКТЕ № {{obj.id}}</h2>
@@ -69,7 +73,7 @@
             </td>
         </tr>
 </table>
-<h4>Если вы хотите получить подробную информации об этих объектах, пожалуйста, позвоните нам или оставьте заявку на просмотр</h4>
+<!--<h4>Если вы хотите получить подробную информации об этих объектах, пожалуйста, позвоните нам или оставьте заявку на просмотр</h4>-->
 
 <div class="station-img">
     {% if imgs %}
@@ -80,23 +84,24 @@
     <div class="img-obj-opis">
         {% for img in imgs %}
         <div class="img-obj">
-            <img src="{{MEDIA_URL}}{{ img.image.url }}" width="250" height="200" alt="Аренда помещений">
+                <img class="img-sop-obj"
+                src="{{MEDIA_URL}}{{ img.image.url }}"  alt="Аренда помещений">
         </div>
         {% endfor %}
 
         <strong>
-        <a href="{% url 'obj_single' pk=obj.id %}"><p>
+        <a href="{% url 'obj_single' pk=obj.id %}">
+            <p class="p-pohoj">
             {% for okrug in obj.okrug.all %}
                 {{okrug.options}},
             {% endfor %}
             {{obj.station_one}}
-            {% if obj.station_two %},
-                {{obj.station_two}}
-            {% endif %}
-        </p>
-
+            {% if obj.station_two %}
+                {#obj.station_two#}
+            {% endif %}<br />
             {{obj.area}} м<sup>2</sup>;
             Цена: {{obj.price}} руб.
+            </p>
         </a>
         </strong>
     </div>
@@ -116,7 +121,9 @@
     <div class="img-obj-right">
         {% for photo in photos %}
         <div class="img-obj-singl">
+            <a class="gallery" href="{{MEDIA_URL}}{{ photo.file.url }}">
             <img class="pr-obj" src="{{MEDIA_URL}}{{ photo.file.url }}"  alt="Аренда помещений">
+            </a>
         </div>
         {% endfor %}
     </div>
@@ -138,10 +145,11 @@
 <div class="clearfix">
 
 </div>
+
 <script>
 jQuery(document).ready(function($) {
     $('.pr-obj:first').css({'width':'280px', 'height':'180px'});
-    //$('.pr-obj:first').css('height', '180px');
+    
 });
 </script>
 {% endblock %}

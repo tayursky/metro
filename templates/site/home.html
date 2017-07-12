@@ -66,9 +66,9 @@
                 {{obj.adres}}</br>
                 {{obj.station_one}} {% if obj.station_two %} {{obj.station_two2}} {% endif %}   </br>
                 150 метров от метро </br>
-                {% for okrug in obj.okrug.all %}
-                    {{okrug.options}},
-                {% endfor %}</br>
+                {% with obj.okrug.all.0 as attachment %}
+                    {{ attachment.options }}
+                {% endwith %}</br>
             </p>
         </div>
     {% endfor %}
