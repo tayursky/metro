@@ -208,7 +208,7 @@ form.form_s_3s {
 }
 .form_s_3s .radio input[type=radio]{
     position: absolute;
-    /*margin-left: -15px;*/
+    margin-left: -25px;
 }
 .form_s_3s label {
     margin-bottom: 25px;
@@ -226,6 +226,34 @@ form.form_s_3s {
     padding-left: 10px;
     margin-bottom: 20px !important;
 }
+#id_okrug_0:checked::before, #id_okrug_1:checked::before, #id_okrug_2:checked::before, #id_okrug_3:checked::before, #id_okrug_4:checked::before, #id_okrug_5:checked::before, #id_area_range_0:checked::before, #id_area_range_1:checked::before, #id_area_range_2:checked::before,
+#id_price_0:checked::before, #id_price_1:checked::before, #id_price_2:checked::before, #id_price_3:checked::before, #id_price_4:checked::before, #id_price_5:checked::before {
+    background-color: #5bc0de;
+    border-color: #5bc0de;
+    margin: -5px;
+}
+/*#id_area_range_0:checked + .radio label::before*/
+#id_okrug_0::before, #id_okrug_1::before, #id_okrug_2::before, #id_okrug_3::before, #id_okrug_4::before, #id_okrug_5::before, #id_area_range_0::before, #id_area_range_1::before, #id_area_range_2::before,
+#id_price_0::before, #id_price_1::before, #id_price_2::before, #id_price_3::before, #id_price_4::before, #id_price_5::before{
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    margin: -5px;
+    left: 0;
+    border: 1px solid #5bc0de;
+    border-radius: 3px;
+    background-color: #fff;
+    -webkit-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
+    -o-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
+    transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
+    border-radius: 50%;
+}
+#id_okrug_0::before, #id_okrug_1::before, #id_okrug_2::before, #id_okrug_3::before, #id_okrug_4::before, #id_okrug_5::before
+{
+
+}
 /*
 .form_s_3s .checkbox label:before {
     display: inline-block;
@@ -234,7 +262,35 @@ form.form_s_3s {
     font-weight: 400;
     cursor: pointer;
 }*/
-.form_s_3s .checkbox label:before{
+#id_area_range_0::after {
+    opacity: 1;
+    content: "до 20 кв.м.";
+    display: inline-block;
+    width: 200px;
+    margin: 15px 0 0 25px;
+    color: #2196F3;
+    font-size: 14px;
+    /* font-style: italic; */
+}
+#id_area_range_1::after {
+    content: "от 20 до 80 кв.м.";
+    display: inline-block;
+    width: 200px;
+    margin: 15px 0 0 25px;
+    color: #2196F3;
+    font-size: 14px;
+    /* font-style: italic; */
+}
+#id_area_range_2::after {
+    content: "от 80 кв.м.";
+    display: inline-block;
+    width: 200px;
+    margin: 15px 0 0 25px;
+    color: #2196F3;
+    font-size: 14px;
+    /* font-style: italic; */
+}
+/*.form_s_3s .checkbox label:before{
     content: '';
     width: 20px;
     height: 20px;
@@ -246,12 +302,13 @@ form.form_s_3s {
     -webkit-transition: all .12s, border-color .08s;
     transition: all .12s, border-color .08s;
 }
-checkbox input[type=checkbox] {
-	background-color: #6cc0e5 !important;
+.checkbox input {
+	opacity: 0.54;
+    background-color: #6cc0e5 !important;
 }
-input[type=checkbox].checkbox:checked + .checkbox label:before {
+.checkbox #id_okrug_0:checked + .checkbox label:before {
 background-color: #6cc0e5;
-}
+}*/
 .p-img{
 }
 .obj-cont{

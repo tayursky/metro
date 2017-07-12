@@ -67,9 +67,9 @@ class MyObject(models.Model):
     )
 
     RANGE_AREA = (
-        ('small', 'Маленькое до 20 кв.м'),
-        ('middle', 'Среднее от 20 до 80 кв.м'),
-        ('large', 'Большое до 80 кв.м'),
+        ('small', 'Маленькое'),
+        ('middle', 'Среднее'),
+        ('large', 'Большое'),
     )
 
     my_manager = models.ForeignKey(settings.AUTH_USER_MODEL,
