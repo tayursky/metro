@@ -28,7 +28,7 @@ class SearchObjFullFront(forms.Form):
         ('3', 'Юг'),
         ('4', 'Восток'),
         ('5', 'Запад'),
-        ('6', 'Область')
+        ('6', 'Область'),
     )
     PRICE = (
         ('1', '50000'),
@@ -42,13 +42,16 @@ class SearchObjFullFront(forms.Form):
     area_range = forms.ChoiceField(label='ПОМЕЩЕНИЕ',
                                    widget=forms.RadioSelect,
                                    choices=MyObject.RANGE_AREA)
-    okrug = forms.ModelChoiceField(queryset=Okrug.objects.all(),
-                                   empty_label=None,
-                                   label='РАЙОН МОСКВЫ',
-                                   widget=forms.RadioSelect)
+    okrug = forms.ModelMultipleChoiceField(queryset=Okrug.objects.all(),
+                                    #empty_label=None,
+                                    label='РАЙОН МОСКВЫ',
+                                    widget=forms.CheckboxSelectMultiple,
+                                    required=True)
     price = forms.ChoiceField(label='АРЕНДА В МЕСЯЦ до',
                               widget=forms.RadioSelect,
                               choices=PRICE)
     naznach = forms.ModelChoiceField(queryset=Naznach.objects.all(),
                                      empty_label='ВИД ДЕЯТЕЛЬНОСТИ',
-                                     label='')
+                                     label='',
+                                     error_messages={'required': ''},
+                                     required=False)

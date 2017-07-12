@@ -60,7 +60,7 @@
 								<a href="{% url 'new_obj' %}" class="a-nav">НОВЫЕ</a>
 							</li>
 							<li>
-								<a href="" class="a-nav">ОБЪЕКТЫ В ПЕРЕХОДАХ МЕТРО</a>
+								<a href="{% url 'under' %}" class="a-nav">ОБЪЕКТЫ В ПЕРЕХОДАХ МЕТРО</a>
 							</li>
 							<!--<li>
 								<a href="{% url 'contact' %}" class="a-nav">ЗАЯВКА</a>
@@ -85,9 +85,9 @@
 			{% block search %}
 
 			{% endblock %}
-			<header class="post">
-				<h2>{% block content-title %}{% endblock %}</h2>
-			</header>
+			<div class="post">
+				{% block content-title %}{% endblock %}
+			</div>
 			<div class="content">
 				{% block content %} {% endblock %}
 			</div>

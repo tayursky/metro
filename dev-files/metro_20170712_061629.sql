@@ -460,7 +460,7 @@ CREATE TABLE `myobject_historicalmyobject` (
 CHARACTER SET = utf8
 COLLATE = utf8_general_ci
 ENGINE = InnoDB
-AUTO_INCREMENT = 3;
+AUTO_INCREMENT = 27;
 -- -------------------------------------------------------------
 -- ---------------------------------------------------------
 
@@ -479,7 +479,7 @@ CREATE TABLE `myobject_multiimages` (
 CHARACTER SET = utf8
 COLLATE = utf8_general_ci
 ENGINE = InnoDB
-AUTO_INCREMENT = 1;
+AUTO_INCREMENT = 21;
 -- -------------------------------------------------------------
 -- ---------------------------------------------------------
 
@@ -531,7 +531,7 @@ CREATE TABLE `object` (
 CHARACTER SET = utf8
 COLLATE = utf8_general_ci
 ENGINE = InnoDB
-AUTO_INCREMENT = 3;
+AUTO_INCREMENT = 9;
 -- -------------------------------------------------------------
 -- ---------------------------------------------------------
 
@@ -547,7 +547,7 @@ CREATE TABLE `object_naznach` (
 CHARACTER SET = utf8
 COLLATE = utf8_general_ci
 ENGINE = InnoDB
-AUTO_INCREMENT = 2;
+AUTO_INCREMENT = 7;
 -- -------------------------------------------------------------
 -- ---------------------------------------------------------
 
@@ -563,7 +563,7 @@ CREATE TABLE `object_okrug` (
 CHARACTER SET = utf8
 COLLATE = utf8_general_ci
 ENGINE = InnoDB
-AUTO_INCREMENT = 2;
+AUTO_INCREMENT = 10;
 -- -------------------------------------------------------------
 -- ---------------------------------------------------------
 
@@ -595,7 +595,7 @@ CREATE TABLE `photo_baza` (
 CHARACTER SET = utf8
 COLLATE = utf8_general_ci
 ENGINE = InnoDB
-AUTO_INCREMENT = 1;
+AUTO_INCREMENT = 13;
 -- -------------------------------------------------------------
 -- ---------------------------------------------------------
 
@@ -746,7 +746,7 @@ INSERT INTO `auth_permission`(`id`,`name`,`content_type_id`,`codename`) VALUES (
 
 
 -- Dump data of "auth_user" --------------------------------
-INSERT INTO `auth_user`(`id`,`password`,`last_login`,`is_superuser`,`username`,`first_name`,`last_name`,`email`,`is_staff`,`is_active`,`date_joined`) VALUES ( '1', 'pbkdf2_sha256$36000$IufnHqMuplXN$Gny8qSN3N4v/E4ZoJ+UHtjzxrDOytl0D+zPev9pL4ik=', '2017-07-07 18:19:38.928651', '1', 'DJWOMS', '', '', 'l2maximum@mail.ru', '1', '1', '2017-06-28 14:24:54.977772' );
+INSERT INTO `auth_user`(`id`,`password`,`last_login`,`is_superuser`,`username`,`first_name`,`last_name`,`email`,`is_staff`,`is_active`,`date_joined`) VALUES ( '1', 'pbkdf2_sha256$36000$IufnHqMuplXN$Gny8qSN3N4v/E4ZoJ+UHtjzxrDOytl0D+zPev9pL4ik=', '2017-07-11 16:14:49.955735', '1', 'DJWOMS', '', '', 'l2maximum@mail.ru', '1', '1', '2017-06-28 14:24:54.977772' );
 -- ---------------------------------------------------------
 
 
@@ -883,6 +883,7 @@ INSERT INTO `django_migrations`(`id`,`app`,`name`,`applied`) VALUES ( '27', 'sit
 
 -- Dump data of "django_session" ---------------------------
 INSERT INTO `django_session`(`session_key`,`session_data`,`expire_date`) VALUES ( '20dtayc7p9qcy11ae7kghj4hqkyqxnt6', 'MWYyNTM2MDc0YTc1MjZlZGRmOThmOGVlN2U0MmNiMGZiYzE2ODM4ZTp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9oYXNoIjoiZjJjYmJlZTRmN2VmYmFkMzRjMDViOGI1YTJlN2JkMzJhNWE5YTFiYyIsIl9hdXRoX3VzZXJfaWQiOiIxIiwiX3Nlc3Npb25fZXhwaXJ5IjowfQ==', '2017-07-21 18:19:39.012504' );
+INSERT INTO `django_session`(`session_key`,`session_data`,`expire_date`) VALUES ( 'ai4h5il7r7osfs7weyq1hce4s2r6t63s', 'MWYyNTM2MDc0YTc1MjZlZGRmOThmOGVlN2U0MmNiMGZiYzE2ODM4ZTp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9oYXNoIjoiZjJjYmJlZTRmN2VmYmFkMzRjMDViOGI1YTJlN2JkMzJhNWE5YTFiYyIsIl9hdXRoX3VzZXJfaWQiOiIxIiwiX3Nlc3Npb25fZXhwaXJ5IjowfQ==', '2017-07-25 16:14:50.027492' );
 INSERT INTO `django_session`(`session_key`,`session_data`,`expire_date`) VALUES ( 'gpimj2tc34s1nmccbr5jrn9xkr8358eb', 'NDdhYTNlYTM2ZGEzNmQ1YzE1MzFmMTRkYjJmNzNkMGY5ODViYjNlZTp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJmMmNiYmVlNGY3ZWZiYWQzNGMwNWI4YjVhMmU3YmQzMmE1YTlhMWJjIiwiX3Nlc3Npb25fZXhwaXJ5IjowfQ==', '2017-07-12 14:25:06.175413' );
 INSERT INTO `django_session`(`session_key`,`session_data`,`expire_date`) VALUES ( 't44z85g02ihvm6hlba00fws43ddrlpgj', 'NjI3N2NhNGFiNmI0Y2MwOWU1Mzk1YjU0YWE3NjRlYTA5Yjk4NTJkMTp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9oYXNoIjoiZjJjYmJlZTRmN2VmYmFkMzRjMDViOGI1YTJlN2JkMzJhNWE5YTFiYyIsIl9zZXNzaW9uX2V4cGlyeSI6MCwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQifQ==', '2017-07-13 00:10:13.135958' );
 -- ---------------------------------------------------------
@@ -945,6 +946,7 @@ INSERT INTO `myobject_historicalmyobject`(`id`,`typeobj`,`adres`,`area`,`block_a
 INSERT INTO `myobject_historicalmyobject`(`id`,`typeobj`,`adres`,`area`,`block_area`,`block_price`,`block_procent`,`etaj`,`price`,`opis`,`dom`,`kvt`,`dogovor`,`block_name`,`block_tel`,`block_email`,`silka`,`zametka`,`hide`,`hide_date`,`zvon`,`area_range`,`history_id`,`history_date`,`history_change_reason`,`history_type`,`change_message`,`history_user_id`,`my_manager_id`,`station_one_id`,`station_two_id`) VALUES ( '7', '3', 'Макеевка', '500', '20', '10', '5', '1', '10', 'Описание', '1', '2', 'Договор', '', '+380957506112', '', '', 'Заметка', '0', NULL, '2017-07-07', 'large', '23', '2017-07-07 19:49:23.557474', NULL, '+', '[{\'added\': {\'name\': \'Макеевка\', \'object\': \'Объект\'}}]', '1', '1', '3', '1' );
 INSERT INTO `myobject_historicalmyobject`(`id`,`typeobj`,`adres`,`area`,`block_area`,`block_price`,`block_procent`,`etaj`,`price`,`opis`,`dom`,`kvt`,`dogovor`,`block_name`,`block_tel`,`block_email`,`silka`,`zametka`,`hide`,`hide_date`,`zvon`,`area_range`,`history_id`,`history_date`,`history_change_reason`,`history_type`,`change_message`,`history_user_id`,`my_manager_id`,`station_one_id`,`station_two_id`) VALUES ( '7', '3', 'Макеевка', '500', '20', '10', '5', '1', '10', 'Описание', '1', '2', 'Договор', '', '+380957506112', '', '', 'Заметка', '0', NULL, '2017-07-07', 'large', '24', '2017-07-07 19:49:38.803341', NULL, '~', '[{\'no changed\': {\'name\': \'Макеевка\', \'object\': \'Объект\'}}]', '1', '1', '3', '1' );
 INSERT INTO `myobject_historicalmyobject`(`id`,`typeobj`,`adres`,`area`,`block_area`,`block_price`,`block_procent`,`etaj`,`price`,`opis`,`dom`,`kvt`,`dogovor`,`block_name`,`block_tel`,`block_email`,`silka`,`zametka`,`hide`,`hide_date`,`zvon`,`area_range`,`history_id`,`history_date`,`history_change_reason`,`history_type`,`change_message`,`history_user_id`,`my_manager_id`,`station_one_id`,`station_two_id`) VALUES ( '7', '3', 'ул. Ленина д. 100', '500', '20', '10', '5', '1', '10', 'Описание', '1', '2', 'Договор', '', '+380957506112', '', '', 'Заметка', '0', NULL, '2017-07-07', 'large', '25', '2017-07-07 20:01:37.867727', NULL, '~', '[{\'changed\': {\'name\': \'ул. Ленина д. 100\', \'fields\': [\'Адрес\'], \'object\': \'Объект\'}}]', '1', '1', '3', '1' );
+INSERT INTO `myobject_historicalmyobject`(`id`,`typeobj`,`adres`,`area`,`block_area`,`block_price`,`block_procent`,`etaj`,`price`,`opis`,`dom`,`kvt`,`dogovor`,`block_name`,`block_tel`,`block_email`,`silka`,`zametka`,`hide`,`hide_date`,`zvon`,`area_range`,`history_id`,`history_date`,`history_change_reason`,`history_type`,`change_message`,`history_user_id`,`my_manager_id`,`station_one_id`,`station_two_id`) VALUES ( '8', '4', 'ул. Ленина д. 101', '5000', '50', '100', '10', '1', '100', 'Хоршая проходимость', '0', '6', 'Договор', '', '+380957506112', '', '', '', '0', NULL, '2017-07-11', 'large', '26', '2017-07-11 16:16:10.096209', NULL, '+', '[{\'added\': {\'object\': \'Объект\', \'name\': \'ул. Ленина д. 101\'}}]', '1', '1', '3', NULL );
 -- ---------------------------------------------------------
 
 
@@ -961,6 +963,8 @@ INSERT INTO `myobject_multiimages`(`id`,`title`,`file`,`uploaded_at`,`weight`,`m
 INSERT INTO `myobject_multiimages`(`id`,`title`,`file`,`uploaded_at`,`weight`,`my_manager_id`,`parent_id`) VALUES ( '16', '', 'object_photos/201707/2.jpg', '2017-07-07 19:49:37.462375', '1', '1', '7' );
 INSERT INTO `myobject_multiimages`(`id`,`title`,`file`,`uploaded_at`,`weight`,`my_manager_id`,`parent_id`) VALUES ( '17', '', 'object_photos/201707/3.jpg', '2017-07-07 19:49:37.588511', '1', '1', '7' );
 INSERT INTO `myobject_multiimages`(`id`,`title`,`file`,`uploaded_at`,`weight`,`my_manager_id`,`parent_id`) VALUES ( '18', '', 'object_photos/201707/4_JabQtZk.jpg', '2017-07-07 19:49:37.672108', '1', '1', '7' );
+INSERT INTO `myobject_multiimages`(`id`,`title`,`file`,`uploaded_at`,`weight`,`my_manager_id`,`parent_id`) VALUES ( '19', '', 'object_photos/201707/3_X4vmwJ2.jpg', '2017-07-11 16:16:06.351320', '1', '1', '8' );
+INSERT INTO `myobject_multiimages`(`id`,`title`,`file`,`uploaded_at`,`weight`,`my_manager_id`,`parent_id`) VALUES ( '20', '', 'object_photos/201707/4_2qnBJPR.jpg', '2017-07-11 16:16:06.469497', '2', '1', '8' );
 -- ---------------------------------------------------------
 
 
@@ -997,6 +1001,7 @@ INSERT INTO `object`(`id`,`typeobj`,`adres`,`area`,`block_area`,`block_price`,`b
 INSERT INTO `object`(`id`,`typeobj`,`adres`,`area`,`block_area`,`block_price`,`block_procent`,`etaj`,`price`,`opis`,`dom`,`kvt`,`dogovor`,`block_name`,`block_tel`,`block_email`,`silka`,`zametka`,`hide`,`hide_date`,`zvon`,`area_range`,`my_manager_id`,`station_one_id`,`station_two_id`) VALUES ( '5', '3', 'Макеевка', '500', '20', '10', '5', '1', '10', 'Описание', '1', '2', 'Договор', '', '+380957506112', '', '', 'Заметка', '0', NULL, '2017-07-07', 'large', '1', '3', '1' );
 INSERT INTO `object`(`id`,`typeobj`,`adres`,`area`,`block_area`,`block_price`,`block_procent`,`etaj`,`price`,`opis`,`dom`,`kvt`,`dogovor`,`block_name`,`block_tel`,`block_email`,`silka`,`zametka`,`hide`,`hide_date`,`zvon`,`area_range`,`my_manager_id`,`station_one_id`,`station_two_id`) VALUES ( '6', '3', 'Макеевка', '500', '20', '10', '5', '1', '10', 'Описание', '1', '2', 'Договор', '', '+380957506112', '', '', 'Заметка', '0', NULL, '2017-07-07', 'large', '1', '3', '1' );
 INSERT INTO `object`(`id`,`typeobj`,`adres`,`area`,`block_area`,`block_price`,`block_procent`,`etaj`,`price`,`opis`,`dom`,`kvt`,`dogovor`,`block_name`,`block_tel`,`block_email`,`silka`,`zametka`,`hide`,`hide_date`,`zvon`,`area_range`,`my_manager_id`,`station_one_id`,`station_two_id`) VALUES ( '7', '3', 'ул. Ленина д. 100', '500', '20', '10', '5', '1', '10', 'Описание', '1', '2', 'Договор', '', '+380957506112', '', '', 'Заметка', '0', NULL, '2017-07-07', 'large', '1', '3', '1' );
+INSERT INTO `object`(`id`,`typeobj`,`adres`,`area`,`block_area`,`block_price`,`block_procent`,`etaj`,`price`,`opis`,`dom`,`kvt`,`dogovor`,`block_name`,`block_tel`,`block_email`,`silka`,`zametka`,`hide`,`hide_date`,`zvon`,`area_range`,`my_manager_id`,`station_one_id`,`station_two_id`) VALUES ( '8', '4', 'ул. Ленина д. 101', '5000', '50', '100', '10', '1', '100', 'Хоршая проходимость', '0', '6', 'Договор', '', '+380957506112', '', '', '', '0', NULL, '2017-07-11', 'large', '1', '3', NULL );
 -- ---------------------------------------------------------
 
 
@@ -1005,6 +1010,7 @@ INSERT INTO `object_naznach`(`id`,`myobject_id`,`naznach_id`) VALUES ( '2', '6',
 INSERT INTO `object_naznach`(`id`,`myobject_id`,`naznach_id`) VALUES ( '3', '6', '2' );
 INSERT INTO `object_naznach`(`id`,`myobject_id`,`naznach_id`) VALUES ( '4', '7', '1' );
 INSERT INTO `object_naznach`(`id`,`myobject_id`,`naznach_id`) VALUES ( '5', '7', '2' );
+INSERT INTO `object_naznach`(`id`,`myobject_id`,`naznach_id`) VALUES ( '6', '8', '5' );
 -- ---------------------------------------------------------
 
 
@@ -1017,6 +1023,7 @@ INSERT INTO `object_okrug`(`id`,`myobject_id`,`okrug_id`) VALUES ( '5', '6', '1'
 INSERT INTO `object_okrug`(`id`,`myobject_id`,`okrug_id`) VALUES ( '6', '6', '2' );
 INSERT INTO `object_okrug`(`id`,`myobject_id`,`okrug_id`) VALUES ( '7', '7', '1' );
 INSERT INTO `object_okrug`(`id`,`myobject_id`,`okrug_id`) VALUES ( '8', '7', '2' );
+INSERT INTO `object_okrug`(`id`,`myobject_id`,`okrug_id`) VALUES ( '9', '8', '4' );
 -- ---------------------------------------------------------
 
 

@@ -174,12 +174,21 @@ a.a-nav::before{
 .content{
     padding: 60px;
 }
+.post {
+    padding: 30px 30px 0 30px;
+}
 .home-obj{
-    margin: 50px 0 0 0;
+    /*margin: 50px 0 0 0;*/
 }
 .myobj{
-    width: 215px;
+    width: 250px;
     float: left;
+    margin: 0 0 0 35px;
+}
+.myobj-h{
+    width: 285px;
+    float: left;
+    margin: 0 0 0 5px;
 }
 form.form_s_3s {
     width: 100%;
@@ -193,26 +202,57 @@ form.form_s_3s {
     margin-left: 35%;
 }
 .form_s_3s .form-group {
+    width: 200px;
     float: left;
-    margin-left: 15px;
+    margin-left: 35px;
 }
 .form_s_3s .radio input[type=radio]{
     position: absolute;
-    margin-left: -15px;
+    /*margin-left: -15px;*/
+}
+.form_s_3s label {
+    margin-bottom: 25px;
 }
 #id_okrug, #id_price {
     display: flex;
     flex-direction: column;
-    height: 110px;
+    height: 120px;
     flex-wrap: wrap;
 }
-.radio{
+.form_s_3s .radio, .form_s_3s .checkbox{
+
     font-size: 16px;
     margin-top: -2px !important;
-    padding-left: 2px;
+    padding-left: 10px;
+    margin-bottom: 20px !important;
 }
-.control-label{
-    font-size: 18px;
+/*
+.form_s_3s .checkbox label:before {
+    display: inline-block;
+    padding-left: 20px;
+    margin-bottom: 0;
+    font-weight: 400;
+    cursor: pointer;
+}*/
+.form_s_3s .checkbox label:before{
+    content: '';
+    width: 20px;
+    height: 20px;
+    border: 1px solid #6cc0e5;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: .6;
+    -webkit-transition: all .12s, border-color .08s;
+    transition: all .12s, border-color .08s;
+}
+checkbox input[type=checkbox] {
+	background-color: #6cc0e5 !important;
+}
+input[type=checkbox].checkbox:checked + .checkbox label:before {
+background-color: #6cc0e5;
+}
+.p-img{
 }
 .obj-cont{
     float: left;

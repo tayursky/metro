@@ -8,27 +8,41 @@ from .forms import SearchObjectFront, SearchMetroFront, SearchObjFullFront
 
 def home(request):
     ''' Гланая страница сайта '''
-    myobj = MyObject.objects.all()[:4]
+    myobj = MyObject.objects.all()[:3]
     form = SearchObjFullFront()
     if request.method == "POST":
         form = SearchObjFullFront(request.POST)
         if form.is_valid():
             form_price = int(form.cleaned_data['price'])
-            myobj = MyObject.objects.filter(
-                naznach=form.cleaned_data['naznach'],
-                price__lte=(form.fields['price'].choices)[form_price][1],
-                okrug=form.cleaned_data['okrug'],
-                area_range=form.cleaned_data['area_range']
-            )
-
-            if not myobj:
-                context = {'myobj': myobj, 'form': form}
+            okrug = form.cleaned_data['okrug']
+            myobjs = []
+            for o in okrug:
+                myobjs.append(MyObject.objects.filter(
+                    naznach=form.cleaned_data['naznach'],
+                    price__lte=(form.fields['price'].choices)[form_price][1],
+                    okrug=o,
+                    area_range=form.cleaned_data['area_range']
+                ))
+                print(myobjs)
+            if myobjs:
+                for sts in myobjs:
+                    for st in sts:
+                        img = Photo.objects.filter(station=st.station_one)[:1]
+                        if img:
+                            context = {'myobjs': myobjs, \
+                                       'form': form, 'imgs': img}
+                        else:
+                            context = {'myobjs': myobjs, 'form': form}
+                        return render(request, 'site/home.html', context)
+            context = {'form': form}
+            return render(request, 'site/home.html', context)
+    if myobj:
+        for st in myobj:
+            img = Photo.objects.filter(station=st.station_one)[:1]
+            if img:
+                context = {'myobj': myobj, 'form': form, 'imgs': img}
                 return render(request, 'site/home.html', context)
-
-    for st in myobj:
-        img = Photo.objects.filter(station=st.station_one)[:1]
-
-    context = {'myobj': myobj, 'form': form, 'imgs': img}
+        context = {'myobj': myobj, 'form': form}
     return render(request, 'site/home.html', context)
 
 
@@ -97,4 +111,13 @@ def new_obj(request):
         img = Photo.objects.filter(station=st.station_one)[:1]
         context = {'search_object': myobj, 'imgs': img}
 
+    return render(request, 'site/search.html', context)
+
+def under(request):
+    '''Объекты подземки'''
+    myobj = MyObject.objects.filter(typeobj=4)
+    if myobj:
+        for st in myobj:
+            img = Photo.objects.filter(station=st.station_one)[:1]
+            context = {'search_object': myobj, 'imgs': img}
     return render(request, 'site/search.html', context)
