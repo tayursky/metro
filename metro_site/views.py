@@ -23,7 +23,6 @@ def home(request):
                     okrug=o,
                     area_range=form.cleaned_data['area_range']
                 ))
-                print(myobjs)
             if myobjs:
                 for sts in myobjs:
                     for st in sts:
