@@ -13,13 +13,18 @@ def home(request):
     if request.method == "POST":
         form = SearchObjFullFront(request.POST)
         if form.is_valid():
-            form_price = int(form.cleaned_data['price'])
+            form_price = form.cleaned_data['price']
+            if form_price:
+                form_price = int(form_price)
+            else:
+                form_price = 10000000
             okrug = form.cleaned_data['okrug']
             myobjs = []
             for o in okrug:
                 myobjs.append(MyObject.objects.filter(
                     naznach=form.cleaned_data['naznach'],
-                    price__lte=(form.fields['price'].choices)[form_price][1],
+                    #price__lte=(form.fields['price'].choices)[form_price][1],
+                    price__lte=form_price,
                     okrug=o,
                     area_range=form.cleaned_data['area_range']
                 ))

@@ -70,9 +70,7 @@
         </tr>
 </table>
 <h4>Если вы хотите получить подробную информации об этих объектах, пожалуйста, позвоните нам или оставьте заявку на просмотр</h4>
-<div class="btn-obj">
-    <a href="{% url 'contact' %}" class="cont-btn">Записаться на просмотр</a>
-</div>
+
 <div class="station-img">
     {% if imgs %}
         <p><strong>Возможно, Вас заинтересуют похожие предложения:</strong></p>
@@ -85,7 +83,7 @@
             <img src="{{MEDIA_URL}}{{ img.image.url }}" width="250" height="200" alt="Аренда помещений">
         </div>
         {% endfor %}
-        
+
         <strong>
         <a href="{% url 'obj_single' pk=obj.id %}"><p>
             {% for okrug in obj.okrug.all %}
@@ -118,18 +116,32 @@
     <div class="img-obj-right">
         {% for photo in photos %}
         <div class="img-obj-singl">
-            <img src="{{MEDIA_URL}}{{ photo.file.url }}" width="250" height="200" alt="Аренда помещений">
+            <img class="pr-obj" src="{{MEDIA_URL}}{{ photo.file.url }}"  alt="Аренда помещений">
         </div>
         {% endfor %}
     </div>
-    <div class="btn-obj-singl">
-        <a href="javascript:window.print(); void 0;" class="cont-btn">РАСПЕЧАТАТЬ</a>
+    <div class="clearfix">
+
     </div>
-    <div class="btn-obj-singl">
-        <a href="{% url 'contact' %}" class="cont-btn">ЗАДАТЬ ВОПРОС</a>
+    <div class="div-btn">
+        <div class="btn-obj-singl">
+            <a href="javascript:window.print(); void 0;" class="cont-btn">РАСПЕЧАТАТЬ</a>
+        </div>
+        <div class="btn-obj-singl">
+            <a href="{% url 'contact' %}" class="cont-btn">ЗАПИСАТЬСЯ НА ПРОСМОТР</a>
+        </div>
+        <div class="btn-obj-singl">
+            <a href="{% url 'contact' %}" class="cont-btn">ЗАДАТЬ ВОПРОС</a>
+        </div>
     </div>
 </div>
 <div class="clearfix">
 
 </div>
+<script>
+jQuery(document).ready(function($) {
+    $('.pr-obj:first').css({'width':'280px', 'height':'180px'});
+    //$('.pr-obj:first').css('height', '180px');
+});
+</script>
 {% endblock %}

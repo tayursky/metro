@@ -254,14 +254,7 @@ form.form_s_3s {
 {
 
 }
-/*
-.form_s_3s .checkbox label:before {
-    display: inline-block;
-    padding-left: 20px;
-    margin-bottom: 0;
-    font-weight: 400;
-    cursor: pointer;
-}*/
+
 #id_area_range_0::after {
     opacity: 1;
     content: "до 20 кв.м.";
@@ -290,25 +283,7 @@ form.form_s_3s {
     font-size: 14px;
     /* font-style: italic; */
 }
-/*.form_s_3s .checkbox label:before{
-    content: '';
-    width: 20px;
-    height: 20px;
-    border: 1px solid #6cc0e5;
-    position: absolute;
-    left: 0;
-    top: 0;
-    opacity: .6;
-    -webkit-transition: all .12s, border-color .08s;
-    transition: all .12s, border-color .08s;
-}
-.checkbox input {
-	opacity: 0.54;
-    background-color: #6cc0e5 !important;
-}
-.checkbox #id_okrug_0:checked + .checkbox label:before {
-background-color: #6cc0e5;
-}*/
+
 .p-img{
 }
 .obj-cont{
@@ -317,14 +292,25 @@ background-color: #6cc0e5;
     padding: 0 5px;
     border-right: 1px solid #000;
 }
+.div-btn{
+    margin: 15px 0 5px 0;
+}
 .btn-obj-singl{
+    margin: 0 0 5px 0;
+    width: 250px;
+    height: 50px;
+    text-align: center;
+    background-color: #DB2C27;
+    padding: 15px 0;
+}
+/*.btn-obj-singl2 {
     margin-bottom: 5px;
     width: 250px;
     height: 50px;
     text-align: center;
     background-color: #DB2C27;
-    padding: 15px 50px;
-}
+    padding: 15px 5px;
+}*/
 .btn-obj-singl:hover{
     background-color: rgb(224, 65, 61) !important;
 }
@@ -349,6 +335,14 @@ background-color: #6cc0e5;
     margin: 0 0 15px 15px;
     float: left;
     text-align: center;
+}
+.img-obj-singl{
+    float: left;
+    margin: 5px;
+}
+.pr-obj{
+    width: 100px;
+    height: 50px;
 }
 .obj-right{
     width: 270px;
