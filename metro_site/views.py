@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q
 
+from myclient.models import Okrug
 from myobject.models import MyObject, MultiImages
 from photo_baza.models import Photo
 from .forms import SearchObjectFront, SearchMetroFront, SearchObjFullFront
@@ -13,21 +14,37 @@ def home(request):
     if request.method == "POST":
         form = SearchObjFullFront(request.POST)
         if form.is_valid():
-            form_price = form.cleaned_data['price']
-            if form_price:
-                form_price = int(form_price)
-            else:
-                form_price = 10000000
-            okrug = form.cleaned_data['okrug']
             myobjs = []
-            for o in okrug:
-                myobjs.append(MyObject.objects.filter(
-                    naznach=form.cleaned_data['naznach'],
-                    #price__lte=(form.fields['price'].choices)[form_price][1],
-                    price__lte=form_price,
-                    okrug=o,
-                    area_range=form.cleaned_data['area_range']
-                ))
+
+            form_price = form.cleaned_data['price']
+            if form_price == '6' or form_price == "":
+                price = 10000000
+            elif form_price != "":
+                form_price = int(form_price)
+                price = (form.fields['price'].choices)[form_price][1]
+
+            okrug = form.cleaned_data['okrug']
+            if not okrug:
+                okrug = Okrug.objects.all()
+
+            area = form.cleaned_data['area_range']
+            if not area:
+                for o in okrug:
+                    myobjs.append(MyObject.objects.filter(
+                        naznach=form.cleaned_data['naznach'],
+                        price__lte=price,
+                        okrug=o
+                        ))
+            else:
+                for o in okrug:
+                    myobjs.append(MyObject.objects.filter(
+                        naznach=form.cleaned_data['naznach'],
+                        price__lte=price,
+                        okrug=o,
+                        area_range=area
+                        ))
+            if form_price == "" and not okrug and not area:
+                    myobjs = MyObject.objects.all()
             if myobjs:
                 for sts in myobjs:
                     for st in sts:
@@ -40,6 +57,7 @@ def home(request):
                         return render(request, 'site/home.html', context)
             context = {'form': form}
             return render(request, 'site/home.html', context)
+
     if myobj:
         for st in myobj:
             img = Photo.objects.filter(station=st.station_one)[:1]

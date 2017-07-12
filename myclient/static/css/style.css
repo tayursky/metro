@@ -378,6 +378,24 @@ form.form_s_3s {
     float: left;
 }
 
+/*Старница поиска*/
+span.st-p {
+    color: red;
+}
+span.st-span {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.area {
+    border: 1px solid #000;
+    width: 100px;
+    text-align: center;
+    height: 40px;
+    vertical-align: middle;
+    line-height: 35px;
+    /* float: right; */
+    margin: -110px 0 60px 150px;
+}
 /*Футер*/
 footer{
     width: 100%;

@@ -12,6 +12,13 @@
 <div class="home-obj">
 
   {% if search_object %}
+  <div class="st-metro">
+      <p><span class="st-p">метро</span>
+      {% with search_object.all.0 as metro %}
+          <span class="st-span">{{ metro.station_one }}</span>
+      {% endwith %}</br>
+      </p>
+  </div>
     {% for obj in search_object %}
 
         <div class="myobj">
@@ -28,6 +35,9 @@
                 {# with obj.okrug.all.0 as attachment #}
                     {{ attachment.options }}
                 {# endwith #}</br>
+                <div class="area">
+                    {{obj.area}} м<sup>2</sup>
+                </div>
             </p>
         </div>
     {% endfor %}
