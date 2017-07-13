@@ -2,14 +2,14 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q
 
 from myclient.models import Okrug
-from myobject.models import MyObject, MultiImages
+from myobject.models import MyObject, MultiImages, StancMetro
 from photo_baza.models import Photo
 from .forms import SearchObjectFront, SearchMetroFront, SearchObjFullFront
 
 
 def home(request):
     ''' Гланая страница сайта '''
-    myobj = MyObject.objects.all()[:3]
+    myobj = MyObject.objects.all().order_by('-id')[:3]
     form = SearchObjFullFront()
     if request.method == "POST":
         form = SearchObjFullFront(request.POST)
@@ -29,43 +29,48 @@ def home(request):
                 okrug = Okrug.objects.all()
 
             if (not area) and (not naznach):
-                for okr in okrug:
+                for st in StancMetro.objects.filter(okrug__in=okrug).distinct():
                     myobjs.append(MyObject.objects.filter(
                         price__lte=price,
-                        okrug=okr
-                    ))
+                        okrug__in=okrug,
+                        station_one=st
+                    ).order_by("station_one"))
             elif not area:
-                for okr in okrug:
+                for st in StancMetro.objects.filter(okrug__in=okrug).distinct():
                     myobjs.append(MyObject.objects.filter(
                         naznach=form.cleaned_data['naznach'],
                         price__lte=price,
-                        okrug=okr
-                    ))
+                        okrug__in=okrug,
+                        station_one=st
+                    ).order_by("station_one"))
             elif not naznach:
-                for okr in okrug:
+                for st in StancMetro.objects.filter(okrug__in=okrug).distinct():
                     myobjs.append(MyObject.objects.filter(
                         area_range=area,
                         price__lte=price,
-                        okrug=okr
-                    ))
+                        okrug__in=okrug,
+                        station_one=st
+                        ).order_by("station_one"))
             else:
-                for okr in okrug:
+                for st in StancMetro.objects.filter(okrug__in=okrug).distinct():
                     myobjs.append(MyObject.objects.filter(
                         naznach=form.cleaned_data['naznach'],
                         area_range=area,
                         price__lte=price,
-                        okrug=okr
-                    ))
-
-            for sts in myobjs:
-                for st in sts:
-                    img = Photo.objects.filter(station=st.station_one)[:1]
-                    if img:
-                        context = {'myobjs': myobjs,
+                        okrug__in=okrug,
+                        station_one=st
+                    ).order_by("station_one"))
+            print(myobjs)
+            if myobjs:
+                for sts in myobjs:
+                    for st in sts:
+                        img = Photo.objects.filter(station=st.station_one)[:1]
+                        if img:
+                            context = {'myobjs': myobjs,
                                    'form': form, 'imgs': img}
-                    else:
-                        context = {'myobjs': myobjs, 'form': form}
-                    return render(request, 'site/home.html', context)
+                        else:
+                            context = {'myobjs': myobjs, 'form': form}
+                        return render(request, 'site/search.html', context)
 
             context = {'form': form}
             return render(request, 'site/home.html', context)
