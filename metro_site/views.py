@@ -15,46 +15,58 @@ def home(request):
         form = SearchObjFullFront(request.POST)
         if form.is_valid():
             myobjs = []
-
             form_price = form.cleaned_data['price']
+            okrug = form.cleaned_data['okrug']
+            area = form.cleaned_data['area_range']
+            naznach = form.cleaned_data['naznach']
+
             if form_price == '6' or form_price == "":
                 price = 10000000
             elif form_price != "":
                 form_price = int(form_price)
                 price = (form.fields['price'].choices)[form_price][1]
-
-            okrug = form.cleaned_data['okrug']
             if not okrug:
                 okrug = Okrug.objects.all()
 
-            area = form.cleaned_data['area_range']
-            if not area:
-                for o in okrug:
+            if (not area) and (not naznach):
+                for okr in okrug:
+                    myobjs.append(MyObject.objects.filter(
+                        price__lte=price,
+                        okrug=okr
+                    ))
+            elif not area:
+                for okr in okrug:
                     myobjs.append(MyObject.objects.filter(
                         naznach=form.cleaned_data['naznach'],
                         price__lte=price,
-                        okrug=o
-                        ))
+                        okrug=okr
+                    ))
+            elif not naznach:
+                for okr in okrug:
+                    myobjs.append(MyObject.objects.filter(
+                        area_range=area,
+                        price__lte=price,
+                        okrug=okr
+                    ))
             else:
-                for o in okrug:
+                for okr in okrug:
                     myobjs.append(MyObject.objects.filter(
                         naznach=form.cleaned_data['naznach'],
+                        area_range=area,
                         price__lte=price,
-                        okrug=o,
-                        area_range=area
-                        ))
-            if form_price == "" and not okrug and not area:
-                    myobjs = MyObject.objects.all()
-            if myobjs:
-                for sts in myobjs:
-                    for st in sts:
-                        img = Photo.objects.filter(station=st.station_one)[:1]
-                        if img:
-                            context = {'myobjs': myobjs, \
-                                       'form': form, 'imgs': img}
-                        else:
-                            context = {'myobjs': myobjs, 'form': form}
-                        return render(request, 'site/home.html', context)
+                        okrug=okr
+                    ))
+
+            for sts in myobjs:
+                for st in sts:
+                    img = Photo.objects.filter(station=st.station_one)[:1]
+                    if img:
+                        context = {'myobjs': myobjs,
+                                   'form': form, 'imgs': img}
+                    else:
+                        context = {'myobjs': myobjs, 'form': form}
+                    return render(request, 'site/home.html', context)
+
             context = {'form': form}
             return render(request, 'site/home.html', context)
 
@@ -81,7 +93,8 @@ def search_object(request):
                 img = Photo.objects.filter(station=myobject.station_one)[:1]
                 img_obj = MyObject.objects.\
                     filter(okrug=myobject.okrug.all()[:1])
-                context = {'obj': myobject, 'photos': photos, 'imgs': img,  'img_objs': img_obj}
+                context = {'obj': myobject, 'photos': photos,
+                           'imgs': img,  'img_objs': img_obj}
             except:
                 context = {'obj': myobject, 'photos': photos}
     else:
@@ -120,11 +133,13 @@ def obj_single(request, pk):
         img = Photo.objects.filter(station=myobject.station_one)[:1]
         img_obj = MyObject.objects.\
             filter(okrug=myobject.okrug.all()[:1])
-        context = {'obj': myobject, 'photos': photos, 'imgs': img, 'img_objs': img_obj}
+        context = {'obj': myobject, 'photos': photos,
+                   'imgs': img, 'img_objs': img_obj}
     except:
         context = {'obj': myobject, 'photos': photos}
 
     return render(request, 'site/obj-single.html', context)
+
 
 def new_obj(request):
     '''Новые объекты'''
@@ -134,6 +149,7 @@ def new_obj(request):
         context = {'search_object': myobj, 'imgs': img}
 
     return render(request, 'site/search.html', context)
+
 
 def under(request):
     '''Объекты подземки'''
