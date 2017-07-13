@@ -60,7 +60,6 @@ def home(request):
                         okrug__in=okrug,
                         station_one=st
                     ).order_by("station_one"))
-            print(myobjs)
             if myobjs:
                 for sts in myobjs:
                     for st in sts:
@@ -148,19 +147,24 @@ def obj_single(request, pk):
 
 def new_obj(request):
     '''Новые объекты'''
-    myobj = MyObject.objects.order_by('-id')[:16]
-    for st in myobj:
-        img = Photo.objects.filter(station=st.station_one)[:1]
-        context = {'search_object': myobj, 'imgs': img}
+    myobj = []
+    myobj.append(MyObject.objects.order_by('-id')[:16])
+    if myobj:
+        for st in myobj:
+            for s in st:
+                img = Photo.objects.filter(station=s.station_one)[:1]
+                context = {'myobjs': myobj, 'imgs': img}
 
     return render(request, 'site/search.html', context)
 
 
 def under(request):
     '''Объекты подземки'''
-    myobj = MyObject.objects.filter(typeobj=4)
+    myobj = []
+    myobj.append(MyObject.objects.filter(typeobj=4))
     if myobj:
         for st in myobj:
-            img = Photo.objects.filter(station=st.station_one)[:1]
-            context = {'search_object': myobj, 'imgs': img}
+            for s in st:
+                img = Photo.objects.filter(station=s.station_one)[:1]
+                context = {'myobjs': myobj, 'imgs': img}
     return render(request, 'site/search.html', context)

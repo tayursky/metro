@@ -48,13 +48,15 @@
     {% endfor %}
 
   {% elif search_object %}
-
+  <div class="st-metro">
+      <p><span class="st-p">метро</span>
+      {% with search_object.all.0 as metro %}
+          <span class="st-span">{{ metro.station_one }}</span>
+      {% endwith %}</br>
+      </p>
+  </div>
     {% for obj in search_object %}
-    <div class="st-metro">
-        <p><span class="st-p">метро</span>
-        <span class="st-span">{{obj.station_one}}</span>
-        </p>
-    </div>
+
         <div class="myobj">
             <p>
                 {% for img in imgs %}
@@ -78,6 +80,9 @@
   {% else %}
     <h1>По вашему запросу нет результатов</h1>
   {% endif %}
+  <div class="clearfix">
+
+  </div>
   <h2>Не нашли подходящего помещения или требуется помощь?</h2>
   <div class="btn-zay">
        <a href="{% url 'contact' %}" class="cont-btn zay-btn">ОСТАВИТЬ ЗАЯВКУ</a>
