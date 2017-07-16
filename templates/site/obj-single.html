@@ -7,9 +7,9 @@
 
 {% block content %}
 <script type="text/javascript">
-$(document).ready(function() {
-    $("a.gallery").fancybox();
-});
+// $(document).ready(function() {
+//     $("a.gallery").fancybox();
+// });
 </script>
     {% if obj %}
     {# for obj in obj_single #}
@@ -119,7 +119,7 @@ $(document).ready(function() {
     <div class="img-obj-right">
         {% for photo in photos %}
         <div class="img-obj-singl">
-            <a class="gallery" href="{{MEDIA_URL}}{{ photo.file.url }}">
+            <a class="gallery" data-fancybox="images" href="{{MEDIA_URL}}{{ photo.file.url }}">
             <img class="pr-obj" src="{{MEDIA_URL}}{{ photo.file.url }}"  alt="Аренда помещений">
             </a>
         </div>
@@ -147,7 +147,28 @@ $(document).ready(function() {
 <script>
 jQuery(document).ready(function($) {
     $('.pr-obj:first').css({'width':'280px', 'height':'180px'});
+    $().fancybox({
+      selector : '[data-fancybox="images"]',
+      thumbs   : false,
+      hash     : false,
+    });
 
+    $(".main-slider").slick({
+      slidesToShow   : 3,
+      slidesToScroll : 3,
+      infinite   : true,
+      dots       : false,
+      arrows     : false,
+      responsive : [
+        {
+          breakpoint: 960,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]
+    });
 });
 </script>
 {% endblock %}
