@@ -284,7 +284,9 @@ form.form_s_3s {
     /* font-style: italic; */
 }
 
-.p-img{
+.st-obj-img {
+    width: 275px;
+    height: 190px;
 }
 .obj-cont{
     float: left;
@@ -368,16 +370,30 @@ form.form_s_3s {
     text-decoration: none !important;
     color: #fff !important;
 }
-.table-obj{
+.table-obj {
     width: 600px !important;
+    border: none !important;
+    background-color: #efefef;
 }
 .td-op{
     width: 30%;
+    background-color: #00599D;
+    color: #fff;
 }
 .okrug-singl{
     float: left;
 }
-
+.td-zn {
+    border-bottom: 1px dashed #ddddff !important;
+    border-top: none !important;
+}
+.znak-m:after {
+    content: "M";
+    display: block;
+    color: #fff;
+    margin: 0 0 0 2px;
+    font-size: 12px;
+}
 /*Старница поиска*/
 span.st-p {
     color: red;
