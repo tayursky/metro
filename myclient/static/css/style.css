@@ -416,6 +416,16 @@ span.st-span {
     /* float: right; */
     margin: -110px 0 60px 150px;
 }
+.area2 {
+    border: 1px solid #000;
+    width: 100px;
+    text-align: center;
+    height: 40px;
+    vertical-align: middle;
+    line-height: 35px;
+    /* float: right; */
+    margin: -85px 0 60px 150px;
+}
 .st-metro {
     padding: 10px;
     border-top: 1px solid;
@@ -450,10 +460,14 @@ a.zay-btn{
     font-size: 17px;
     text-transform: uppercase;
 }
-.sort-pr {
+.sort-pr a{
     margin: 0 50px 0 20px;
     font-size: 17px;
     color: #9c9c9c;
+}
+.sort-pr a:hover{
+    color: #000;
+    text-decoration: none;
 }
 /*Футер*/
 footer{

@@ -94,7 +94,7 @@
                 {{obj.adres}}</br>
                 {{obj.station_one}} {% if obj.station_two %} {{obj.station_two2}} {% endif %}   </br>
                 150 метров от метро </br>
-                <div class="area">
+                <div class="area2">
                     {{obj.area}} м<sup>2</sup>
                 </div>
             </p>
@@ -103,10 +103,7 @@
 
 {% elif mytest %}
 {% regroup mytest by station_one as metro %}
-{#  elif myalf #}
-{# regroup myalf by station_one as metro  #}
     {% for objs in metro %}
-
         <div class="st-metro">
             <p> <span class="st-p">метро</span>
                 <span class="st-span">{{objs.grouper}}</span>
@@ -155,23 +152,6 @@ jQuery(document).ready(function($) {
       $(this).next().slideToggle();
     });
 
- //    $('a[name=alf]').click(function(e) {
- //        id = "station_one";
- //    $.ajax({
- //           type: "POST",
- //           url: "{% url 'home' %}",
- //           'pk': id,
- //           cache: false,
- //           success: function(data){
- //               if (data == 'ok'){
- //                  location.reload();
- //               }
- //               else{
- //                  $('#error-login').html(data);
- //               }
- //           }
- //      });
- // });
       $('a[name=alf]').click(function(e) {
           var order = '1';
            $("#id_sort").val(order);

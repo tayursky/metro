@@ -7,15 +7,11 @@ from myobject.models import MyObject, MultiImages, StancMetro
 from photo_baza.models import Photo
 from .forms import SearchObjectFront, SearchMetroFront, SearchObjFullFront
 
-def serch_test(form_price=False, okrug=False, area=False, naznach=False):
-    pass
 
 def home(request):
     ''' Гланая страница сайта '''
     myobj = MyObject.objects.all().order_by('-id')[:3]
     form = SearchObjFullFront()
-    s = False
-
     if request.method == "POST":
         order = "station_one"
         form = SearchObjFullFront(request.POST)
@@ -26,7 +22,7 @@ def home(request):
             naznach = form.cleaned_data['naznach']
             sort = form.cleaned_data['sort']
             if sort == '1':
-                order = "station_one"
+                order = "station_one__name"
             elif sort == '2':
                 order = "price"
             elif sort == '3':
@@ -97,6 +93,7 @@ def search_object(request):
 
 def search_metro(request):
     ''' Поиск станции метро '''
+    form = SearchObjFullFront()
     if request.method == "POST":
         form = SearchMetroFront(request.POST)
         if form.is_valid():
@@ -104,7 +101,7 @@ def search_metro(request):
             metro = MyObject.objects.\
                 filter(Q(station_one__name=search) |
                        Q(station_two__name=search))
-            context = {'search_object': metro}
+            context = {'search_object': metro, 'form': form}
     else:
         return redirect('/')
     return render(request, 'site/search.html', context)
@@ -127,12 +124,12 @@ def new_obj(request):
     myobjs = MyObject.objects.all().order_by("station_one")[:16]
     form = SearchObjFullFront()
     context = {'mytest': myobjs, 'form': form}
-    return render(request, 'site/search.html', context)
+    return render(request, 'site/obj.html', context)
 
 
 def under(request):
     '''Объекты подземки'''
-    myobjs = MyObject.objects.filter(typeobj=4).order_by("station_one")
+    myobjs = MyObject.objects.filter(typeobj=4).order_by("-station_one")
     form = SearchObjFullFront()
     context = {'mytest': myobjs, 'form': form}
-    return render(request, 'site/search.html', context)
+    return render(request, 'site/obj.html', context)
