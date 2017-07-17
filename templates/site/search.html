@@ -4,46 +4,69 @@
 
 {% endblock %}
 {% block content-title %}
+<div class="sort-hide">
+    <p>
+        Поиск
+    </p>
 
+    <div class="sort-search">
+        <form class="form_s_3s" name="contact" method="post" action="">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <div class="clearfix">
+            </div>
+            <button type="submit" class="btn btn-md btn-search-obj"><span class="search-obj">ИСКАТЬ</span></button>
+        </form>
+    </div>
+</div>
 {% endblock %}
 
 {% block content %}
-
 <div class="home-obj">
-    {% if myobjs %}
-    {% for objs in myobjs %}
-    <div class="st-metro">
-        <p><span class="st-p">метро</span>
-        {% with objs.all.0 as metro %}
-            <span class="st-span">{{ metro.station_one }}</span>
-        {% endwith %}</br>
+
+{% comment "Тестирую вариант с mytest" %}
+{% if myobjs %}
+{% for objs in myobjs %}
+<div class="st-metro">
+    <p><span class="st-p">метро</span>
+    {% with objs.all.0 as metro %}
+        <span class="st-span">{{ metro.station_one }}</span>
+    {% endwith %}</br>
+    </p>
+</div>
+<div class="block-metro-s">
+    {% for obj in objs %}
+    <div class="myobj">
+        <p>
+            {% with obj.station_one.photo_set.all.0 as img %}
+                <a href="{% url 'obj_single' pk=obj.id %}"><img class="st-obj-img" src="{{MEDIA_URL}}{{ img.image.url }}" alt="Аренда помещений"></a>
+            {% endwith %}
+        </p>
+        <p>
+            {{obj.price}} Р/месяц </br>
+            {{obj.adres}}</br>
+            {{obj.station_one}} {% if obj.station_two %} {{obj.station_two2}} {% endif %}   </br>
+            150 метров от метро </br></br>
+            <div class="area">
+                {{obj.area}} м<sup>2</sup>
+            </div>
         </p>
     </div>
-    <div class="block-metro-s">
-        {% for obj in objs %}
-        <div class="myobj">
-            <p>
-                {% with obj.station_one.photo_set.all.0 as img %}
-                    <a href="{% url 'obj_single' pk=obj.id %}"><img class="st-obj-img" src="{{MEDIA_URL}}{{ img.image.url }}" alt="Аренда помещений"></a>
-                {% endwith %}
-            </p>
-            <p>
-                {{obj.price}} Р/месяц </br>
-                {{obj.adres}}</br>
-                {{obj.station_one}} {% if obj.station_two %} {{obj.station_two2}} {% endif %}   </br>
-                150 метров от метро </br></br>
-                <div class="area">
-                    {{obj.area}} м<sup>2</sup>
-                </div>
-            </p>
-        </div>
-        {% endfor %}
-        </div>
-        <div class="clearfix">
-        </div>
     {% endfor %}
+    </div>
+    <div class="clearfix">
+    </div>
+{% endfor %}
+{% endcomment %}
+    <div class="sort">
+        <div class="sort-po">Сортировка по:</div>
+        <div class="sort-pr">Алфавиту</div>
+        <div class="sort-pr">Цене</div>
+        <div class="sort-pr">Удоленности</div>
+        <div class="sort-pr">Случайно</div>
+    </div>
 
-  {% elif search_object %}
+ {% if search_object %}
   <div class="st-metro">
       <p><span class="st-p">метро</span>
       {% with search_object.all.0 as metro %}
@@ -69,19 +92,61 @@
             </p>
         </div>
     {% endfor %}
+
+{% elif mytest %}
+{% regroup mytest by station_one as metro %}
+{#  elif myalf #}
+{# regroup myalf by station_one as metro  #}
+    {% for objs in metro %}
+
+        <div class="st-metro">
+            <p> <span class="st-p">метро</span>
+                <span class="st-span">{{objs.grouper}}</span>
+            </p>
+        </div>
+        <div class="block-metro-s">
+            {% for obj in objs.list %}
+                <div class="myobj">
+                    <p>
+                        {% with obj.station_one.photo_set.all.0 as img %}
+                            <a href="{% url 'obj_single' pk=obj.id %}"><img class="st-obj-img" src="{{MEDIA_URL}}{{ img.image.url }}" alt="Аренда помещений"></a>
+                        {% endwith %}
+                    </p>
+                    <p>
+                    {{obj.price}} Р/месяц </br>
+                    {{obj.adres}}</br>
+                    {{obj.station_one}} {% if obj.station_two %} {{obj.station_two2}} {% endif %}   </br>
+                    150 метров от метро </br></br>
+                    <div class="area">
+                        {{obj.area}} м<sup>2</sup>
+                    </div>
+                    </p>
+                </div>
+            {% endfor %}
+        </div>
+    <div class="clearfix">
+    </div>
+{% endfor %}
+
   {% else %}
     <h1>По вашему запросу нет результатов</h1>
   {% endif %}
-
   <div class="clearfix">
   </div>
-
   <h2>Не нашли подходящего помещения или требуется помощь?</h2>
   <div class="btn-zay">
        <a href="{% url 'contact' %}" class="cont-btn zay-btn">ОСТАВИТЬ ЗАЯВКУ</a>
   </div>
 </div>
 <div class="clearfix">
-
 </div>
+<script>
+jQuery(document).ready(function($) {
+    //$('.sort-search').hide();
+    $('.sort-hide p').on('click', function() {
+      $(this).next().slideToggle();
+    });
+});
+</script>
+
 {% endblock %}
