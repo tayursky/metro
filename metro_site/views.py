@@ -7,18 +7,32 @@ from myobject.models import MyObject, MultiImages, StancMetro
 from photo_baza.models import Photo
 from .forms import SearchObjectFront, SearchMetroFront, SearchObjFullFront
 
+def serch_test(form_price=False, okrug=False, area=False, naznach=False):
+    pass
 
 def home(request):
     ''' Гланая страница сайта '''
     myobj = MyObject.objects.all().order_by('-id')[:3]
     form = SearchObjFullFront()
+    s = False
+
     if request.method == "POST":
+        order = "station_one"
         form = SearchObjFullFront(request.POST)
         if form.is_valid():
             form_price = form.cleaned_data['price']
             okrug = form.cleaned_data['okrug']
             area = form.cleaned_data['area_range']
             naznach = form.cleaned_data['naznach']
+            sort = form.cleaned_data['sort']
+            if sort == '1':
+                order = "station_one"
+            elif sort == '2':
+                order = "price"
+            elif sort == '3':
+                order = "station_one"
+            elif sort == '4':
+                order = "id"
 
             if form_price == '6' or form_price == "":
                 price = 10000000
@@ -30,28 +44,28 @@ def home(request):
 
             if (not area) and (not naznach):
                 myobjs = MyObject.objects.filter(
-                        price__lte=price,
-                        okrug__in=okrug
-                        ).order_by("station_one").distinct()
+                                price__lte=price,
+                                okrug__in=okrug
+                                ).order_by(order).distinct()
             elif not area:
                 myobjs = MyObject.objects.filter(
-                        naznach=form.cleaned_data['naznach'],
-                        price__lte=price,
-                        okrug__in=okrug
-                    ).order_by("station_one").distinct()
+                                naznach=form.cleaned_data['naznach'],
+                                price__lte=price,
+                                okrug__in=okrug
+                            ).order_by(order).distinct()
             elif not naznach:
                 myobjs = MyObject.objects.filter(
-                        area_range=area,
-                        price__lte=price,
-                        okrug__in=okrug
-                    ).order_by("station_one").distinct()
+                                area_range=area,
+                                price__lte=price,
+                                okrug__in=okrug
+                            ).order_by(order).distinct()
             else:
                 myobjs = MyObject.objects.filter(
-                        naznach=form.cleaned_data['naznach'],
-                        area_range=area,
-                        price__lte=price,
-                        okrug__in=okrug
-                    ).order_by("station_one").distinct()
+                                naznach=form.cleaned_data['naznach'],
+                                area_range=area,
+                                price__lte=price,
+                                okrug__in=okrug
+                            ).order_by(order).distinct()
             form = SearchObjFullFront(data=request.POST)
             context = {'mytest': myobjs, 'form': form}
             return render(request, 'site/search.html', context)
@@ -122,6 +136,3 @@ def under(request):
     form = SearchObjFullFront()
     context = {'mytest': myobjs, 'form': form}
     return render(request, 'site/search.html', context)
-
-def serch_test(request):
-    pass

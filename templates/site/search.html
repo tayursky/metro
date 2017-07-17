@@ -5,12 +5,9 @@
 {% endblock %}
 {% block content-title %}
 <div class="sort-hide">
-    <p>
-        Поиск
-    </p>
-
+    <p>Поиск</p>
     <div class="sort-search">
-        <form class="form_s_3s" name="contact" method="post" action="">
+        <form class="form_s_3s" name="contact" method="post" action="{% url 'home' %}">
             {% csrf_token %}
             {% bootstrap_form form %}
             <div class="clearfix">
@@ -58,12 +55,23 @@
     </div>
 {% endfor %}
 {% endcomment %}
+
+
+
     <div class="sort">
         <div class="sort-po">Сортировка по:</div>
-        <div class="sort-pr">Алфавиту</div>
-        <div class="sort-pr">Цене</div>
-        <div class="sort-pr">Удоленности</div>
-        <div class="sort-pr">Случайно</div>
+        <div class="sort-pr">
+            <a href="#" name="alf">Алфавиту</a>
+        </div>
+        <div class="sort-pr">
+            <a href="#" name="price">Цене</a>
+        </div>
+        <div class="sort-pr">
+            <a href="#" name="ud">Удоленности</a>
+        </div>
+        <div class="sort-pr">
+            <a href="#" name="id">Случайно</a>
+        </div>
     </div>
 
  {% if search_object %}
@@ -146,6 +154,44 @@ jQuery(document).ready(function($) {
     $('.sort-hide p').on('click', function() {
       $(this).next().slideToggle();
     });
+
+ //    $('a[name=alf]').click(function(e) {
+ //        id = "station_one";
+ //    $.ajax({
+ //           type: "POST",
+ //           url: "{% url 'home' %}",
+ //           'pk': id,
+ //           cache: false,
+ //           success: function(data){
+ //               if (data == 'ok'){
+ //                  location.reload();
+ //               }
+ //               else{
+ //                  $('#error-login').html(data);
+ //               }
+ //           }
+ //      });
+ // });
+      $('a[name=alf]').click(function(e) {
+          var order = '1';
+           $("#id_sort").val(order);
+           $(document.contact.submit());
+      });
+      $('a[name=price]').click(function(e) {
+          var order = '2';
+           $("#id_sort").val(order);
+           $(document.contact.submit());
+      });
+      $('a[name=ud]').click(function(e) {
+          var order = '3';
+           $("#id_sort").val(order);
+           $(document.contact.submit());
+      });
+      $('a[name=id]').click(function(e) {
+          var order = '4';
+           $("#id_sort").val(order);
+           $(document.contact.submit());
+      });
 });
 </script>
 
